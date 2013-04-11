@@ -104,15 +104,16 @@ public class Player extends BasePlayer {
 		
 		int mouse_x = Mouse.getX();
 		int mouse_y = Mouse.getY();
-
+		
+		facingAngle = (float) (Math.toDegrees(Math.atan2(renderX - mouse_x, renderY - mouse_y)) + 180);
 		
 		data.setMapXOffset((float) (settings.getScreenX()/2 - x - (mouse_x - settings.getScreenX()/2)*1));
 		data.setMapYOffset((float) (settings.getScreenY()/2 - y - (mouse_y - settings.getScreenY()/2)*1));
 		
-		if(Keyboard.isKeyDown(Keyboard.KEY_D)){speed = .5; moveAngle = 0;}else
-		if(Keyboard.isKeyDown(Keyboard.KEY_A)){speed = .5; moveAngle = 180;}else
-		if(Keyboard.isKeyDown(Keyboard.KEY_S)){speed = .5; moveAngle = 270;}else
-		if(Keyboard.isKeyDown(Keyboard.KEY_W)){speed = .5; moveAngle = 90;}else{
+		if(Keyboard.isKeyDown(Keyboard.KEY_D)){speed = .5; moveAngle = 360-facingAngle;}else
+		if(Keyboard.isKeyDown(Keyboard.KEY_A)){speed = .5; moveAngle = 180-facingAngle;}else
+		if(Keyboard.isKeyDown(Keyboard.KEY_S)){speed = .5; moveAngle = 270-facingAngle;}else
+		if(Keyboard.isKeyDown(Keyboard.KEY_W)){speed = .5; moveAngle = 90-facingAngle;}else{
 			speed = 0;
 		}
 			
@@ -123,6 +124,5 @@ public class Player extends BasePlayer {
 			inventory.getWeapon().fire();
 		}
 		
-		facingAngle = (float) (Math.toDegrees(Math.atan2(renderX - mouse_x, renderY - mouse_y)) + 180);
 	}
 }
