@@ -1,6 +1,7 @@
 package org.projectcrawwl.data;
 
 import java.awt.Point;
+import java.awt.geom.Line2D;
 import java.util.ArrayList;
 
 import org.lwjgl.opengl.GL11;
@@ -12,7 +13,6 @@ public class World {
 	
 	private float gridX = 10;//10
 	private float gridY = 10;//10
-	
 	
 	private float mapXOffset;// = (1280-600)/2;
 	private float mapYOffset;// = (720-600)/2;
@@ -27,6 +27,10 @@ public class World {
 	private ArrayList<Point> rooms = new ArrayList<Point>();
 	
 	private ArrayList<Point> walls = new ArrayList<Point>();
+	/**
+	 * ArrayList of all collidable walls stored in absolute game position
+	 */
+	private ArrayList<Line2D.Float> lineWalls = new ArrayList<Line2D.Float>();
 	
 	/* 0 is nothing
 	 * negative values are not walkable
@@ -45,6 +49,12 @@ public class World {
 	        	 
 	        	 if(i == 0 || j == 0 || i + 1 == mapX/gridX || j + 1 == mapY/gridY || i == 1 || j == 1 || i+2 == mapX/gridX || j+2 == mapY/gridY){
 	        		 row.add(-1);
+	        		 
+	        		 lineWalls.add(new Line2D.Float(gridX*(i), gridY*(j), gridX*(i), gridY*(j+1)));
+	        		 lineWalls.add(new Line2D.Float(gridX*(i), gridY*(j), gridX*(i+1), gridY*(j)));
+	        		 lineWalls.add(new Line2D.Float(gridX*(i), gridY*(j+1), gridX*(i+1), gridY*(j+1)));
+	        		 lineWalls.add(new Line2D.Float(gridX*(i+1), gridY*(j), gridX*(i+1), gridY*(j+1)));
+	        		 
 	        		 walls.add(new Point(i,j));
 	        	 }else{
 	        		 row.add(0);
@@ -116,59 +126,16 @@ public class World {
 				if(a == x || a == x+w || b == y){
 					grid.get(a).set(b, -1);
 					walls.add(new Point(a,b));
+					
+					lineWalls.add(new Line2D.Float(gridX*(a), gridY*(b), gridX*(a), gridY*(b+1)));
+	        		lineWalls.add(new Line2D.Float(gridX*(a), gridY*(b), gridX*(a+1), gridY*(b)));
+	        		lineWalls.add(new Line2D.Float(gridX*(a), gridY*(b+1), gridX*(a+1), gridY*(b+1)));
+	        		lineWalls.add(new Line2D.Float(gridX*(a+1), gridY*(b), gridX*(a+1), gridY*(b+1)));
+					
 				}
 			}
 		}
 	}
-	/*
-	public void connectRooms(){
-		Point current = null;
-		for(Point p : rooms){
-			if(current == null){
-				current = p;
-			}else{
-				
-				int deltaX = Math.abs(p.x - current.x);
-				int deltaY = Math.abs(p.y - current.y);
-				
-				if(p.x > current.x){
-					for(int a = 0; a < deltaX; a++){
-						grid[p.x - a][p.y-1] = 2;
-						grid[p.x - a][p.y] = 2;
-						grid[p.x - a][p.y+1] = 2;
-					}
-				}else{
-					for(int a = 0; a < deltaX; a++){
-						grid[p.x + a][p.y-1] = 2;
-						grid[p.x + a][p.y] = 2;
-						grid[p.x + a][p.y+1] = 2;
-					}
-				}
-				
-				if(p.y > current.y){
-					if(p.x < current.x){
-						deltaX = -deltaX;
-					}
-					for(int a = 0; a < deltaY; a++){
-						grid[p.x  - deltaX][p.y - a] = 2;
-						grid[p.x  - deltaX+1][p.y - a] = 2;
-						grid[p.x  - deltaX-1][p.y - a] = 2;
-					}
-				}else{
-					if(p.x > current.x){
-						deltaX = -deltaX;
-					}
-					for(int a = 0; a < deltaY; a++){
-						grid[p.x  + deltaX][p.y + a] = 2;
-						grid[p.x  + deltaX+1][p.y + a] = 2;
-						grid[p.x  + deltaX-1][p.y + a] = 2;
-					}
-				}
-				
-				current = p;
-			}
-		}
-	}*/
 	
 	public void setLight(int x, int y, int val){
 		
@@ -333,15 +300,29 @@ public class World {
 		GL11.glVertex3f(rightBound*gridX + mapXOffset+gridX,downBound*gridY + mapYOffset+gridY,0);
 		GL11.glEnd();
 		
+		
+		for(Line2D.Float x : lineWalls){
+			GL11.glColor3d(1.0, 0, 0);
+			GL11.glLineWidth(1);
+			GL11.glBegin(GL11.GL_LINES);
+			
+			GL11.glVertex3d(x.getX1() + mapXOffset, x.getY1() + mapYOffset, 1);
+			GL11.glVertex3d(x.getX2() + mapXOffset, x.getY2() + mapYOffset, 1);
+			
+		
+			GL11.glEnd();	
+		}
+		/*
 		for(Point p : walls){
-			GL11.glColor3d(1,1,1);
+			//TODO make it only render what is on screen 
+			GL11.glColor4d(1,1,1,.2);
 			GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
 			GL11.glVertex3f(p.x*gridX + mapXOffset,p.y*gridY + mapYOffset,0);
 			GL11.glVertex3f(p.x*gridX + mapXOffset+ gridX,p.y*gridY + mapYOffset,0);
 			GL11.glVertex3f(p.x*gridX + mapXOffset,p.y*gridY + mapYOffset+gridY,0);
 			GL11.glVertex3f(p.x*gridX + mapXOffset+gridX,p.y*gridY + mapYOffset+gridY,0);
 			GL11.glEnd();
-		}
+		}*/
 	}
 	
 	

@@ -1,5 +1,6 @@
 package org.projectcrawwl.objects;
 
+
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
@@ -9,6 +10,7 @@ import org.projectcrawwl.weapons.Shotgun;
 import org.projectcrawwl.weapons.SniperRifle;
 
 public class Player extends BasePlayer {
+	
 	
 	public Player(int tempX, int tempY){
 		super(tempX,tempY);

@@ -1,6 +1,8 @@
 package org.projectcrawwl.objects;
 
 import java.awt.Point;
+import java.awt.Polygon;
+import java.awt.geom.PathIterator;
 import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.Hashtable;
@@ -21,6 +23,8 @@ public class BasePlayer extends GameObject{
 	ArrayList<Point> view = new ArrayList<Point>();
 	Dictionary<Point, Boolean> view2 = new Hashtable<Point, Boolean>();
 	Boolean state = false;
+	
+	Polygon viewCone = new Polygon();
 	
 	public BasePlayer(float tempX, float tempY, float tempA, float tempH, float tempR){
 		super();
@@ -71,6 +75,20 @@ public class BasePlayer extends GameObject{
 		GL11.glColor4d(0, 1, 0, .039);
 		
 		
+		PathIterator temp = viewCone.getPathIterator(null);
+		while(temp.isDone() == false){
+			
+		}
+		
+		/*
+		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
+		for(PathIterator pi = viewCone.getPathIterator(null); !pi.isDone(); pi.next()){
+			float[] coord = new float[6];
+			pi.currentSegment(coord);
+			GL11.glVertex2d(coord[0], coord[1]);
+			pi.next();
+		}
+		GL11.glEnd();*/
 		
 		
 		/*
@@ -108,8 +126,8 @@ public class BasePlayer extends GameObject{
 			state = false;
 		}
 		view.clear();
-		
-		
+		//viewCone.reset();
+		//viewCone.addPoint((int)x, (int)y);
 		for(float a = facingAngle - sightAngle/2; a < facingAngle + sightAngle/2; a += sightAngle/(Math.toRadians(sightAngle)*sightRange)){
 			for(int b = 0; b < sightRange; b += data.getGridX()){
 				Point temp = new Point((int)((x + Math.sin(Math.toRadians(a))*b)/data.getGridX()), (int) ((y + Math.cos(Math.toRadians(a))*b)/data.getGridY()));
@@ -127,8 +145,8 @@ public class BasePlayer extends GameObject{
 				}
 
 				if(data.getGrid().get(temp.x).get(temp.y) < 0){
-					//TODO test seeing into walls
 					view.add(temp);
+					//viewCone.addPoint((int)(temp.x*data.getGridX()), (int) (temp.y*data.getGridY()));
 					if((int)((sightRange-b)/sightRange*255*(1 - 2*Math.abs(a - facingAngle)/sightAngle)) > data.getLight(temp.x,temp.y)){
 						data.setLight(temp.x, temp.y, (int)((sightRange-b)/sightRange*255*(1 - 2*Math.abs(a - facingAngle)/sightAngle)));
 					}
@@ -138,6 +156,10 @@ public class BasePlayer extends GameObject{
 				view.add(temp);
 				if((int)((sightRange-b)/sightRange*255*(1 - 2*Math.abs(a - facingAngle)/sightAngle)) > data.getLight(temp.x,temp.y)){
 					data.setLight(temp.x, temp.y, (int)((sightRange-b)/sightRange*255*(1 - 2*Math.abs(a - facingAngle)/sightAngle)));
+				}
+				
+				if(b + data.getGridX() > sightRange){
+					//viewCone.addPoint((int)(temp.x*data.getGridX()), (int) (temp.y*data.getGridY()));
 				}
 			}
 		}
