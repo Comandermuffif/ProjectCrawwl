@@ -66,8 +66,8 @@ public class Main {
     	System.out.println("Update thread started");
     	Update update = new Update();
     	
-    	//render.start();
-    	//update.start();
+    	//render.start(); //Render must be main thread
+    	update.start();
     	
     	
     	
@@ -82,7 +82,7 @@ public class Main {
     	    			 GL11.GL_STENCIL_BUFFER_BIT);	
         	
         	
-        	update();
+        	//update();
         	render();
         	updateFPS();
     	    Display.update();
