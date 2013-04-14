@@ -32,14 +32,6 @@ public class World {
 	 */
 	private ArrayList<Line2D.Float> lineWalls = new ArrayList<Line2D.Float>();
 	
-	/* 0 is nothing
-	 * negative values are not walkable
-	 * positive values are
-	 * -1 is a wall
-	 * 0 is nothing
-	 * 1 is water
-	 */
-	
 	public World(){
 		
 		for (int i = 0; i < mapX/gridX; i++){
@@ -67,12 +59,24 @@ public class World {
 	         }
 	         grid.add(row);
 	         gridLight.add(row2);
+	         
+	         
 	    }
 		
 		for(int a = 0; a < Math.random()*5 + 5; a ++){
 			generateRoom();
 		}
 		//connectRooms();
+	}
+	
+	private static World instance = null;
+
+	public static World getInstance()
+	{
+		if(instance == null)
+			instance = new World();
+
+		return instance;
 	}
 	
 	public ArrayList<ArrayList<Integer>> getGrid(){
@@ -149,12 +153,11 @@ public class World {
 		
 	}
 	
+	public ArrayList<Line2D.Float> getWalls(){
+		return lineWalls;
+	}
 
 	public void renderLights(){
-		
-		//if(background == null){
-		//	renderBackground();
-		//}
 		
 		
 		int leftBound = (int) Math.floor(-mapXOffset/gridX);
@@ -202,66 +205,6 @@ public class World {
 		}
 	}
 	
-
-	public void renderBackgroundOld(){
-		int leftBound = (int) Math.floor(-mapXOffset/gridX);
-		int rightBound = (int) Math.floor((-mapXOffset + settings.getScreenX())/gridX);
-		int upBound = (int) Math.floor(-mapYOffset/gridY);
-		int downBound = (int) Math.floor((-mapYOffset + settings.getScreenY())/gridY);
-		
-		if(leftBound < 0){
-			leftBound = 0;
-		}else if (leftBound >= mapX/gridX){
-			leftBound = (int) (mapX/gridX - 1);
-		}
-		
-		if(rightBound < 0){
-			rightBound = 0;
-		}else if (rightBound >= mapX/gridX){
-			rightBound = (int) (mapX/gridX - 1);
-		}
-		
-		if(upBound < 0){
-			upBound = 0;
-		}else if (upBound >= mapY/gridY){
-			upBound = (int) (mapX/gridX - 1);
-		}
-		
-		if(downBound < 0){
-			downBound = 0;
-		}else if (downBound >= mapY/gridY){
-			downBound = (int) (mapY/gridY - 1);
-		}
-		
-		for(int x = leftBound; x <= rightBound; x ++){
-			for(int y = upBound; y <= downBound; y ++){
-				int b = grid.get(x).get(y);
-
-				System.out.println(b);
-				if(b == 0){
-					GL11.glColor3d(.34,.23,.04);
-					//GL11.glColor3d((87/255),(59/255),(12/255));
-				}
-				if(b < 0){
-					GL11.glColor3d(1,1,1);
-					//GL11.glColor3d((255/255),(255/255),(255/255));
-				}
-				if(b == 1){
-					GL11.glColor3d(.1,.41,.62);
-					//GL11.glColor3d((28/255),(107/255),(160/255));
-				}
-				GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
-				
-				GL11.glVertex3f(x*gridX + mapXOffset,y*gridY + mapYOffset,0);
-				GL11.glVertex3f(x*gridX + mapXOffset+ gridX,y*gridY + mapYOffset,0);
-				GL11.glVertex3f(x*gridX + mapXOffset,y*gridY + mapYOffset+gridY,0);
-				GL11.glVertex3f(x*gridX + mapXOffset+gridX,y*gridY + mapYOffset+gridY,0);
-				GL11.glEnd();
-			}
-		}
-	}
-	
-	
 	public void renderBackground(){
 		int leftBound = (int) Math.floor(-mapXOffset/gridX);
 		int rightBound = (int) Math.floor((-mapXOffset + settings.getScreenX())/gridX);
@@ -302,6 +245,7 @@ public class World {
 		
 		
 		for(Line2D.Float x : lineWalls){
+			//TODO prevent rendering of off screen walls
 			GL11.glColor3d(1.0, 0, 0);
 			GL11.glLineWidth(1);
 			GL11.glBegin(GL11.GL_LINES);
@@ -312,17 +256,6 @@ public class World {
 		
 			GL11.glEnd();	
 		}
-		/*
-		for(Point p : walls){
-			//TODO make it only render what is on screen 
-			GL11.glColor4d(1,1,1,.2);
-			GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
-			GL11.glVertex3f(p.x*gridX + mapXOffset,p.y*gridY + mapYOffset,0);
-			GL11.glVertex3f(p.x*gridX + mapXOffset+ gridX,p.y*gridY + mapYOffset,0);
-			GL11.glVertex3f(p.x*gridX + mapXOffset,p.y*gridY + mapYOffset+gridY,0);
-			GL11.glVertex3f(p.x*gridX + mapXOffset+gridX,p.y*gridY + mapYOffset+gridY,0);
-			GL11.glEnd();
-		}*/
 	}
 	
 	

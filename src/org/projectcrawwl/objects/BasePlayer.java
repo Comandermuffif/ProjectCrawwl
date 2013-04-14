@@ -2,6 +2,7 @@ package org.projectcrawwl.objects;
 
 import java.awt.Point;
 import java.awt.Polygon;
+import java.awt.geom.Line2D;
 import java.awt.geom.PathIterator;
 import java.util.ArrayList;
 import java.util.Dictionary;
@@ -10,6 +11,7 @@ import java.util.Hashtable;
 import org.lwjgl.opengl.GL11;
 import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.data.Inventory;
+import org.projectcrawwl.data.World;
 
 public class BasePlayer extends GameObject{
 	
@@ -57,7 +59,31 @@ public class BasePlayer extends GameObject{
 	public float getHealth(){
 		return health;
 	}
+
+
 	public void render(){
+		super.render();
+		inventory.render();
+		
+		//GL11.glColor4d(0, 1, 0, .039);
+
+		GL11.glColor4d(0, 1, 0, 1);
+		//GL11.glBegin(GL11.GL_TRIANGLE_FAN);
+		GL11.glBegin(GL11.GL_POLYGON);
+		for(PathIterator pi = viewCone.getPathIterator(null); !pi.isDone(); pi.next()){
+			float[] coord = new float[6];
+			pi.currentSegment(coord);
+			if(pi.currentSegment(coord) != pi.SEG_CLOSE){
+				GL11.glVertex2d(coord[0] + data.getMapXOffset(), coord[1] + data.getMapYOffset());
+			}
+			pi.next();
+		}
+		GL11.glEnd();
+	}
+
+	
+
+	public void renderOld(){
 		super.render();
 		inventory.render();
 		
@@ -75,50 +101,30 @@ public class BasePlayer extends GameObject{
 		GL11.glColor4d(0, 1, 0, .039);
 		
 		
-		PathIterator temp = viewCone.getPathIterator(null);
-		while(temp.isDone() == false){
-			
-		}
-		
-		/*
 		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
 		for(PathIterator pi = viewCone.getPathIterator(null); !pi.isDone(); pi.next()){
 			float[] coord = new float[6];
 			pi.currentSegment(coord);
-			GL11.glVertex2d(coord[0], coord[1]);
+			if(pi.currentSegment(coord) != pi.SEG_CLOSE){
+				GL11.glVertex2d(coord[0] + data.getMapXOffset(), coord[1] + data.getMapYOffset());
+			}
+			
 			pi.next();
 		}
-		GL11.glEnd();*/
+		GL11.glEnd();
 		
-		
-		/*
-		GL11.glColor4d(0, 1, 0, .039);
-		
-		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
-	      {
-	    	GL11.glVertex2f(renderX,renderY);
-	    	  
-	    	for (double x= Math.toRadians(90-facingAngle - sightAngle/2); x<=Math.toRadians(90-facingAngle + sightAngle/2); x+=((Math.PI*2)/64) )
-	        {
-	        	GL11.glVertex2f( (sightRange)*(float)Math.cos(x) + renderX,
-	        			(sightRange)*(float)Math.sin(x) + renderY);  
-	        }
-	          
-	    	GL11.glVertex2f( (sightRange)*(float)Math.cos(Math.toRadians(90-facingAngle + sightAngle/2)) + renderX,
-        			(sightRange)*(float)Math.sin(Math.toRadians(90-facingAngle + sightAngle/2)) + renderY);
-	      }
-	    GL11.glEnd();*/
 	    
 		//g.setColor(new Color(0,255,0,10));
 		//g.fillArc(renderX - sightRange, renderY - sightRange, 2*sightRange, 2*sightRange,90 -  facingAngle - sightAngle/2,90-  facingAngle + sightAngle/2);
 	}
+
 	
 	public void renderHUD(){
 		
 	}
 	
 	//Do all calculations here
-	public void update(int delta){
+	public void updateOld(int delta){
 		super.update(delta);
 		if(state == false){
 			state = true;
@@ -126,8 +132,8 @@ public class BasePlayer extends GameObject{
 			state = false;
 		}
 		view.clear();
-		//viewCone.reset();
-		//viewCone.addPoint((int)x, (int)y);
+		viewCone.reset();
+		viewCone.addPoint((int)x, (int)y);
 		for(float a = facingAngle - sightAngle/2; a < facingAngle + sightAngle/2; a += sightAngle/(Math.toRadians(sightAngle)*sightRange)){
 			for(int b = 0; b < sightRange; b += data.getGridX()){
 				Point temp = new Point((int)((x + Math.sin(Math.toRadians(a))*b)/data.getGridX()), (int) ((y + Math.cos(Math.toRadians(a))*b)/data.getGridY()));
@@ -146,7 +152,7 @@ public class BasePlayer extends GameObject{
 
 				if(data.getGrid().get(temp.x).get(temp.y) < 0){
 					view.add(temp);
-					//viewCone.addPoint((int)(temp.x*data.getGridX()), (int) (temp.y*data.getGridY()));
+					viewCone.addPoint((int)(temp.x*data.getGridX()), (int) (temp.y*data.getGridY()));
 					if((int)((sightRange-b)/sightRange*255*(1 - 2*Math.abs(a - facingAngle)/sightAngle)) > data.getLight(temp.x,temp.y)){
 						data.setLight(temp.x, temp.y, (int)((sightRange-b)/sightRange*255*(1 - 2*Math.abs(a - facingAngle)/sightAngle)));
 					}
@@ -158,8 +164,8 @@ public class BasePlayer extends GameObject{
 					data.setLight(temp.x, temp.y, (int)((sightRange-b)/sightRange*255*(1 - 2*Math.abs(a - facingAngle)/sightAngle)));
 				}
 				
-				if(b + data.getGridX() > sightRange){
-					//viewCone.addPoint((int)(temp.x*data.getGridX()), (int) (temp.y*data.getGridY()));
+				if(b + data.getGridX() >= sightRange){
+					viewCone.addPoint((int)(temp.x*data.getGridX()), (int) (temp.y*data.getGridY()));
 				}
 			}
 		}
@@ -176,6 +182,50 @@ public class BasePlayer extends GameObject{
 			data.removeObject(this);
 		}
 	}
+	
+	public void update(int delta){
+		super.update(delta);
+		
+		viewCone.reset();
+		viewCone.addPoint((int)x, (int)y);
+		World world = World.getInstance();
+		ArrayList<Line2D.Float> walls = world.getWalls();
+		
+		
+		for(float a = facingAngle - sightAngle/2; a < facingAngle + sightAngle/2; a += 1){
+			boolean flag = false;
+			for(int b = 0; b < sightRange; b += data.getGridX()){
+				Line2D.Float temp = new Line2D.Float(x, y, (float)(x + Math.sin(Math.toRadians(a))*b), (float) (y + Math.cos(Math.toRadians(a))*b));
+				for(Line2D.Float x : walls){
+					if(x.intersectsLine(temp)){
+						viewCone.addPoint((int) temp.x2,(int) temp.y2);
+						flag = true;
+						break;
+					}
+				}
+				if(flag){
+					break;
+				}
+			}
+			if(!flag){
+				viewCone.addPoint((int) (x + Math.sin(Math.toRadians(a))*sightRange),(int) (y + Math.cos(Math.toRadians(a))*sightRange));
+			}			
+		}
+		
+		inventory.update(delta);
+		//BOOP!
+		
+		if(health <= 0){
+			lastHit.newKill();
+			GameData data = GameData.getInstance();
+			if(this instanceof org.projectcrawwl.objects.Zombie){
+				data.addZombie();
+			}
+			data.removeObject(this);
+		}
+	}
+	
+	
 	public void newKill(){
 		kills += 1;
 	}
