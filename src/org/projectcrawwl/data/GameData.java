@@ -23,7 +23,7 @@ public class GameData
 	
 	private int ups = 0;
 	
-	private World world = new World();;
+	private World world = World.getInstance();
 	
 	public int getUPS(){
 		return ups;
@@ -211,15 +211,6 @@ public class GameData
 			allPlayers.add(a);
 		}
 		addPlayers.clear();
-		/*
-		for(BaseProjectile a : projectiles){
-			double dist = Math.pow(Math.pow(player.getX() - a.getX(), 2) + Math.pow(player.getY() - a.getY(), 2), .5);
-			if(dist < player.r + a.r){
-				player.health = player.health - 10;
-				tempProjectiles.add(a);
-			}
-		}*/
-		
 	}
 }
 
