@@ -195,7 +195,7 @@ public class BasePlayer extends GameObject{
 		
 		
 		
-		for(float a = facingAngle - sightAngle/2; a < facingAngle + sightAngle/2; a += 1){
+		for(float a = facingAngle - sightAngle/2; a < facingAngle + sightAngle/2; a += .25){
 			boolean flag = false;
 			for(int b = 0; b < sightRange; b += data.getGridX()){
 				Line2D.Float temp = new Line2D.Float(x, y, (float)(x + Math.sin(Math.toRadians(a))*b), (float) (y + Math.cos(Math.toRadians(a))*b));
