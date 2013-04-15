@@ -201,7 +201,12 @@ public class BasePlayer extends GameObject{
 				Line2D.Float temp = new Line2D.Float(x, y, (float)(x + Math.sin(Math.toRadians(a))*b), (float) (y + Math.cos(Math.toRadians(a))*b));
 				for(Line2D.Float x : world.getLineWalls((int)temp.x2, (int)temp.y2)){
 					if(x.intersectsLine(temp)){
-						tempView.addPoint((int) temp.x2,(int) temp.y2);
+						Point q = world.getLineLineIntersection(x, temp);
+						if(q == null){
+							tempView.addPoint((int) temp.x2,(int) temp.y2);
+						}else{
+							tempView.addPoint(q.x, q.y);
+						}
 						flag = true;
 						break;
 					}
