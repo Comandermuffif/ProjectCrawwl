@@ -138,10 +138,7 @@ public class Zombie extends BasePlayer {
 				//facingAngle = (float) (90 - Math.toDegrees(Math.atan2(y - data.getPlayer().getY(), x - data.getPlayer().getX()))-180);
 			}
 		}
-		/*
-		x = (float) (x + Math.cos(Math.toRadians(moveAngle)) * delta * speed);
-		y = (float) (y + Math.sin(Math.toRadians(moveAngle)) * delta * speed);
-		*/
+		
 		if(speed == 0){speed = .03;moveAngle = (float) (Math.random()*360);}
 		
 		if(waypoint != null){
