@@ -186,19 +186,22 @@ public class BasePlayer extends GameObject{
 	public void update(int delta){
 		super.update(delta);
 		
-		viewCone.reset();
-		viewCone.addPoint((int)x, (int)y);
+
+		Polygon tempView = new Polygon();
+		
+		tempView.addPoint((int)x, (int)y);
 		World world = World.getInstance();
-		ArrayList<Line2D.Float> walls = world.getWalls();
+		ArrayList<Line2D.Float> walls = world.getLineWalls((int) x,(int) y);//world.getWalls();
+		
 		
 		
 		for(float a = facingAngle - sightAngle/2; a < facingAngle + sightAngle/2; a += 1){
 			boolean flag = false;
 			for(int b = 0; b < sightRange; b += data.getGridX()){
 				Line2D.Float temp = new Line2D.Float(x, y, (float)(x + Math.sin(Math.toRadians(a))*b), (float) (y + Math.cos(Math.toRadians(a))*b));
-				for(Line2D.Float x : walls){
+				for(Line2D.Float x : world.getLineWalls((int)temp.x2, (int)temp.y2)){
 					if(x.intersectsLine(temp)){
-						viewCone.addPoint((int) temp.x2,(int) temp.y2);
+						tempView.addPoint((int) temp.x2,(int) temp.y2);
 						flag = true;
 						break;
 					}
@@ -208,9 +211,12 @@ public class BasePlayer extends GameObject{
 				}
 			}
 			if(!flag){
-				viewCone.addPoint((int) (x + Math.sin(Math.toRadians(a))*sightRange),(int) (y + Math.cos(Math.toRadians(a))*sightRange));
+				tempView.addPoint((int) (x + Math.sin(Math.toRadians(a))*sightRange),(int) (y + Math.cos(Math.toRadians(a))*sightRange));
 			}			
 		}
+		
+		//viewCone.reset();
+		viewCone = tempView;
 		
 		inventory.update(delta);
 		//BOOP!

@@ -32,7 +32,18 @@ public class World {
 	 */
 	private ArrayList<Line2D.Float> lineWalls = new ArrayList<Line2D.Float>();
 	
+	private ArrayList<ArrayList<ArrayList<Line2D.Float>>> lineWalls2 = new ArrayList<ArrayList<ArrayList<Line2D.Float>>>();
+	
 	public World(){
+		
+		for (int i = 0; i <= (mapX/gridX)/10; i++){
+			ArrayList<ArrayList<Line2D.Float>> row = new ArrayList<ArrayList<Line2D.Float>>();
+			for (int j = 0; j <= (mapY/gridY)/10; j++){
+				ArrayList<Line2D.Float> row2 = new ArrayList<Line2D.Float>();
+				row.add(row2);
+			}
+			lineWalls2.add(row);
+		}
 		
 		for (int i = 0; i < mapX/gridX; i++){
 	         ArrayList<Integer> row = new ArrayList<Integer>();
@@ -42,26 +53,33 @@ public class World {
 	        	 if(i == 0 || j == 0 || i + 1 == mapX/gridX || j + 1 == mapY/gridY || i == 1 || j == 1 || i+2 == mapX/gridX || j+2 == mapY/gridY){
 	        		 row.add(-1);
 	        		 
+	        		 addLineWall(new Line2D.Float(gridX*(i), gridY*(j), gridX*(i), gridY*(j+1)));
+	        		 addLineWall(new Line2D.Float(gridX*(i), gridY*(j), gridX*(i), gridY*(j)));
+	        		 addLineWall(new Line2D.Float(gridX*(i), gridY*(j+1), gridX*(i+1), gridY*(j+1)));
+	        		 addLineWall(new Line2D.Float(gridX*(i+1), gridY*(j), gridX*(i+1), gridY*(j+1)));
+	        		 
+	        		 
 	        		 lineWalls.add(new Line2D.Float(gridX*(i), gridY*(j), gridX*(i), gridY*(j+1)));
 	        		 lineWalls.add(new Line2D.Float(gridX*(i), gridY*(j), gridX*(i+1), gridY*(j)));
 	        		 lineWalls.add(new Line2D.Float(gridX*(i), gridY*(j+1), gridX*(i+1), gridY*(j+1)));
 	        		 lineWalls.add(new Line2D.Float(gridX*(i+1), gridY*(j), gridX*(i+1), gridY*(j+1)));
 	        		 
 	        		 walls.add(new Point(i,j));
+	        		 
+	        		 
 	        	 }else{
 	        		 row.add(0);
 	        	 }
-	        	 
-	        	 
-	        	 
-	        	 
 	        	 row2.add(0);
 	         }
 	         grid.add(row);
 	         gridLight.add(row2);
-	         
-	         
 	    }
+		
+		addLineWall(new Line2D.Float(0,0,0,mapY));
+		addLineWall(new Line2D.Float(0,0,mapX,0));
+		addLineWall(new Line2D.Float(0,mapY,mapX,mapY));
+		addLineWall(new Line2D.Float(mapX,0,mapX,mapY));
 		
 		for(int a = 0; a < Math.random()*5 + 5; a ++){
 			generateRoom();
@@ -81,6 +99,19 @@ public class World {
 	
 	public ArrayList<ArrayList<Integer>> getGrid(){
 		return grid;
+	}
+	
+	public ArrayList<Line2D.Float> getLineWalls(int x, int y){
+		
+		return lineWalls2.get((int)(x/gridX/10)).get((int)(y/gridY/10));
+	}
+	
+	public void addLineWall(Line2D.Float line){
+		for(int i = (int) Math.floor((line.x1/gridX)/10); i <= (int) Math.floor((line.x2/gridX)/10); i += 1){
+			for(int j = (int) Math.floor((line.y1/gridY)/10); j <= (int) Math.floor((line.y2/gridY)/10); j += 1){
+				lineWalls2.get(i).get(j).add(line);
+			}
+		}
 	}
 	
 	public float getMapX(){
@@ -130,6 +161,11 @@ public class World {
 				if(a == x || a == x+w || b == y){
 					grid.get(a).set(b, -1);
 					walls.add(new Point(a,b));
+					
+					addLineWall(new Line2D.Float(gridX*(a), gridY*(b), gridX*(a), gridY*(b+1)));
+					addLineWall(new Line2D.Float(gridX*(a), gridY*(b), gridX*(a), gridY*(b)));
+					addLineWall(new Line2D.Float(gridX*(a), gridY*(b+1), gridX*(a), gridY*(b+1)));
+					addLineWall(new Line2D.Float(gridX*(a+1), gridY*(b), gridX*(a), gridY*(b+1)));
 					
 					lineWalls.add(new Line2D.Float(gridX*(a), gridY*(b), gridX*(a), gridY*(b+1)));
 	        		lineWalls.add(new Line2D.Float(gridX*(a), gridY*(b), gridX*(a+1), gridY*(b)));
