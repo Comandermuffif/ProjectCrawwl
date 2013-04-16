@@ -30,13 +30,39 @@ public class World {
 	
 	public World(){
 		
-		for(int i = 0; i < 10; i++){
+		{
 			ConvexHull a = new ConvexHull();
-			double q = Math.random()*mapX;
-			a.addPoint(q,q);
-			a.addPoint(q,q+100);
-			a.addPoint(q+100,q);
-			a.addPoint(q+100,q+100);
+			a.addPoint(0,0);
+			a.addPoint(0,5);
+			a.addPoint(mapX,0);
+			a.addPoint(mapX,5);
+			hulls.add(a);
+		}
+		
+		{
+			ConvexHull a = new ConvexHull();
+			a.addPoint(0,0);
+			a.addPoint(5,0);
+			a.addPoint(0,mapY);
+			a.addPoint(5,mapY);
+			hulls.add(a);
+		}
+		
+		{
+			ConvexHull a = new ConvexHull();
+			a.addPoint(0,mapY);
+			a.addPoint(0,mapY-5);
+			a.addPoint(mapX,mapY);
+			a.addPoint(mapX,mapY-5);
+			hulls.add(a);
+		}
+		
+		{
+			ConvexHull a = new ConvexHull();
+			a.addPoint(mapX-5,0);
+			a.addPoint(mapX, 0);
+			a.addPoint(mapX-5,mapY);
+			a.addPoint(mapX,mapY);
 			hulls.add(a);
 		}
 		

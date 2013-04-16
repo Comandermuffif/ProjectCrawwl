@@ -1,6 +1,7 @@
 package org.projectcrawwl.data;
 
 import java.awt.Point;
+import java.awt.Polygon;
 import java.util.ArrayList;
 
 import org.lwjgl.opengl.GL11;
@@ -8,12 +9,16 @@ import org.lwjgl.opengl.GL11;
 public class ConvexHull {
 	private ArrayList<Point> border = new ArrayList<Point>();
 	
+	private Polygon polygon = new Polygon();
+	
 	public void addPoint(Point k){
 		border.add(k);
+		polygon.addPoint(k.x, k.y);
 	}
 	
 	public void addPoint(double x, double y){
 		border.add(new Point((int)x,(int)y));
+		polygon.addPoint((int) x,(int) y);
 	}
 	
 	public void render(){
