@@ -21,15 +21,22 @@ public class ConvexHull {
 		polygon.addPoint((int) x,(int) y);
 	}
 	
+	public ArrayList<Point> getPolygon(){
+		return border;
+	}
+	
 	public void render(){
-
+		
 		World world = World.getInstance();
 		
-		GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
+		//GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
+		GL11.glBegin(GL11.GL_LINE_LOOP);
 		GL11.glColor4d(1.0, 0, 0,.5);
 		for(Point p : border){
 			GL11.glVertex2d(p.x + world.getMapXOffset(),p.y + world.getMapYOffset());
 		}
 		GL11.glEnd();
+		
+		
 	}
 }

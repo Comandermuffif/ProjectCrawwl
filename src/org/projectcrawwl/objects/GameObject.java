@@ -3,6 +3,7 @@ package org.projectcrawwl.objects;
 import java.awt.Point;
 import java.awt.geom.Line2D;
 
+import org.projectcrawwl.data.ConvexHull;
 import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.data.GameSettings;
 import org.projectcrawwl.data.World;
@@ -80,25 +81,31 @@ public class GameObject {
 		renderX = x + data.getMapXOffset();
 		renderY = y + data.getMapYOffset();
 		
-		float tempx = (float) (x + Math.cos(Math.toRadians(moveAngle)) * delta * speed);
-		float tempy = (float) (y + Math.sin(Math.toRadians(moveAngle)) * delta * speed);
 		
-		Line2D.Float temp = new Line2D.Float(x,y,tempx,tempy);
-		Point nearest = new Point((int)tempx,(int)tempy);
-		
-		double dist = nearest.distance(new Point((int)x,(int)y));
-		for(Line2D.Float k : world.getLineWalls((int)tempx, (int)tempy)){
-			if(k.intersectsLine(temp)){
-				Point q = world.getLineLineIntersection(k, temp);
-				if(q!= null && nearest.distance(q) < dist){
-					nearest = new Point(q.x,q.y);
-					dist = q.distance(new Point((int)this.x,(int)this.y));
+		if(speed != 0){
+			float tempx = (float) (x + Math.cos(Math.toRadians(moveAngle)) * delta * speed);
+			float tempy = (float) (y + Math.sin(Math.toRadians(moveAngle)) * delta * speed);
+			
+			Line2D.Float temp = new Line2D.Float(x,y,tempx,tempy);
+			Point nearest = new Point((int)tempx,(int)tempy);
+			
+			boolean flag = true;
+			
+			for(ConvexHull k : world.getHulls()){
+				if(k.getPolygon().contains(nearest)){
+					flag = false;
+					break;
 				}
+			}
+			if(flag){
+				x = nearest.x;
+				y = nearest.y;
+			}else{
+				speed = 0;
 			}
 		}
 		
-		x = nearest.x;
-		y = nearest.y;
+		
 	
 		
 	}
