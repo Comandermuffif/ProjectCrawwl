@@ -33,11 +33,6 @@ public class GameData
 		ups = temp;
 	}
 	
-	/*
-	public ArrayList<ArrayList<Integer>> getGrid(){
-		return world.getGrid();
-	}*/
-	
 	public float getMapXOffset(){
 		return world.getMapXOffset();
 	}

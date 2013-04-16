@@ -88,9 +88,9 @@ public class GameObject {
 		
 		double dist = nearest.distance(new Point((int)x,(int)y));
 		
-		for(Line2D.Float x : world.getLineWalls((int)tempx, (int)tempy)){
-			if(x.intersectsLine(temp)){
-				Point q = world.getLineLineIntersection(x, temp);
+		for(Line2D.Float k : world.getLineWalls((int)tempx, (int)tempy)){
+			if(k.intersectsLine(temp)){
+				Point q = world.getLineLineIntersection(k, temp);
 				if(q!= null && nearest.distance(q) < dist){
 					nearest = new Point(q.x,q.y);
 					dist = q.distance(new Point((int)this.x,(int)this.y));

@@ -26,7 +26,19 @@ public class World {
 	 */
 	private ArrayList<ArrayList<ArrayList<Line2D.Float>>> lineWalls = new ArrayList<ArrayList<ArrayList<Line2D.Float>>>();
 	
+	private ArrayList<ConvexHull> hulls = new ArrayList<ConvexHull>();
+	
 	public World(){
+		
+		for(int i = 0; i < 10; i++){
+			ConvexHull a = new ConvexHull();
+			double q = Math.random()*mapX;
+			a.addPoint(q,q);
+			a.addPoint(q,q+100);
+			a.addPoint(q+100,q);
+			a.addPoint(q+100,q+100);
+			hulls.add(a);
+		}
 		
 		for (int i = 0; i <= (mapX/gridX)/10; i++){
 			ArrayList<ArrayList<Line2D.Float>> row = new ArrayList<ArrayList<Line2D.Float>>();
@@ -218,19 +230,10 @@ public class World {
 			}
 		}
 		
-		/*
-		for(Line2D.Float x : lineWalls){
-			//TODO prevent rendering of off screen walls
-			GL11.glColor3d(1.0, 0, 0);
-			GL11.glLineWidth(1);
-			GL11.glBegin(GL11.GL_LINES);
-			
-			GL11.glVertex3d(x.getX1() + mapXOffset, x.getY1() + mapYOffset, 1);
-			GL11.glVertex3d(x.getX2() + mapXOffset, x.getY2() + mapYOffset, 1);
-			
 		
-			GL11.glEnd();	
-		}*/
+		for(ConvexHull x : hulls){
+			x.render();
+		}
 	}
 	
 	

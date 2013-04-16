@@ -67,7 +67,7 @@ public class BasePlayer extends GameObject{
 		
 		//GL11.glColor4d(0, 1, 0, .039);
 
-		GL11.glColor4d(0, 1, 0, 1);
+		GL11.glColor4d(0, 1, 0, .039);
 		//GL11.glBegin(GL11.GL_TRIANGLE_FAN);
 		GL11.glBegin(GL11.GL_POLYGON);
 		for(PathIterator pi = viewCone.getPathIterator(null); !pi.isDone(); pi.next()){
