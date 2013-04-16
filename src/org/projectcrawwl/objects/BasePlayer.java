@@ -80,109 +80,12 @@ public class BasePlayer extends GameObject{
 		}
 		GL11.glEnd();
 	}
-
-	
-
-	public void renderOld(){
-		super.render();
-		inventory.render();
-		
-		GL11.glColor4d(0, 1, 0, .039);
-		for(Point p : view){
-			
-			GL11.glBegin(GL11.GL_TRIANGLE_FAN);{
-				GL11.glVertex2d(p.x*data.getGridX() + data.getMapXOffset(), p.y*data.getGridY() + data.getMapYOffset());
-				GL11.glVertex2d(p.x*data.getGridX() + data.getMapXOffset() + data.getGridX(),p.y*data.getGridY() + data.getMapYOffset());
-				GL11.glVertex2d(p.x*data.getGridX() + data.getMapXOffset() + data.getGridX(),p.y*data.getGridY() + data.getMapYOffset() + data.getGridY());
-				GL11.glVertex2d(p.x*data.getGridX() + data.getMapXOffset(), p.y*data.getGridY() + data.getMapYOffset() + data.getGridY());
-				GL11.glEnd();
-			}
-		}
-		GL11.glColor4d(0, 1, 0, .039);
-		
-		
-		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
-		for(PathIterator pi = viewCone.getPathIterator(null); !pi.isDone(); pi.next()){
-			float[] coord = new float[6];
-			pi.currentSegment(coord);
-			if(pi.currentSegment(coord) != pi.SEG_CLOSE){
-				GL11.glVertex2d(coord[0] + data.getMapXOffset(), coord[1] + data.getMapYOffset());
-			}
-			
-			pi.next();
-		}
-		GL11.glEnd();
-		
-	    
-		//g.setColor(new Color(0,255,0,10));
-		//g.fillArc(renderX - sightRange, renderY - sightRange, 2*sightRange, 2*sightRange,90 -  facingAngle - sightAngle/2,90-  facingAngle + sightAngle/2);
-	}
-
 	
 	public void renderHUD(){
 		
 	}
 	
 	//Do all calculations here
-	public void updateOld(int delta){
-		super.update(delta);
-		if(state == false){
-			state = true;
-		}else{
-			state = false;
-		}
-		view.clear();
-		viewCone.reset();
-		viewCone.addPoint((int)x, (int)y);
-		for(float a = facingAngle - sightAngle/2; a < facingAngle + sightAngle/2; a += sightAngle/(Math.toRadians(sightAngle)*sightRange)){
-			for(int b = 0; b < sightRange; b += data.getGridX()){
-				Point temp = new Point((int)((x + Math.sin(Math.toRadians(a))*b)/data.getGridX()), (int) ((y + Math.cos(Math.toRadians(a))*b)/data.getGridY()));
-				if(view2.get(temp) == state){
-					if(data.getGrid().get(temp.x).get(temp.y) < 0){
-						break;
-					}
-					continue;
-				}else{
-					view2.put(temp, state);
-				}
-				
-				if(temp.x >= data.getMapX()/data.getGridX() || temp.y >= data.getMapY()/data.getGridY() || temp.x < 0 || temp.y < 0){
-					break;
-				}
-
-				if(data.getGrid().get(temp.x).get(temp.y) < 0){
-					view.add(temp);
-					viewCone.addPoint((int)(temp.x*data.getGridX()), (int) (temp.y*data.getGridY()));
-					if((int)((sightRange-b)/sightRange*255*(1 - 2*Math.abs(a - facingAngle)/sightAngle)) > data.getLight(temp.x,temp.y)){
-						data.setLight(temp.x, temp.y, (int)((sightRange-b)/sightRange*255*(1 - 2*Math.abs(a - facingAngle)/sightAngle)));
-					}
-					break;
-				}
-				
-				view.add(temp);
-				if((int)((sightRange-b)/sightRange*255*(1 - 2*Math.abs(a - facingAngle)/sightAngle)) > data.getLight(temp.x,temp.y)){
-					data.setLight(temp.x, temp.y, (int)((sightRange-b)/sightRange*255*(1 - 2*Math.abs(a - facingAngle)/sightAngle)));
-				}
-				
-				if(b + data.getGridX() >= sightRange){
-					viewCone.addPoint((int)(temp.x*data.getGridX()), (int) (temp.y*data.getGridY()));
-				}
-			}
-		}
-		
-		inventory.update(delta);
-		//BOOP!
-		
-		if(health <= 0){
-			lastHit.newKill();
-			GameData data = GameData.getInstance();
-			if(this instanceof org.projectcrawwl.objects.Zombie){
-				data.addZombie();
-			}
-			data.removeObject(this);
-		}
-	}
-	
 	public void update(int delta){
 		super.update(delta);
 		
@@ -191,32 +94,42 @@ public class BasePlayer extends GameObject{
 		
 		tempView.addPoint((int)x, (int)y);
 		World world = World.getInstance();
-		ArrayList<Line2D.Float> walls = world.getLineWalls((int) x,(int) y);//world.getWalls();
 		
 		
 		
 		for(float a = facingAngle - sightAngle/2; a < facingAngle + sightAngle/2; a += .25){
 			boolean flag = false;
-			for(int b = 0; b < sightRange; b += data.getGridX()){
+			Point nearest = new Point((int) (x + Math.sin(Math.toRadians(a))*sightRange),(int) (y + Math.cos(Math.toRadians(a))*sightRange));
+			double dist = sightRange;
+			for(int b = 0; b < sightRange; b += 2){
 				Line2D.Float temp = new Line2D.Float(x, y, (float)(x + Math.sin(Math.toRadians(a))*b), (float) (y + Math.cos(Math.toRadians(a))*b));
 				for(Line2D.Float x : world.getLineWalls((int)temp.x2, (int)temp.y2)){
 					if(x.intersectsLine(temp)){
 						Point q = world.getLineLineIntersection(x, temp);
+						if(q!= null && nearest.distance(q) < dist){
+							nearest = new Point(q.x,q.y);
+							dist = q.distance(new Point((int)this.x,(int)this.y));
+						}
+						
+						
 						if(q == null){
-							tempView.addPoint((int) temp.x2,(int) temp.y2);
+							//tempView.addPoint((int) temp.x2,(int) temp.y2);
 						}else{
-							tempView.addPoint(q.x, q.y);
+							//tempView.addPoint(q.x, q.y);
 						}
 						flag = true;
-						break;
+						//break;
 					}
 				}
 				if(flag){
 					break;
 				}
 			}
+			
+			tempView.addPoint(nearest.x, nearest.y);
+			
 			if(!flag){
-				tempView.addPoint((int) (x + Math.sin(Math.toRadians(a))*sightRange),(int) (y + Math.cos(Math.toRadians(a))*sightRange));
+				//tempView.addPoint((int) (x + Math.sin(Math.toRadians(a))*sightRange),(int) (y + Math.cos(Math.toRadians(a))*sightRange));
 			}			
 		}
 		

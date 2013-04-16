@@ -1,9 +1,11 @@
 package org.projectcrawwl.objects;
 
 import java.awt.Point;
+import java.awt.geom.Line2D;
 
 import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.data.GameSettings;
+import org.projectcrawwl.data.World;
 
 public class GameObject {
 	public float x;
@@ -73,34 +75,30 @@ public class GameObject {
 
 	//Do all calculations here
 	public void update(int delta){
+		World world = World.getInstance();
+		
 		renderX = x + data.getMapXOffset();
 		renderY = y + data.getMapYOffset();
 		
 		float tempx = (float) (x + Math.cos(Math.toRadians(moveAngle)) * delta * speed);
 		float tempy = (float) (y + Math.sin(Math.toRadians(moveAngle)) * delta * speed);
 		
-		Point p = new Point((int) (tempx/data.getGridX()),(int) (tempy/data.getGridY()));
-		Boolean check = false;
+		Line2D.Float temp = new Line2D.Float(x,y,tempx,tempy);
+		Point nearest = new Point((int)tempx,(int)tempy);
 		
-		if(p.x < 0 || p.y < 0 || p.x >= data.getMapX()/data.getGridX() || p.y >= data.getMapY()/data.getGridY()){
-			speed = 0;
-		}else{
-			if(data.getGrid().get(p.x).get(p.y) >= 0){
-				check = true;
-			}else{
-				speed = 0;
+		double dist = nearest.distance(new Point((int)x,(int)y));
+		
+		for(Line2D.Float x : world.getLineWalls((int)tempx, (int)tempy)){
+			if(x.intersectsLine(temp)){
+				Point q = world.getLineLineIntersection(x, temp);
+				if(q!= null && nearest.distance(q) < dist){
+					nearest = new Point(q.x,q.y);
+					dist = q.distance(new Point((int)this.x,(int)this.y));
+				}
 			}
 		}
+		x = nearest.x;
+		y = nearest.y;
 		
-		if(x < 0){x = 0; speed = 0;}else
-		if(x > data.getMapX()){x = data.getMapX(); speed = 0;}else
-		if(y < 0){y = 0; speed = 0;}else
-		if(y > data.getMapY()){y = data.getMapY(); speed = 0;}else
-		if(check){
-			x = (float) (x + Math.cos(Math.toRadians(moveAngle)) * delta * speed);
-			y = (float) (y + Math.sin(Math.toRadians(moveAngle)) * delta * speed);
-		}
-		
-		//BOOP!
 	}
 }

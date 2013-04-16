@@ -33,19 +33,10 @@ public class GameData
 		ups = temp;
 	}
 	
-	public void setLight(int x, int y, int val){
-		world.setLight(x, y, val);
-	}
-	
-	public int getLight(int x, int y){
-		
-		return world.getLight(x, y);
-		
-	}
-	
+	/*
 	public ArrayList<ArrayList<Integer>> getGrid(){
 		return world.getGrid();
-	}
+	}*/
 	
 	public float getMapXOffset(){
 		return world.getMapXOffset();
@@ -101,10 +92,6 @@ public class GameData
 	public void addPlayer(){
 		int tempX = (int) (Math.random() * (world.getMapX() / world.getGridX()));
 		int tempY = (int) (Math.random() * (world.getMapY() / world.getGridY()));
-		while(world.getGrid().get(tempX).get(tempY) < 0){
-			tempX = (int) (Math.random() * (world.getMapX() / world.getGridX()));
-			tempY = (int) (Math.random() * (world.getMapY() / world.getGridY()));
-		}
 		
 		player = new Player((int) (tempX * world.getGridX() + world.getGridX()/2), (int) (tempY*world.getGridY() + world.getGridY()/2));
 		addPlayers.add(player);
@@ -113,10 +100,7 @@ public class GameData
 	public void addZombie(){
 		int tempX = (int) (Math.random() * (world.getMapX() / world.getGridX()));
 		int tempY = (int) (Math.random() * (world.getMapY() / world.getGridY()));
-		while(world.getGrid().get(tempX).get(tempY) < 0){
-			tempX = (int) (Math.random() * (world.getMapX() / world.getGridX()));
-			tempY = (int) (Math.random() * (world.getMapY() / world.getGridY()));
-		}
+		
 		addPlayers.add(new Zombie((int) (tempX * world.getGridX() + world.getGridX()/2), (int) (tempY*world.getGridY() + world.getGridY()/2)));
 	}
 	
@@ -142,10 +126,7 @@ public class GameData
 	public void addFriendly(){
 		int tempX = (int) (Math.random() * (world.getMapX() / world.getGridX()));
 		int tempY = (int) (Math.random() * (world.getMapY() / world.getGridY()));
-		while(world.getGrid().get(tempX).get(tempY) < 0){
-			tempX = (int) (Math.random() * (world.getMapX() / world.getGridX()));
-			tempY = (int) (Math.random() * (world.getMapY() / world.getGridY()));
-		}
+		
 		addPlayers.add(new Friendly((int) (tempX * world.getGridX() + world.getGridX()/2), (int) (tempY*world.getGridY() + world.getGridY()/2)));
 	}
 	

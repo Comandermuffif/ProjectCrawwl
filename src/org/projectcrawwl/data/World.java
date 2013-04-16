@@ -17,22 +17,14 @@ public class World {
 	private float mapXOffset;// = (1280-600)/2;
 	private float mapYOffset;// = (720-600)/2;
 	
-	private ArrayList<ArrayList<Integer>> grid = new ArrayList<ArrayList<Integer>>();
-	
-	//0 is dark, 255 is lit
-	private ArrayList<ArrayList<Integer>> gridLight = new ArrayList<ArrayList<Integer>>();
-	
 	static GameSettings settings = GameSettings.getInstance();
 	
 	private ArrayList<Point> rooms = new ArrayList<Point>();
 	
-	private ArrayList<Point> walls = new ArrayList<Point>();
 	/**
 	 * ArrayList of all collidable walls stored in absolute game position
 	 */
-	private ArrayList<Line2D.Float> lineWalls = new ArrayList<Line2D.Float>();
-	
-	private ArrayList<ArrayList<ArrayList<Line2D.Float>>> lineWalls2 = new ArrayList<ArrayList<ArrayList<Line2D.Float>>>();
+	private ArrayList<ArrayList<ArrayList<Line2D.Float>>> lineWalls = new ArrayList<ArrayList<ArrayList<Line2D.Float>>>();
 	
 	public World(){
 		
@@ -42,38 +34,21 @@ public class World {
 				ArrayList<Line2D.Float> row2 = new ArrayList<Line2D.Float>();
 				row.add(row2);
 			}
-			lineWalls2.add(row);
+			lineWalls.add(row);
 		}
 		
 		for (int i = 0; i < mapX/gridX; i++){
-	         ArrayList<Integer> row = new ArrayList<Integer>();
-	         ArrayList<Integer> row2 = new ArrayList<Integer>();
 	         for (int j = 0; j < mapY/gridY; j++){
 	        	 
 	        	 if(i == 0 || j == 0 || i + 1 == mapX/gridX || j + 1 == mapY/gridY || i == 1 || j == 1 || i+2 == mapX/gridX || j+2 == mapY/gridY){
-	        		 row.add(-1);
 	        		 
 	        		 addLineWall(new Line2D.Float(gridX*(i), gridY*(j), gridX*(i), gridY*(j+1)));
-	        		 addLineWall(new Line2D.Float(gridX*(i), gridY*(j), gridX*(i), gridY*(j)));
+	        		 addLineWall(new Line2D.Float(gridX*(i), gridY*(j), gridX*(i+1), gridY*(j)));
 	        		 addLineWall(new Line2D.Float(gridX*(i), gridY*(j+1), gridX*(i+1), gridY*(j+1)));
 	        		 addLineWall(new Line2D.Float(gridX*(i+1), gridY*(j), gridX*(i+1), gridY*(j+1)));
 	        		 
-	        		 
-	        		 lineWalls.add(new Line2D.Float(gridX*(i), gridY*(j), gridX*(i), gridY*(j+1)));
-	        		 lineWalls.add(new Line2D.Float(gridX*(i), gridY*(j), gridX*(i+1), gridY*(j)));
-	        		 lineWalls.add(new Line2D.Float(gridX*(i), gridY*(j+1), gridX*(i+1), gridY*(j+1)));
-	        		 lineWalls.add(new Line2D.Float(gridX*(i+1), gridY*(j), gridX*(i+1), gridY*(j+1)));
-	        		 
-	        		 walls.add(new Point(i,j));
-	        		 
-	        		 
-	        	 }else{
-	        		 row.add(0);
 	        	 }
-	        	 row2.add(0);
 	         }
-	         grid.add(row);
-	         gridLight.add(row2);
 	    }
 		
 		addLineWall(new Line2D.Float(0,0,0,mapY));
@@ -97,19 +72,15 @@ public class World {
 		return instance;
 	}
 	
-	public ArrayList<ArrayList<Integer>> getGrid(){
-		return grid;
-	}
-	
 	public ArrayList<Line2D.Float> getLineWalls(int x, int y){
 		
-		return lineWalls2.get((int)(x/gridX/10)).get((int)(y/gridY/10));
+		return lineWalls.get((int)(x/gridX/10)).get((int)(y/gridY/10));
 	}
 	
 	public void addLineWall(Line2D.Float line){
 		for(int i = (int) Math.floor((line.x1/gridX)/10); i <= (int) Math.floor((line.x2/gridX)/10); i += 1){
 			for(int j = (int) Math.floor((line.y1/gridY)/10); j <= (int) Math.floor((line.y2/gridY)/10); j += 1){
-				lineWalls2.get(i).get(j).add(line);
+				lineWalls.get(i).get(j).add(line);
 			}
 		}
 	}
@@ -128,9 +99,6 @@ public class World {
 		return gridY;
 	}
 	
-	public void addWall(Point p){
-		grid.get(p.x).set(p.y, -1);
-	}
 	
 	public float getMapXOffset(){
 		return mapXOffset;
@@ -157,27 +125,20 @@ public class World {
 		
 		for(int a = x; a <= x + w; a ++){
 			for(int b = y; b <= y + h; b ++){
-				grid.get(a).set(b,1);
+				
 				if(a == x || a == x+w || b == y){
-					grid.get(a).set(b, -1);
-					walls.add(new Point(a,b));
 					
 					addLineWall(new Line2D.Float(gridX*(a), gridY*(b), gridX*(a), gridY*(b+1)));
-					addLineWall(new Line2D.Float(gridX*(a), gridY*(b), gridX*(a), gridY*(b)));
-					addLineWall(new Line2D.Float(gridX*(a), gridY*(b+1), gridX*(a), gridY*(b+1)));
-					addLineWall(new Line2D.Float(gridX*(a+1), gridY*(b), gridX*(a), gridY*(b+1)));
-					
-					lineWalls.add(new Line2D.Float(gridX*(a), gridY*(b), gridX*(a), gridY*(b+1)));
-	        		lineWalls.add(new Line2D.Float(gridX*(a), gridY*(b), gridX*(a+1), gridY*(b)));
-	        		lineWalls.add(new Line2D.Float(gridX*(a), gridY*(b+1), gridX*(a+1), gridY*(b+1)));
-	        		lineWalls.add(new Line2D.Float(gridX*(a+1), gridY*(b), gridX*(a+1), gridY*(b+1)));
+					addLineWall(new Line2D.Float(gridX*(a), gridY*(b), gridX*(a+1), gridY*(b)));
+					addLineWall(new Line2D.Float(gridX*(a), gridY*(b+1), gridX*(a+1), gridY*(b+1)));
+					addLineWall(new Line2D.Float(gridX*(a+1), gridY*(b), gridX*(a+1), gridY*(b+1)));
 					
 				}
 			}
 		}
 	}
 	
-	public static Point getLineLineIntersection(Line2D.Float a, Line2D.Float b) {
+	public Point getLineLineIntersection(Line2D.Float a, Line2D.Float b) {
 		double x1 = a.x1; double y1 = a.y1; double x2 = a.x2; double y2 = a.y2; double x3 = b. x1; double y3 = b.y1; double x4 = b.x2; double y4 = b.y2;
 	    double det1And2 = det(x1, y1, x2, y2);
 	    double det3And4 = det(x3, y3, x4, y4);
@@ -194,72 +155,12 @@ public class World {
 	    double y = (det(det1And2, y1LessY2, det3And4, y3LessY4) / det1Less2And3Less4);
 	    return new Point((int)x, (int)y);
 	}
-	protected static double det(double a, double b, double c, double d) {
+	protected double det(double a, double b, double c, double d) {
 		return a * d - b * c;
-	}
-	
-	public void setLight(int x, int y, int val){
-		
-		gridLight.get(x).set(y, val);
-		
-	}
-	
-	public int getLight(int x, int y){
-		
-		return gridLight.get(x).get(y);
-		
-	}
-	
-	public ArrayList<Line2D.Float> getWalls(){
-		return lineWalls;
 	}
 
 	public void renderLights(){
-		
-		
-		int leftBound = (int) Math.floor(-mapXOffset/gridX);
-		int rightBound = (int) Math.floor((-mapXOffset + settings.getScreenX())/gridX);
-		int upBound = (int) Math.floor(-mapYOffset/gridY);
-		int downBound = (int) Math.floor((-mapYOffset + settings.getScreenY())/gridY);
-		
-		if(leftBound < 0){
-			leftBound = 0;
-		}else if (leftBound >= mapX/gridX){
-			leftBound = (int) (mapX/gridX - 1);
-		}
-		
-		if(rightBound < 0){
-			rightBound = 0;
-		}else if (rightBound >= mapX/gridX){
-			rightBound = (int) (mapX/gridX - 1);
-		}
-		
-		if(upBound < 0){
-			upBound = 0;
-		}else if (upBound >= mapY/gridY){
-			upBound = (int) (mapX/gridX - 1);
-		}
-		
-		if(downBound < 0){
-			downBound = 0;
-		}else if (downBound >= mapY/gridY){
-			downBound = (int) (mapY/gridY - 1);
-		}
-		
-		for(int x = leftBound; x <= rightBound; x ++){
-			for(int y = upBound; y <= downBound; y ++){
-				GL11.glColor4d(0, 0, 0,(255 - gridLight.get(x).get(y))/255);
-				
-				GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
-				
-				GL11.glVertex3f(x*gridX + mapXOffset,y*gridY + mapYOffset,0);
-				GL11.glVertex3f(x*gridX + mapXOffset+ gridX,y*gridY + mapYOffset,0);
-				GL11.glVertex3f(x*gridX + mapXOffset,y*gridY + mapYOffset+gridY,0);
-				GL11.glVertex3f(x*gridX + mapXOffset+gridX,y*gridY + mapYOffset+gridY,0);
-				GL11.glEnd();
-				gridLight.get(x).set(y, 0);
-			}
-		}
+		//I have no idea what I want to do here
 	}
 	
 	public void renderBackground(){
@@ -301,6 +202,23 @@ public class World {
 		GL11.glEnd();
 		
 		
+		for(int i = (int) Math.floor(leftBound/10); i <= Math.floor(rightBound/10); i++){
+			for(int j = (int) Math.floor(upBound/10); j <= Math.floor(downBound/10); j++){
+				for(Line2D.Float x : lineWalls.get(i).get(j)){
+					GL11.glColor3d(1.0, 0, 0);
+					GL11.glLineWidth(1);
+					GL11.glBegin(GL11.GL_LINES);
+					
+					GL11.glVertex3d(x.getX1() + mapXOffset, x.getY1() + mapYOffset, 1);
+					GL11.glVertex3d(x.getX2() + mapXOffset, x.getY2() + mapYOffset, 1);
+					
+				
+					GL11.glEnd();	
+				}
+			}
+		}
+		
+		/*
 		for(Line2D.Float x : lineWalls){
 			//TODO prevent rendering of off screen walls
 			GL11.glColor3d(1.0, 0, 0);
@@ -312,7 +230,7 @@ public class World {
 			
 		
 			GL11.glEnd();	
-		}
+		}*/
 	}
 	
 	
