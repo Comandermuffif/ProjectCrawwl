@@ -106,7 +106,7 @@ public class Player extends BasePlayer {
 		int mouse_x = Mouse.getX();
 		int mouse_y = Mouse.getY();
 		
-		facingAngle = (float) (Math.toDegrees(Math.atan2(renderX - mouse_x, renderY - mouse_y)) + 180);
+		facingAngle = (float) (Math.toDegrees(Math.atan2(mouse_y - renderY, mouse_x - renderX)));
 		
 		data.setMapXOffset((float) (settings.getScreenX()/2 - x - (mouse_x - settings.getScreenX()/2)*1));
 		data.setMapYOffset((float) (settings.getScreenY()/2 - y - (mouse_y - settings.getScreenY()/2)*1));

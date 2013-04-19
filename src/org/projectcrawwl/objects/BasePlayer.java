@@ -22,7 +22,7 @@ public class BasePlayer extends GameObject{
 	float sightAngle = 90; //Total view cone
 	
 	Boolean state = false;
-	private Polygon viewCone = new Polygon();
+	protected Polygon viewCone = new Polygon();
 	
 	public BasePlayer(float tempX, float tempY, float tempA, float tempH, float tempR){
 		super();
@@ -62,17 +62,24 @@ public class BasePlayer extends GameObject{
 		inventory.render();
 		
 		
+		GL11.glColor4d(0, 0, 1,.5);
+		GL11.glLineWidth(1);
+		GL11.glBegin(GL11.GL_LINES);
+		GL11.glVertex2f(renderX, renderY);
+		GL11.glVertex2d(renderX + sightRange * Math.cos(Math.toRadians(moveAngle)), renderY + sightRange * Math.sin(Math.toRadians(moveAngle)));
+		GL11.glEnd();
+		
 		GL11.glColor4d(1.0, 0, 0,.5);
 		GL11.glLineWidth(1);
 		GL11.glBegin(GL11.GL_LINES);
 		GL11.glVertex2f(renderX, renderY);
-		GL11.glVertex2d(renderX + sightRange * Math.sin(Math.toRadians(facingAngle)), renderY + sightRange * Math.cos(Math.toRadians(facingAngle)));
+		GL11.glVertex2d(renderX + sightRange * Math.cos(Math.toRadians(facingAngle)), renderY + sightRange * Math.sin(Math.toRadians(facingAngle)));
 		GL11.glEnd();
 		
 		
 		GL11.glColor4d(0, 1, 0, 1);
 		//GL11.glBegin(GL11.GL_TRIANGLE_FAN);
-		GL11.glBegin(GL11.GL_POLYGON);
+		GL11.glBegin(GL11.GL_LINE_LOOP);
 		for(PathIterator pi = viewCone.getPathIterator(null); !pi.isDone(); pi.next()){
 			float[] coord = new float[6];
 			pi.currentSegment(coord);
@@ -104,10 +111,10 @@ Polygon tempView = new Polygon();
 		
 		
 		
-		for(float a = facingAngle - sightAngle/2; a < facingAngle + sightAngle/2; a += 1){
-			Line2D.Float line = new Line2D.Float(x, y,(float) (x + Math.sin(Math.toRadians(a))*sightRange), (float) (y + Math.cos(Math.toRadians(a))*sightRange));
+		for(float a = facingAngle - sightAngle/2; a < facingAngle + sightAngle/2; a += .25){
+			Line2D.Float line = new Line2D.Float(x, y,(float) (x + Math.cos(Math.toRadians(a))*sightRange), (float) (y + Math.sin(Math.toRadians(a))*sightRange));
 			
-			Point intersect = new Point((int)(x + Math.sin(Math.toRadians(a))*sightRange), (int)(y + Math.cos(Math.toRadians(a))*sightRange));
+			Point intersect = new Point((int)(x + Math.cos(Math.toRadians(a))*sightRange), (int)(y + Math.sin(Math.toRadians(a))*sightRange));
 			
 			double dist = intersect.distance(x,y);
 			

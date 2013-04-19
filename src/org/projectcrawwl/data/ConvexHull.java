@@ -15,6 +15,8 @@ public class ConvexHull {
 	
 	World world;
 	
+	ArrayList<Line2D.Float> lines = new ArrayList<Line2D.Float>();
+	
 	public ConvexHull(){
 		
 	}
@@ -22,20 +24,21 @@ public class ConvexHull {
 	public void addPoint(Point k){
 		border.add(k);
 		polygon.addPoint(k.x, k.y);
+		updateLines();
 	}
 	
 	public void addPoint(double x, double y){
 		border.add(new Point((int)x,(int)y));
 		polygon.addPoint((int) x,(int) y);
+		updateLines();
 	}
 	
 	public Polygon getPolygon(){
 		return polygon;
 	}
 	
-	public ArrayList<Line2D.Float> getLines(){
-		
-		ArrayList<Line2D.Float> lines = new ArrayList<Line2D.Float>();
+	private void updateLines(){
+		ArrayList<Line2D.Float> temp = new ArrayList<Line2D.Float>();
 		
 		float[] coord = new float[6];
 		float[] lastCoord = new float[2];
@@ -52,18 +55,25 @@ public class ConvexHull {
 			final int type = pi.currentSegment(coord);
             switch(type) {
                 case PathIterator.SEG_LINETO : {
-                	lines.add(new Line2D.Float(coord[0], coord[1], firstCoord[0], firstCoord[1]));
+                	temp.add(new Line2D.Float(coord[0], coord[1], lastCoord[0], lastCoord[1]));
                     lastCoord[0] = coord[0];
                     lastCoord[1] = coord[1];
                     break;
                 }
                 case PathIterator.SEG_CLOSE : {
-                    lines.add(new Line2D.Float(coord[0], coord[1], firstCoord[0], firstCoord[1]));   
+                    temp.add(new Line2D.Float(coord[0], coord[1], firstCoord[0], firstCoord[1]));   
                     break;
                 }
             }
             pi.next();
 		}
+		
+		lines = temp;
+	}
+	
+	public ArrayList<Line2D.Float> getLines(){
+		
+		
 		
 		return lines;
 	}
@@ -71,13 +81,25 @@ public class ConvexHull {
 	public void render(){
 		
 		world = World.getInstance();
-		
+		/*
 		//GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
 		GL11.glBegin(GL11.GL_LINE_LOOP);
 		GL11.glColor4d(1.0, 0, 0,.5);
 		for(Point p : border){
 			GL11.glVertex2d(p.x + world.getMapXOffset(),p.y + world.getMapYOffset());
 		}
+		GL11.glEnd();
+		*/
+		
+		GL11.glColor4d(1.0, 0, 0,.5);
+		GL11.glLineWidth(1);
+		GL11.glBegin(GL11.GL_LINES);
+		for(Line2D.Float temp : lines){
+			GL11.glVertex2f(temp.x1 + world.getMapXOffset(), temp.y1 + world.getMapYOffset());
+			GL11.glVertex2f(temp.x2 + world.getMapXOffset(), temp.y2 + world.getMapYOffset());
+		}
+		
+		
 		GL11.glEnd();
 		
 		
