@@ -55,16 +55,17 @@ public class BasePlayer extends GameObject{
 		
 		
 		GL11.glColor4d(1.0, 0, 0,.5);
-		
 		GL11.glLineWidth(1);
-		
 		GL11.glBegin(GL11.GL_LINES);
-		
 		GL11.glVertex2f(renderX, renderY);
-		
 		GL11.glVertex2d(renderX + sightRange * Math.sin(Math.toRadians(facingAngle)), renderY + sightRange * Math.cos(Math.toRadians(facingAngle)));
-		
 		GL11.glEnd();
+		
+		
+		
+		
+		
+		
 		
 	}
 	
