@@ -35,7 +35,7 @@ public class Friendly extends BasePlayer {
 	public void render(){
 		super.render();
 		
-		GL11.glColor4d(0,255,0, health *(255/200) + 128);
+		GL11.glColor3d(1*(health/100),(127*(health)/100)/255 ,0);
 		
 		GL11.glBegin(GL11.GL_TRIANGLE_FAN);{
 	    	GL11.glVertex2f(renderX, renderY);

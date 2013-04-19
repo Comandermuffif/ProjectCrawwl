@@ -168,11 +168,15 @@ public class GameData
 		if(Keyboard.isKeyDown(Keyboard.KEY_UP)){world.setMapYOffset(world.getMapYOffset() + delta);}
 		if(Keyboard.isKeyDown(Keyboard.KEY_DOWN)){world.setMapYOffset(world.getMapYOffset() - delta);}
 		
-		if(Keyboard.isKeyDown(Keyboard.KEY_SPACE)){
-			addZombie();
-		}
-		if(Keyboard.isKeyDown(Keyboard.KEY_G)){
-			addFriendly();
+		while(Keyboard.next()){
+			if (Keyboard.getEventKeyState()) {
+				if (Keyboard.getEventKey() == Keyboard.KEY_SPACE){
+					addZombie();
+				}
+				if (Keyboard.getEventKey() == Keyboard.KEY_G){
+					addFriendly();
+				}
+			}
 		}
 		
 		
