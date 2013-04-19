@@ -1,8 +1,5 @@
 package org.projectcrawwl.objects;
 
-import java.awt.Point;
-import java.awt.geom.Line2D;
-
 import org.projectcrawwl.data.ConvexHull;
 import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.data.GameSettings;
@@ -71,7 +68,7 @@ public class GameObject {
 	}
 	//Draw everything here
 	public void render(){
-		//BEEP!
+		
 	}
 
 	//Do all calculations here
@@ -86,20 +83,19 @@ public class GameObject {
 			float tempx = (float) (x + Math.cos(Math.toRadians(moveAngle)) * delta * speed);
 			float tempy = (float) (y + Math.sin(Math.toRadians(moveAngle)) * delta * speed);
 			
-			Line2D.Float temp = new Line2D.Float(x,y,tempx,tempy);
-			Point nearest = new Point((int)tempx,(int)tempy);
-			
 			boolean flag = true;
 			
 			for(ConvexHull k : world.getHulls()){
-				if(k.getPolygon().contains(nearest)){
+				if(k.getPolygon().contains(tempx, tempy)){
 					flag = false;
 					break;
 				}
 			}
 			if(flag){
-				x = nearest.x;
-				y = nearest.y;
+				
+				x = tempx;
+				y = tempy;
+				
 			}else{
 				speed = 0;
 			}

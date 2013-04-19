@@ -1,18 +1,7 @@
 package org.projectcrawwl.objects;
 
-import java.awt.Point;
-import java.awt.Polygon;
-import java.awt.geom.Line2D;
-import java.awt.geom.PathIterator;
-import java.util.ArrayList;
-import java.util.Dictionary;
-import java.util.Hashtable;
-
-import org.lwjgl.opengl.GL11;
-import org.projectcrawwl.data.ConvexHull;
 import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.data.Inventory;
-import org.projectcrawwl.data.World;
 
 public class BasePlayer extends GameObject{
 	
@@ -62,21 +51,6 @@ public class BasePlayer extends GameObject{
 	public void render(){
 		super.render();
 		inventory.render();
-		
-		//GL11.glColor4d(0, 1, 0, .039);
-
-		GL11.glColor4d(0, 1, 0, .039);
-		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
-		//GL11.glBegin(GL11.GL_POLYGON);
-		GL11.glVertex2d(x + data.getMapXOffset(), y+data.getMapYOffset());
-		for(ConvexHull hull : World.getInstance().getHulls()){
-			for(Point p : hull.getPolygon()){
-				GL11.glVertex2d(p.x + data.getMapXOffset(), p.y + data.getMapYOffset());
-			}
-			
-		}
-		GL11.glEnd();
-		
 	}
 	
 	public void renderHUD(){

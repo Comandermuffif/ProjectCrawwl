@@ -101,7 +101,6 @@ public class Player extends BasePlayer {
 	
 	//Do all calculations here
 	public void update(int delta){
-		super.update(delta);
 		//Key and mouse input control
 		
 		int mouse_x = Mouse.getX();
@@ -111,13 +110,6 @@ public class Player extends BasePlayer {
 		
 		data.setMapXOffset((float) (settings.getScreenX()/2 - x - (mouse_x - settings.getScreenX()/2)*1));
 		data.setMapYOffset((float) (settings.getScreenY()/2 - y - (mouse_y - settings.getScreenY()/2)*1));
-		
-//		if(Keyboard.isKeyDown(Keyboard.KEY_D)){speed = .5; moveAngle = 360-facingAngle;}else
-//		if(Keyboard.isKeyDown(Keyboard.KEY_A)){speed = .5; moveAngle = 180-facingAngle;}else
-//		if(Keyboard.isKeyDown(Keyboard.KEY_S)){speed = .5; moveAngle = 270-facingAngle;}else
-//		if(Keyboard.isKeyDown(Keyboard.KEY_W)){speed = .5; moveAngle = 90-facingAngle;}else{
-//			speed = 0;
-//		}
 		
 		if(Keyboard.isKeyDown(Keyboard.KEY_D)){speed = .5; moveAngle = 0;}else
 		if(Keyboard.isKeyDown(Keyboard.KEY_A)){speed = .5; moveAngle = 180;}else
@@ -132,6 +124,7 @@ public class Player extends BasePlayer {
 		if(Mouse.isButtonDown(0)){
 			inventory.getWeapon().fire();
 		}
-		
+
+		super.update(delta);
 	}
 }

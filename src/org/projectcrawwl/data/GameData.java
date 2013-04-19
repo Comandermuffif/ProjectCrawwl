@@ -1,6 +1,7 @@
 package org.projectcrawwl.data;
 
 import java.util.ArrayList;
+import java.util.ListIterator;
 
 import org.lwjgl.input.Keyboard;
 import org.projectcrawwl.objects.*;
@@ -145,8 +146,12 @@ public class GameData
 			a.render();
 		}
 		
-		for(GameObject b : projectiles){
-			b.render();
+		ListIterator<BaseProjectile> q = projectiles.listIterator();
+		
+		while(q.hasNext()){
+			BaseProjectile temp = q.next();
+			
+			temp.render();
 		}
 		
 		

@@ -27,8 +27,8 @@ public class ConvexHull {
 		polygon.addPoint((int) x,(int) y);
 	}
 	
-	public ArrayList<Point> getPolygon(){
-		return border;
+	public Polygon getPolygon(){
+		return polygon;
 	}
 	
 	public void render(){
