@@ -42,11 +42,11 @@ public class BaseProjectile extends GameObject{
 	      }
 	   GL11.glEnd();
 	   
-	   GL11.glLineWidth(1);
-	   GL11.glBegin(GL11.GL_LINES);
-	   GL11.glVertex3f(renderX, renderY, 1);
-	   GL11.glVertex3f(owner.renderX, owner.renderY, 1);
-	   GL11.glEnd();
+//	   GL11.glLineWidth(1);
+//	   GL11.glBegin(GL11.GL_LINES);
+//	   GL11.glVertex3f(renderX, renderY, 1);
+//	   GL11.glVertex3f(owner.renderX, owner.renderY, 1);
+//	   GL11.glEnd();
 	   
 	   
 	}

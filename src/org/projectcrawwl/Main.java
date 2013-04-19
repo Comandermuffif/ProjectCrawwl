@@ -66,7 +66,7 @@ public class Main {
     	lastFPS = getTime();
     	//Render render = new Render();
     	System.out.println("Update thread started");
-    	Update update = new Update();
+    	//Update update = new Update();
     	
     	//render.start(); //Render must be main thread
     	//update.start();
@@ -97,7 +97,7 @@ public class Main {
      
         
         //render.cancel();
-        update.cancel();
+        //update.cancel();
     	Display.destroy();
         System.exit(0);
         

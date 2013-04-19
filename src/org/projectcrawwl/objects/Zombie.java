@@ -71,6 +71,6 @@ public class Zombie extends BasePlayer {
 	
 	//Do all calculations here
 	public void update(int delta){
-		
+		super.update(delta);
 	}
 }

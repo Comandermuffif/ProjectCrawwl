@@ -120,7 +120,9 @@ public class Player extends BasePlayer {
 		
 		if(Keyboard.isKeyDown(Keyboard.KEY_1)){inventory.prevWeapon();}
 		if(Keyboard.isKeyDown(Keyboard.KEY_2)){inventory.nextWeapon();}
-				
+		
+		Mouse.getEventButton();
+		
 		if(Mouse.isButtonDown(0)){
 			inventory.getWeapon().fire();
 		}

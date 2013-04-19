@@ -32,6 +32,46 @@ public class World {
 			
 			hulls.add(a);
 		}
+		
+		{
+			ConvexHull a = new ConvexHull();
+			a.addPoint(0,mapY);
+			a.addPoint(5,mapY);
+			a.addPoint(5,0);
+			a.addPoint(0,0);
+			
+			hulls.add(a);
+		}
+		
+		{
+			ConvexHull a = new ConvexHull();
+			a.addPoint(0,0);
+			a.addPoint(0,5);
+			a.addPoint(mapX,5);
+			a.addPoint(mapX,0);
+			
+			hulls.add(a);
+		}
+		
+		{
+			ConvexHull a = new ConvexHull();
+			a.addPoint(mapX-5,mapY);
+			a.addPoint(mapX,mapY);
+			a.addPoint(mapX,0);
+			a.addPoint(mapX-5,0);
+			
+			hulls.add(a);
+		}
+		
+		{
+			ConvexHull a = new ConvexHull();
+			a.addPoint(0,mapY);
+			a.addPoint(mapX,mapY);
+			a.addPoint(mapX,mapY-5);
+			a.addPoint(0,mapY-5);
+			
+			hulls.add(a);
+		}
 	}
 	
 	public ArrayList<ConvexHull> getHulls(){

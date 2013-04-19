@@ -1,5 +1,7 @@
 package org.projectcrawwl.objects;
 
+import java.awt.geom.Line2D;
+
 import org.projectcrawwl.data.ConvexHull;
 import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.data.GameSettings;
@@ -85,7 +87,18 @@ public class GameObject {
 			
 			boolean flag = true;
 			
+			Line2D.Float tempLine = new Line2D.Float(x,y,tempx,tempy);
+			
 			for(ConvexHull k : world.getHulls()){
+				
+				for(Line2D.Float x : k.getLines()){
+					if(x.intersectsLine(tempLine)){
+						flag = false;
+						break;
+					}
+				}
+				if(!flag){break;}
+				
 				if(k.getPolygon().contains(tempx, tempy)){
 					flag = false;
 					break;
