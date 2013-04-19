@@ -11,6 +11,12 @@ public class ConvexHull {
 	
 	private Polygon polygon = new Polygon();
 	
+	World world;
+	
+	public ConvexHull(){
+		
+	}
+	
 	public void addPoint(Point k){
 		border.add(k);
 		polygon.addPoint(k.x, k.y);
@@ -27,7 +33,7 @@ public class ConvexHull {
 	
 	public void render(){
 		
-		World world = World.getInstance();
+		world = World.getInstance();
 		
 		//GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
 		GL11.glBegin(GL11.GL_LINE_LOOP);
