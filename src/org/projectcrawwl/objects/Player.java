@@ -75,10 +75,6 @@ public class Player extends BasePlayer {
 		}
 		GL11.glEnd();
 		
-		//g.setColor(new Color(255,255,255));
-		//g.drawString("Kills: " + kills, 5, 25);
-		//g.drawString("Weapon: " + inventory.getWeapon().getName(), 5, 45);
-		
 		GL11.glColor3f(1.0f,0,0);
 		GL11.glBegin(GL11.GL_TRIANGLE_FAN);{
 			GL11.glVertex2d(5, 85);
@@ -118,8 +114,22 @@ public class Player extends BasePlayer {
 			speed = 0;
 		}
 		
-		if(Keyboard.isKeyDown(Keyboard.KEY_1)){inventory.prevWeapon();}
-		if(Keyboard.isKeyDown(Keyboard.KEY_2)){inventory.nextWeapon();}
+		while(Keyboard.next()){
+			if (Keyboard.getEventKeyState()) {
+				if (Keyboard.getEventKey() == Keyboard.KEY_1){
+					inventory.prevWeapon();
+				}
+				if (Keyboard.getEventKey() == Keyboard.KEY_2){
+					inventory.nextWeapon();
+				}
+				if (Keyboard.getEventKey() == Keyboard.KEY_SPACE){
+					data.addZombie();
+				}
+				if (Keyboard.getEventKey() == Keyboard.KEY_G){
+					data.addFriendly();
+				}
+			}
+		}
 		
 		Mouse.getEventButton();
 		

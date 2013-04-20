@@ -18,7 +18,7 @@ public class BaseProjectile extends GameObject{
 		x = tempX;
 		y = tempY;
 		speed = tempSpeed;
-		moveAngle = 90 - tempAngle;
+		moveAngle = tempAngle;
 		r = 5;
 		damage = tempD;
 		owner = own;

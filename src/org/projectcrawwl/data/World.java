@@ -25,16 +25,6 @@ public class World {
 		
 		{
 			ConvexHull a = new ConvexHull();
-			a.addPoint(500,500);
-			a.addPoint(600,600);
-			a.addPoint(700,500);
-			a.addPoint(600,400);
-			
-			hulls.add(a);
-		}
-		
-		{
-			ConvexHull a = new ConvexHull();
 			a.addPoint(0,mapY);
 			a.addPoint(5,mapY);
 			a.addPoint(5,0);
@@ -72,6 +62,32 @@ public class World {
 			
 			hulls.add(a);
 		}
+		
+		
+		for(int i = 0; i < 5; i ++){
+			int tempX = (int) (Math.random() * mapX);
+			int tempY = (int) (Math.random() * mapY);
+			
+			boolean flag = true;
+			
+
+			ConvexHull a = new ConvexHull();
+			a.addPoint(tempX, tempY);
+			a.addPoint(tempX + 100,tempY + 100);
+			a.addPoint(tempX + 200,tempY);
+			a.addPoint(tempX + 100,tempY - 100);			
+			
+			for(ConvexHull hull : hulls){
+				if(a.getPolygon().getBounds2D().intersects(hull.getPolygon().getBounds2D())){
+					flag = false;
+				}
+			}
+			if(flag){
+				hulls.add(a);
+			}
+		}
+		
+		
 	}
 	
 	public ArrayList<ConvexHull> getHulls(){

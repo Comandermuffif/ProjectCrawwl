@@ -157,7 +157,6 @@ public class GameData
 		
 		player.render();
 		
-		//world.renderLights();
 		player.renderHUD();
 	}
 	public void update(int delta){
@@ -167,18 +166,6 @@ public class GameData
 		if(Keyboard.isKeyDown(Keyboard.KEY_LEFT)){world.setMapXOffset(world.getMapXOffset() + delta);}
 		if(Keyboard.isKeyDown(Keyboard.KEY_UP)){world.setMapYOffset(world.getMapYOffset() + delta);}
 		if(Keyboard.isKeyDown(Keyboard.KEY_DOWN)){world.setMapYOffset(world.getMapYOffset() - delta);}
-		
-		while(Keyboard.next()){
-			if (Keyboard.getEventKeyState()) {
-				if (Keyboard.getEventKey() == Keyboard.KEY_SPACE){
-					addZombie();
-				}
-				if (Keyboard.getEventKey() == Keyboard.KEY_G){
-					addFriendly();
-				}
-			}
-		}
-		
 		
 		//Removes projectiles that are off screen
 		for(GameObject a : tempProjectiles){

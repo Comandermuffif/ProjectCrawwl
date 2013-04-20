@@ -20,7 +20,7 @@ public class SMG extends BaseRangedWeapon{
 		if(active == false){
 			active = true;
 			currentCoolDown = coolDown;
-			data.addProjectile(new BaseProjectile((float) (owner.x + Math.cos(Math.toRadians(90 - owner.facingAngle))*(owner.r+5)),(float) (owner.y + Math.sin(Math.toRadians(90 - owner.facingAngle))*(owner.r+5)),3,(float) ((float) owner.facingAngle + random.nextGaussian()*1.5), 10, owner));
+			data.addProjectile(new BaseProjectile((float) (owner.x + Math.cos(Math.toRadians(owner.facingAngle))*(owner.r+5)),(float) (owner.y + Math.sin(Math.toRadians(owner.facingAngle))*(owner.r+5)),3,(float) ((float) owner.facingAngle + random.nextGaussian()*1.5), 10, owner));
 		}
 	}
 }

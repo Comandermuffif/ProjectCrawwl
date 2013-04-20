@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import org.lwjgl.opengl.GL11;
 
 public class ConvexHull {
-	private ArrayList<Point> border = new ArrayList<Point>();
 	
 	private Polygon polygon = new Polygon();
 	
@@ -22,13 +21,11 @@ public class ConvexHull {
 	}
 	
 	public void addPoint(Point k){
-		border.add(k);
 		polygon.addPoint(k.x, k.y);
 		updateLines();
 	}
 	
 	public void addPoint(double x, double y){
-		border.add(new Point((int)x,(int)y));
 		polygon.addPoint((int) x,(int) y);
 		updateLines();
 	}
@@ -73,27 +70,16 @@ public class ConvexHull {
 	
 	public ArrayList<Line2D.Float> getLines(){
 		
-		
-		
 		return lines;
 	}
 	
 	public void render(){
 		
 		world = World.getInstance();
-		/*
-		//GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
-		GL11.glBegin(GL11.GL_LINE_LOOP);
-		GL11.glColor4d(1.0, 0, 0,.5);
-		for(Point p : border){
-			GL11.glVertex2d(p.x + world.getMapXOffset(),p.y + world.getMapYOffset());
-		}
-		GL11.glEnd();
-		*/
 		
-		GL11.glColor4d(1.0, 0, 0,.5);
+		GL11.glColor4d(1.0, 0, 0,1);
 		GL11.glLineWidth(1);
-		GL11.glBegin(GL11.GL_LINES);
+		GL11.glBegin(GL11.GL_POLYGON);
 		for(Line2D.Float temp : lines){
 			GL11.glVertex2f(temp.x1 + world.getMapXOffset(), temp.y1 + world.getMapYOffset());
 			GL11.glVertex2f(temp.x2 + world.getMapXOffset(), temp.y2 + world.getMapYOffset());

@@ -17,7 +17,7 @@ public class MissleLauncher extends BaseRangedWeapon{
 			active = true;
 			currentCoolDown = coolDown;
 			GameData data = GameData.getInstance();
-			data.addProjectile(new DumbMissle((float) (owner.x + Math.cos(Math.toRadians(90 - owner.facingAngle))*(owner.r+5)),(float) (owner.y + Math.sin(Math.toRadians(90 - owner.facingAngle))*(owner.r+5)),1,(float) owner.facingAngle, 50, owner));
+			data.addProjectile(new DumbMissle((float) (owner.x + Math.cos(Math.toRadians(owner.facingAngle))*(owner.r+5)),(float) (owner.y + Math.sin(Math.toRadians(owner.facingAngle))*(owner.r+5)),1,(float) owner.facingAngle, 50, owner));
 		}
 	}
 }
