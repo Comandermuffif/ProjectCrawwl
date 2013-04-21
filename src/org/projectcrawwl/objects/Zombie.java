@@ -1,8 +1,11 @@
 package org.projectcrawwl.objects;
 
+import java.awt.Point;
+import java.awt.geom.Line2D;
 import java.util.Random;
 
 import org.lwjgl.opengl.GL11;
+import org.projectcrawwl.data.ConvexHull;
 
 public class Zombie extends BasePlayer {
 	Random random = new Random();
@@ -58,6 +61,21 @@ public class Zombie extends BasePlayer {
 		
 		facingAngle = moveAngle;
 		
+		Line2D.Float line = new Line2D.Float(x, y,(float) (x + Math.cos(moveAngle)*(r+20)), (float) (y + Math.sin(moveAngle)*(r+20)));
+		for(ConvexHull hull : world.getHulls()){
+			for(Line2D.Float qq : hull.getLines()){
+				if(line.intersectsLine(qq)){
+					moveAngle += 5;
+					System.out.println(moveAngle);
+					break;
+				}
+			}
+			if(moveAngle != facingAngle){
+				break;
+			}
+		}
+		
+		
 		if(target == null){
 			for(BasePlayer temp : data.getFriendlies()){
 				if(viewCone.contains(temp.getX(), temp.getY())){
@@ -65,7 +83,13 @@ public class Zombie extends BasePlayer {
 					break;
 				}
 			}
+			
 		}else{
+			
+			if(new Point((int)getX(),(int)getY()).distance(target.getX(), target.getY()) <= 15 + r){
+				inventory.getWeapon().fire();
+			}
+			
 			if(viewCone.contains(target.getX(), target.getY())){
 				moveAngle = (float) (Math.toDegrees(Math.atan2(target.getY() - y, target.getX() - x)));
 			}else{

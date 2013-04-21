@@ -1,5 +1,6 @@
 package org.projectcrawwl.data;
 
+import java.awt.Color;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.geom.Line2D;
@@ -14,10 +15,13 @@ public class ConvexHull {
 	
 	World world;
 	
+	private Color color;
+	
 	ArrayList<Line2D.Float> lines = new ArrayList<Line2D.Float>();
 	
 	public ConvexHull(){
 		
+		color = new Color((int) (255*Math.random()),(int) (255*Math.random()),(int) (255*Math.random()));
 	}
 	
 	public void addPoint(Point k){
@@ -77,7 +81,7 @@ public class ConvexHull {
 		
 		world = World.getInstance();
 		
-		GL11.glColor4d(1.0, 0, 0,1);
+		GL11.glColor4d(.2,.3,.7,1);
 		GL11.glLineWidth(1);
 		GL11.glBegin(GL11.GL_POLYGON);
 		for(Line2D.Float temp : lines){

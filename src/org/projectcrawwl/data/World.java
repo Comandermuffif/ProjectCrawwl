@@ -64,7 +64,7 @@ public class World {
 		}
 		
 		
-		for(int i = 0; i < 5; i ++){
+		for(int i = 0; i < 10; i ++){
 			int tempX = (int) (Math.random() * mapX);
 			int tempY = (int) (Math.random() * mapY);
 			
@@ -78,8 +78,20 @@ public class World {
 			a.addPoint(tempX + 100,tempY - 100);			
 			
 			for(ConvexHull hull : hulls){
-				if(a.getPolygon().getBounds2D().intersects(hull.getPolygon().getBounds2D())){
-					flag = false;
+				
+				for(Line2D.Float line : hull.getLines()){
+					for(Line2D.Float line2 : a.getLines()){
+						if(line.intersectsLine(line2)){
+							flag = false;
+							break;
+						}
+					}
+					if(!flag){
+						break;
+					}
+				}
+				if(!flag){
+					break;
 				}
 			}
 			if(flag){

@@ -33,14 +33,16 @@ public class Player extends BasePlayer {
 		r = 25;
 		facingAngle = 0;
 		health = 100;
+		
 	}
 	
 	//Draw everything here
 	public void render(){
 		super.render();
 		
-		GL11.glColor3d(1, 0, 0);
-			
+		GL11.glColor3d(0, 1, 0);
+		
+		
 		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
 	      {
 	    	GL11.glVertex2f(renderX,renderY);

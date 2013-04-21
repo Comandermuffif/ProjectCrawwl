@@ -1,6 +1,7 @@
 package org.projectcrawwl.objects;
 
 import java.awt.geom.Line2D;
+import java.util.ArrayList;
 
 import org.projectcrawwl.data.ConvexHull;
 import org.projectcrawwl.data.GameData;
@@ -21,6 +22,8 @@ public class GameObject {
 	GameData data = GameData.getInstance();
 	GameSettings settings = GameSettings.getInstance();
 	
+	public World world = World.getInstance();
+	
 	/**
 	 * A generic Game Object
 	 * 
@@ -34,18 +37,27 @@ public class GameObject {
 		y = tempY;
 		facingAngle = tempA;
 		r = tempR;
+		
 	}
+	
+	
 	public GameObject(float tempX, float tempY){
 		x = tempX;
 		y = tempY;
 		facingAngle = 0;
 		r = 10;
+		
 	}
 	public GameObject(){
 		x = 0;
 		y = 0;
 		facingAngle = 0;
 		r = 10;
+		
+	}
+	
+	public ArrayList<Line2D.Float> boundingBox(){
+		return null;
 	}
 	
 	public float getX(){
@@ -91,18 +103,21 @@ public class GameObject {
 			
 			for(ConvexHull k : world.getHulls()){
 				
-				for(Line2D.Float x : k.getLines()){
-					if(x.intersectsLine(tempLine)){
+				if(k.getPolygon().contains(tempx, tempy)){
+					flag = false;
+					break;
+				}
+				
+				for(Line2D.Float q : k.getLines()){
+					
+					if(q.intersectsLine(tempLine)){
 						flag = false;
 						break;
 					}
 				}
 				if(!flag){break;}
 				
-				if(k.getPolygon().contains(tempx, tempy)){
-					flag = false;
-					break;
-				}
+				
 			}
 			if(flag){
 				
@@ -113,9 +128,5 @@ public class GameObject {
 				speed = 0;
 			}
 		}
-		
-		
-	
-		
 	}
 }
