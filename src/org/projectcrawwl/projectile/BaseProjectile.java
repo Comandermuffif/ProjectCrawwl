@@ -37,19 +37,21 @@ public class BaseProjectile extends GameObject{
 		//(212, 175, 55)
 		
 		GL11.glColor3d(.8313, .6867, .2156);
-		GL11.glLineWidth(3);
+		GL11.glLineWidth(1);
 		GL11.glBegin(GL11.GL_LINES);
 		GL11.glVertex2d(renderX, renderY);
-		GL11.glVertex2d(lastPos.x + data.getMapXOffset(), lastPos.y + data.getMapYOffset());
+		GL11.glVertex2d(renderX + Math.cos(Math.toRadians(moveAngle))*20, renderY + Math.sin(Math.toRadians(moveAngle))*20);
+		
 		GL11.glEnd();
 		GL11.glLineWidth(1);
 	}
 
 	//Do all calculations here
 	public void update(int delta){
-		super.update(delta);
 		
 		lastPos.setLocation(x, y);
+		
+		super.update(delta);
 		
 		
 		ArrayList<BasePlayer> temp = data.getAllPlayers();
