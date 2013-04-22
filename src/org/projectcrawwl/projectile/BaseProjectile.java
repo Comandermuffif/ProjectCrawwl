@@ -34,21 +34,6 @@ public class BaseProjectile extends GameObject{
 		super.render();
 		GL11.glColor3d(201, 192, 187);
 		
-		/*
-		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
-	      {
-	    	  GL11.glVertex2f(renderX, renderY);
-	    	  
-	        for (float angle=0; angle<=Math.PI*2; angle+=((Math.PI*2)/32) )
-	        {
-	        	GL11.glVertex2f( (r)*(float)Math.cos(angle) + renderX,
-	        			(r)*(float)Math.sin(angle) + renderY);  
-	        }
-	        
-	        GL11.glVertex2f(renderX + r, renderY);
-	      }
-	   GL11.glEnd();*/
-		
 		//(212, 175, 55)
 		
 		GL11.glColor3d(.8313, .6867, .2156);
