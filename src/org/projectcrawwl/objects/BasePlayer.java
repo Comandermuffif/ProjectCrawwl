@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.geom.Line2D;
 import java.awt.geom.PathIterator;
+import java.util.ArrayList;
 
 import org.lwjgl.opengl.GL11;
 import org.projectcrawwl.data.ConvexHull;
@@ -23,6 +24,9 @@ public class BasePlayer extends GameObject{
 	
 	Boolean state = false;
 	protected Polygon viewCone = new Polygon();
+	
+	public Polygon boundingBox = new Polygon();
+	public ArrayList<Line2D.Float> boundingLines = new ArrayList<Line2D.Float>();
 	
 	public BasePlayer(float tempX, float tempY, float tempA, float tempH, float tempR){
 		super();
@@ -48,6 +52,49 @@ public class BasePlayer extends GameObject{
 		health = 100;
 		r = 10;
 	}
+	
+	public void createBoundingBox(){
+		
+		boundingBox.reset();
+		
+        for (float angle=0; angle<=Math.PI*2; angle+=((Math.PI*2)/16) )
+        {
+        	boundingBox.addPoint((int)((r)*(float)Math.cos(angle)), (int)((r)*(float)Math.sin(angle)));  
+        }
+        
+        ArrayList<Line2D.Float> temp = new ArrayList<Line2D.Float>();
+		
+		float[] coord = new float[6];
+		float[] lastCoord = new float[2];
+		float[] firstCoord = new float[2];
+		PathIterator pi = boundingBox.getPathIterator(null);
+		
+		pi.currentSegment(coord);
+		
+		pi.currentSegment(firstCoord); //Getting the first coordinate pair
+        lastCoord[0] = firstCoord[0]; //Priming the previous coordinate pair
+        lastCoord[1] = firstCoord[1];
+		
+		while(!pi.isDone()){
+			final int type = pi.currentSegment(coord);
+            switch(type) {
+                case PathIterator.SEG_LINETO : {
+                	temp.add(new Line2D.Float(coord[0], coord[1], lastCoord[0], lastCoord[1]));
+                    lastCoord[0] = coord[0];
+                    lastCoord[1] = coord[1];
+                    break;
+                }
+                case PathIterator.SEG_CLOSE : {
+                    temp.add(new Line2D.Float(coord[0], coord[1], firstCoord[0], firstCoord[1]));   
+                    break;
+                }
+            }
+            pi.next();
+		}
+		
+		boundingLines = temp;
+	}
+	
 	public void damage(float damage, BasePlayer shooter){
 		health -= damage;
 		lastHit = shooter;
@@ -62,19 +109,19 @@ public class BasePlayer extends GameObject{
 		inventory.render();
 		
 		
-		GL11.glColor4d(0, 0, 1,.5);
-		GL11.glLineWidth(1);
-		GL11.glBegin(GL11.GL_LINES);
-		GL11.glVertex2f(renderX, renderY);
-		GL11.glVertex2d(renderX + sightRange * Math.cos(Math.toRadians(moveAngle)), renderY + sightRange * Math.sin(Math.toRadians(moveAngle)));
-		GL11.glEnd();
-		
-		GL11.glColor4d(1.0, 0, 0,.5);
-		GL11.glLineWidth(1);
-		GL11.glBegin(GL11.GL_LINES);
-		GL11.glVertex2f(renderX, renderY);
-		GL11.glVertex2d(renderX + sightRange * Math.cos(Math.toRadians(facingAngle)), renderY + sightRange * Math.sin(Math.toRadians(facingAngle)));
-		GL11.glEnd();
+//		GL11.glColor4d(0, 0, 1,.5);
+//		GL11.glLineWidth(1);
+//		GL11.glBegin(GL11.GL_LINES);
+//		GL11.glVertex2f(renderX, renderY);
+//		GL11.glVertex2d(renderX + sightRange * Math.cos(Math.toRadians(moveAngle)), renderY + sightRange * Math.sin(Math.toRadians(moveAngle)));
+//		GL11.glEnd();
+//		
+//		GL11.glColor4d(1.0, 0, 0,.5);
+//		GL11.glLineWidth(1);
+//		GL11.glBegin(GL11.GL_LINES);
+//		GL11.glVertex2f(renderX, renderY);
+//		GL11.glVertex2d(renderX + sightRange * Math.cos(Math.toRadians(facingAngle)), renderY + sightRange * Math.sin(Math.toRadians(facingAngle)));
+//		GL11.glEnd();
 		
 		
 		GL11.glColor4d(0, 1, 0, 1);
@@ -91,7 +138,16 @@ public class BasePlayer extends GameObject{
 		GL11.glEnd();
 		
 		
+		GL11.glColor4d(.2,.3,.7,1);
+		GL11.glLineWidth(1);
+		GL11.glBegin(GL11.GL_LINE_LOOP);
+		for(Line2D.Float temp : boundingLines){
+			GL11.glVertex2f(temp.x1 + renderX, temp.y1 + renderY);
+			GL11.glVertex2f(temp.x2 + renderX, temp.y2 + renderY);
+		}
 		
+		
+		GL11.glEnd();
 		
 	}
 	
@@ -104,7 +160,7 @@ public class BasePlayer extends GameObject{
 		super.update(delta);
 		
 		
-Polygon tempView = new Polygon();
+		Polygon tempView = new Polygon();
 		
 		tempView.addPoint((int)x, (int)y);
 		World world = World.getInstance();

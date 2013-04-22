@@ -61,12 +61,20 @@ public class Zombie extends BasePlayer {
 		
 		facingAngle = moveAngle;
 		
-		Line2D.Float line = new Line2D.Float(x, y,(float) (x + Math.cos(moveAngle)*(r+20)), (float) (y + Math.sin(moveAngle)*(r+20)));
+		Line2D.Float line = new Line2D.Float(x, y,(float) (x + Math.cos(Math.toRadians(moveAngle))*(r+20)), (float) (y + Math.sin(Math.toRadians(moveAngle))*(r+20)));
+		Line2D.Float lineL = new Line2D.Float(x, y,(float) (x + Math.cos(Math.toRadians(moveAngle+5))*(r+20)), (float) (y + Math.sin(Math.toRadians(moveAngle+5))*(r+20)));
+		Line2D.Float lineR = new Line2D.Float(x, y,(float) (x + Math.cos(Math.toRadians(moveAngle-5))*(r+20)), (float) (y + Math.sin(Math.toRadians(moveAngle-5))*(r+20)));
+		
+		
 		for(ConvexHull hull : world.getHulls()){
 			for(Line2D.Float qq : hull.getLines()){
 				if(line.intersectsLine(qq)){
-					moveAngle += 5;
-					System.out.println(moveAngle);
+					if(world.getLineLineIntersection(lineL, qq).distance(x,y) < world.getLineLineIntersection(lineR, qq).distance(x, y)){
+						moveAngle -= 5;
+					}else{
+
+						moveAngle += 5;
+					}
 					break;
 				}
 			}

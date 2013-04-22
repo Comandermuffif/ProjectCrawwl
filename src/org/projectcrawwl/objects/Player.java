@@ -25,6 +25,8 @@ public class Player extends BasePlayer {
 		inventory.addWeapon(new SMG(this));
 		inventory.addWeapon(new Shotgun(this));
 		
+		this.createBoundingBox();
+		
 	}
 	public Player(){
 		super();
@@ -39,8 +41,8 @@ public class Player extends BasePlayer {
 	//Draw everything here
 	public void render(){
 		super.render();
-		
-		GL11.glColor3d(0, 1, 0);
+		/*
+		GL11.glColor3d(.9,.46, 0);
 		
 		
 		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
@@ -55,15 +57,7 @@ public class Player extends BasePlayer {
 	          
 	        GL11.glVertex2f(renderX + r,renderY);
 	      }
-	    GL11.glEnd();
-	    
-	    GL11.glLineWidth(1);
-		GL11.glBegin(GL11.GL_LINES);
-		GL11.glColor3d(0, 0, 0);
-		GL11.glVertex2d(Mouse.getX(), Mouse.getY());
-		GL11.glVertex2f(renderX, renderY);
-		GL11.glVertex2d(renderX + Math.sin(Math.toRadians(facingAngle))*r, renderY + Math.cos(Math.toRadians(facingAngle))*r);
-		GL11.glEnd();
+	    GL11.glEnd();*/
 	}
 
 	public void renderHUD(){
@@ -77,7 +71,7 @@ public class Player extends BasePlayer {
 		}
 		GL11.glEnd();
 		
-		GL11.glColor3f(1.0f,0,0);
+		GL11.glColor4f(1.0f,0,0,1.0f);
 		GL11.glBegin(GL11.GL_TRIANGLE_FAN);{
 			GL11.glVertex2d(5, 85);
 			GL11.glVertex2d(5+2*r,85);
@@ -87,7 +81,7 @@ public class Player extends BasePlayer {
 		GL11.glEnd();
 		
 		
-		GL11.glColor3f(0,1.0f,0);
+		GL11.glColor4f(0,1.0f,0,1.0f);
 		GL11.glBegin(GL11.GL_TRIANGLE_FAN);{
 			GL11.glVertex2d(5, 85);
 			GL11.glVertex2d(5+2*r*health/100,85);
@@ -109,10 +103,23 @@ public class Player extends BasePlayer {
 		data.setMapXOffset((float) (settings.getScreenX()/2 - x - (mouse_x - settings.getScreenX()/2)*1));
 		data.setMapYOffset((float) (settings.getScreenY()/2 - y - (mouse_y - settings.getScreenY()/2)*1));
 		
-		if(Keyboard.isKeyDown(Keyboard.KEY_D)){speed = .5; moveAngle = 0;}else
-		if(Keyboard.isKeyDown(Keyboard.KEY_A)){speed = .5; moveAngle = 180;}else
-		if(Keyboard.isKeyDown(Keyboard.KEY_S)){speed = .5; moveAngle = 270;}else
-		if(Keyboard.isKeyDown(Keyboard.KEY_W)){speed = .5; moveAngle = 90;}else{
+		float temp = 0;
+		moveAngle = 0;
+		
+		if(Keyboard.isKeyDown(Keyboard.KEY_D)){speed = .5; moveAngle += 0; temp += 1;}
+		if(Keyboard.isKeyDown(Keyboard.KEY_A)){speed = .5; moveAngle += 180; temp+=1;}
+		if(Keyboard.isKeyDown(Keyboard.KEY_S)){speed = .5; moveAngle += 270;temp+=1;}
+		if(Keyboard.isKeyDown(Keyboard.KEY_W)){speed = .5; moveAngle += 90;temp+=1;}
+		
+		if(temp != 0){
+			
+			if(Keyboard.isKeyDown(Keyboard.KEY_S) && Keyboard.isKeyDown(Keyboard.KEY_D)){
+				moveAngle += 360;
+			}
+			
+			
+			moveAngle = moveAngle/temp;
+		}else{
 			speed = 0;
 		}
 		

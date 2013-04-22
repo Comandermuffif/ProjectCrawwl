@@ -1,5 +1,6 @@
 package org.projectcrawwl.projectile;
 
+import java.awt.Point;
 import java.util.ArrayList;
 
 import org.lwjgl.opengl.GL11;
@@ -12,6 +13,9 @@ public class BaseProjectile extends GameObject{
 	BasePlayer owner;
 	public float r;
 	public float damage;
+	GameData data = GameData.getInstance();
+	Point lastPos = new Point();
+	
 	
 	public BaseProjectile(float tempX, float tempY, float tempSpeed, float tempAngle, float tempD, BasePlayer own){
 		super(tempX, tempY);
@@ -22,12 +26,15 @@ public class BaseProjectile extends GameObject{
 		r = 5;
 		damage = tempD;
 		owner = own;
+		
+		lastPos.setLocation(x, y);
 	}
 	
 	public void render(){
 		super.render();
 		GL11.glColor3d(201, 192, 187);
 		
+		/*
 		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
 	      {
 	    	  GL11.glVertex2f(renderX, renderY);
@@ -40,15 +47,25 @@ public class BaseProjectile extends GameObject{
 	        
 	        GL11.glVertex2f(renderX + r, renderY);
 	      }
-	   GL11.glEnd();
-	   
+	   GL11.glEnd();*/
+		
+		//(212, 175, 55)
+		
+		GL11.glColor3d(.8313, .6867, .2156);
+		GL11.glLineWidth(3);
+		GL11.glBegin(GL11.GL_LINES);
+		GL11.glVertex2d(renderX, renderY);
+		GL11.glVertex2d(lastPos.x + data.getMapXOffset(), lastPos.y + data.getMapYOffset());
+		GL11.glEnd();
+		GL11.glLineWidth(1);
 	}
 
 	//Do all calculations here
 	public void update(int delta){
 		super.update(delta);
 		
-		GameData data = GameData.getInstance();
+		lastPos.setLocation(x, y);
+		
 		
 		ArrayList<BasePlayer> temp = data.getAllPlayers();
 		
