@@ -25,8 +25,6 @@ public class BasePlayer extends GameObject{
 	Boolean state = false;
 	protected Polygon viewCone = new Polygon();
 	
-	public Polygon boundingBox = new Polygon();
-	public ArrayList<Line2D.Float> boundingLines = new ArrayList<Line2D.Float>();
 	
 	public BasePlayer(float tempX, float tempY, float tempA, float tempH, float tempR){
 		super();
@@ -109,19 +107,19 @@ public class BasePlayer extends GameObject{
 		inventory.render();
 		
 		
-//		GL11.glColor4d(0, 0, 1,.5);
-//		GL11.glLineWidth(1);
-//		GL11.glBegin(GL11.GL_LINES);
-//		GL11.glVertex2f(renderX, renderY);
-//		GL11.glVertex2d(renderX + sightRange * Math.cos(Math.toRadians(moveAngle)), renderY + sightRange * Math.sin(Math.toRadians(moveAngle)));
-//		GL11.glEnd();
-//		
-//		GL11.glColor4d(1.0, 0, 0,.5);
-//		GL11.glLineWidth(1);
-//		GL11.glBegin(GL11.GL_LINES);
-//		GL11.glVertex2f(renderX, renderY);
-//		GL11.glVertex2d(renderX + sightRange * Math.cos(Math.toRadians(facingAngle)), renderY + sightRange * Math.sin(Math.toRadians(facingAngle)));
-//		GL11.glEnd();
+		GL11.glColor4d(0, 0, 1,.5);
+		GL11.glLineWidth(1);
+		GL11.glBegin(GL11.GL_LINES);
+		GL11.glVertex2f(renderX, renderY);
+		GL11.glVertex2d(renderX + sightRange * Math.cos(Math.toRadians(moveAngle)), renderY + sightRange * Math.sin(Math.toRadians(moveAngle)));
+		GL11.glEnd();
+		
+		GL11.glColor4d(1.0, 0, 0,.5);
+		GL11.glLineWidth(1);
+		GL11.glBegin(GL11.GL_LINES);
+		GL11.glVertex2f(renderX, renderY);
+		GL11.glVertex2d(renderX + sightRange * Math.cos(Math.toRadians(facingAngle)), renderY + sightRange * Math.sin(Math.toRadians(facingAngle)));
+		GL11.glEnd();
 		
 		
 		GL11.glColor4d(0, 1, 0, 1);
@@ -140,10 +138,10 @@ public class BasePlayer extends GameObject{
 		
 		GL11.glColor4d(.2,.3,.7,1);
 		GL11.glLineWidth(1);
-		GL11.glBegin(GL11.GL_LINE_LOOP);
+		GL11.glBegin(GL11.GL_LINES);
 		for(Line2D.Float temp : boundingLines){
-			GL11.glVertex2f(temp.x1 + renderX, temp.y1 + renderY);
-			GL11.glVertex2f(temp.x2 + renderX, temp.y2 + renderY);
+			GL11.glVertex2d(temp.x1*Math.cos(Math.toRadians(facingAngle)) - temp.y1*Math.sin(Math.toRadians(facingAngle)) + renderX, temp.x1*Math.sin(Math.toRadians(facingAngle)) + temp.y1*Math.cos(Math.toRadians(facingAngle)) + renderY);
+			GL11.glVertex2d(temp.x2*Math.cos(Math.toRadians(facingAngle)) - temp.y2*Math.sin(Math.toRadians(facingAngle)) + renderX, temp.x2*Math.sin(Math.toRadians(facingAngle)) + temp.y2*Math.cos(Math.toRadians(facingAngle)) + renderY);
 		}
 		
 		
@@ -185,7 +183,6 @@ public class BasePlayer extends GameObject{
 					}
 				}
 			}
-			
 			tempView.addPoint(intersect.x, intersect.y);
 		}
 		

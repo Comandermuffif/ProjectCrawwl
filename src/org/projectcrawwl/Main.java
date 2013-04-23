@@ -74,7 +74,7 @@ public class Main {
     	
     	
         while (!Display.isCloseRequested()) {
-        	Display.sync(10);
+        	//Display.sync(10);
         	GL11.glDepthMask(true);
     		GL11.glClearDepth(1f);
     		GL11.glClearColor(0.0f,0.0f,0.0f,0.0f);

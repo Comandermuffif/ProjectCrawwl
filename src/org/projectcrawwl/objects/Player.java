@@ -1,6 +1,8 @@
 package org.projectcrawwl.objects;
 
 
+import java.awt.geom.Line2D;
+
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
@@ -37,6 +39,14 @@ public class Player extends BasePlayer {
 		health = 100;
 		
 	}
+	
+	public void createBoundingBox(){
+		boundingLines.add(new Line2D.Float(25, 25, 25, -25));
+		boundingLines.add(new Line2D.Float(25, -25, -25, -25));
+		boundingLines.add(new Line2D.Float(-25, -25, -25, 25));
+		boundingLines.add(new Line2D.Float(-25, 25, 25, 25));
+	}
+	
 	
 	//Draw everything here
 	public void render(){
@@ -98,7 +108,7 @@ public class Player extends BasePlayer {
 		int mouse_x = Mouse.getX();
 		int mouse_y = Mouse.getY();
 		
-		facingAngle = (float) (Math.toDegrees(Math.atan2(mouse_y - renderY, mouse_x - renderX)));
+		tempFacing = (float) (Math.toDegrees(Math.atan2(mouse_y - renderY, mouse_x - renderX)));
 		
 		data.setMapXOffset((float) (settings.getScreenX()/2 - x - (mouse_x - settings.getScreenX()/2)*1));
 		data.setMapYOffset((float) (settings.getScreenY()/2 - y - (mouse_y - settings.getScreenY()/2)*1));

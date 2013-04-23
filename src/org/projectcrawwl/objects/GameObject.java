@@ -1,5 +1,6 @@
 package org.projectcrawwl.objects;
 
+import java.awt.Polygon;
 import java.awt.geom.Line2D;
 import java.util.ArrayList;
 
@@ -13,11 +14,17 @@ public class GameObject {
 	public float y;
 	public float r;
 	public float facingAngle;
+	
+	public float tempFacing;
+	
 	public float moveAngle;
 	public double speed;
 	
 	public float renderX;
 	public float renderY;
+	
+	public Polygon boundingBox = new Polygon();
+	public ArrayList<Line2D.Float> boundingLines = new ArrayList<Line2D.Float>();
 	
 	GameData data = GameData.getInstance();
 	GameSettings settings = GameSettings.getInstance();
@@ -36,6 +43,7 @@ public class GameObject {
 		x = tempX;
 		y = tempY;
 		facingAngle = tempA;
+		tempFacing = facingAngle;
 		r = tempR;
 		
 	}
@@ -45,6 +53,7 @@ public class GameObject {
 		x = tempX;
 		y = tempY;
 		facingAngle = 0;
+		tempFacing = facingAngle;
 		r = 10;
 		
 	}
@@ -52,12 +61,13 @@ public class GameObject {
 		x = 0;
 		y = 0;
 		facingAngle = 0;
+		tempFacing = facingAngle;
 		r = 10;
 		
 	}
 	
 	public ArrayList<Line2D.Float> boundingBox(){
-		return null;
+		return boundingLines;
 	}
 	
 	public float getX(){
@@ -92,6 +102,34 @@ public class GameObject {
 		renderX = x + data.getMapXOffset();
 		renderY = y + data.getMapYOffset();
 		
+		if(facingAngle != tempFacing){
+			boolean flag = true;
+			for(ConvexHull k : world.getHulls()){
+				for(Line2D.Float q : k.getLines()){
+					for(Line2D.Float bound : boundingBox()){
+						
+						Line2D.Float temp = new Line2D.Float();
+						
+						temp.x1 = (float) (bound.x1*Math.cos(Math.toRadians(tempFacing)) - bound.y1*Math.sin(Math.toRadians(tempFacing)) + x);
+						temp.y1 = (float) (bound.x1*Math.sin(Math.toRadians(tempFacing)) + bound.y1*Math.cos(Math.toRadians(tempFacing)) + y);
+						temp.x2 = (float) (bound.x2*Math.cos(Math.toRadians(tempFacing)) - bound.y2*Math.sin(Math.toRadians(tempFacing)) + x);
+						temp.y2 = (float) (bound.x2*Math.sin(Math.toRadians(tempFacing)) + bound.y2*Math.cos(Math.toRadians(tempFacing)) + y);
+								
+								
+						//Line2D.Float temp = new Line2D.Float(bound.x1 + tempx, bound.y1 + tempy, bound.x2 + tempx, bound.y2 + tempy);
+						if(temp.intersectsLine(q)){
+							flag = false;
+							break;
+						}
+					}
+					if(!flag){break;}
+				}
+				if(!flag){break;}
+			}
+			if(flag){
+				facingAngle = tempFacing;
+			}
+		}
 		
 		if(speed != 0){
 			float tempx = (float) (x + Math.cos(Math.toRadians(moveAngle)) * delta * speed);
@@ -115,6 +153,28 @@ public class GameObject {
 						break;
 					}
 				}
+				
+				for(Line2D.Float q : k.getLines()){
+					for(Line2D.Float bound : boundingBox()){
+						
+						Line2D.Float temp = new Line2D.Float();
+						
+						temp.x1 = (float) (bound.x1*Math.cos(Math.toRadians(facingAngle)) - bound.y1*Math.sin(Math.toRadians(facingAngle)) + tempx);
+						temp.y1 = (float) (bound.x1*Math.sin(Math.toRadians(facingAngle)) + bound.y1*Math.cos(Math.toRadians(facingAngle)) + tempy);
+						temp.x2 = (float) (bound.x2*Math.cos(Math.toRadians(facingAngle)) - bound.y2*Math.sin(Math.toRadians(facingAngle)) + tempx);
+						temp.y2 = (float) (bound.x2*Math.sin(Math.toRadians(facingAngle)) + bound.y2*Math.cos(Math.toRadians(facingAngle)) + tempy);
+								
+								
+						//Line2D.Float temp = new Line2D.Float(bound.x1 + tempx, bound.y1 + tempy, bound.x2 + tempx, bound.y2 + tempy);
+						if(temp.intersectsLine(q)){
+							flag = false;
+							break;
+						}
+					}
+					if(!flag){break;}
+				}
+				
+				
 				if(!flag){break;}
 				
 				

@@ -40,9 +40,15 @@ public class BaseProjectile extends GameObject{
 		GL11.glLineWidth(1);
 		GL11.glBegin(GL11.GL_LINES);
 		GL11.glVertex2d(renderX, renderY);
-		GL11.glVertex2d(renderX + Math.cos(Math.toRadians(moveAngle))*20, renderY + Math.sin(Math.toRadians(moveAngle))*20);
-		
+		GL11.glVertex2d(renderX + Math.cos(Math.toRadians(moveAngle))*-20, renderY + Math.sin(Math.toRadians(moveAngle))*-20);
 		GL11.glEnd();
+		
+		GL11.glLineWidth(3);
+		GL11.glBegin(GL11.GL_LINES);
+		GL11.glVertex2d(renderX, renderY);
+		GL11.glVertex2d(renderX + Math.cos(Math.toRadians(moveAngle))*-5, renderY + Math.sin(Math.toRadians(moveAngle))*-5);
+		GL11.glEnd();
+		
 		GL11.glLineWidth(1);
 	}
 

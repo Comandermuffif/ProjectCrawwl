@@ -4,7 +4,6 @@ import java.awt.Point;
 import java.awt.geom.Line2D;
 import java.util.Random;
 
-import org.lwjgl.opengl.GL11;
 import org.projectcrawwl.data.ConvexHull;
 
 public class Zombie extends BasePlayer {
@@ -16,6 +15,9 @@ public class Zombie extends BasePlayer {
 		super(tempX,tempY, 0 , 100, 25);
 		moveAngle = (float) (Math.random()*360);
 		speed = .03;
+		
+		createBoundingBox();
+		
 	}
 	public Zombie(){
 		super();
@@ -26,12 +28,15 @@ public class Zombie extends BasePlayer {
 		moveAngle = (float) (Math.random()*360);
 		health = 100;
 		speed = .03; //.03 units per millisecond or 30 units per second
+		
+		createBoundingBox();
+		
 	}
 	//Draw everything here
 	public void render(){
 		super.render();
 		
-		
+		/*
 		GL11.glColor4d(0,255,0, health *(255/200) + 128);
 		
 		GL11.glBegin(GL11.GL_TRIANGLE_FAN);{
@@ -45,13 +50,7 @@ public class Zombie extends BasePlayer {
 	          
 	        GL11.glVertex2f(renderX + r, renderY);
 	    }
-	    GL11.glEnd();
-	    
-	    GL11.glBegin(GL11.GL_LINE);
-		GL11.glColor3d(0, 0, 0);
-		GL11.glVertex2f(renderX, renderY);
-		GL11.glVertex2d(renderX + Math.cos(Math.toRadians(facingAngle))*r, renderY + Math.sin(Math.toRadians(facingAngle))*r);
-		GL11.glEnd();
+	    GL11.glEnd();*/
 	}
 
 	
@@ -59,11 +58,13 @@ public class Zombie extends BasePlayer {
 	public void update(int delta){
 		super.update(delta);
 		
-		facingAngle = moveAngle;
+		tempFacing = moveAngle;
 		
-		Line2D.Float line = new Line2D.Float(x, y,(float) (x + Math.cos(Math.toRadians(moveAngle))*(r+20)), (float) (y + Math.sin(Math.toRadians(moveAngle))*(r+20)));
-		Line2D.Float lineL = new Line2D.Float(x, y,(float) (x + Math.cos(Math.toRadians(moveAngle+5))*(r+20)), (float) (y + Math.sin(Math.toRadians(moveAngle+5))*(r+20)));
-		Line2D.Float lineR = new Line2D.Float(x, y,(float) (x + Math.cos(Math.toRadians(moveAngle-5))*(r+20)), (float) (y + Math.sin(Math.toRadians(moveAngle-5))*(r+20)));
+		//TODO move side collide lines to edge of circle
+		
+		Line2D.Float line = new Line2D.Float(x, y,(float) (x + Math.cos(Math.toRadians(moveAngle))*(r+100)), (float) (y + Math.sin(Math.toRadians(moveAngle))*(r+100)));
+		Line2D.Float lineL = new Line2D.Float(x, y,(float) (x + Math.cos(Math.toRadians(moveAngle+5))*(r+100)), (float) (y + Math.sin(Math.toRadians(moveAngle+5))*(r+100)));
+		Line2D.Float lineR = new Line2D.Float(x, y,(float) (x + Math.cos(Math.toRadians(moveAngle-5))*(r+100)), (float) (y + Math.sin(Math.toRadians(moveAngle-5))*(r+100)));
 		
 		
 		for(ConvexHull hull : world.getHulls()){
