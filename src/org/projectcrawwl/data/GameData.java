@@ -1,5 +1,6 @@
 package org.projectcrawwl.data;
 
+import java.awt.geom.Line2D;
 import java.util.ArrayList;
 import java.util.ListIterator;
 
@@ -86,18 +87,93 @@ public class GameData
 	}
 	
 	public void addPlayer(){
-		int tempX = (int) (Math.random() * (world.getMapX() / world.getGridX()));
-		int tempY = (int) (Math.random() * (world.getMapY() / world.getGridY()));
+		int tempX = (int) (Math.random() * world.getMapX());
+		int tempY = (int) (Math.random() * world.getMapY());
 		
-		player = new Player((int) (tempX * world.getGridX() + world.getGridX()/2), (int) (tempY*world.getGridY() + world.getGridY()/2));
-		addPlayers.add(player);
+		player = new Player(tempX, tempY);
+		
+		boolean flag = true;
+		
+		for(ConvexHull k : world.getHulls()){
+			
+			if(k.getPolygon().contains(player.x, player.y)){
+				flag = false;
+				break;
+			}
+			
+			for(Line2D.Float q : k.getLines()){
+				for(Line2D.Float bound : player.boundingBox()){
+					
+					Line2D.Float temp = new Line2D.Float();
+					
+					temp.x1 = (float) (bound.x1*Math.cos(Math.toRadians(player.facingAngle)) - bound.y1*Math.sin(Math.toRadians(player.facingAngle)) + player.x);
+					temp.y1 = (float) (bound.x1*Math.sin(Math.toRadians(player.facingAngle)) + bound.y1*Math.cos(Math.toRadians(player.facingAngle)) + player.y);
+					temp.x2 = (float) (bound.x2*Math.cos(Math.toRadians(player.facingAngle)) - bound.y2*Math.sin(Math.toRadians(player.facingAngle)) + player.x);
+					temp.y2 = (float) (bound.x2*Math.sin(Math.toRadians(player.facingAngle)) + bound.y2*Math.cos(Math.toRadians(player.facingAngle)) + player.y);
+							
+							
+					//Line2D.Float temp = new Line2D.Float(bound.x1 + tempx, bound.y1 + tempy, bound.x2 + tempx, bound.y2 + tempy);
+					if(temp.intersectsLine(q)){
+						flag = false;
+						break;
+					}
+				}
+				if(!flag){break;}
+			}
+			if(!flag){break;}
+		}
+		if(flag){
+			
+			addPlayers.add(player);
+			
+		}else{
+			addPlayer();
+		}
 	}
 	
 	public void addZombie(){
-		int tempX = (int) (Math.random() * (world.getMapX() / world.getGridX()));
-		int tempY = (int) (Math.random() * (world.getMapY() / world.getGridY()));
+		int tempX = (int) (Math.random() * world.getMapX());
+		int tempY = (int) (Math.random() * world.getMapY());
 		
-		addPlayers.add(new Zombie((int) (tempX * world.getGridX() + world.getGridX()/2), (int) (tempY*world.getGridY() + world.getGridY()/2)));
+		BasePlayer zombie = new Zombie(tempX, tempY);
+		
+		boolean flag = true;
+		
+		for(ConvexHull k : world.getHulls()){
+			
+			if(k.getPolygon().contains(zombie.x, zombie.y)){
+				flag = false;
+				break;
+			}
+			
+			for(Line2D.Float q : k.getLines()){
+				for(Line2D.Float bound : zombie.boundingBox()){
+					
+					Line2D.Float temp = new Line2D.Float();
+					
+					temp.x1 = (float) (bound.x1*Math.cos(Math.toRadians(zombie.facingAngle)) - bound.y1*Math.sin(Math.toRadians(zombie.facingAngle)) + zombie.x);
+					temp.y1 = (float) (bound.x1*Math.sin(Math.toRadians(zombie.facingAngle)) + bound.y1*Math.cos(Math.toRadians(zombie.facingAngle)) + zombie.y);
+					temp.x2 = (float) (bound.x2*Math.cos(Math.toRadians(zombie.facingAngle)) - bound.y2*Math.sin(Math.toRadians(zombie.facingAngle)) + zombie.x);
+					temp.y2 = (float) (bound.x2*Math.sin(Math.toRadians(zombie.facingAngle)) + bound.y2*Math.cos(Math.toRadians(zombie.facingAngle)) + zombie.y);
+							
+							
+					//Line2D.Float temp = new Line2D.Float(bound.x1 + tempx, bound.y1 + tempy, bound.x2 + tempx, bound.y2 + tempy);
+					if(temp.intersectsLine(q)){
+						flag = false;
+						break;
+					}
+				}
+				if(!flag){break;}
+			}
+			if(!flag){break;}
+		}
+		if(flag){
+			
+			addPlayers.add(zombie);
+			
+		}else{
+			addZombie();
+		}
 	}
 	
 	public void addZombie(BasePlayer temp){
@@ -120,10 +196,49 @@ public class GameData
 	}
 	
 	public void addFriendly(){
-		int tempX = (int) (Math.random() * (world.getMapX() / world.getGridX()));
-		int tempY = (int) (Math.random() * (world.getMapY() / world.getGridY()));
+		int tempX = (int) (Math.random() * world.getMapX());
+		int tempY = (int) (Math.random() * world.getMapY());
 		
-		addPlayers.add(new Friendly((int) (tempX * world.getGridX() + world.getGridX()/2), (int) (tempY*world.getGridY() + world.getGridY()/2)));
+		BasePlayer friendly = new Friendly(tempX, tempY);
+		
+		boolean flag = true;
+		
+		for(ConvexHull k : world.getHulls()){
+			
+			if(k.getPolygon().contains(friendly.x, friendly.y)){
+				flag = false;
+				break;
+			}
+			
+			for(Line2D.Float q : k.getLines()){
+				for(Line2D.Float bound : friendly.boundingBox()){
+					
+					Line2D.Float temp = new Line2D.Float();
+					
+					temp.x1 = (float) (bound.x1*Math.cos(Math.toRadians(friendly.facingAngle)) - bound.y1*Math.sin(Math.toRadians(friendly.facingAngle)) + friendly.x);
+					temp.y1 = (float) (bound.x1*Math.sin(Math.toRadians(friendly.facingAngle)) + bound.y1*Math.cos(Math.toRadians(friendly.facingAngle)) + friendly.y);
+					temp.x2 = (float) (bound.x2*Math.cos(Math.toRadians(friendly.facingAngle)) - bound.y2*Math.sin(Math.toRadians(friendly.facingAngle)) + friendly.x);
+					temp.y2 = (float) (bound.x2*Math.sin(Math.toRadians(friendly.facingAngle)) + bound.y2*Math.cos(Math.toRadians(friendly.facingAngle)) + friendly.y);
+							
+							
+					//Line2D.Float temp = new Line2D.Float(bound.x1 + tempx, bound.y1 + tempy, bound.x2 + tempx, bound.y2 + tempy);
+					if(temp.intersectsLine(q)){
+						flag = false;
+						break;
+					}
+				}
+				if(!flag){break;}
+			}
+			if(!flag){break;}
+		}
+		if(flag){
+			
+			addPlayers.add(friendly);
+			
+		}else{
+			addFriendly();
+		}
+	
 	}
 	
 	public ArrayList<BasePlayer> getFriendlies(){

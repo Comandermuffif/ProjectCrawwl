@@ -53,7 +53,7 @@ public class Friendly extends BasePlayer {
 	    GL11.glBegin(GL11.GL_LINE);
 		GL11.glColor3d(0, 0, 0);
 		GL11.glVertex2f(renderX, renderY);
-		GL11.glVertex2d(renderX + Math.sin(Math.toRadians(facingAngle))*r, renderY + Math.cos(Math.toRadians(facingAngle))*r);
+		GL11.glVertex2d(renderX + Math.cos(Math.toRadians(facingAngle))*r, renderY + Math.sin(Math.toRadians(facingAngle))*r);
 		GL11.glEnd();
 		
 	}
@@ -76,7 +76,8 @@ public class Friendly extends BasePlayer {
 				target = a;
 			}
 		}
+		inventory.setWeapon(1);
 		inventory.getWeapon().fire();
-		facingAngle = (float) (Math.toDegrees(Math.atan2(x - target.getX(), y - target.getY())) + 180);
+		tempFacing = (float) (Math.toDegrees(Math.atan2(target.getY() - y, target.getX() - x)));
 	}
 }

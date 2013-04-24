@@ -25,6 +25,10 @@ public class Inventory {
 		}
 	}
 	
+	public void setWeapon(int n){
+		counter = n;
+	}
+	
 	public void addWeapon(BaseWeapon tempW){
 		weapons.add(tempW);
 	}

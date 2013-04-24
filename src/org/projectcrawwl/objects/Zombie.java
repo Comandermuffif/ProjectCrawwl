@@ -93,7 +93,6 @@ public class Zombie extends BasePlayer {
 		
 		for(ConvexHull hull : world.getHulls()){
 			for(Line2D.Float qq : hull.getLines()){
-				
 				if(lineL.intersectsLine(qq)){
 					moveAngle -= 5;
 					break;
