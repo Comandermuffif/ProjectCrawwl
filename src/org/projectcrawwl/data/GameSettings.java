@@ -1,8 +1,13 @@
 package org.projectcrawwl.data;
 
-public class GameSettings 
-{	
+import java.io.Serializable;
+
+public class GameSettings implements Serializable{	
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int screen_x;
 	private int screen_y;
 	

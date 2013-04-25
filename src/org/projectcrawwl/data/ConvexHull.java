@@ -5,12 +5,18 @@ import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.geom.Line2D;
 import java.awt.geom.PathIterator;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import org.lwjgl.opengl.GL11;
 
-public class ConvexHull {
+public class ConvexHull implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private Polygon polygon = new Polygon();
 	
 	World world;

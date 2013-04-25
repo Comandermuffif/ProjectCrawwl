@@ -2,11 +2,24 @@ package org.projectcrawwl.data;
 
 import java.awt.Point;
 import java.awt.geom.Line2D;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import org.lwjgl.opengl.GL11;
 
-public class World {
+public class World implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	private float mapX = 2000;
 	private float mapY = 1000;
@@ -110,9 +123,47 @@ public class World {
 
 	public static World getInstance()
 	{
-		if(instance == null)
+		if(instance == null){
 			instance = new World();
-
+			File f = new File("saveFile");
+			if(f.exists()){
+				try {
+					FileInputStream saveFile = new FileInputStream("saveFile");
+					ObjectInputStream restore = new ObjectInputStream(saveFile);
+					Object obj = restore.readObject();
+					instance = (World) obj;
+					restore.close();
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				
+			}else{
+				try {
+					FileOutputStream saveFile = new FileOutputStream("saveFile");
+					ObjectOutputStream save  = new ObjectOutputStream(saveFile);
+					instance = new World();
+					save.writeObject(instance);
+					save.close();
+					
+				} catch (FileNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+				
+			
+		}
 		return instance;
 	}
 	

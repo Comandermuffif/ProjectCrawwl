@@ -22,6 +22,7 @@ public class Player extends BasePlayer {
 		r = 25;
 		facingAngle = 0;
 		health = 100;
+		turnSpeed = .25;
 		
 		inventory.addWeapon(new BaseMeleeWeapon(this, 25, 90, 10));
 		inventory.addWeapon(new SniperRifle(this));
