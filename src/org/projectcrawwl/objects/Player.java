@@ -7,6 +7,7 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 import org.projectcrawwl.weapons.BaseMeleeWeapon;
+import org.projectcrawwl.weapons.DuelPistols;
 import org.projectcrawwl.weapons.SMG;
 import org.projectcrawwl.weapons.Shotgun;
 import org.projectcrawwl.weapons.SniperRifle;
@@ -26,6 +27,7 @@ public class Player extends BasePlayer {
 		inventory.addWeapon(new SniperRifle(this));
 		inventory.addWeapon(new SMG(this));
 		inventory.addWeapon(new Shotgun(this));
+		inventory.addWeapon(new DuelPistols(this));
 		
 		this.createBoundingBox();
 		
@@ -51,23 +53,7 @@ public class Player extends BasePlayer {
 	//Draw everything here
 	public void render(){
 		super.render();
-		/*
-		GL11.glColor3d(.9,.46, 0);
 		
-		
-		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
-	      {
-	    	GL11.glVertex2f(renderX,renderY);
-	    	  
-	        for (float angle=0; angle<=Math.PI*2; angle+=((Math.PI*2)/32) )
-	        {
-	        	GL11.glVertex2f( (r)*(float)Math.cos(angle) + renderX,
-	        			(r)*(float)Math.sin(angle) + renderY);  
-	        }
-	          
-	        GL11.glVertex2f(renderX + r,renderY);
-	      }
-	    GL11.glEnd();*/
 	}
 
 	public void renderHUD(){

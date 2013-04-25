@@ -18,7 +18,7 @@ public class Friendly extends BasePlayer {
 		facingAngle = 0;
 		health = 100;
 		inventory.addWeapon(new Shotgun(this));
-		//weapon = new SMG(this);
+		inventory.addWeapon(new SMG(this));
 	}
 	public Friendly(){
 		super();

@@ -102,6 +102,7 @@ public class BasePlayer extends GameObject{
 	}
 
 
+	@SuppressWarnings("static-access")
 	public void render(){
 		super.render();
 		inventory.render();
@@ -121,6 +122,13 @@ public class BasePlayer extends GameObject{
 		GL11.glVertex2d(renderX + sightRange * Math.cos(Math.toRadians(facingAngle)), renderY + sightRange * Math.sin(Math.toRadians(facingAngle)));
 		GL11.glEnd();
 		
+		/*
+		GL11.glColor4d(.5, .5, 0,.5);
+		GL11.glLineWidth(1);
+		GL11.glBegin(GL11.GL_LINES);
+		GL11.glVertex2f(renderX, renderY);
+		GL11.glVertex2d(renderX + sightRange * Math.cos(Math.toRadians(tempFacing)), renderY + sightRange * Math.sin(Math.toRadians(tempFacing)));
+		GL11.glEnd();*/
 		
 		GL11.glColor4d(0, 1, 0, 1);
 		//GL11.glBegin(GL11.GL_TRIANGLE_FAN);
@@ -153,11 +161,7 @@ public class BasePlayer extends GameObject{
 		
 	}
 	
-	//Do all calculations here
-	public void update(int delta){
-		super.update(delta);
-		
-		
+	public void updateViewCone(){
 		Polygon tempView = new Polygon();
 		
 		tempView.addPoint((int)x, (int)y);
@@ -185,10 +189,12 @@ public class BasePlayer extends GameObject{
 			}
 			tempView.addPoint(intersect.x, intersect.y);
 		}
-		
-		//viewCone.reset();
 		viewCone = tempView;
-		
+	}
+	
+	//Do all calculations here
+	public void update(int delta){
+		super.update(delta);
 		
 		inventory.update(delta);
 		//BOOP!

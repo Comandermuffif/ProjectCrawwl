@@ -23,6 +23,8 @@ public class GameObject {
 	public float renderX;
 	public float renderY;
 	
+	public double turnSpeed = 0.1;
+	
 	public Polygon boundingBox = new Polygon();
 	public ArrayList<Line2D.Float> boundingLines = new ArrayList<Line2D.Float>();
 	
@@ -101,8 +103,29 @@ public class GameObject {
 		
 		renderX = x + data.getMapXOffset();
 		renderY = y + data.getMapYOffset();
+		/*
+		if(Math.abs(facingAngle - tempFacing) > 180){
+			if(facingAngle < 0){
+				facingAngle += 360;
+			}
+			if(tempFacing < 0){
+				tempFacing += 360;
+			}
+		}*/
+		
+		
 		
 		if(facingAngle != tempFacing){
+			//System.out.println(facingAngle +">"+tempFacing);
+			
+			if(Math.abs(facingAngle - tempFacing) > delta*(turnSpeed)){
+				if(facingAngle - tempFacing > delta*(turnSpeed)){
+					tempFacing = (float) (facingAngle - delta*(turnSpeed));
+				}else{
+					tempFacing = (float) (facingAngle + delta*(turnSpeed));
+				}
+			}
+			
 			boolean flag = true;
 			for(ConvexHull k : world.getHulls()){
 				for(Line2D.Float q : k.getLines()){

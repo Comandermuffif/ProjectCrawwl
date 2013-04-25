@@ -11,13 +11,20 @@ public class Inventory {
 	private ArrayList<BaseWeapon> weapons = new ArrayList<BaseWeapon>();
 	private int counter = 0;
 	
+	BaseWeapon fists;
+	
 	public Inventory(BasePlayer tempO){
 		owner = tempO;
-		weapons.add(new BaseMeleeWeapon(owner, 25, 90, 25));
+		fists = new BaseMeleeWeapon(owner, 25, 90, 25);
 	}
 	
 	public void render(){
-		weapons.get(counter).render();
+		if(weapons.size() == 0){
+			fists.render();
+		}else{
+			weapons.get(counter).render();
+		}
+		
 	}
 	public void update(int delta){
 		for(BaseWeapon a : weapons){
@@ -34,6 +41,9 @@ public class Inventory {
 	}
 	
 	public BaseWeapon getWeapon(){
+		if(weapons.size() == 0){
+			return fists;
+		}
 		return weapons.get(counter);
 	}
 	
