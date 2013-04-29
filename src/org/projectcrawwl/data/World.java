@@ -2,13 +2,6 @@ package org.projectcrawwl.data;
 
 import java.awt.Point;
 import java.awt.geom.Line2D;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -21,11 +14,8 @@ public class World implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private float mapX = 2000;
-	private float mapY = 1000;
-	
-	private float gridX = 10;//10
-	private float gridY = 10;//10
+	private float mapX = 4000;
+	private float mapY = 4000;
 	
 	private float mapXOffset;// = (1280-600)/2;
 	private float mapYOffset;// = (720-600)/2;
@@ -125,44 +115,6 @@ public class World implements Serializable{
 	{
 		if(instance == null){
 			instance = new World();
-			File f = new File("saveFile");
-			if(f.exists()){
-				try {
-					FileInputStream saveFile = new FileInputStream("saveFile");
-					ObjectInputStream restore = new ObjectInputStream(saveFile);
-					Object obj = restore.readObject();
-					instance = (World) obj;
-					restore.close();
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				
-				
-			}else{
-				try {
-					FileOutputStream saveFile = new FileOutputStream("saveFile");
-					ObjectOutputStream save  = new ObjectOutputStream(saveFile);
-					instance = new World();
-					save.writeObject(instance);
-					save.close();
-					
-				} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-			}
-				
-			
 		}
 		return instance;
 	}
@@ -172,13 +124,6 @@ public class World implements Serializable{
 	}
 	public float getMapY(){
 		return mapY;
-	}
-	
-	public float getGridX(){
-		return gridX;
-	}
-	public float getGridY(){
-		return gridY;
 	}
 	
 	public float getMapXOffset(){
@@ -222,43 +167,16 @@ public class World implements Serializable{
 	}
 	
 	public void renderBackground(){
-		int leftBound = (int) Math.floor(-mapXOffset/gridX);
-		int rightBound = (int) Math.floor((-mapXOffset + settings.getScreenX())/gridX);
-		int upBound = (int) Math.floor(-mapYOffset/gridY);
-		int downBound = (int) Math.floor((-mapYOffset + settings.getScreenY())/gridY);
-		
-		if(leftBound < 0){
-			leftBound = 0;
-		}else if (leftBound >= mapX/gridX){
-			leftBound = (int) (mapX/gridX - 1);
-		}
-		
-		if(rightBound < 0){
-			rightBound = 0;
-		}else if (rightBound >= mapX/gridX){
-			rightBound = (int) (mapX/gridX - 1);
-		}
-		
-		if(upBound < 0){
-			upBound = 0;
-		}else if (upBound >= mapY/gridY){
-			upBound = (int) (mapX/gridX - 1);
-		}
-		
-		if(downBound < 0){
-			downBound = 0;
-		}else if (downBound >= mapY/gridY){
-			downBound = (int) (mapY/gridY - 1);
-		}
 		
 		//Brown background
 		
 		GL11.glColor3d(.34,.23,.04);
 		GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
-		GL11.glVertex3f(leftBound*gridX + mapXOffset,upBound*gridY + mapYOffset,0);
-		GL11.glVertex3f(rightBound*gridX + mapXOffset+ gridX,upBound*gridY + mapYOffset,0);
-		GL11.glVertex3f(leftBound*gridX + mapXOffset,downBound*gridY + mapYOffset+gridY,0);
-		GL11.glVertex3f(rightBound*gridX + mapXOffset+gridX,downBound*gridY + mapYOffset+gridY,0);
+		GL11.glVertex3f(mapXOffset, mapYOffset, 0);
+		GL11.glVertex3f(mapXOffset, mapYOffset + mapY, 0);
+		GL11.glVertex3f(mapXOffset + mapX, mapYOffset, 0);
+		GL11.glVertex3f(mapXOffset + mapX, mapYOffset + mapY, 0);
+		
 		GL11.glEnd();
 		
 		for(ConvexHull x : hulls){

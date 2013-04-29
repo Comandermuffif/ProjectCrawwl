@@ -6,11 +6,7 @@ import java.awt.geom.Line2D;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
-import org.projectcrawwl.weapons.BaseMeleeWeapon;
-import org.projectcrawwl.weapons.DuelPistols;
-import org.projectcrawwl.weapons.SMG;
-import org.projectcrawwl.weapons.Shotgun;
-import org.projectcrawwl.weapons.SniperRifle;
+import org.projectcrawwl.weapons.*;
 
 public class Player extends BasePlayer {
 	
@@ -24,7 +20,7 @@ public class Player extends BasePlayer {
 		health = 100;
 		turnSpeed = .25;
 		
-		inventory.addWeapon(new BaseMeleeWeapon(this, 25, 90, 10));
+		inventory.addWeapon(new Katana(this));
 		inventory.addWeapon(new SniperRifle(this));
 		inventory.addWeapon(new SMG(this));
 		inventory.addWeapon(new Shotgun(this));
@@ -107,6 +103,13 @@ public class Player extends BasePlayer {
 		if(Keyboard.isKeyDown(Keyboard.KEY_A)){speed = .5; moveAngle += 180; temp+=1;}
 		if(Keyboard.isKeyDown(Keyboard.KEY_S)){speed = .5; moveAngle += 270;temp+=1;}
 		if(Keyboard.isKeyDown(Keyboard.KEY_W)){speed = .5; moveAngle += 90;temp+=1;}
+		
+		if(Keyboard.isKeyDown(Keyboard.KEY_L)){}
+		if(Keyboard.isKeyDown(Keyboard.KEY_J)){}
+		if(Keyboard.isKeyDown(Keyboard.KEY_K)){}
+		if(Keyboard.isKeyDown(Keyboard.KEY_I)){}
+		
+		
 		
 		if(temp != 0){
 			

@@ -2,7 +2,6 @@ package org.projectcrawwl.data;
 
 import java.awt.geom.Line2D;
 import java.util.ArrayList;
-import java.util.ListIterator;
 
 import org.lwjgl.input.Keyboard;
 import org.projectcrawwl.objects.*;
@@ -40,13 +39,6 @@ public class GameData
 	}
 	public float getMapYOffset(){
 		return world.getMapYOffset();
-	}
-	
-	public float getGridX(){
-		return world.getGridX();
-	}
-	public float getGridY(){
-		return world.getGridY();
 	}
 	
 	public void setMapXOffset(float temp){
@@ -261,18 +253,18 @@ public class GameData
 			a.render();
 		}
 		
-		ListIterator<BaseProjectile> q = projectiles.listIterator();
 		
-		while(q.hasNext()){
-			BaseProjectile temp = q.next();
-			
-			temp.render();
+		for(BaseProjectile q : projectiles){
+			q.render();
+		}
+		
+		if(player != null){
+			player.render();
+			player.renderHUD();
 		}
 		
 		
-		player.render();
 		
-		player.renderHUD();
 	}
 	public void update(int delta){
 		
@@ -289,6 +281,9 @@ public class GameData
 		tempProjectiles.clear();
 		
 		for(BasePlayer a : removePlayers){
+			if(a instanceof Player){
+				player = null;
+			}
 			allPlayers.remove(a);
 		}
 		removePlayers.clear();

@@ -3,8 +3,8 @@ package org.projectcrawwl.data;
 import java.util.ArrayList;
 
 import org.projectcrawwl.objects.BasePlayer;
-import org.projectcrawwl.weapons.BaseMeleeWeapon;
 import org.projectcrawwl.weapons.BaseWeapon;
+import org.projectcrawwl.weapons.Fists;
 
 public class Inventory {
 	private BasePlayer owner;
@@ -15,7 +15,7 @@ public class Inventory {
 	
 	public Inventory(BasePlayer tempO){
 		owner = tempO;
-		fists = new BaseMeleeWeapon(owner, 25, 90, 25);
+		fists = new Fists(owner);
 	}
 	
 	public void render(){
@@ -59,9 +59,5 @@ public class Inventory {
 		if(counter < 0){
 			counter = weapons.size()-1;
 		}
-	}
-	public void mouseWheelMoved(int change) 
-	{				
-		System.out.print(change);
 	}
 }

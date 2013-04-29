@@ -48,8 +48,6 @@ public class Main {
         GL11.glDisable(GL11.GL_CULL_FACE);
         
     	GL11.glOrtho(0, settings.getScreenX(), 0, settings.getScreenY(), 1, -1);
-    	GL11.glMatrixMode(GL11.GL_MODELVIEW);
-     
     	
     	GL11.glEnable(GL11.GL_BLEND);
     	//GL11.glBlendFunc(GL11.GL_DST_ALPHA, GL11.GL_ONE);
@@ -66,10 +64,10 @@ public class Main {
     	lastFPS = getTime();
     	//Render render = new Render();
     	System.out.println("Update thread started");
-    	//Update update = new Update();
+    	Update update = new Update();
     	
     	//render.start(); //Render must be main thread
-    	//update.start();
+    	update.start();
     	
     	
     	
@@ -84,7 +82,7 @@ public class Main {
     	    			 GL11.GL_STENCIL_BUFFER_BIT);	
         	
         	
-        	update();
+        	//update();
         	render();
         	updateFPS();
     	    Display.update();
@@ -97,7 +95,7 @@ public class Main {
      
         
         //render.cancel();
-        //update.cancel();
+        update.cancel();
     	Display.destroy();
         System.exit(0);
         

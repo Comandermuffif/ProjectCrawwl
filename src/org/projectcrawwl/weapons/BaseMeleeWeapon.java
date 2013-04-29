@@ -17,11 +17,12 @@ public class BaseMeleeWeapon extends BaseWeapon{
 	 * @param tempA angle
 	 * @param tempD damage
 	 */
-	public BaseMeleeWeapon(BasePlayer tempO, float tempR, float tempA, float tempD){
-		super("BaseMeleeWeapon", tempD);
-		range = tempR;
-		angle = tempA;
-		damage = tempD;
+	protected BaseMeleeWeapon(BasePlayer tempO){
+		//BaseMeleeWeapon(this, 25, 90, 10)
+		super("BaseMeleeWeapon", 0);
+		range = 25;
+		angle = 90;
+		damage = 10;
 		owner = tempO;
 		active = false;
 		

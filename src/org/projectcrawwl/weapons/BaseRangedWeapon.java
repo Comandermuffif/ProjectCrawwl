@@ -10,7 +10,7 @@ import org.projectcrawwl.projectile.BaseProjectile;
 public class BaseRangedWeapon extends BaseWeapon{
 	double spread;
 	float velocity;
-	public BaseRangedWeapon(BasePlayer tempO){
+	protected BaseRangedWeapon(BasePlayer tempO){
 		super("BaseRangedWeapon",0);
 		owner = tempO;
 		damage = 0;
