@@ -9,16 +9,17 @@ import org.projectcrawwl.projectile.BaseProjectile;
 
 public class GameData 
 {	
-	private ArrayList<BaseProjectile> projectiles = new ArrayList<BaseProjectile>();//Projectiles
-	private ArrayList<BaseProjectile> tempProjectiles = new ArrayList<BaseProjectile>();//Projectiles to be removed
+	private ArrayList<BaseProjectile> allProjectiles = new ArrayList<BaseProjectile>();//Projectiles
+	private ArrayList<BaseProjectile> removeProjectiles = new ArrayList<BaseProjectile>();//Projectiles to be removed
+	private ArrayList<BaseProjectile> addProjectiles = new ArrayList<BaseProjectile>();//Projectiles to be removed
+	private Object projectileLock = new Object();
 
 	private BasePlayer player;
 
 	private ArrayList<BasePlayer> allPlayers = new ArrayList<BasePlayer>();
-	
 	private ArrayList<BasePlayer> addPlayers = new ArrayList<BasePlayer>();
-	
 	private ArrayList<BasePlayer> removePlayers = new ArrayList<BasePlayer>();
+	private Object playerLock = new Object();
 	
 	private static GameData instance = null;
 	
@@ -175,13 +176,13 @@ public class GameData
 		removePlayers.add(gameObject);
 	}
 	public void addProjectile(BaseProjectile temp){
-		projectiles.add(temp);
+		addProjectiles.add(temp);
 	}
 	public void removeProjectile(BaseProjectile temp){
-		tempProjectiles.add(temp);
+		removeProjectiles.add(temp);
 	}
 	public ArrayList<BaseProjectile> getProjectiles(){
-		return projectiles;
+		return allProjectiles;
 	}
 	public ArrayList<BasePlayer> getAllPlayers(){
 		return allPlayers;
@@ -247,15 +248,21 @@ public class GameData
 	}
 	
 	public void render(){
+		
+
 		world.renderBackground();
 		
-		for(BasePlayer a : allPlayers){
-			a.render();
+		
+		synchronized(playerLock){
+			for(BasePlayer a : allPlayers){
+				a.render();
+			}
 		}
 		
-		
-		for(BaseProjectile q : projectiles){
-			q.render();
+		synchronized(projectileLock){
+			for(BaseProjectile q : allProjectiles){
+				q.render();
+			}
 		}
 		
 		if(player != null){
@@ -274,25 +281,38 @@ public class GameData
 		if(Keyboard.isKeyDown(Keyboard.KEY_UP)){world.setMapYOffset(world.getMapYOffset() + delta);}
 		if(Keyboard.isKeyDown(Keyboard.KEY_DOWN)){world.setMapYOffset(world.getMapYOffset() - delta);}
 		
-		//Removes projectiles that are off screen
-		for(GameObject a : tempProjectiles){
-			projectiles.remove(a);
-		}
-		tempProjectiles.clear();
-		
-		for(BasePlayer a : removePlayers){
-			if(a instanceof Player){
-				player = null;
+		synchronized(projectileLock){
+			//Removes projectiles that are off screen
+			for(BaseProjectile a : removeProjectiles){
+				allProjectiles.remove(a);
 			}
-			allPlayers.remove(a);
+			removeProjectiles.clear();
 		}
-		removePlayers.clear();
 		
-		
-		for(BasePlayer a : addPlayers){
-			allPlayers.add(a);
+		synchronized(projectileLock){
+			//Removes projectiles that are off screen
+			for(BaseProjectile a : addProjectiles){
+				allProjectiles.add(a);
+			}
+			addProjectiles.clear();
 		}
-		addPlayers.clear();
+		
+		synchronized(playerLock){
+			for(BasePlayer a : removePlayers){
+				if(a instanceof Player){
+					player = null;
+				}
+				allPlayers.remove(a);
+			}
+			removePlayers.clear();
+		}
+		
+		synchronized(playerLock){
+			for(BasePlayer a : addPlayers){
+				allPlayers.add(a);
+			}
+			addPlayers.clear();
+		}
 	}
 }
 
