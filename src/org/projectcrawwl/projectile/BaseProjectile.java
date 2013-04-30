@@ -1,6 +1,8 @@
 package org.projectcrawwl.projectile;
 
 import java.awt.Point;
+import java.awt.Polygon;
+import java.awt.geom.Line2D;
 import java.util.ArrayList;
 
 import org.lwjgl.opengl.GL11;
@@ -15,6 +17,8 @@ public class BaseProjectile extends GameObject{
 	public float damage;
 	GameData data = GameData.getInstance();
 	Point lastPos = new Point();
+	
+	BasePlayer lastHit = null;
 	
 	
 	public BaseProjectile(float tempX, float tempY, float tempSpeed, float tempAngle, float tempD, BasePlayer own){
@@ -55,24 +59,58 @@ public class BaseProjectile extends GameObject{
 	//Do all calculations here
 	public void update(int delta){
 		
+		
 		lastPos.setLocation(x, y);
 		
 		super.update(delta);
 		
+		Line2D.Float line = new Line2D.Float(x,y,lastPos.x,lastPos.y);
 		
 		ArrayList<BasePlayer> temp = data.getAllPlayers();
-		
-		for(BasePlayer b : temp){
-			double dist = Math.pow(Math.pow(b.getX() - getX(), 2) + Math.pow(b.getY() - getY(), 2), .5);
-			
-			if(dist+.001 < r + b.r){
-				b.damage(damage, owner);
-				data.removeProjectile(this);
-			}
-			
-		}
+		//System.out.println(x + " : " + y+ " : " +lastPos.x+ " : " +lastPos.y );
+		boolean flag = false;
 		
 		if(speed == 0){
+			data.addPoint.add(new Point((int) x, (int) y));
+			System.out.println("Stopped");
+			data.removeProjectile(this);
+		}
+		
+		for(BasePlayer b : temp){
+			Polygon shift = new Polygon(b.boundingBox.xpoints,b.boundingBox.ypoints,b.boundingBox.npoints);
+			shift.translate((int) b.getX(),(int) b.getY());
+			if(shift.contains(x, y)){
+				if(lastHit != b){
+					System.out.println("Inside");
+					data.addPoint.add(lastPos);
+					b.damage(damage, owner);
+					damage -= 10;
+					lastHit = b;
+					break;
+				}
+			}
+			
+			for(Line2D.Float bound : b.boundingLines){
+				Line2D.Float temp1 = new Line2D.Float();
+				
+				temp1.x1 = (float) (bound.x1*Math.cos(Math.toRadians(b.facingAngle)) - bound.y1*Math.sin(Math.toRadians(b.facingAngle)) + b.x);
+				temp1.y1 = (float) (bound.x1*Math.sin(Math.toRadians(b.facingAngle)) + bound.y1*Math.cos(Math.toRadians(b.facingAngle)) + b.y);
+				temp1.x2 = (float) (bound.x2*Math.cos(Math.toRadians(b.facingAngle)) - bound.y2*Math.sin(Math.toRadians(b.facingAngle)) + b.x);
+				temp1.y2 = (float) (bound.x2*Math.sin(Math.toRadians(b.facingAngle)) + bound.y2*Math.cos(Math.toRadians(b.facingAngle)) + b.y);
+				
+				if(line.intersectsLine(temp1)){
+					System.out.println("Ht edge");
+					data.addPoint.add(lastPos);
+					b.damage(damage, owner);
+					damage -= 10;
+					lastHit = b;
+					flag = true;
+					break;
+				}
+			}
+			if(flag){break;}
+		}
+		if(damage <= 0){
 			data.removeProjectile(this);
 		}
 	}

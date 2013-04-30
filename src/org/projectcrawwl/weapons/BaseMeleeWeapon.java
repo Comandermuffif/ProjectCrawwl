@@ -74,13 +74,13 @@ public class BaseMeleeWeapon extends BaseWeapon{
 			
 			for(BasePlayer b : temp){
 				
-				for(float x = owner.facingAngle - angle/2; x <= owner.facingAngle + angle/2; x +=1){
-					double dist = Math.pow(Math.pow(b.getX() - owner.getX() - Math.cos(Math.toRadians(x))*(owner.r+range), 2) + Math.pow(b.getY() - owner.getY()- Math.sin(Math.toRadians(x))*(owner.r+range), 2), .5);
-					if(dist < b.r && b != owner){
-						//System.out.println("<HIT!>");
-						b.damage(damage, owner);
-						break;
-					}
+				double bitches = Math.toDegrees(Math.atan2(b.y - owner.y, b.x - owner.x));
+				
+				double dist = Math.pow(Math.pow(b.x - owner.x, 2) + Math.pow(b.y - owner.y, 2), .5);
+				
+				if(bitches < owner.facingAngle + angle/2 && bitches > owner.facingAngle - angle/2 && dist <= range){
+					//System.out.println("<HIT!>");
+					b.damage(damage, owner);
 				}
 			}
 		}

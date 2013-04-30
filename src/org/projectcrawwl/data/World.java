@@ -14,8 +14,8 @@ public class World implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private float mapX = 4000;
-	private float mapY = 4000;
+	private float mapX = 2000;
+	private float mapY = 1000;
 	
 	private float mapXOffset;// = (1280-600)/2;
 	private float mapYOffset;// = (720-600)/2;
@@ -183,6 +183,4 @@ public class World implements Serializable{
 			x.render();
 		}
 	}
-	
-	
 }

@@ -10,7 +10,6 @@ import org.projectcrawwl.weapons.*;
 
 public class Player extends BasePlayer {
 	
-	
 	public Player(int tempX, int tempY){
 		super(tempX,tempY);
 		x = tempX;

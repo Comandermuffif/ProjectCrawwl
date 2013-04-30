@@ -1,9 +1,11 @@
 package org.projectcrawwl.data;
 
+import java.awt.Point;
 import java.awt.geom.Line2D;
 import java.util.ArrayList;
 
 import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.GL11;
 import org.projectcrawwl.objects.*;
 import org.projectcrawwl.projectile.BaseProjectile;
 
@@ -20,6 +22,11 @@ public class GameData
 	private ArrayList<BasePlayer> addPlayers = new ArrayList<BasePlayer>();
 	private ArrayList<BasePlayer> removePlayers = new ArrayList<BasePlayer>();
 	private Object playerLock = new Object();
+	
+	public ArrayList<Point> addPoint = new ArrayList<Point>();
+	private ArrayList<Point> points = new ArrayList<Point>();
+	private Object pointLock = new Object();
+	
 	
 	private static GameData instance = null;
 	
@@ -252,6 +259,18 @@ public class GameData
 
 		world.renderBackground();
 		
+		synchronized(pointLock){
+			for(Point p : points){
+				GL11.glBegin(GL11.GL_TRIANGLE_FAN);
+				GL11.glVertex2d(p.x + world.getMapXOffset(), p.y + world.getMapYOffset());
+				for(float angle = 0; angle <= Math.PI*2; angle +=(Math.PI*2/32)){
+					GL11.glVertex2d(p.x + world.getMapXOffset() + 5*Math.cos(angle), p.y + world.getMapYOffset()  + 5*Math.sin(angle));
+				}
+				GL11.glVertex2d(p.x + world.getMapXOffset() + 5, p.y + world.getMapYOffset());
+				
+				GL11.glEnd();
+			}
+		}
 		
 		synchronized(playerLock){
 			for(BasePlayer a : allPlayers){
@@ -280,6 +299,16 @@ public class GameData
 		if(Keyboard.isKeyDown(Keyboard.KEY_LEFT)){world.setMapXOffset(world.getMapXOffset() + delta);}
 		if(Keyboard.isKeyDown(Keyboard.KEY_UP)){world.setMapYOffset(world.getMapYOffset() + delta);}
 		if(Keyboard.isKeyDown(Keyboard.KEY_DOWN)){world.setMapYOffset(world.getMapYOffset() - delta);}
+		
+		synchronized(pointLock){
+			for(Point p : addPoint){
+				if(points.size() > 10){
+					points.remove(0);
+				}
+				points.add(p);
+			}
+			addPoint.clear();
+		}
 		
 		synchronized(projectileLock){
 			//Removes projectiles that are off screen

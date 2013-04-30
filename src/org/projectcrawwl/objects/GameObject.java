@@ -163,7 +163,6 @@ public class GameObject {
 			Line2D.Float tempLine = new Line2D.Float(x,y,tempx,tempy);
 			
 			for(ConvexHull k : world.getHulls()){
-				
 				if(k.getPolygon().contains(tempx, tempy)){
 					flag = false;
 					break;
