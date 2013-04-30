@@ -1,6 +1,7 @@
 package org.projectcrawwl.weapons;
 
 import org.projectcrawwl.objects.BasePlayer;
+import org.projectcrawwl.projectile.DumbMissle;
 
 public class MissleLauncher extends BaseRangedWeapon{
 	public MissleLauncher(BasePlayer tempO){
@@ -12,5 +13,14 @@ public class MissleLauncher extends BaseRangedWeapon{
 		spread = 0;
 		coolDown = 250;
 		currentCoolDown = coolDown;
+	}
+	public void fire(){
+		if(active == false){
+			active = true;
+			currentCoolDown = coolDown;
+			
+			data.addProjectile(new DumbMissle((float) (owner.x + Math.cos(Math.toRadians(owner.facingAngle))*(owner.r + 5)),(float) (owner.y + Math.sin(Math.toRadians(owner.facingAngle))*(owner.r+5)),velocity,(float) ((float) owner.facingAngle), damage, owner));
+			
+		}
 	}
 }

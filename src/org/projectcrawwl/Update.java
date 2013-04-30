@@ -27,13 +27,13 @@ public class Update extends Thread{
 			
 			updateUPS();
 			
-			for(BasePlayer a : data.getAllPlayers()){
-				a.update(delta);
-			}
 			for(GameObject b : data.getProjectiles()){
 				b.update(delta);
 			}
 			
+			for(BasePlayer a : data.getAllPlayers()){
+				a.update(delta);
+			}
 		}
 	}
 	

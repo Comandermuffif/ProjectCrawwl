@@ -10,6 +10,12 @@ public class BaseMeleeWeapon extends BaseWeapon{
 	public float range;
 	public float angle;
 	
+	
+	/*
+	 * TODO create a collision cone for weapon using polygon
+	 * Similar to bounding box
+	 */
+	
 	/**
 	 * A generic Melee Weapon
 	 * 
@@ -18,7 +24,6 @@ public class BaseMeleeWeapon extends BaseWeapon{
 	 * @param tempD damage
 	 */
 	protected BaseMeleeWeapon(BasePlayer tempO){
-		//BaseMeleeWeapon(this, 25, 90, 10)
 		super("BaseMeleeWeapon", 0);
 		range = 25;
 		angle = 90;
@@ -34,13 +39,20 @@ public class BaseMeleeWeapon extends BaseWeapon{
 	public void render(){
 		super.render();
 		if(active){
-			GL11.glColor3d(255, 255, 0);
+			GL11.glColor3f((float) (currentCoolDown/coolDown), (float) (currentCoolDown/coolDown), 0);
 			
+			GL11.glBegin(GL11.GL_LINES);
+			GL11.glVertex2d((owner.r + range)*Math.cos(Math.toRadians(owner.facingAngle - angle/2 + angle*(currentCoolDown/coolDown))) + owner.renderX, (owner.r + range)*Math.sin(Math.toRadians(owner.facingAngle - angle/2 + angle*(currentCoolDown/coolDown))) + owner.renderY);
+			GL11.glVertex2d(owner.renderX, owner.renderY);
+			GL11.glEnd();
+			
+			
+			/*
 			GL11.glBegin(GL11.GL_TRIANGLE_FAN);
 		      {
 		    	  GL11.glVertex2f(owner.getRenderX(), owner.getRenderY());
 		    	  
-		        for (double x= Math.toRadians(owner.facingAngle - angle/2); x<=Math.toRadians(owner.facingAngle + angle/2); x+=((Math.PI*2)/32) )
+		        for (double x= Math.toRadians(owner.facingAngle - angle/2); x<=Math.toRadians(owner.facingAngle + angle/2); x+=((Math.PI*2)/64) )
 		        {
 		        	GL11.glVertex2f( (owner.r + range)*(float)Math.cos(x) + owner.getRenderX(),
 		        			(owner.r + range)*(float)Math.sin(x) + owner.getRenderY());  
@@ -50,6 +62,8 @@ public class BaseMeleeWeapon extends BaseWeapon{
 		        //GL11.glVertex2f(owner.getRenderX()+range, owner.getRenderY());
 		      }
 		   GL11.glEnd();
+		   */
+			
 		}
 	}
 	
@@ -78,8 +92,8 @@ public class BaseMeleeWeapon extends BaseWeapon{
 				
 				double dist = Math.pow(Math.pow(b.x - owner.x, 2) + Math.pow(b.y - owner.y, 2), .5);
 				
-				if(bitches < owner.facingAngle + angle/2 && bitches > owner.facingAngle - angle/2 && dist <= range){
-					//System.out.println("<HIT!>");
+				if(bitches < owner.facingAngle + angle/2 && bitches > owner.facingAngle - angle/2 && dist <= range && b != owner){
+					System.out.println("<HIT! "+ b+" >");
 					b.damage(damage, owner);
 				}
 			}

@@ -284,11 +284,12 @@ public class GameData
 			}
 		}
 		
-		if(player != null){
-			player.render();
-			player.renderHUD();
+		synchronized(playerLock){
+			if(player != null){
+				player.render();
+				player.renderHUD();
+			}
 		}
-		
 		
 		
 	}

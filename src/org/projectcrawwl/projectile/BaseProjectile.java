@@ -13,7 +13,6 @@ import org.projectcrawwl.objects.GameObject;
 public class BaseProjectile extends GameObject{
 	
 	BasePlayer owner;
-	public float r;
 	public float damage;
 	GameData data = GameData.getInstance();
 	Point lastPos = new Point();
@@ -72,7 +71,7 @@ public class BaseProjectile extends GameObject{
 		
 		if(speed == 0){
 			data.addPoint.add(new Point((int) x, (int) y));
-			System.out.println("Stopped");
+			//System.out.println("Stopped");
 			data.removeProjectile(this);
 		}
 		
@@ -81,7 +80,7 @@ public class BaseProjectile extends GameObject{
 			shift.translate((int) b.getX(),(int) b.getY());
 			if(shift.contains(x, y)){
 				if(lastHit != b){
-					System.out.println("Inside");
+					//System.out.println("Inside");
 					data.addPoint.add(lastPos);
 					b.damage(damage, owner);
 					damage -= 10;
@@ -99,7 +98,7 @@ public class BaseProjectile extends GameObject{
 				temp1.y2 = (float) (bound.x2*Math.sin(Math.toRadians(b.facingAngle)) + bound.y2*Math.cos(Math.toRadians(b.facingAngle)) + b.y);
 				
 				if(line.intersectsLine(temp1)){
-					System.out.println("Ht edge");
+					//System.out.println("Hit edge");
 					data.addPoint.add(lastPos);
 					b.damage(damage, owner);
 					damage -= 10;

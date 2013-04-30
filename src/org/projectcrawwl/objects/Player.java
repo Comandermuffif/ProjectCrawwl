@@ -24,6 +24,7 @@ public class Player extends BasePlayer {
 		inventory.addWeapon(new SMG(this));
 		inventory.addWeapon(new Shotgun(this));
 		inventory.addWeapon(new DuelPistols(this));
+		//inventory.addWeapon(new MissleLauncher(this));
 		
 		this.createBoundingBox();
 		

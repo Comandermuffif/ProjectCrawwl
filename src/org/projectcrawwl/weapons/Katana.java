@@ -10,7 +10,7 @@ public class Katana extends BaseMeleeWeapon{
 		damage = 51;
 		angle = 10;
 		range = 250;
-		coolDown = 100;
+		coolDown = 250;
 	}
 
 }
