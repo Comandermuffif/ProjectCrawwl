@@ -112,14 +112,14 @@ public class BasePlayer extends GameObject{
 		GL11.glLineWidth(1);
 		GL11.glBegin(GL11.GL_LINES);
 		GL11.glVertex2f(renderX, renderY);
-		GL11.glVertex2d(renderX + sightRange * Math.cos(Math.toRadians(moveAngle)), renderY + sightRange * Math.sin(Math.toRadians(moveAngle)));
+		GL11.glVertex2d(renderX + 75 * Math.cos(Math.toRadians(moveAngle)), renderY + 75 * Math.sin(Math.toRadians(moveAngle)));
 		GL11.glEnd();
 		
 		GL11.glColor4d(1.0, 0, 0,.5);
 		GL11.glLineWidth(1);
 		GL11.glBegin(GL11.GL_LINES);
 		GL11.glVertex2f(renderX, renderY);
-		GL11.glVertex2d(renderX + sightRange * Math.cos(Math.toRadians(facingAngle)), renderY + sightRange * Math.sin(Math.toRadians(facingAngle)));
+		GL11.glVertex2d(renderX + 75 * Math.cos(Math.toRadians(facingAngle)), renderY + 75 * Math.sin(Math.toRadians(facingAngle)));
 		GL11.glEnd();
 		
 		/*

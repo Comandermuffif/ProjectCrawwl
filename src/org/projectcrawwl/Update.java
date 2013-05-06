@@ -3,9 +3,6 @@ package org.projectcrawwl;
 import org.lwjgl.Sys;
 import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.data.GameSettings;
-import org.projectcrawwl.objects.BasePlayer;
-import org.projectcrawwl.objects.GameObject;
-
 public class Update extends Thread{
 	
 	static GameSettings settings = GameSettings.getInstance();
@@ -26,14 +23,6 @@ public class Update extends Thread{
 			data.update(delta);
 			
 			updateUPS();
-			
-			for(GameObject b : data.getProjectiles()){
-				b.update(delta);
-			}
-			
-			for(BasePlayer a : data.getAllPlayers()){
-				a.update(delta);
-			}
 		}
 	}
 	

@@ -24,6 +24,7 @@ public class Player extends BasePlayer {
 		inventory.addWeapon(new SMG(this));
 		inventory.addWeapon(new Shotgun(this));
 		inventory.addWeapon(new DuelPistols(this));
+		//inventory.addWeapon(new LaserRifle(this));
 		//inventory.addWeapon(new MissleLauncher(this));
 		
 		this.createBoundingBox();
@@ -50,11 +51,20 @@ public class Player extends BasePlayer {
 	//Draw everything here
 	public void render(){
 		super.render();
+	
+		float ratio = ((float) (settings.getScreenY())/settings.getScreenX());
+		
+		GL11.glLoadIdentity();
+		GL11.glOrtho(-data.zoom, settings.getScreenX()  + data.zoom, -data.zoom*(ratio), settings.getScreenY() + data.zoom*(ratio), -1, 1);
 		
 	}
 
 	public void renderHUD(){
 		super.renderHUD();
+		
+		GL11.glLoadIdentity();
+		GL11.glOrtho(0, settings.getScreenX(), 0, settings.getScreenY(), -1, 1);
+		
 		GL11.glColor4d(.25,.25,.25,1.0f);
 		GL11.glBegin(GL11.GL_TRIANGLE_FAN);{
 			GL11.glVertex2d(5, 5);
@@ -82,10 +92,18 @@ public class Player extends BasePlayer {
 			GL11.glVertex2d(5, 85+.5*r);
 		}
 		GL11.glEnd();
+		
+		float ratio = ((float) (settings.getScreenY())/settings.getScreenX());
+		
+		GL11.glLoadIdentity();
+		GL11.glOrtho(-data.zoom, settings.getScreenX()  + data.zoom, -data.zoom*(ratio), settings.getScreenY() + data.zoom*(ratio), -1, 1);
 	}
 	
 	//Do all calculations here
 	public void update(int delta){
+		
+		//updateViewCone();
+		
 		//Key and mouse input control
 		
 		int mouse_x = Mouse.getX();
@@ -123,6 +141,14 @@ public class Player extends BasePlayer {
 			speed = 0;
 		}
 		
+		
+		data.zoom -= Mouse.getDWheel();
+		
+		
+		if(data.zoom < 0){
+			data.zoom = 0;
+		}
+		
 		while(Keyboard.next()){
 			if (Keyboard.getEventKeyState()) {
 				if (Keyboard.getEventKey() == Keyboard.KEY_1){
@@ -137,6 +163,10 @@ public class Player extends BasePlayer {
 				if (Keyboard.getEventKey() == Keyboard.KEY_G){
 					data.addFriendly();
 				}
+				if (Keyboard.getEventKey() == Keyboard.KEY_NUMPAD0){
+					data.zoom = 0;
+				}
+				
 			}
 		}
 		

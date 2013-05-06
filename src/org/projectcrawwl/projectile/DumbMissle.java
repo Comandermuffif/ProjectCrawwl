@@ -17,6 +17,8 @@ public class DumbMissle extends BaseProjectile{
 	 */
 	public DumbMissle(float tempX, float tempY, float tempSpeed, float tempAngle, float tempD, BasePlayer tempO){
 		super( tempX,  tempY,  tempSpeed,  tempAngle,  tempD, tempO);
+		facingAngle = tempAngle;
+		turnSpeed = .2;
 		
 	}
 	
@@ -28,6 +30,7 @@ public class DumbMissle extends BaseProjectile{
 	public void update(int delta){
 		super.update(delta);
 		
+		moveAngle = facingAngle;
 		
 		GameData data = GameData.getInstance();
 		if(target == null){
@@ -44,9 +47,8 @@ public class DumbMissle extends BaseProjectile{
 					}
 				}
 			}
-			System.out.println(target);
 		}else{
-			moveAngle = (float) Math.toDegrees(Math.atan2(target.y - y, target.x - x));
+			tempFacing = (float) Math.toDegrees(Math.atan2(target.y - y, target.x - x));
 		}
 		
 	}

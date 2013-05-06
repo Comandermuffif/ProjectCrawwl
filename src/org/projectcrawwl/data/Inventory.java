@@ -33,7 +33,10 @@ public class Inventory {
 	}
 	
 	public void setWeapon(int n){
-		counter = n;
+		
+		counter = n % (weapons.size()-1);
+		
+		//counter = n;
 	}
 	
 	public void addWeapon(BaseWeapon tempW){

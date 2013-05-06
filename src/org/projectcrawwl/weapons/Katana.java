@@ -11,6 +11,8 @@ public class Katana extends BaseMeleeWeapon{
 		angle = 10;
 		range = 250;
 		coolDown = 250;
+		
+		createArea();
 	}
 
 }

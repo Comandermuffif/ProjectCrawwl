@@ -8,8 +8,6 @@ import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.data.GameSettings;
-import org.projectcrawwl.objects.BasePlayer;
-import org.projectcrawwl.objects.GameObject;
 
 public class Main {
 
@@ -48,7 +46,7 @@ public class Main {
         GL11.glDisable(GL11.GL_CULL_FACE);
         
     	GL11.glOrtho(0, settings.getScreenX(), 0, settings.getScreenY(), 1, -1);
-    	
+  
     	GL11.glEnable(GL11.GL_BLEND);
     	//GL11.glBlendFunc(GL11.GL_DST_ALPHA, GL11.GL_ONE);
     	GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
@@ -127,13 +125,6 @@ public class Main {
 		int delta = getDelta();
 		
 		data.update(delta);
-		
-		for(BasePlayer a : data.getAllPlayers()){
-			a.update(delta);
-		}
-		for(GameObject b : data.getProjectiles()){
-			b.update(delta);
-		}
 	}
 	
 	public void render(){

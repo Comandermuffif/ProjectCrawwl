@@ -1,5 +1,6 @@
 package org.projectcrawwl.objects;
 
+import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.geom.Line2D;
 import java.util.ArrayList;
@@ -128,6 +129,11 @@ public class GameObject {
 			
 			boolean flag = true;
 			for(ConvexHull k : world.getHulls()){
+				Point p = new Point((int) x, (int) y);
+				if(p.distance(k.getCenter()) > k.getFarthest()*2){
+					continue;
+				}
+				
 				for(Line2D.Float q : k.getLines()){
 					for(Line2D.Float bound : boundingBox()){
 						
@@ -163,6 +169,13 @@ public class GameObject {
 			Line2D.Float tempLine = new Line2D.Float(x,y,tempx,tempy);
 			
 			for(ConvexHull k : world.getHulls()){
+				
+				if(tempLine.ptSegDist(k.getCenter()) > k.getFarthest()*2){
+					continue;
+				}
+				
+				
+				
 				if(k.getPolygon().contains(tempx, tempy)){
 					flag = false;
 					break;

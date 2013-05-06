@@ -14,8 +14,8 @@ public class World implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private float mapX = 2000;
-	private float mapY = 1000;
+	private float mapX = 4000;
+	private float mapY = 4000;
 	
 	private float mapXOffset;// = (1280-600)/2;
 	private float mapYOffset;// = (720-600)/2;
@@ -26,6 +26,50 @@ public class World implements Serializable{
 	
 	public World(){
 		
+		int subset = 20;
+		
+		for(int i = 0; i < subset; i ++){
+			{
+				ConvexHull a = new ConvexHull();
+				a.addPoint(0,(mapY/subset)*(i + 1));
+				a.addPoint(5,(mapY/subset)*(i + 1));
+				a.addPoint(5,(mapY/subset)*(i));
+				a.addPoint(0,(mapY/subset)*(i));
+				
+				hulls.add(a);
+			}
+			
+			{
+				ConvexHull a = new ConvexHull();
+				a.addPoint((mapX/subset)*(i),0);
+				a.addPoint((mapX/subset)*(i),5);
+				a.addPoint((mapX/subset)*(i+1),5);
+				a.addPoint((mapX/subset)*(i+1),0);
+				
+				hulls.add(a);
+			}
+			
+			{
+				ConvexHull a = new ConvexHull();
+				a.addPoint(mapX-5,(mapY/subset)*(i + 1));
+				a.addPoint(mapX,(mapY/subset)*(i + 1));
+				a.addPoint(mapX,(mapY/subset)*(i));
+				a.addPoint(mapX-5,(mapY/subset)*(i));
+				
+				hulls.add(a);
+			}
+			
+			{
+				ConvexHull a = new ConvexHull();
+				a.addPoint((mapX/subset)*(i),mapY);
+				a.addPoint((mapX/subset)*(i+1),mapY);
+				a.addPoint((mapX/subset)*(i+1),mapY-5);
+				a.addPoint((mapX/subset)*(i),mapY-5);
+				
+				hulls.add(a);
+			}
+		}
+		/*
 		{
 			ConvexHull a = new ConvexHull();
 			a.addPoint(0,mapY);
@@ -64,7 +108,7 @@ public class World implements Serializable{
 			a.addPoint(0,mapY-5);
 			
 			hulls.add(a);
-		}
+		}*/
 		
 		
 		for(int i = 0; i < 10; i ++){

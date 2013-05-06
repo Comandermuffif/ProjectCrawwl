@@ -1,13 +1,15 @@
 package org.projectcrawwl.objects;
 
 import java.awt.Point;
+import java.awt.geom.Line2D;
 import java.util.Random;
+
+import org.projectcrawwl.data.ConvexHull;
 
 
 public class Zombie extends BasePlayer {
 	Random random = new Random();
 	BasePlayer target;
-	
 	
 	public Zombie(int tempX, int tempY){
 		super(tempX,tempY, 0 , 100, 25);
@@ -41,9 +43,20 @@ public class Zombie extends BasePlayer {
 	public void update(int delta){
 		super.update(delta);
 		
-		updateViewCone();
+		//updateViewCone();
 		
 		tempFacing = moveAngle;
+		
+		/*
+		currentCoolDown -= delta;
+		
+		if(currentCoolDown < 0){
+			currentCoolDown = coolDown;
+			target = null;
+		}*/
+		
+		
+		
 		/*
 		Line2D.Float lineL = new Line2D.Float((float) ((0)*Math.cos(Math.toRadians(tempFacing)) - (25)*Math.sin(Math.toRadians(tempFacing)) + x),
 				(float) ((0)*Math.sin(Math.toRadians(tempFacing)) + (25)*Math.cos(Math.toRadians(tempFacing)) + y),
@@ -69,6 +82,11 @@ public class Zombie extends BasePlayer {
 		GL11.glEnd();*/
 		
 		if(speed == 0){
+			
+			target = null;
+			
+			
+			
 			moveAngle += 1;
 			speed = .03;
 		}
@@ -90,29 +108,40 @@ public class Zombie extends BasePlayer {
 		}*/
 		
 		
+		
 		if(target == null){
-			for(BasePlayer temp : data.getFriendlies()){
-				if(viewCone.contains(temp.getX(), temp.getY())){
-					target = temp;
-					break;
+			double dist = -1;
+			for(BasePlayer friendly : data.getFriendlies()){
+				Line2D.Float sight = new Line2D.Float(x, y, friendly.x, friendly.y);
+				
+				boolean flag = true;
+				
+				for(ConvexHull hull : world.getHulls()){
+					for(Line2D.Float line : hull.getLines()){
+						if(line.intersectsLine(sight)){
+							flag = false;
+							break;
+						}
+					}
+					if(!flag){break;}
+				}
+				if(flag){
+					double tempD = sight.getP1().distance(sight.getP2());
+					if(dist == -1){
+						target = friendly;
+						dist = tempD;
+					}else if(tempD < dist){
+						target = friendly;
+						dist = tempD;
+					}
 				}
 			}
 			
 		}else{
-			
 			if(new Point((int)getX(),(int)getY()).distance(target.getX(), target.getY()) <= 15 + r){
 				inventory.getWeapon().fire();
 			}
-			
-			if(viewCone.contains(target.getX(), target.getY())){
-				moveAngle = (float) (Math.toDegrees(Math.atan2(target.getY() - y, target.getX() - x)));
-			}else{
-				target = null;
-			}
-			
+			moveAngle = (float) (Math.toDegrees(Math.atan2(target.getY() - y, target.getX() - x)));
 		}
-		
-		
-		
 	}
 }
