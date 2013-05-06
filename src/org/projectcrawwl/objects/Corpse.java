@@ -9,6 +9,9 @@ public class Corpse extends GameObject{
 	}
 	
 	public void render(){
+		
+		GL11.glColor3d(1.0, 0.0, 0.0);
+		
 		GL11.glBegin(GL11.GL_LINES);
 		GL11.glVertex2d(renderX-50, renderY-50);
 		GL11.glVertex2d(renderX+50, renderY+50);

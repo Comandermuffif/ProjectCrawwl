@@ -264,15 +264,14 @@ public class GameData
 			for(BasePlayer a : allPlayers){
 				a.render();
 			}
+			for(GameObject c : corpses){
+				c.render();
+			}
 		}
 		
 		synchronized(projectileLock){
 			for(BaseProjectile q : allProjectiles){
 				q.render();
-			}
-			
-			for(GameObject c : corpses){
-				c.render();
 			}
 		}
 		
