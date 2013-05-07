@@ -22,7 +22,7 @@ public class LaserRifle extends BaseRangedWeapon{
 		spread = .1;
 		coolDown = 1000;
 		currentCoolDown = coolDown;
-		range = 2000;
+		range = 1000;
 	}
 	
 	public void render(){
@@ -45,7 +45,7 @@ public class LaserRifle extends BaseRangedWeapon{
 			
 			Line2D.Float q = new Line2D.Float((float)(owner.x + Math.cos(Math.toRadians(owner.facingAngle))*(owner.r + 5)), (float)(owner.y + Math.sin(Math.toRadians(owner.facingAngle))*(owner.r+5)), (float)(owner.x + Math.cos(Math.toRadians(owner.facingAngle))*(owner.r + range)), (float)(owner.y + Math.sin(Math.toRadians(owner.facingAngle))*(owner.r+range)));
 			
-			Line2D.Float tempL = new Line2D.Float();
+			Line2D.Float tempL = (Line2D.Float) q.clone();
 			
 			line.setLine(q);
 			
@@ -54,6 +54,11 @@ public class LaserRifle extends BaseRangedWeapon{
 			World world = World.getInstance();
 			
 			for(ConvexHull hull : world.getHulls()){
+				
+				if(q.ptSegDist(hull.getCenter()) > hull.getFarthest()*2){
+					continue;
+				}
+				
 				for(Line2D.Float tempLine : hull.getLines()){
 					if(tempLine.intersectsLine(q)){
 						Point temp = world.getLineLineIntersection(q, tempLine);

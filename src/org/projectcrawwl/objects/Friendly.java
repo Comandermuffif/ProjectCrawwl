@@ -1,14 +1,14 @@
 package org.projectcrawwl.objects;
 
+import java.awt.geom.Line2D;
 import java.util.ArrayList;
 
-import org.lwjgl.opengl.GL11;
 import org.projectcrawwl.weapons.SMG;
 import org.projectcrawwl.weapons.Shotgun;
 
 public class Friendly extends BasePlayer {
 	
-	BasePlayer target = this;
+	BasePlayer target = null;
 	
 	public Friendly(int tempX, int tempY){
 		super(tempX,tempY);
@@ -19,6 +19,8 @@ public class Friendly extends BasePlayer {
 		health = 100;
 		inventory.addWeapon(new Shotgun(this));
 		inventory.addWeapon(new SMG(this));
+		
+		this.createBoundingBox();
 	}
 	public Friendly(){
 		super();
@@ -29,12 +31,25 @@ public class Friendly extends BasePlayer {
 		health = 100;
 		inventory.addWeapon(new Shotgun(this));
 		inventory.addWeapon(new SMG(this));
+		
+		this.createBoundingBox();
+	}
+	
+	public void createBoundingBox(){
+		
+		//this.addPoint(0, 50);
+		
+		addPoint(50,0);
+		addPoint(-25,25);
+		addPoint(-25,-25);
+		
+		updateLines();
 	}
 	
 	//Draw everything here
 	public void render(){
 		super.render();
-		
+		/*
 		GL11.glColor3d(1*(health/100),(127*(health)/100)/255 ,0);
 		
 		GL11.glBegin(GL11.GL_TRIANGLE_FAN);{
@@ -54,7 +69,7 @@ public class Friendly extends BasePlayer {
 		GL11.glColor3d(0, 0, 0);
 		GL11.glVertex2f(renderX, renderY);
 		GL11.glVertex2d(renderX + Math.cos(Math.toRadians(facingAngle))*r, renderY + Math.sin(Math.toRadians(facingAngle))*r);
-		GL11.glEnd();
+		GL11.glEnd();*/
 		
 	}
 
@@ -76,8 +91,11 @@ public class Friendly extends BasePlayer {
 				target = a;
 			}
 		}
-		inventory.setWeapon(1);
-		inventory.getWeapon().fire();
-		tempFacing = (float) (Math.toDegrees(Math.atan2(target.getY() - y, target.getX() - x)));
+		
+		if(target != null){
+			inventory.setWeapon(1);
+			inventory.getWeapon().fire();
+			tempFacing = (float) (Math.toDegrees(Math.atan2(target.getY() - y, target.getX() - x)));
+		}
 	}
 }

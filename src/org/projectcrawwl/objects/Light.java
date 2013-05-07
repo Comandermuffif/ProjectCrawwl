@@ -36,7 +36,7 @@ public class Light extends GameObject{
 		//Alpha
 		{
 			GL11.glBegin(GL11.GL_TRIANGLE_FAN);
-			GL11.glColor4f(0f, 0f, 0f, .5f);
+			GL11.glColor4d((double)(color.getRed())/255, (double)(color.getBlue())/255, (double)(color.getGreen())/255, (double) .5);
 			
 			GL11.glVertex3f(x, y, 0);
 			

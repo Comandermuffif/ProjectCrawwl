@@ -10,7 +10,7 @@ public class Shotgun extends BaseRangedWeapon{
 		super(tempO);
 		name = "Shotgun";
 		
-		coolDown = 60000/60;
+		coolDown = 1000;
 		currentCoolDown = coolDown;
 	}
 	public void fire(){

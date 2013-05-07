@@ -32,6 +32,12 @@ public class GameObject {
 	GameData data = GameData.getInstance();
 	GameSettings settings = GameSettings.getInstance();
 	
+	private Point center = new Point();
+	
+	private double farthest = 0;
+	
+	public boolean passThroughPlayers = false;
+	
 	public World world = World.getInstance();
 	
 	/**
@@ -69,6 +75,48 @@ public class GameObject {
 		
 	}
 	
+	public void addPoint(Point k){
+		boundingBox.addPoint(k.x, k.y);
+		updateData();
+	}
+	
+	public ArrayList<Line2D.Float> getLines(){
+		return boundingLines;
+	}
+	
+	public Polygon getPolygon(){
+		return boundingBox;
+	}
+	
+	public void addPoint(double x, double y){
+		boundingBox.addPoint((int) x,(int) y);
+		updateData();
+	}
+	
+	public void updateData(){
+		float deltaX = 0;
+		float deltaY = 0;
+		
+		for(int i = 0; i < boundingBox.npoints; i ++){
+			deltaX += boundingBox.xpoints[i];
+			deltaY += boundingBox.ypoints[i];
+		}
+		
+		deltaX = deltaX/boundingBox.npoints;
+		deltaY = deltaY/boundingBox.npoints;
+		
+		center.setLocation(deltaX, deltaY);
+		
+		farthest = 0;
+		
+		for(int i = 0; i < boundingBox.npoints; i ++){
+			double temp = center.distance(boundingBox.xpoints[i], boundingBox.ypoints[i]);
+			if(temp > farthest){
+				farthest = temp;
+			}
+		}
+	}
+	
 	public ArrayList<Line2D.Float> boundingBox(){
 		return boundingLines;
 	}
@@ -93,6 +141,15 @@ public class GameObject {
 	public void setY(int tempY){
 		y = tempY;
 	}
+	
+	public double getFarthest(){
+		return farthest;
+	}
+	
+	public Point getCenter(){
+		return new Point((int) (center.x + x), (int) (center.y + y));
+	}
+	
 	//Draw everything here
 	public void render(){
 		
@@ -130,7 +187,7 @@ public class GameObject {
 			boolean flag = true;
 			for(ConvexHull k : world.getHulls()){
 				Point p = new Point((int) x, (int) y);
-				if(p.distance(k.getCenter()) > k.getFarthest()*2){
+				if(p.distance(k.getCenter()) > k.getFarthest() + getFarthest()){
 					continue;
 				}
 				
@@ -170,7 +227,7 @@ public class GameObject {
 			
 			for(ConvexHull k : world.getHulls()){
 				
-				if(tempLine.ptSegDist(k.getCenter()) > k.getFarthest()*2){
+				if(tempLine.ptSegDist(k.getCenter()) > k.getFarthest() + getFarthest()){
 					continue;
 				}
 				

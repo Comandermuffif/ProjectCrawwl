@@ -171,7 +171,6 @@ public class GameData
 		if(flag){
 			
 			addPlayers.add(zombie);
-			
 		}else{
 			addZombie();
 		}

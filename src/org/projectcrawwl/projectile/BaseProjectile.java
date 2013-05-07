@@ -31,6 +31,8 @@ public class BaseProjectile extends GameObject{
 		owner = own;
 		
 		lastPos.setLocation(x, y);
+		
+		passThroughPlayers = true;
 	}
 	
 	public void render(){
@@ -78,7 +80,7 @@ public class BaseProjectile extends GameObject{
 			Polygon shift = new Polygon(b.boundingBox.xpoints,b.boundingBox.ypoints,b.boundingBox.npoints);
 			shift.translate((int) b.getX(),(int) b.getY());
 			if(shift.contains(x, y)){
-				if(lastHit != b){
+				if(lastHit != b && !b.equals(owner)){
 					
 					//System.out.println("Inside");
 					b.damage(damage, owner);
@@ -99,7 +101,7 @@ public class BaseProjectile extends GameObject{
 				temp1.x2 = (float) (bound.x2*Math.cos(Math.toRadians(b.facingAngle)) - bound.y2*Math.sin(Math.toRadians(b.facingAngle)) + b.x);
 				temp1.y2 = (float) (bound.x2*Math.sin(Math.toRadians(b.facingAngle)) + bound.y2*Math.cos(Math.toRadians(b.facingAngle)) + b.y);
 				
-				if(line.intersectsLine(temp1) && lastHit != b){
+				if(line.intersectsLine(temp1) && lastHit != b  && !b.equals(owner)){
 					//System.out.println("Hit edge");
 					b.damage(damage, owner);
 					damage -= 10;

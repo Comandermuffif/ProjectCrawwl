@@ -57,10 +57,13 @@ public class BasePlayer extends GameObject{
 		
         for (float angle=0; angle<=Math.PI*2; angle+=((Math.PI*2)/16) )
         {
-        	boundingBox.addPoint((int)((r)*(float)Math.cos(angle)), (int)((r)*(float)Math.sin(angle)));  
+        	addPoint((int)((r)*(float)Math.cos(angle)), (int)((r)*(float)Math.sin(angle)));
         }
-        
-        ArrayList<Line2D.Float> temp = new ArrayList<Line2D.Float>();
+        updateLines();
+	}
+	
+	public void updateLines(){
+		ArrayList<Line2D.Float> temp = new ArrayList<Line2D.Float>();
 		
 		float[] coord = new float[6];
 		float[] lastCoord = new float[2];
@@ -91,6 +94,7 @@ public class BasePlayer extends GameObject{
 		}
 		
 		boundingLines = temp;
+		updateData();
 	}
 	
 	public void damage(float damage, BasePlayer shooter){
