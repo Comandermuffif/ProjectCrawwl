@@ -15,6 +15,7 @@ public class Update extends Thread{
 	/** last fps time */
 	long lastUPS;
 	public void run(){
+		System.out.println("Update thread started");
 		lastUPS = getTime();
 		while(!quit){
 			

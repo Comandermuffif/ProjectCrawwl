@@ -61,7 +61,9 @@ public class Main {
     	getDelta();
     	lastFPS = getTime();
     	//Render render = new Render();
-    	System.out.println("Update thread started");
+    	
+    	data.renderInit();
+    	
     	Update update = new Update();
     	
     	//render.start(); //Render must be main thread

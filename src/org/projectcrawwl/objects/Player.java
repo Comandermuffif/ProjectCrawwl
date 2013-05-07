@@ -1,22 +1,15 @@
 package org.projectcrawwl.objects;
 
-
-import java.awt.Font;
-import java.awt.geom.Line2D;
-
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 import org.projectcrawwl.weapons.*;
 
 import org.newdawn.slick.Color;
-import org.newdawn.slick.SlickException;
-import org.newdawn.slick.UnicodeFont;
-import org.newdawn.slick.font.effects.ColorEffect;
 
 public class Player extends BasePlayer {
 	
-	UnicodeFont font;
+	
 	
 	public Player(int tempX, int tempY){
 		super(tempX,tempY);
@@ -36,18 +29,6 @@ public class Player extends BasePlayer {
 		//inventory.addWeapon(new MissleLauncher(this));
 		
 		this.createBoundingBox();
-		
-		
-		Font awFont = new Font("Times New Roman", Font.BOLD, 24);
-		font = new UnicodeFont(awFont, 12, true, false);
-		font.addAsciiGlyphs();
-		font.addGlyphs(400, 600);
-		font.getEffects().add(new ColorEffect(java.awt.Color.red));
-		
-		try {
-			font.loadGlyphs();
-		}catch(SlickException e){e.printStackTrace();}
-		
 	}
 	public Player(){
 		super();
@@ -123,7 +104,7 @@ public class Player extends BasePlayer {
 		GL11.glOrtho(0, settings.getScreenX(), settings.getScreenY(), 0, -1, 1);
 		
 		
-		font.drawString(20, settings.getScreenY() - 80, "Weapon: " + inventory.getWeapon().getName(), Color.red);
+		data.getFont().drawString(20, settings.getScreenY() - 80, "Weapon: " + inventory.getWeapon().getName(), Color.red);
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		
 		//Reset to zoom

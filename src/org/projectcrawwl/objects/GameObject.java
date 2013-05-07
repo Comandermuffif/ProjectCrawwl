@@ -1,10 +1,14 @@
 package org.projectcrawwl.objects;
 
+import java.awt.Font;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.geom.Line2D;
 import java.util.ArrayList;
 
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.UnicodeFont;
+import org.newdawn.slick.font.effects.ColorEffect;
 import org.projectcrawwl.data.ConvexHull;
 import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.data.GameSettings;
@@ -40,6 +44,7 @@ public class GameObject {
 	
 	public World world = World.getInstance();
 	
+	
 	/**
 	 * A generic Game Object
 	 * 
@@ -54,7 +59,6 @@ public class GameObject {
 		facingAngle = tempA;
 		tempFacing = facingAngle;
 		r = tempR;
-		
 	}
 	
 	
@@ -64,7 +68,6 @@ public class GameObject {
 		facingAngle = 0;
 		tempFacing = facingAngle;
 		r = 10;
-		
 	}
 	public GameObject(){
 		x = 0;
@@ -72,7 +75,6 @@ public class GameObject {
 		facingAngle = 0;
 		tempFacing = facingAngle;
 		r = 10;
-		
 	}
 	
 	public void addPoint(Point k){

@@ -11,6 +11,7 @@ public class Render extends Thread{
 	public volatile boolean quit = false;
 	
 	public void run(){
+		data.renderInit();
 		while(!quit){
 			data.render();
 		}

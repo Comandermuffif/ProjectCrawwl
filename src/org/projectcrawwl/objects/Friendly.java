@@ -1,6 +1,5 @@
 package org.projectcrawwl.objects;
 
-import java.awt.geom.Line2D;
 import java.util.ArrayList;
 
 import org.projectcrawwl.weapons.SMG;

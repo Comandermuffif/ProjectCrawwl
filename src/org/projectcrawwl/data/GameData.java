@@ -1,9 +1,13 @@
 package org.projectcrawwl.data;
 
+import java.awt.Font;
 import java.awt.geom.Line2D;
 import java.util.ArrayList;
 
 import org.lwjgl.input.Keyboard;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.UnicodeFont;
+import org.newdawn.slick.font.effects.ColorEffect;
 import org.projectcrawwl.objects.*;
 import org.projectcrawwl.projectile.BaseProjectile;
 
@@ -30,6 +34,27 @@ public class GameData
 	private World world = World.getInstance();
 	
 	public float zoom = 0;
+	
+	private UnicodeFont font;
+	
+	public void renderInit(){
+		
+		System.out.println("Initializing Render Data");
+		
+		Font awFont = new Font("Times New Roman", Font.BOLD, 24);
+		font = new UnicodeFont(awFont, 12, true, false);
+		font.addAsciiGlyphs();
+		font.addGlyphs(400, 600);
+		font.getEffects().add(new ColorEffect(java.awt.Color.red));
+		
+		try {
+			font.loadGlyphs();
+		}catch(SlickException e){e.printStackTrace();}
+	}
+	
+	public UnicodeFont getFont(){
+		return font;
+	}
 	
 	public int getUPS(){
 		return ups;
