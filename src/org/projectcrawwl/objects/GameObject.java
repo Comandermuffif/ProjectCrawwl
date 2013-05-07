@@ -1,14 +1,10 @@
 package org.projectcrawwl.objects;
 
-import java.awt.Font;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.geom.Line2D;
 import java.util.ArrayList;
 
-import org.newdawn.slick.SlickException;
-import org.newdawn.slick.UnicodeFont;
-import org.newdawn.slick.font.effects.ColorEffect;
 import org.projectcrawwl.data.ConvexHull;
 import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.data.GameSettings;
