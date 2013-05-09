@@ -43,6 +43,7 @@ public class BaseProjectile extends GameObject{
 		//Old color
 		//GL11.glColor3d(.8313, .6867, .2156);
 		
+		/*
 		GL11.glColor3d(0,0,0);
 		GL11.glLineWidth(1);
 		GL11.glBegin(GL11.GL_LINES);
@@ -56,21 +57,17 @@ public class BaseProjectile extends GameObject{
 		GL11.glBegin(GL11.GL_LINES);
 		GL11.glVertex2d(renderX, renderY);
 		GL11.glVertex2d(renderX + Math.cos(Math.toRadians(moveAngle))*-5, renderY + Math.sin(Math.toRadians(moveAngle))*-5);
-		GL11.glEnd();
+		GL11.glEnd();*/
 		
 		
 		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
-		
-		GL11.glVertex2d(renderX + Math.cos(Math.toRadians(moveAngle - 90))*2, renderY + Math.sin(Math.toRadians(moveAngle - 90)));
-		GL11.glVertex2d(renderX + Math.cos(Math.toRadians(moveAngle + 90))*2, renderY + Math.sin(Math.toRadians(moveAngle + 90)));
-		
-		GL11.glVertex2d(renderX + Math.cos(Math.toRadians(moveAngle))*-20, renderY + Math.sin(Math.toRadians(moveAngle))*-20);
+		GL11.glColor3d(0,0,0);
+		GL11.glVertex2d(renderX + Math.cos(Math.toRadians(moveAngle - 90))*2, renderY + Math.sin(Math.toRadians(moveAngle - 90))*2);
+		GL11.glVertex2d(renderX + Math.cos(Math.toRadians(moveAngle + 90))*2, renderY + Math.sin(Math.toRadians(moveAngle + 90))*2);
+		GL11.glColor4d(0,0,0,0);
+		GL11.glVertex2d(renderX + Math.cos(Math.toRadians(moveAngle))*-50, renderY + Math.sin(Math.toRadians(moveAngle))*-50);
 		
 		GL11.glEnd();
-		
-		
-		
-		
 		
 		GL11.glLineWidth(1);
 	}

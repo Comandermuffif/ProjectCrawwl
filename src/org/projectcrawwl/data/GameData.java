@@ -45,7 +45,7 @@ public class GameData
 		font = new UnicodeFont(awFont, 12, true, false);
 		font.addAsciiGlyphs();
 		font.addGlyphs(400, 600);
-		font.getEffects().add(new ColorEffect(new java.awt.Color(39,255,20)));
+		font.getEffects().add(new ColorEffect(new java.awt.Color(255,255,255)));
 		
 		try {
 			font.loadGlyphs();

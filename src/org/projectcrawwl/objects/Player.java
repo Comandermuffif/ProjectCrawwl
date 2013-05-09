@@ -64,10 +64,11 @@ public class Player extends BasePlayer {
 		GL11.glLoadIdentity();
 		GL11.glOrtho(-data.zoom, settings.getScreenX()  + data.zoom, -data.zoom*(ratio), settings.getScreenY() + data.zoom*(ratio), -1, 1);
 		
+		
 		/*
 		Color.white.bind();
-		texture.bind(); // or GL11.glBind(texture.getTextureID());
-		 
+		texture.bind();
+		
 		GL11.glBegin(GL11.GL_QUADS);
 			GL11.glTexCoord2f(0,1);
 			GL11.glVertex2f(renderX - 25,renderY - 25);
@@ -77,7 +78,10 @@ public class Player extends BasePlayer {
 			GL11.glVertex2f(renderX + 25, renderY + 25);
 			GL11.glTexCoord2f(1,1);
 			GL11.glVertex2f(renderX - 25, renderY + 25);
+			
 		GL11.glEnd();*/
+		
+		
 		
 	}
 
@@ -88,14 +92,10 @@ public class Player extends BasePlayer {
 		GL11.glLoadIdentity();
 		GL11.glOrtho(0, settings.getScreenX(), 0, settings.getScreenY(), -1, 1);
 		
-		GL11.glColor4d(.25,.25,.25,.5f);
-		GL11.glBegin(GL11.GL_TRIANGLE_FAN);{
-			GL11.glVertex2d(5, 5);
-			GL11.glVertex2d(230,5);
-			GL11.glVertex2d(230,105);
-			GL11.glVertex2d(5, 105);
-		}
-		GL11.glEnd();
+		GL11.glLoadIdentity();
+		
+    	GL11.glAlphaFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+    	GL11.glBlendFunc(GL11.GL_ONE_MINUS_DST_COLOR, GL11.GL_ZERO);
 		
 		GL11.glColor4f(1.0f,0,0,1.0f);
 		GL11.glBegin(GL11.GL_TRIANGLE_FAN);{
@@ -123,7 +123,7 @@ public class Player extends BasePlayer {
 		GL11.glOrtho(0, settings.getScreenX(), settings.getScreenY(), 0, -1, 1);
 		
 		
-		data.getFont().drawString(20, settings.getScreenY() - 80, "Weapon: " + inventory.getWeapon().getName(), new Color(39,255,20));
+		data.getFont().drawString(20, settings.getScreenY() - 80, "Weapon: " + inventory.getWeapon().getName());
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		
 		//Reset to zoom
@@ -131,6 +131,10 @@ public class Player extends BasePlayer {
 		float ratio = ((float) (settings.getScreenY())/settings.getScreenX());
 		
 		GL11.glLoadIdentity();
+		
+    	GL11.glAlphaFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+    	GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+    	
 		GL11.glOrtho(-data.zoom, settings.getScreenX()  + data.zoom, -data.zoom*(ratio), settings.getScreenY() + data.zoom*(ratio), -1, 1);
 	}
 	

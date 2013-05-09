@@ -1,6 +1,5 @@
 package org.projectcrawwl.data;
 
-import java.awt.Color;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.geom.Line2D;
@@ -21,8 +20,6 @@ public class ConvexHull implements Serializable{
 	
 	World world;
 	
-	private Color color;
-	
 	ArrayList<Line2D.Float> lines = new ArrayList<Line2D.Float>();
 	
 	private Point center = new Point();
@@ -31,7 +28,6 @@ public class ConvexHull implements Serializable{
 	
 	public ConvexHull(){
 		
-		color = new Color((int) (255*Math.random()),(int) (255*Math.random()),(int) (255*Math.random()));
 	}
 	
 	public double getFarthest(){
@@ -122,27 +118,16 @@ public class ConvexHull implements Serializable{
 		
 		world = World.getInstance();
 		
-		GL11.glColor4d(0,0,0,1);
+		GL11.glColor4d(0,0,0,.75);
 		//GL11.glColor3d((double)(color.getRed())/255, (double)(color.getBlue())/255, (double)(color.getGreen())/255);
 		GL11.glLineWidth(1);
-		GL11.glBegin(GL11.GL_LINES);
+		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
 		for(Line2D.Float temp : lines){
-			GL11.glVertex2f(temp.x1 + world.getMapXOffset(), temp.y1 + world.getMapYOffset());
+			//Reordered, SO HAPPY
 			GL11.glVertex2f(temp.x2 + world.getMapXOffset(), temp.y2 + world.getMapYOffset());
+			GL11.glVertex2f(temp.x1 + world.getMapXOffset(), temp.y1 + world.getMapYOffset());
+			
 		}
 		GL11.glEnd();
-		
-		/*
-		GL11.glColor4d(1.0,0.0,0.0,0.5);
-		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
-		GL11.glVertex2d(center.x + world.getMapXOffset(), center.y + world.getMapYOffset());
-		for(float angle = 0; angle <= Math.PI*2; angle +=(Math.PI*2/32)){
-			GL11.glVertex2d(center.x + world.getMapXOffset() + Math.cos(angle)*(farthest*2), center.y + world.getMapYOffset()  + Math.sin(angle)*(farthest*2));
-		}
-		GL11.glVertex2d(center.x + world.getMapXOffset() + (farthest*2), center.y + world.getMapYOffset());
-
-		GL11.glEnd();*/
-		
-		
 	}
 }
