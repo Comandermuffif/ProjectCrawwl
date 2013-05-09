@@ -1,15 +1,20 @@
 package org.projectcrawwl.objects;
 
+import java.io.IOException;
+
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 import org.projectcrawwl.weapons.*;
 
 import org.newdawn.slick.Color;
+import org.newdawn.slick.opengl.Texture;
+import org.newdawn.slick.opengl.TextureLoader;
+import org.newdawn.slick.util.ResourceLoader;
 
 public class Player extends BasePlayer {
 	
-	
+	private Texture texture;
 	
 	public Player(int tempX, int tempY){
 		super(tempX,tempY);
@@ -29,14 +34,12 @@ public class Player extends BasePlayer {
 		//inventory.addWeapon(new MissleLauncher(this));
 		
 		this.createBoundingBox();
-	}
-	public Player(){
-		super();
-		x = 0;
-		y = 0;
-		r = 25;
-		facingAngle = 0;
-		health = 100;
+		
+		try {
+			texture = TextureLoader.getTexture("PNG", ResourceLoader.getResourceAsStream("res/player 2.png"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 	}
 	
@@ -53,12 +56,28 @@ public class Player extends BasePlayer {
 	
 	//Draw everything here
 	public void render(){
+		if(!isReady){return;}
 		super.render();
 	
 		float ratio = ((float) (settings.getScreenY())/settings.getScreenX());
 		
 		GL11.glLoadIdentity();
 		GL11.glOrtho(-data.zoom, settings.getScreenX()  + data.zoom, -data.zoom*(ratio), settings.getScreenY() + data.zoom*(ratio), -1, 1);
+		
+		/*
+		Color.white.bind();
+		texture.bind(); // or GL11.glBind(texture.getTextureID());
+		 
+		GL11.glBegin(GL11.GL_QUADS);
+			GL11.glTexCoord2f(0,1);
+			GL11.glVertex2f(renderX - 25,renderY - 25);
+			GL11.glTexCoord2f(0,0);
+			GL11.glVertex2f(renderX + 25, renderY - 25);
+			GL11.glTexCoord2f(1,0);
+			GL11.glVertex2f(renderX + 25, renderY + 25);
+			GL11.glTexCoord2f(1,1);
+			GL11.glVertex2f(renderX - 25, renderY + 25);
+		GL11.glEnd();*/
 		
 	}
 
@@ -69,7 +88,7 @@ public class Player extends BasePlayer {
 		GL11.glLoadIdentity();
 		GL11.glOrtho(0, settings.getScreenX(), 0, settings.getScreenY(), -1, 1);
 		
-		GL11.glColor4d(.25,.25,.25,1.0f);
+		GL11.glColor4d(.25,.25,.25,.5f);
 		GL11.glBegin(GL11.GL_TRIANGLE_FAN);{
 			GL11.glVertex2d(5, 5);
 			GL11.glVertex2d(230,5);
@@ -181,6 +200,12 @@ public class Player extends BasePlayer {
 				}
 				if (Keyboard.getEventKey() == Keyboard.KEY_NUMPAD0){
 					data.zoom = 0;
+				}
+				
+				if (Keyboard.getEventKey() == Keyboard.KEY_NUMPAD1){
+					for(int i = 0; i < 10; i ++){
+						data.addZombie();
+					}
 				}
 				
 			}

@@ -122,8 +122,8 @@ public class ConvexHull implements Serializable{
 		
 		world = World.getInstance();
 		
-		//GL11.glColor4d(.2,.3,.7,1);
-		GL11.glColor3d((double)(color.getRed())/255, (double)(color.getBlue())/255, (double)(color.getGreen())/255);
+		GL11.glColor4d(0,0,0,1);
+		//GL11.glColor3d((double)(color.getRed())/255, (double)(color.getBlue())/255, (double)(color.getGreen())/255);
 		GL11.glLineWidth(1);
 		GL11.glBegin(GL11.GL_LINES);
 		for(Line2D.Float temp : lines){

@@ -3,6 +3,7 @@ package org.projectcrawwl;
 import org.lwjgl.LWJGLException;
 import org.lwjgl.Sys;
 import org.lwjgl.input.Keyboard;
+import org.lwjgl.openal.AL;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
@@ -75,7 +76,7 @@ public class Main {
     	
     	
         while (!Display.isCloseRequested()) {
-        	//Display.sync(10);
+        	Display.sync(60);
         	GL11.glDepthMask(true);
     		GL11.glClearDepth(1f);
     		GL11.glClearColor(0.0f,0.0f,0.0f,0.0f);
@@ -99,6 +100,7 @@ public class Main {
         
         //render.cancel();
         update.cancel();
+        AL.destroy();
     	Display.destroy();
         System.exit(0);
         

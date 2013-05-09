@@ -9,6 +9,7 @@ public class Corpse extends GameObject{
 	}
 	
 	public void render(){
+		if(!isReady){return;}
 		
 		GL11.glColor3d(1.0, 0.0, 0.0);
 		
@@ -24,6 +25,8 @@ public class Corpse extends GameObject{
 	}
 	
 	public void update(){
+		isReady = true;
+		
 		renderX = x + data.getMapXOffset();
 		renderY = y + data.getMapYOffset();
 	}

@@ -40,6 +40,8 @@ public class GameObject {
 	
 	public World world = World.getInstance();
 	
+	public boolean isReady = false;
+	
 	
 	/**
 	 * A generic Game Object
@@ -150,11 +152,16 @@ public class GameObject {
 	
 	//Draw everything here
 	public void render(){
+		if(!isReady){
+			return;
+		}
 		
 	}
 
 	//Do all calculations here
 	public void update(int delta){
+		if(!isReady){isReady = true;}
+		
 		World world = World.getInstance();
 		
 		renderX = x + data.getMapXOffset();

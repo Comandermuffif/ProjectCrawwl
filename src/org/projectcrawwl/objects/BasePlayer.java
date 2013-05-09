@@ -108,6 +108,7 @@ public class BasePlayer extends GameObject{
 
 	@SuppressWarnings("static-access")
 	public void render(){
+		if(!isReady){return;}
 		super.render();
 		inventory.render();
 		

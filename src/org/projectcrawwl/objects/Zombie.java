@@ -36,6 +36,7 @@ public class Zombie extends BasePlayer {
 	}
 	//Draw everything here
 	public void render(){
+		if(!isReady){return;}
 		super.render();
 		float ratio = ((float) (settings.getScreenY())/settings.getScreenX());
 		//Re scale view so text is right side up
