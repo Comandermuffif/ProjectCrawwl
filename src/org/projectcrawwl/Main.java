@@ -48,8 +48,11 @@ public class Main {
     	GL11.glOrtho(0, settings.getScreenX(), 0, settings.getScreenY(), 1, -1);
   
     	GL11.glEnable(GL11.GL_BLEND);
+    	
+    	//The original code
     	//GL11.glBlendFunc(GL11.GL_DST_ALPHA, GL11.GL_ONE);
-    	GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
+    	
+    	GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         
     	
     	System.out.println("Entering Main State");

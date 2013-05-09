@@ -104,7 +104,7 @@ public class Player extends BasePlayer {
 		GL11.glOrtho(0, settings.getScreenX(), settings.getScreenY(), 0, -1, 1);
 		
 		
-		data.getFont().drawString(20, settings.getScreenY() - 80, "Weapon: " + inventory.getWeapon().getName(), Color.red);
+		data.getFont().drawString(20, settings.getScreenY() - 80, "Weapon: " + inventory.getWeapon().getName(), new Color(39,255,20));
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		
 		//Reset to zoom

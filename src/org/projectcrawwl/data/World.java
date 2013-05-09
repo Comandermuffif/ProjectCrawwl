@@ -213,14 +213,21 @@ public class World implements Serializable{
 	public void renderBackground(){
 		
 		//Brown background
-		
-		GL11.glColor3d(.34,.23,.04);
+		/*
+		GL11.glColor4d(.34,.23,.04,1);
 		GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
 		GL11.glVertex3f(mapXOffset, mapYOffset, 0);
 		GL11.glVertex3f(mapXOffset, mapYOffset + mapY, 0);
 		GL11.glVertex3f(mapXOffset + mapX, mapYOffset, 0);
 		GL11.glVertex3f(mapXOffset + mapX, mapYOffset + mapY, 0);
+		GL11.glEnd();*/
 		
+		GL11.glColor4d(1,1,1,1);
+		GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
+		GL11.glVertex2f(mapXOffset, mapYOffset);
+		GL11.glVertex2f(mapXOffset, mapYOffset + mapY);
+		GL11.glVertex2f(mapXOffset + mapX, mapYOffset);
+		GL11.glVertex2f(mapXOffset + mapX, mapYOffset + mapY);
 		GL11.glEnd();
 		
 		for(ConvexHull x : hulls){
