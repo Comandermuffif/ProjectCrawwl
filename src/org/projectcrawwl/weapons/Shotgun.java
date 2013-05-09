@@ -1,7 +1,11 @@
 package org.projectcrawwl.weapons;
 
+import java.io.IOException;
 import java.util.Random;
 
+import org.newdawn.slick.openal.Audio;
+import org.newdawn.slick.openal.AudioLoader;
+import org.newdawn.slick.util.ResourceLoader;
 import org.projectcrawwl.objects.BasePlayer;
 import org.projectcrawwl.projectile.BaseProjectile;
 
@@ -20,6 +24,13 @@ public class Shotgun extends BaseRangedWeapon{
 	}
 	public void fire(){
 		if(active == false){
+			
+			Audio onFire = null;
+			try {
+				onFire = AudioLoader.getAudio("OGG", ResourceLoader.getResourceAsStream("res/Wpn_shotguncombat_fire_2d.ogg"));
+			} catch (IOException e) {e.printStackTrace();}
+			onFire.playAsSoundEffect(1.0f, 1.0f, false);
+			
 			active = true;
 			currentCoolDown = coolDown;
 			for(int x = 0; x < pellets; x++){

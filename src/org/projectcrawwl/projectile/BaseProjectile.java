@@ -3,9 +3,13 @@ package org.projectcrawwl.projectile;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.geom.Line2D;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import org.lwjgl.opengl.GL11;
+import org.newdawn.slick.openal.Audio;
+import org.newdawn.slick.openal.AudioLoader;
+import org.newdawn.slick.util.ResourceLoader;
 import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.objects.BasePlayer;
 import org.projectcrawwl.objects.GameObject;
@@ -89,6 +93,12 @@ public class BaseProjectile extends GameObject{
 		if(speed == 0){
 			//System.out.println("Stopped");
 			data.removeProjectile(this);
+			Audio onFire = null;
+			try {
+				int i = (int) Math.random()*10;
+				onFire = AudioLoader.getAudio("WAV", ResourceLoader.getResourceAsStream("res/fx_bullet_impact_concrete_1" + (i + 6) + ".wav"));
+			} catch (IOException e) {e.printStackTrace();}
+			onFire.playAsSoundEffect(1.0f, 1.0f, false);
 		}
 		
 		for(BasePlayer b : temp){

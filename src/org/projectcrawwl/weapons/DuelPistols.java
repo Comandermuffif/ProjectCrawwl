@@ -1,8 +1,12 @@
 package org.projectcrawwl.weapons;
 
+import java.io.IOException;
 import java.util.Random;
 
 import org.lwjgl.input.Mouse;
+import org.newdawn.slick.openal.Audio;
+import org.newdawn.slick.openal.AudioLoader;
+import org.newdawn.slick.util.ResourceLoader;
 import org.projectcrawwl.objects.BasePlayer;
 import org.projectcrawwl.projectile.BaseProjectile;
 public class DuelPistols extends BaseRangedWeapon{
@@ -18,14 +22,22 @@ public class DuelPistols extends BaseRangedWeapon{
 		
 		damage = 10;
 		
-		coolDown = 120000/900;
+		coolDown = 500;
 		currentCoolDown = coolDown;
 	}
 	
 	public void fire(){
+		
 		if(active == false){
 			active = true;
 			currentCoolDown = coolDown;
+			
+			Audio onFire = null;
+			try {
+				onFire = AudioLoader.getAudio("OGG", ResourceLoader.getResourceAsStream("res/Wpn_pistol_44magnum_fire_2d.ogg"));
+			} catch (IOException e) {e.printStackTrace();}
+			onFire.playAsSoundEffect(1.0f, 1.0f, false);
+			
 			
 			Random random = new Random();
 			float temp = (float) (random.nextGaussian()*1);
