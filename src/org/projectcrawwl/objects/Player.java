@@ -7,7 +7,6 @@ import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 import org.projectcrawwl.weapons.*;
 
-import org.newdawn.slick.Color;
 import org.newdawn.slick.opengl.Texture;
 import org.newdawn.slick.opengl.TextureLoader;
 import org.newdawn.slick.util.ResourceLoader;
@@ -64,7 +63,6 @@ public class Player extends BasePlayer {
 		GL11.glLoadIdentity();
 		GL11.glOrtho(-data.zoom, settings.getScreenX()  + data.zoom, -data.zoom*(ratio), settings.getScreenY() + data.zoom*(ratio), -1, 1);
 		
-		
 		/*
 		Color.white.bind();
 		texture.bind();
@@ -95,7 +93,7 @@ public class Player extends BasePlayer {
 		GL11.glLoadIdentity();
 		
     	GL11.glAlphaFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-    	GL11.glBlendFunc(GL11.GL_ONE_MINUS_DST_COLOR, GL11.GL_ZERO);
+    	//GL11.glBlendFunc(GL11.GL_ONE_MINUS_DST_COLOR, GL11.GL_ZERO);
 		
 		GL11.glColor4f(1.0f,0,0,1.0f);
 		GL11.glBegin(GL11.GL_TRIANGLE_FAN);{

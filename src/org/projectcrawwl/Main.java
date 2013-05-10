@@ -29,6 +29,7 @@ public class Main {
         try {
         	
 		    Display.setDisplayMode(new DisplayMode(settings.getScreenX(),settings.getScreenY()));
+		    Display.setFullscreen(true);
 		    Display.create();
 		    Display.setTitle("Project Crawwl");
         } catch (LWJGLException e) {
@@ -56,7 +57,7 @@ public class Main {
     	
     	GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         
-    	
+    	GL11.glEnable(GL11.GL_POLYGON_SMOOTH);
         
     	
     	System.out.println("Entering Main State");
