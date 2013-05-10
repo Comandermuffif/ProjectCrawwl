@@ -27,9 +27,13 @@ public class Inventory {
 		
 	}
 	public void update(int delta){
-		for(BaseWeapon a : weapons){
-			a.update(delta);
+		if(weapons.size() != 0){
+			weapons.get(counter).update(delta);
 		}
+		
+//		for(BaseWeapon a : weapons){
+//			a.update(delta);
+//		}
 	}
 	
 	public void setWeapon(int n){

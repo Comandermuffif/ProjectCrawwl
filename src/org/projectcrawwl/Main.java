@@ -57,9 +57,6 @@ public class Main {
     	
     	GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         
-    	GL11.glEnable(GL11.GL_POLYGON_SMOOTH);
-        
-    	
     	System.out.println("Entering Main State");
 		
 		data.setMapXOffset((settings.getScreenX() - data.getMapX())/2);

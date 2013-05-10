@@ -90,30 +90,13 @@ public class Player extends BasePlayer {
 		GL11.glLoadIdentity();
 		GL11.glOrtho(0, settings.getScreenX(), 0, settings.getScreenY(), -1, 1);
 		
-		GL11.glLoadIdentity();
-		
-    	GL11.glAlphaFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
-    	//GL11.glBlendFunc(GL11.GL_ONE_MINUS_DST_COLOR, GL11.GL_ZERO);
-		
-		GL11.glColor4f(1.0f,0,0,1.0f);
-		GL11.glBegin(GL11.GL_TRIANGLE_FAN);{
-			GL11.glVertex2d(5, 85);
-			GL11.glVertex2d(5+2*r,85);
-			GL11.glVertex2d(5+2*r,85+.5*r);
-			GL11.glVertex2d(5, 85+.5*r);
-		}
+		GL11.glColor3d(0,0,0);
+		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
+		GL11.glVertex2d(0, 0);
+		GL11.glVertex2d(250, 0);
+		GL11.glVertex2d(250, 100);
+		GL11.glVertex2d(0, 100);
 		GL11.glEnd();
-		
-		
-		GL11.glColor4f(0,1.0f,0,1.0f);
-		GL11.glBegin(GL11.GL_TRIANGLE_FAN);{
-			GL11.glVertex2d(5, 85);
-			GL11.glVertex2d(5+2*r*health/100,85);
-			GL11.glVertex2d(5+2*r*health/100,85+.5*r);
-			GL11.glVertex2d(5, 85+.5*r);
-		}
-		GL11.glEnd();
-		
 		
 		
 		//Re scale view so text is right side up
@@ -122,6 +105,11 @@ public class Player extends BasePlayer {
 		
 		
 		data.getFont().drawString(20, settings.getScreenY() - 80, "Weapon: " + inventory.getWeapon().getName());
+		if(inventory.getWeapon().isReloading()){
+			data.getFont().drawString(20, settings.getScreenY() - 60, "Clip: Reloading...");
+		}else{
+			data.getFont().drawString(20, settings.getScreenY() - 60, "Clip: " + inventory.getWeapon().getClip().x + "/" + inventory.getWeapon().getClip().y);
+		}
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		
 		//Reset to zoom

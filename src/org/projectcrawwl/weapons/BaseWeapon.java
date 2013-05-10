@@ -1,5 +1,7 @@
 package org.projectcrawwl.weapons;
 
+import java.awt.Point;
+
 import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.objects.BasePlayer;
 
@@ -30,5 +32,11 @@ public class BaseWeapon {
 	}
 	public String getName(){
 		return name;
+	}
+	public Point getClip(){
+		return new Point(0,0);
+	}
+	public boolean isReloading(){
+		return false;
 	}
 }

@@ -24,19 +24,29 @@ public class DuelPistols extends BaseRangedWeapon{
 		
 		coolDown = 500;
 		currentCoolDown = coolDown;
+		
+		maxClip = 16;
+		
+		currentClip = maxClip;
+		
+		try {
+			onFire = AudioLoader.getAudio("OGG", ResourceLoader.getResourceAsStream("res/Wpn_pistol_44magnum_fire_2d.ogg"));
+		} catch (IOException e) {e.printStackTrace();}
 	}
 	
 	public void fire(){
 		
-		if(active == false){
+		if(active == false && reloading == false){
+			
+			if(currentClip == 0){reloading = true;return;}
+			
+			
 			active = true;
 			currentCoolDown = coolDown;
 			
-			Audio onFire = null;
-			try {
-				onFire = AudioLoader.getAudio("OGG", ResourceLoader.getResourceAsStream("res/Wpn_pistol_44magnum_fire_2d.ogg"));
-			} catch (IOException e) {e.printStackTrace();}
-			onFire.playAsSoundEffect(1.0f, 1.0f, false);
+			if(onFire != null){
+				onFire.playAsSoundEffect(1.0f, 1.0f, false);
+			}
 			
 			
 			Random random = new Random();
@@ -49,6 +59,8 @@ public class DuelPistols extends BaseRangedWeapon{
 				data.addProjectile(new BaseProjectile((float) (owner.x + Math.cos(Math.toRadians(owner.facingAngle - 30))*(40)),(float) (owner.y + Math.sin(Math.toRadians(owner.facingAngle - 45))*(40)),velocity,(float) Math.toDegrees(Math.atan2(Mouse.getY() - (owner.getRenderY() + Math.sin(Math.toRadians(owner.facingAngle - 45))*(40)), Mouse.getX() - (owner.renderX + Math.cos(Math.toRadians(owner.facingAngle - 30))*(40)))) + temp, damage, owner));
 			}
 			left = !left;
+			
+			currentClip -= 1;
 		}
 	}
 }

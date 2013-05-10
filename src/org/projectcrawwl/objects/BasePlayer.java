@@ -141,7 +141,7 @@ public class BasePlayer extends GameObject{
 		GL11.glEnd();
 		
 		
-		GL11.glColor4d(.3,.3,.3,.5);
+		GL11.glColor4d(.3,.3,.3,1);
 		GL11.glLineWidth(1);
 		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
 		for(Line2D.Float temp : boundingLines){
