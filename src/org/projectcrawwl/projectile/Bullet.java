@@ -3,18 +3,14 @@ package org.projectcrawwl.projectile;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.geom.Line2D;
-import java.io.IOException;
 import java.util.ArrayList;
 
 import org.lwjgl.opengl.GL11;
-import org.newdawn.slick.openal.Audio;
-import org.newdawn.slick.openal.AudioLoader;
-import org.newdawn.slick.util.ResourceLoader;
 import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.objects.BasePlayer;
 import org.projectcrawwl.objects.GameObject;
 
-public class BaseProjectile extends GameObject{
+public class Bullet extends GameObject{
 	
 	BasePlayer owner;
 	public float damage;
@@ -23,8 +19,16 @@ public class BaseProjectile extends GameObject{
 	
 	BasePlayer lastHit = null;
 	
-	
-	public BaseProjectile(float tempX, float tempY, float tempSpeed, float tempAngle, float tempD, BasePlayer own){
+	/**
+	 * 
+	 * @param tempX - X location
+	 * @param tempY - Y location
+	 * @param tempSpeed - the speed it loves at
+	 * @param tempAngle - the angle (degrees) that it is facing
+	 * @param tempD - Damage it does
+	 * @param own - The person who shot it
+	 */
+	public Bullet(float tempX, float tempY, float tempSpeed, float tempAngle, float tempD, BasePlayer own){
 		super(tempX, tempY);
 		x = tempX;
 		y = tempY;
@@ -93,6 +97,9 @@ public class BaseProjectile extends GameObject{
 		if(speed == 0){
 			//System.out.println("Stopped");
 			data.removeProjectile(this);
+			
+			data.addParticle(new Particle(x, y, moveAngle, -.1, 2500));
+			
 //			Audio onFire = null;
 //			try {
 //				int i = (int) Math.random()*10;

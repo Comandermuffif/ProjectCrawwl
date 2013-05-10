@@ -6,7 +6,7 @@ import java.util.Random;
 import org.newdawn.slick.openal.Audio;
 import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.objects.BasePlayer;
-import org.projectcrawwl.projectile.BaseProjectile;
+import org.projectcrawwl.projectile.Bullet;
 
 
 public class BaseRangedWeapon extends BaseWeapon{
@@ -90,10 +90,11 @@ public class BaseRangedWeapon extends BaseWeapon{
 			for(int x = 0; x < pellets; x++){
 				GameData data = GameData.getInstance();
 				Random random = new Random();
-				data.addProjectile(new BaseProjectile((float) (owner.x + Math.cos(Math.toRadians(owner.facingAngle))*(owner.r + 5)),(float) (owner.y + Math.sin(Math.toRadians(owner.facingAngle))*(owner.r+5)),velocity,(float) ((float) owner.facingAngle + random.nextGaussian()*spread), damage, owner));
+				data.addProjectile(new Bullet((float) (owner.x + Math.cos(Math.toRadians(owner.facingAngle))*(owner.r + 5)),(float) (owner.y + Math.sin(Math.toRadians(owner.facingAngle))*(owner.r+5)),velocity,(float) ((float) owner.facingAngle + random.nextGaussian()*spread), damage, owner));
 			}
 						
 			currentClip -= 1;
+			if(currentClip == 0){reloading = true;}
 		}
 	}
 }

@@ -9,13 +9,14 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.UnicodeFont;
 import org.newdawn.slick.font.effects.ColorEffect;
 import org.projectcrawwl.objects.*;
-import org.projectcrawwl.projectile.BaseProjectile;
+import org.projectcrawwl.projectile.Bullet;
+import org.projectcrawwl.projectile.Particle;
 
 public class GameData 
 {	
-	private ArrayList<BaseProjectile> allProjectiles = new ArrayList<BaseProjectile>();//Projectiles
-	private ArrayList<BaseProjectile> removeProjectiles = new ArrayList<BaseProjectile>();//Projectiles to be removed
-	private ArrayList<BaseProjectile> addProjectiles = new ArrayList<BaseProjectile>();//Projectiles to be removed
+	private ArrayList<Bullet> allProjectiles = new ArrayList<Bullet>();//Projectiles
+	private ArrayList<Bullet> removeProjectiles = new ArrayList<Bullet>();//Projectiles to be removed
+	private ArrayList<Bullet> addProjectiles = new ArrayList<Bullet>();//Projectiles to be removed
 	private Object projectileLock = new Object();
 
 	private BasePlayer player;
@@ -24,6 +25,11 @@ public class GameData
 	private ArrayList<BasePlayer> addPlayers = new ArrayList<BasePlayer>();
 	private ArrayList<BasePlayer> removePlayers = new ArrayList<BasePlayer>();
 	private Object playerLock = new Object();
+	
+	private ArrayList<GameObject> allParticles = new ArrayList<GameObject>();
+	private ArrayList<GameObject> addParticles = new ArrayList<GameObject>();
+	private ArrayList<GameObject> removeParticles = new ArrayList<GameObject>();
+	private Object particleLock = new Object();
 	
 	private ArrayList<GameObject> corpses = new ArrayList<GameObject>();
 	
@@ -207,13 +213,22 @@ public class GameData
 	public void removeObject(BasePlayer gameObject) {
 		removePlayers.add(gameObject);
 	}
-	public void addProjectile(BaseProjectile temp){
+	public void addProjectile(Bullet temp){
 		addProjectiles.add(temp);
 	}
-	public void removeProjectile(BaseProjectile temp){
+	public void removeProjectile(Bullet temp){
 		removeProjectiles.add(temp);
 	}
-	public ArrayList<BaseProjectile> getProjectiles(){
+	
+	public void addParticle(Particle p){
+		addParticles.add(p);
+	}
+	
+	public void removeParticle(Particle p){
+		removeParticles.add(p);
+	}
+	
+	public ArrayList<Bullet> getProjectiles(){
 		return allProjectiles;
 	}
 	public ArrayList<BasePlayer> getAllPlayers(){
@@ -293,8 +308,14 @@ public class GameData
 			}
 		}
 		
+		synchronized(particleLock){
+			for(GameObject d : allParticles){
+				d.render();
+			}
+		}
+		
 		synchronized(projectileLock){
-			for(BaseProjectile q : allProjectiles){
+			for(Bullet q : allProjectiles){
 				q.render();
 			}
 		}
@@ -318,7 +339,7 @@ public class GameData
 		
 		synchronized(projectileLock){
 			//Removes projectiles that are off screen
-			for(BaseProjectile a : removeProjectiles){
+			for(Bullet a : removeProjectiles){
 				allProjectiles.remove(a);
 			}
 			removeProjectiles.clear();
@@ -326,10 +347,24 @@ public class GameData
 		
 		synchronized(projectileLock){
 			//Removes projectiles that are off screen
-			for(BaseProjectile a : addProjectiles){
+			for(Bullet a : addProjectiles){
 				allProjectiles.add(a);
 			}
 			addProjectiles.clear();
+		}
+		
+		synchronized(particleLock){
+			for(GameObject a : removeParticles){
+				allParticles.remove(a);
+			}
+			removeParticles.clear();
+		}
+		
+		synchronized(particleLock){
+			for(GameObject a : addParticles){
+				allParticles.add(a);
+			}
+			addParticles.clear();
 		}
 		
 		synchronized(playerLock){
@@ -359,6 +394,10 @@ public class GameData
 		
 		for(GameObject c : getCorpses()){
 			c.update(delta);
+		}
+		
+		for(GameObject d : allParticles){
+			d.update(delta);
 		}
 	}
 }

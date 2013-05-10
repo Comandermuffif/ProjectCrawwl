@@ -3,7 +3,7 @@ package org.projectcrawwl.projectile;
 import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.objects.BasePlayer;
 
-public class DumbMissle extends BaseProjectile{
+public class DumbMissle extends Bullet{
 	
 	public BasePlayer target;
 	/**

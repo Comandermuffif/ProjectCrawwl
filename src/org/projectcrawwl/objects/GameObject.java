@@ -5,6 +5,7 @@ import java.awt.Polygon;
 import java.awt.geom.Line2D;
 import java.util.ArrayList;
 
+import org.lwjgl.opengl.GL11;
 import org.projectcrawwl.data.ConvexHull;
 import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.data.GameSettings;
@@ -29,8 +30,8 @@ public class GameObject {
 	public Polygon boundingBox = new Polygon();
 	public ArrayList<Line2D.Float> boundingLines = new ArrayList<Line2D.Float>();
 	
-	GameData data = GameData.getInstance();
-	GameSettings settings = GameSettings.getInstance();
+	public GameData data = GameData.getInstance();
+	public GameSettings settings = GameSettings.getInstance();
 	
 	private Point center = new Point();
 	
@@ -155,6 +156,15 @@ public class GameObject {
 		if(!isReady){
 			return;
 		}
+		
+		GL11.glColor4d(.3,.3,.3,1);
+		GL11.glLineWidth(1);
+		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
+		for(Line2D.Float temp : boundingLines){
+			GL11.glVertex2d(temp.x2*Math.cos(Math.toRadians(facingAngle)) - temp.y2*Math.sin(Math.toRadians(facingAngle)) + renderX, temp.x2*Math.sin(Math.toRadians(facingAngle)) + temp.y2*Math.cos(Math.toRadians(facingAngle)) + renderY);
+			GL11.glVertex2d(temp.x1*Math.cos(Math.toRadians(facingAngle)) - temp.y1*Math.sin(Math.toRadians(facingAngle)) + renderX, temp.x1*Math.sin(Math.toRadians(facingAngle)) + temp.y1*Math.cos(Math.toRadians(facingAngle)) + renderY);
+		}
+		GL11.glEnd();
 		
 	}
 

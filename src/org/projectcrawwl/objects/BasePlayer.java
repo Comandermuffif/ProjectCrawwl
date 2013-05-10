@@ -139,19 +139,6 @@ public class BasePlayer extends GameObject{
 			pi.next();
 		}
 		GL11.glEnd();
-		
-		
-		GL11.glColor4d(.3,.3,.3,1);
-		GL11.glLineWidth(1);
-		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
-		for(Line2D.Float temp : boundingLines){
-			GL11.glVertex2d(temp.x2*Math.cos(Math.toRadians(facingAngle)) - temp.y2*Math.sin(Math.toRadians(facingAngle)) + renderX, temp.x2*Math.sin(Math.toRadians(facingAngle)) + temp.y2*Math.cos(Math.toRadians(facingAngle)) + renderY);
-			GL11.glVertex2d(temp.x1*Math.cos(Math.toRadians(facingAngle)) - temp.y1*Math.sin(Math.toRadians(facingAngle)) + renderX, temp.x1*Math.sin(Math.toRadians(facingAngle)) + temp.y1*Math.cos(Math.toRadians(facingAngle)) + renderY);
-		}
-		
-		
-		GL11.glEnd();
-		
 	}
 	
 	public void renderHUD(){

@@ -4,11 +4,10 @@ import java.io.IOException;
 import java.util.Random;
 
 import org.lwjgl.input.Mouse;
-import org.newdawn.slick.openal.Audio;
 import org.newdawn.slick.openal.AudioLoader;
 import org.newdawn.slick.util.ResourceLoader;
 import org.projectcrawwl.objects.BasePlayer;
-import org.projectcrawwl.projectile.BaseProjectile;
+import org.projectcrawwl.projectile.Bullet;
 public class DuelPistols extends BaseRangedWeapon{
 
 	private boolean left = false;
@@ -25,7 +24,7 @@ public class DuelPistols extends BaseRangedWeapon{
 		coolDown = 500;
 		currentCoolDown = coolDown;
 		
-		maxClip = 16;
+		maxClip = 12;
 		
 		currentClip = maxClip;
 		
@@ -54,13 +53,15 @@ public class DuelPistols extends BaseRangedWeapon{
 			Math.atan2(Mouse.getY() - (owner.getRenderY() + Math.sin(Math.toRadians(owner.facingAngle + 45))*(40)), Mouse.getX() - (owner.renderX + Math.cos(Math.toRadians(owner.facingAngle + 30))*(40)));
 			
 			if(left){
-				data.addProjectile(new BaseProjectile((float) (owner.x + Math.cos(Math.toRadians(owner.facingAngle + 30))*(40)),(float) (owner.y + Math.sin(Math.toRadians(owner.facingAngle + 45))*(40)),velocity,(float) Math.toDegrees(Math.atan2(Mouse.getY() - (owner.getRenderY() + Math.sin(Math.toRadians(owner.facingAngle + 45))*(40)), Mouse.getX() - (owner.renderX + Math.cos(Math.toRadians(owner.facingAngle + 30))*(40)))) + temp, damage, owner));
+				data.addProjectile(new Bullet((float) (owner.x + Math.cos(Math.toRadians(owner.facingAngle + 30))*(40)),(float) (owner.y + Math.sin(Math.toRadians(owner.facingAngle + 45))*(40)),velocity,(float) Math.toDegrees(Math.atan2(Mouse.getY() - (owner.getRenderY() + Math.sin(Math.toRadians(owner.facingAngle + 45))*(40)), Mouse.getX() - (owner.renderX + Math.cos(Math.toRadians(owner.facingAngle + 30))*(40)))) + temp, damage, owner));
 			}else{
-				data.addProjectile(new BaseProjectile((float) (owner.x + Math.cos(Math.toRadians(owner.facingAngle - 30))*(40)),(float) (owner.y + Math.sin(Math.toRadians(owner.facingAngle - 45))*(40)),velocity,(float) Math.toDegrees(Math.atan2(Mouse.getY() - (owner.getRenderY() + Math.sin(Math.toRadians(owner.facingAngle - 45))*(40)), Mouse.getX() - (owner.renderX + Math.cos(Math.toRadians(owner.facingAngle - 30))*(40)))) + temp, damage, owner));
+				data.addProjectile(new Bullet((float) (owner.x + Math.cos(Math.toRadians(owner.facingAngle - 30))*(40)),(float) (owner.y + Math.sin(Math.toRadians(owner.facingAngle - 45))*(40)),velocity,(float) Math.toDegrees(Math.atan2(Mouse.getY() - (owner.getRenderY() + Math.sin(Math.toRadians(owner.facingAngle - 45))*(40)), Mouse.getX() - (owner.renderX + Math.cos(Math.toRadians(owner.facingAngle - 30))*(40)))) + temp, damage, owner));
 			}
 			left = !left;
 			
 			currentClip -= 1;
+			
+			if(currentClip == 0){reloading = true;}
 		}
 	}
 }
