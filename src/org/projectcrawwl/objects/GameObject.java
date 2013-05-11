@@ -3,6 +3,7 @@ package org.projectcrawwl.objects;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.geom.Line2D;
+import java.awt.geom.PathIterator;
 import java.util.ArrayList;
 
 import org.lwjgl.opengl.GL11;
@@ -118,6 +119,41 @@ public class GameObject {
 		}
 	}
 	
+	public void updateLines(){
+		ArrayList<Line2D.Float> temp = new ArrayList<Line2D.Float>();
+		
+		float[] coord = new float[6];
+		float[] lastCoord = new float[2];
+		float[] firstCoord = new float[2];
+		PathIterator pi = boundingBox.getPathIterator(null);
+		
+		pi.currentSegment(coord);
+		
+		pi.currentSegment(firstCoord); //Getting the first coordinate pair
+        lastCoord[0] = firstCoord[0]; //Priming the previous coordinate pair
+        lastCoord[1] = firstCoord[1];
+		
+		while(!pi.isDone()){
+			final int type = pi.currentSegment(coord);
+            switch(type) {
+                case PathIterator.SEG_LINETO : {
+                	temp.add(new Line2D.Float(coord[0], coord[1], lastCoord[0], lastCoord[1]));
+                    lastCoord[0] = coord[0];
+                    lastCoord[1] = coord[1];
+                    break;
+                }
+                case PathIterator.SEG_CLOSE : {
+                    temp.add(new Line2D.Float(coord[0], coord[1], firstCoord[0], firstCoord[1]));   
+                    break;
+                }
+            }
+            pi.next();
+		}
+		
+		boundingLines = temp;
+		updateData();
+	}
+	
 	public ArrayList<Line2D.Float> boundingBox(){
 		return boundingLines;
 	}
@@ -189,14 +225,34 @@ public class GameObject {
 		
 		
 		if(facingAngle != tempFacing){
-			//System.out.println(facingAngle +">"+tempFacing);
 			
+			//System.out.println(facingAngle - tempFacing);
 			if(Math.abs(facingAngle - tempFacing) > delta*(turnSpeed)){
-				if(facingAngle - tempFacing > delta*(turnSpeed)){
+				System.out.print(facingAngle +" > "+tempFacing + " ");
+				if(facingAngle - tempFacing > delta*(turnSpeed) && Math.abs(facingAngle - tempFacing) < 180){
+					System.out.println("left");
 					tempFacing = (float) (facingAngle - delta*(turnSpeed));
-				}else{
+				}
+				if(facingAngle - tempFacing < delta*(turnSpeed) && Math.abs(facingAngle - tempFacing) < 180){
+					System.out.println("right");
 					tempFacing = (float) (facingAngle + delta*(turnSpeed));
 				}
+				if(facingAngle - tempFacing > delta*(turnSpeed) && Math.abs(facingAngle - tempFacing) > 180){
+					System.out.println("right");
+					tempFacing = (float) (facingAngle + delta*(turnSpeed));
+				}
+				if(facingAngle - tempFacing < delta*(turnSpeed) && Math.abs(facingAngle - tempFacing) > 180){
+					System.out.println("left");
+					tempFacing = (float) (facingAngle - delta*(turnSpeed));
+				}
+				
+				if(tempFacing < -180){
+					tempFacing += 360;
+				}
+				if(tempFacing > 180){
+					tempFacing -= 360;
+				}
+				
 			}
 			
 			boolean flag = true;

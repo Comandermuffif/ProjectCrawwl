@@ -5,7 +5,6 @@ import java.awt.geom.Line2D;
 import java.util.Random;
 
 import org.lwjgl.opengl.GL11;
-import org.newdawn.slick.Color;
 import org.projectcrawwl.data.ConvexHull;
 
 
@@ -21,19 +20,7 @@ public class Zombie extends BasePlayer {
 		createBoundingBox();
 		
 	}
-	public Zombie(){
-		super();
-		x = (float) (Math.random() * data.getMapX());
-		y = (float) (Math.random() * data.getMapY());
-		r = 25;
-		facingAngle = 0;
-		moveAngle = (float) (Math.random()*360);
-		health = 100;
-		speed = .03; //.03 units per millisecond or 30 units per second
-		
-		createBoundingBox();
-		
-	}
+	
 	//Draw everything here
 	public void render(){
 		if(!isReady){return;}
@@ -44,8 +31,8 @@ public class Zombie extends BasePlayer {
 		GL11.glOrtho(-data.zoom, settings.getScreenX() + data.zoom, settings.getScreenY() + data.zoom*(ratio),-data.zoom*(ratio), -1, 1);
 		
 		
-		data.getFont().drawString((renderX - 25), settings.getScreenY() - (renderY + 40), "Zombie", Color.red);
-		GL11.glDisable(GL11.GL_TEXTURE_2D);
+		//data.getFont().drawString((renderX - 25), settings.getScreenY() - (renderY + 40), "Zombie", Color.red);
+		//GL11.glDisable(GL11.GL_TEXTURE_2D);
 		
 		
 		
@@ -154,7 +141,7 @@ public class Zombie extends BasePlayer {
 			}
 			
 		}else{
-			if(new Point((int)getX(),(int)getY()).distance(target.getX(), target.getY()) <= 15 + r){
+			if(new Point((int)getX(),(int)getY()).distance(target.getX(), target.getY()) <= getFarthest() + target.getFarthest() + 30){
 				inventory.getWeapon().fire();
 			}
 			moveAngle = (float) (Math.toDegrees(Math.atan2(target.getY() - y, target.getX() - x)));

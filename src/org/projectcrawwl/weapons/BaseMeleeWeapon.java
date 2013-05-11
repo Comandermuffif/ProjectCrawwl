@@ -128,6 +128,7 @@ public class BaseMeleeWeapon extends BaseWeapon{
 	}
 	
 	public void update(int delta){
+		super.update(delta);
 		if(active){
 			currentCoolDown -= delta;
 		}
@@ -147,10 +148,31 @@ public class BaseMeleeWeapon extends BaseWeapon{
 			ArrayList<BasePlayer> temp = data.getAllPlayers();
 			
 			for(BasePlayer b : temp){
+				
+				
+				if( b.getCenter().distance(owner.getCenter()) - (b.getFarthest() + owner.getFarthest() + range) > 0){
+					continue;
+				}
+				
 				if(b == owner){
 					continue;
 				}
-				boolean flag = false;
+				
+				Polygon shift = new Polygon();
+				
+				for(int i = 0; i < area.npoints; i ++){
+					shift.addPoint((int) (area.xpoints[i]*Math.cos(Math.toRadians(owner.facingAngle)) - area.ypoints[i]*Math.sin(Math.toRadians(owner.facingAngle))), (int) (area.xpoints[i]*Math.sin(Math.toRadians(owner.facingAngle)) + area.ypoints[i]*Math.cos(Math.toRadians(owner.facingAngle))));
+				}
+
+				shift.translate((int) owner.getCenter().x, (int) owner.getCenter().y);
+				
+				if(shift.contains(b.x, b.y)){
+					b.damage(damage, owner);
+					continue;
+				}
+				
+				
+				
 				for(Line2D.Float bound : lines){
 					
 					Line2D.Float temp1 = new Line2D.Float();
@@ -171,11 +193,9 @@ public class BaseMeleeWeapon extends BaseWeapon{
 						
 						if(temp2.intersectsLine(temp1)){
 							b.damage(damage, owner);
-							flag = true;
-							break;
+							continue;
 						}
 					}
-					if(flag){break;}
 				}
 			}
 		}

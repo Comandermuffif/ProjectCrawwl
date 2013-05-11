@@ -39,4 +39,7 @@ public class BaseWeapon {
 	public boolean isReloading(){
 		return false;
 	}
+	public void reload(){
+		
+	}
 }

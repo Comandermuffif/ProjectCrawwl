@@ -77,6 +77,10 @@ public class BaseRangedWeapon extends BaseWeapon{
 		return reloading;
 	}
 	
+	public void reload(){
+		reloading = true;
+	}
+	
 	public void fire(){
 		if(active == false && reloading == false){
 			if(currentClip == 0){reloading = true;return;}
@@ -90,7 +94,7 @@ public class BaseRangedWeapon extends BaseWeapon{
 			for(int x = 0; x < pellets; x++){
 				GameData data = GameData.getInstance();
 				Random random = new Random();
-				data.addProjectile(new Bullet((float) (owner.x + Math.cos(Math.toRadians(owner.facingAngle))*(owner.r + 5)),(float) (owner.y + Math.sin(Math.toRadians(owner.facingAngle))*(owner.r+5)),velocity,(float) ((float) owner.facingAngle + random.nextGaussian()*spread), damage, owner));
+				data.addProjectile(new Bullet((float) (owner.x + Math.cos(Math.toRadians(owner.facingAngle))*(owner.r + 5)),(float) (owner.y + Math.sin(Math.toRadians(owner.facingAngle))*(owner.r+5)),(float) (velocity + random.nextGaussian()*.02),(float) ((float) owner.facingAngle + random.nextGaussian()*spread), damage, owner));
 			}
 						
 			currentClip -= 1;

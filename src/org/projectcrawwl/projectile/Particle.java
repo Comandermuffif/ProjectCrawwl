@@ -1,5 +1,7 @@
 package org.projectcrawwl.projectile;
 
+import java.awt.Color;
+
 import org.lwjgl.opengl.GL11;
 import org.projectcrawwl.objects.GameObject;
 
@@ -7,6 +9,10 @@ public class Particle extends GameObject{
 	
 	/** The time in milliseconds this particle exists */
 	private int lifetime;
+	
+	private int setLife;
+	
+	private Color color = new Color(0,0,0);
 	
 	/**
 	 * Create a particle effect that dissipates over time
@@ -23,20 +29,35 @@ public class Particle extends GameObject{
 		moveAngle = A;
 		speed = S;
 		lifetime = L;
+		setLife = L;
+	}
+	
+	public Particle(float X, float Y, float A, double S, int L, Color c){
+		super(X,Y);
+		x = X;
+		y = Y;
+		moveAngle = A;
+		speed = S;
+		lifetime = L;
+		setLife = L;
+		color = c;
 	}
 	
 	/**
 	 * Everything to be drawn
 	 */
 	public void render(){
+		super.render();
 		if(!isReady){
 			return;
 		}
 		
-		GL11.glColor3d(1, 0, 0);
-		GL11.glBegin(GL11.GL_LINES);
-		GL11.glVertex2d(renderX, renderY);
-		GL11.glVertex2d(0, 0);
+		GL11.glColor4d(((double)color.getRed()/255),((double)color.getGreen()/255),((double)color.getBlue()/255),((double)(lifetime)/setLife));
+		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
+		GL11.glVertex2d(renderX-2, renderY);
+		GL11.glVertex2d(renderX, renderY-2);
+		GL11.glVertex2d(renderX+2, renderY);
+		GL11.glVertex2d(renderX, renderY+2);
 		GL11.glEnd();
 	}
 	
@@ -45,11 +66,16 @@ public class Particle extends GameObject{
 	 */
 	public void update(int delta){
 		
+		isReady = true;
+		
 		super.update(delta);
 		
 		lifetime -= delta;
 		
 		if(lifetime <= 0){
+			data.removeParticle(this);
+		}
+		if(speed == 0){
 			data.removeParticle(this);
 		}
 	}

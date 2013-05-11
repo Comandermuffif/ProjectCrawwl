@@ -9,16 +9,19 @@ import org.projectcrawwl.objects.BasePlayer;
 public class Shotgun extends BaseRangedWeapon{
 	public Shotgun(BasePlayer tempO){
 		super(tempO);
-		name = "Shotgun";
+		name = "Combat Shotgun";
 		spread = 3;
-		coolDown = 1000;
+		coolDown = (float) (1000/1.5);
+		
+		reloadTime = 3300;
+		
 		damage = 25;
 		currentCoolDown = coolDown;
 		velocity = 3;
-		pellets = 10;
+		pellets = 9;
 		
-		maxClip = 8;
-		currentClip = 8;
+		maxClip = 12;
+		currentClip = maxClip;
 		
 		try {
 			onFire = AudioLoader.getAudio("OGG", ResourceLoader.getResourceAsStream("res/Wpn_shotguncombat_fire_2d.ogg"));

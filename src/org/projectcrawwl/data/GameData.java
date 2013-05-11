@@ -300,11 +300,14 @@ public class GameData
 		world.renderBackground();
 		
 		synchronized(playerLock){
-			for(BasePlayer a : allPlayers){
-				a.render();
-			}
 			for(GameObject c : corpses){
 				c.render();
+			}
+		}
+		
+		synchronized(playerLock){
+			for(BasePlayer a : allPlayers){
+				a.render();
 			}
 		}
 		
@@ -327,6 +330,10 @@ public class GameData
 			}
 		}
 		
+		
+		for(ConvexHull x : world.getHulls()){
+			x.render();
+		}
 		
 	}
 	public void update(int delta){

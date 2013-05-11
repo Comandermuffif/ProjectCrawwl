@@ -1,9 +1,11 @@
 package org.projectcrawwl.projectile;
 
+import java.awt.Color;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.geom.Line2D;
 import java.util.ArrayList;
+import java.util.Random;
 
 import org.lwjgl.opengl.GL11;
 import org.projectcrawwl.data.GameData;
@@ -98,7 +100,22 @@ public class Bullet extends GameObject{
 			//System.out.println("Stopped");
 			data.removeProjectile(this);
 			
-			data.addParticle(new Particle(x, y, moveAngle, -.1, 2500));
+			
+			for(int i = 0; i < 4; i ++){
+				
+				Random r = new Random();
+				
+				float a = (float) (r.nextGaussian()*60 + (moveAngle - 180));
+				
+				data.addParticle(new Particle(x, y, a , .05 + r.nextGaussian()*.01, 500));
+			}
+			
+			
+			
+			
+			
+			
+			
 			
 //			Audio onFire = null;
 //			try {
@@ -118,6 +135,13 @@ public class Bullet extends GameObject{
 					b.damage(damage, owner);
 					damage -= 10;
 					lastHit = b;
+					
+					for(int i = 0; i < 4; i ++){
+						Random r = new Random();
+						float a = (float) (r.nextGaussian()*60 + (moveAngle - 180));
+						data.addParticle(new Particle(x, y, a , .05 + r.nextGaussian()*.01, 250, new Color(255,0,0)));
+					}
+					
 					if(this instanceof DumbMissle){
 						data.removeProjectile(this);
 					}
@@ -139,6 +163,13 @@ public class Bullet extends GameObject{
 					damage -= 10;
 					lastHit = b;
 					flag = true;
+					
+					for(int i = 0; i < 4; i ++){
+						Random r = new Random();
+						float a = (float) (r.nextGaussian()*60 + (moveAngle - 180));
+						data.addParticle(new Particle(x, y, a , .05 + r.nextGaussian()*.01, 250, new Color(255,0,0)));
+					}
+					
 					if(this instanceof DumbMissle){
 						data.removeProjectile(this);
 					}

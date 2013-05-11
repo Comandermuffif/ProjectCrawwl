@@ -8,8 +8,8 @@ public class Katana extends BaseMeleeWeapon{
 		super(tempO);
 		name = "Katana";
 		damage = 51;
-		angle = 10;
-		range = 250;
+		angle = 10;//10
+		range = 250;//250
 		coolDown = 250;
 		
 		createArea();

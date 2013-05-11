@@ -17,14 +17,16 @@ public class SMG extends BaseRangedWeapon{
 		
 		damage = 10;
 		
-		coolDown = 60000/900;
+		coolDown = 1000/11;
 		currentCoolDown = coolDown;
+		
+		reloadTime = 2200;
 		
 		maxClip = 25;
 		currentClip = 25;
 		
 		try {
-			onFire = AudioLoader.getAudio("OGG", ResourceLoader.getResourceAsStream("res/Wpn_rifleassault_fire_2d.ogg"));
+			onFire = AudioLoader.getAudio("OGG", ResourceLoader.getResourceAsStream("res/Wpn_45_smg_2d_01.ogg"));
 		} catch (IOException e) {e.printStackTrace();}
 	}
 }

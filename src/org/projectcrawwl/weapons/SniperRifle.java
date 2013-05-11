@@ -12,14 +12,17 @@ public class SniperRifle extends BaseRangedWeapon{
 		super(tempO);
 		name = "Sniper Rifle";
 		velocity = 5;
-		damage = 90;
+		damage = 110;
 		spread = .1;
-		coolDown = 750;
+		coolDown = (float) (1000/1.1);
+		
+		reloadTime = 3000;
+		
 		currentCoolDown = coolDown;
 		maxClip = 5;
-		currentClip = 5;
+		currentClip = maxClip;
 		try {
-			onFire = AudioLoader.getAudio("OGG", ResourceLoader.getResourceAsStream("res/Wpn_riflegauss_fire_2d.ogg"));
+			onFire = AudioLoader.getAudio("OGG", ResourceLoader.getResourceAsStream("res/Wpn_riflesniper_fire_2d.ogg"));
 		} catch (IOException e) {e.printStackTrace();}
 	}	
 }

@@ -22,7 +22,7 @@ public class Player extends BasePlayer {
 		r = 25;
 		facingAngle = 0;
 		health = 100;
-		turnSpeed = .25;
+		turnSpeed = .1;//.25;
 		
 		inventory.addWeapon(new Katana(this));
 		inventory.addWeapon(new SniperRifle(this));
@@ -190,6 +190,9 @@ public class Player extends BasePlayer {
 				}
 				if (Keyboard.getEventKey() == Keyboard.KEY_NUMPAD0){
 					data.zoom = 0;
+				}
+				if (Keyboard.getEventKey() == Keyboard.KEY_R){
+					inventory.getWeapon().reload();
 				}
 				
 				if (Keyboard.getEventKey() == Keyboard.KEY_NUMPAD1){

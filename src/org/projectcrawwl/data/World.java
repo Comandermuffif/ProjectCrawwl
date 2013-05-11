@@ -230,8 +230,5 @@ public class World implements Serializable{
 		GL11.glVertex2f(mapXOffset + mapX, mapYOffset + mapY);
 		GL11.glEnd();
 		
-		for(ConvexHull x : hulls){
-			x.render();
-		}
 	}
 }

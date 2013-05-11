@@ -62,41 +62,6 @@ public class BasePlayer extends GameObject{
         updateLines();
 	}
 	
-	public void updateLines(){
-		ArrayList<Line2D.Float> temp = new ArrayList<Line2D.Float>();
-		
-		float[] coord = new float[6];
-		float[] lastCoord = new float[2];
-		float[] firstCoord = new float[2];
-		PathIterator pi = boundingBox.getPathIterator(null);
-		
-		pi.currentSegment(coord);
-		
-		pi.currentSegment(firstCoord); //Getting the first coordinate pair
-        lastCoord[0] = firstCoord[0]; //Priming the previous coordinate pair
-        lastCoord[1] = firstCoord[1];
-		
-		while(!pi.isDone()){
-			final int type = pi.currentSegment(coord);
-            switch(type) {
-                case PathIterator.SEG_LINETO : {
-                	temp.add(new Line2D.Float(coord[0], coord[1], lastCoord[0], lastCoord[1]));
-                    lastCoord[0] = coord[0];
-                    lastCoord[1] = coord[1];
-                    break;
-                }
-                case PathIterator.SEG_CLOSE : {
-                    temp.add(new Line2D.Float(coord[0], coord[1], firstCoord[0], firstCoord[1]));   
-                    break;
-                }
-            }
-            pi.next();
-		}
-		
-		boundingLines = temp;
-		updateData();
-	}
-	
 	public void damage(float damage, BasePlayer shooter){
 		health -= damage;
 		lastHit = shooter;
