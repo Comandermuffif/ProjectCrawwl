@@ -36,7 +36,7 @@ public class GameObject {
 	
 	private Point center = new Point();
 	
-	private double farthest = 0;
+	protected double farthest = 0;
 	
 	public boolean passThroughPlayers = false;
 	
@@ -185,6 +185,23 @@ public class GameObject {
 	
 	public Point getCenter(){
 		return new Point((int) (center.x + x), (int) (center.y + y));
+	}
+	/**
+	 * Flag to tell whether an object is visible on screen
+	 * @return
+	 */
+	public boolean isOnScreen(){
+		
+		float ratio = ((float) (settings.getScreenY())/settings.getScreenX());
+		
+		if(renderX + getFarthest() < -data.zoom || renderX - getFarthest() > settings.getScreenX()  + data.zoom){
+			return false;
+		}
+		if(renderY  + getFarthest() < -data.zoom*(ratio) || renderY - getFarthest() > settings.getScreenY()  + data.zoom*(ratio)){
+			return false;
+		}
+		
+		return true;
 	}
 	
 	//Draw everything here

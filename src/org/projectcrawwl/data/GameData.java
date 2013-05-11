@@ -301,26 +301,34 @@ public class GameData
 		world.renderBackground();
 		
 		synchronized(playerLock){
-			for(GameObject c : corpses){
-				c.render();
+			for(GameObject a : corpses){
+				if(a.isOnScreen()){
+					a.render();
+				}
 			}
 		}
 		
 		synchronized(playerLock){
 			for(BasePlayer a : allPlayers){
-				a.render();
+				if(a.isOnScreen()){
+					a.render();
+				}
 			}
 		}
 		
 		synchronized(particleLock){
-			for(GameObject d : allParticles){
-				d.render();
+			for(GameObject a : allParticles){
+				if(a.isOnScreen()){
+					a.render();
+				}
 			}
 		}
 		
 		synchronized(projectileLock){
-			for(Bullet q : allProjectiles){
-				q.render();
+			for(Bullet a : allProjectiles){
+				if(a.isOnScreen()){
+					a.render();
+				}
 			}
 		}
 		

@@ -19,11 +19,14 @@ public class Corpse extends GameObject{
 	public Corpse(float tempx, float tempy){
 		x = tempx;
 		y = tempy;
-		
 		for(int i = 0; i < dots; i ++){
 			angles[i] = Math.random() * 360;
 			dist[i] = 30 + Math.random()*30;
 			radious[i] = 10 + Math.random()*15;
+			
+			if(dist[i] + radious[i] > farthest){
+				farthest = dist[i] + radious[i];
+			}
 		}
 	}
 	

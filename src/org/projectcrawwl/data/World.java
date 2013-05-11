@@ -212,23 +212,33 @@ public class World implements Serializable{
 	
 	public void renderBackground(){
 		
-		//Brown background
-		/*
-		GL11.glColor4d(.34,.23,.04,1);
-		GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
-		GL11.glVertex3f(mapXOffset, mapYOffset, 0);
-		GL11.glVertex3f(mapXOffset, mapYOffset + mapY, 0);
-		GL11.glVertex3f(mapXOffset + mapX, mapYOffset, 0);
-		GL11.glVertex3f(mapXOffset + mapX, mapYOffset + mapY, 0);
-		GL11.glEnd();*/
+		
+		float ratio = ((float) (settings.getScreenY())/settings.getScreenX());
+		
+		GameData data = GameData.getInstance();
+		
+		
+		float left = -data.zoom;
+		float right = settings.getScreenX()  + data.zoom;
+		float bottom = -data.zoom*(ratio);
+		float top = settings.getScreenY() + data.zoom*(ratio);
+		
+		
+		if(left < mapXOffset){left = mapXOffset;}
+		if(bottom < mapYOffset){bottom = mapYOffset;}
+		if(right > mapXOffset + mapX){right = mapXOffset + mapX;}
+		if(top > mapYOffset + mapY){top = mapYOffset + mapY;}
 		
 		GL11.glColor4d(1,1,1,1);
 		GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
-		GL11.glVertex2f(mapXOffset, mapYOffset);
-		GL11.glVertex2f(mapXOffset, mapYOffset + mapY);
-		GL11.glVertex2f(mapXOffset + mapX, mapYOffset);
-		GL11.glVertex2f(mapXOffset + mapX, mapYOffset + mapY);
+		GL11.glVertex2f(left, bottom);
+		GL11.glVertex2f(left, top);
+		GL11.glVertex2f(right, bottom);
+		GL11.glVertex2f(right, top);
 		GL11.glEnd();
+		
+		
+		
 		
 	}
 }

@@ -43,6 +43,9 @@ public class Bullet extends GameObject{
 		lastPos.setLocation(x, y);
 		
 		passThroughPlayers = true;
+		
+		farthest = 50;
+		
 	}
 	
 	public void render(){

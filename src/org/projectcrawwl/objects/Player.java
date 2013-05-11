@@ -58,28 +58,10 @@ public class Player extends BasePlayer {
 		if(!isReady){return;}
 		super.render();
 	
-		float ratio = ((float) (settings.getScreenY())/settings.getScreenX());
-		
-		GL11.glLoadIdentity();
-		GL11.glOrtho(-data.zoom, settings.getScreenX()  + data.zoom, -data.zoom*(ratio), settings.getScreenY() + data.zoom*(ratio), -1, 1);
-		
-		/*
-		Color.white.bind();
-		texture.bind();
-		
-		GL11.glBegin(GL11.GL_QUADS);
-			GL11.glTexCoord2f(0,1);
-			GL11.glVertex2f(renderX - 25,renderY - 25);
-			GL11.glTexCoord2f(0,0);
-			GL11.glVertex2f(renderX + 25, renderY - 25);
-			GL11.glTexCoord2f(1,0);
-			GL11.glVertex2f(renderX + 25, renderY + 25);
-			GL11.glTexCoord2f(1,1);
-			GL11.glVertex2f(renderX - 25, renderY + 25);
-			
-		GL11.glEnd();*/
-		
-		
+//		float ratio = ((float) (settings.getScreenY())/settings.getScreenX());
+//		
+//		GL11.glLoadIdentity();
+//		GL11.glOrtho(-data.zoom, settings.getScreenX()  + data.zoom, -data.zoom*(ratio), settings.getScreenY() + data.zoom*(ratio), -1, 1);
 		
 	}
 
@@ -105,11 +87,15 @@ public class Player extends BasePlayer {
 		
 		
 		data.getFont().drawString(20, settings.getScreenY() - 80, "Weapon: " + inventory.getWeapon().getName());
-		if(inventory.getWeapon().isReloading()){
-			data.getFont().drawString(20, settings.getScreenY() - 60, "Clip: Reloading...");
-		}else{
-			data.getFont().drawString(20, settings.getScreenY() - 60, "Clip: " + inventory.getWeapon().getClip().x + "/" + inventory.getWeapon().getClip().y);
+		if(!(inventory.getWeapon() instanceof BaseMeleeWeapon)){
+			if(inventory.getWeapon().isReloading()){
+				data.getFont().drawString(20, settings.getScreenY() - 60, "Clip: Reloading...");
+			}else{
+				data.getFont().drawString(20, settings.getScreenY() - 60, "Clip: " + inventory.getWeapon().getClip().x + "/" + inventory.getWeapon().getClip().y);
+			}
 		}
+		data.getFont().drawString(20, settings.getScreenY() - 40, "Heath: " + health);
+		
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		
 		//Reset to zoom
