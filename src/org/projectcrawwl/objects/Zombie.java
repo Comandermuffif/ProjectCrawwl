@@ -141,10 +141,19 @@ public class Zombie extends BasePlayer {
 			}
 			
 		}else{
+			moveAngle = (float) (Math.toDegrees(Math.atan2(target.getY() - y, target.getX() - x)));
+			
+			if(target.health <= 0){
+				target = null;
+				return;
+			}
+			
 			if(new Point((int)getX(),(int)getY()).distance(target.getX(), target.getY()) <= getFarthest() + target.getFarthest() + 30){
+				if(target.health <= 0){
+					target = null;
+				}
 				inventory.getWeapon().fire();
 			}
-			moveAngle = (float) (Math.toDegrees(Math.atan2(target.getY() - y, target.getX() - x)));
 		}
 	}
 }

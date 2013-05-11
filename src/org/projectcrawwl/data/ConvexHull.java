@@ -1,5 +1,6 @@
 package org.projectcrawwl.data;
 
+import java.awt.Color;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.geom.Line2D;
@@ -26,9 +27,14 @@ public class ConvexHull implements Serializable{
 	
 	private double farthest = 0;
 	
-	public ConvexHull(){
-		
+	private Color color = new Color(128,0,0);
+	
+	public ConvexHull(){	
 	}
+	public ConvexHull(Color c){
+		color = c;
+	}
+	
 	
 	public double getFarthest(){
 		return farthest;
@@ -118,8 +124,8 @@ public class ConvexHull implements Serializable{
 		
 		world = World.getInstance();
 		
-		GL11.glColor4d(0,0,0,.75);
-		//GL11.glColor3d((double)(color.getRed())/255, (double)(color.getBlue())/255, (double)(color.getGreen())/255);
+		//GL11.glColor4d(0,0,0,.75);
+		GL11.glColor3d((double)(color.getRed())/255, (double)(color.getBlue())/255, (double)(color.getGreen())/255);
 		GL11.glLineWidth(1);
 		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
 		for(Line2D.Float temp : lines){

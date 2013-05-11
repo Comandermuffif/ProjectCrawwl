@@ -22,7 +22,7 @@ public class Player extends BasePlayer {
 		r = 25;
 		facingAngle = 0;
 		health = 100;
-		turnSpeed = .1;//.25;
+		turnSpeed = .25;
 		
 		inventory.addWeapon(new Katana(this));
 		inventory.addWeapon(new SniperRifle(this));

@@ -4,7 +4,6 @@ import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.geom.Line2D;
 import java.awt.geom.PathIterator;
-import java.util.ArrayList;
 
 import org.lwjgl.opengl.GL11;
 import org.projectcrawwl.data.ConvexHull;

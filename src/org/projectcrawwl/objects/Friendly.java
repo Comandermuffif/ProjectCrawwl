@@ -1,7 +1,5 @@
 package org.projectcrawwl.objects;
 
-import java.util.ArrayList;
-
 import org.projectcrawwl.weapons.SMG;
 import org.projectcrawwl.weapons.Shotgun;
 
@@ -76,11 +74,15 @@ public class Friendly extends BasePlayer {
 	public void update(int delta){
 		super.update(delta);
 		
-		ArrayList<BasePlayer> ai = data.getAI();
 		double distToTarg = -1;
 		
-		for(BasePlayer a : ai){
+		for(BasePlayer a : data.getAI()){
 			double dist = Math.pow(Math.pow(a.getX() - getX(), 2) + Math.pow(a.getY() - getY(), 2), .5);
+			
+			if(dist > 400){
+				continue;
+			}
+			
 			if(distToTarg == -1){
 				distToTarg = dist;
 				target = a;
@@ -92,6 +94,12 @@ public class Friendly extends BasePlayer {
 		}
 		
 		if(target != null){
+			
+			if(target.health <= 0){
+				target = null;
+				return;
+			}
+			
 			inventory.setWeapon(1);
 			inventory.getWeapon().fire();
 			tempFacing = (float) (Math.toDegrees(Math.atan2(target.getY() - y, target.getX() - x)));

@@ -43,6 +43,7 @@ public class GameData
 	
 	private UnicodeFont font;
 	
+	@SuppressWarnings("unchecked")
 	public void renderInit(){
 		
 		System.out.println("Initializing Render Data");
@@ -326,7 +327,6 @@ public class GameData
 		synchronized(playerLock){
 			if(player != null){
 				player.render();
-				player.renderHUD();
 			}
 		}
 		
@@ -335,14 +335,20 @@ public class GameData
 			x.render();
 		}
 		
+		synchronized(playerLock){
+			if(player != null){
+				player.renderHUD();
+			}
+		}
+		
 	}
 	public void update(int delta){
 		
 		
 		if(Keyboard.isKeyDown(Keyboard.KEY_RIGHT)){world.setMapXOffset(world.getMapXOffset() - delta);}
 		if(Keyboard.isKeyDown(Keyboard.KEY_LEFT)){world.setMapXOffset(world.getMapXOffset() + delta);}
-		if(Keyboard.isKeyDown(Keyboard.KEY_UP)){world.setMapYOffset(world.getMapYOffset() + delta);}
-		if(Keyboard.isKeyDown(Keyboard.KEY_DOWN)){world.setMapYOffset(world.getMapYOffset() - delta);}
+		if(Keyboard.isKeyDown(Keyboard.KEY_UP)){world.setMapYOffset(world.getMapYOffset() - delta);}
+		if(Keyboard.isKeyDown(Keyboard.KEY_DOWN)){world.setMapYOffset(world.getMapYOffset() + delta);}
 		
 		synchronized(projectileLock){
 			//Removes projectiles that are off screen

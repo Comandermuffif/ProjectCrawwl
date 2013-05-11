@@ -228,21 +228,13 @@ public class GameObject {
 			
 			//System.out.println(facingAngle - tempFacing);
 			if(Math.abs(facingAngle - tempFacing) > delta*(turnSpeed)){
-				System.out.print(facingAngle +" > "+tempFacing + " ");
 				if(facingAngle - tempFacing > delta*(turnSpeed) && Math.abs(facingAngle - tempFacing) < 180){
-					System.out.println("left");
 					tempFacing = (float) (facingAngle - delta*(turnSpeed));
-				}
-				if(facingAngle - tempFacing < delta*(turnSpeed) && Math.abs(facingAngle - tempFacing) < 180){
-					System.out.println("right");
+				}else if(facingAngle - tempFacing < delta*(turnSpeed) && Math.abs(facingAngle - tempFacing) < 180){
 					tempFacing = (float) (facingAngle + delta*(turnSpeed));
-				}
-				if(facingAngle - tempFacing > delta*(turnSpeed) && Math.abs(facingAngle - tempFacing) > 180){
-					System.out.println("right");
+				}else if(facingAngle - tempFacing > delta*(turnSpeed) && Math.abs(facingAngle - tempFacing) > 180){
 					tempFacing = (float) (facingAngle + delta*(turnSpeed));
-				}
-				if(facingAngle - tempFacing < delta*(turnSpeed) && Math.abs(facingAngle - tempFacing) > 180){
-					System.out.println("left");
+				}else if(facingAngle - tempFacing < delta*(turnSpeed) && Math.abs(facingAngle - tempFacing) > 180){
 					tempFacing = (float) (facingAngle - delta*(turnSpeed));
 				}
 				
