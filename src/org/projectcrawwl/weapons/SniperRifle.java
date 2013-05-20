@@ -14,12 +14,12 @@ public class SniperRifle extends BaseRangedWeapon{
 		velocity = 5;
 		damage = 110;
 		spread = .1;
-		coolDown = (float) (1000/1.1);
+		coolDown = (float) (1000/5);
 		
 		reloadTime = 3000;
 		
 		currentCoolDown = coolDown;
-		maxClip = 5;
+		maxClip = 10;
 		currentClip = maxClip;
 		try {
 			onFire = AudioLoader.getAudio("OGG", ResourceLoader.getResourceAsStream("res/Wpn_riflesniper_fire_2d.ogg"));

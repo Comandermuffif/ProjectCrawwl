@@ -302,33 +302,25 @@ public class GameData
 		
 		synchronized(playerLock){
 			for(GameObject a : corpses){
-				if(a.isOnScreen()){
-					a.render();
-				}
+				a.render();
 			}
 		}
 		
 		synchronized(playerLock){
 			for(BasePlayer a : allPlayers){
-				if(a.isOnScreen()){
-					a.render();
-				}
+				a.render();
 			}
 		}
 		
 		synchronized(particleLock){
 			for(GameObject a : allParticles){
-				if(a.isOnScreen()){
-					a.render();
-				}
+				a.render();
 			}
 		}
 		
 		synchronized(projectileLock){
 			for(Bullet a : allProjectiles){
-				if(a.isOnScreen()){
-					a.render();
-				}
+				a.render();
 			}
 		}
 		

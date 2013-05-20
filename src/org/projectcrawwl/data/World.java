@@ -184,7 +184,6 @@ public class World implements Serializable{
 		mapYOffset = temp;
 	}
 	
-	
 	public Point getLineLineIntersection(Line2D.Float a, Line2D.Float b) {
 		double x1 = a.x1; double y1 = a.y1; double x2 = a.x2; double y2 = a.y2; double x3 = b. x1; double y3 = b.y1; double x4 = b.x2; double y4 = b.y2;
 	    double det1And2 = det(x1, y1, x2, y2);
@@ -212,29 +211,12 @@ public class World implements Serializable{
 	
 	public void renderBackground(){
 		
-		
-		float ratio = ((float) (settings.getScreenY())/settings.getScreenX());
-		
-		GameData data = GameData.getInstance();
-		
-		
-		float left = -data.zoom;
-		float right = settings.getScreenX()  + data.zoom;
-		float bottom = -data.zoom*(ratio);
-		float top = settings.getScreenY() + data.zoom*(ratio);
-		
-		
-		if(left < mapXOffset){left = mapXOffset;}
-		if(bottom < mapYOffset){bottom = mapYOffset;}
-		if(right > mapXOffset + mapX){right = mapXOffset + mapX;}
-		if(top > mapYOffset + mapY){top = mapYOffset + mapY;}
-		
 		GL11.glColor4d(1,1,1,1);
 		GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
-		GL11.glVertex2f(left, bottom);
-		GL11.glVertex2f(left, top);
-		GL11.glVertex2f(right, bottom);
-		GL11.glVertex2f(right, top);
+		GL11.glVertex2f(mapXOffset, mapYOffset);
+		GL11.glVertex2f(mapXOffset, mapYOffset + mapY);
+		GL11.glVertex2f(mapXOffset + mapX, mapYOffset);
+		GL11.glVertex2f(mapXOffset + mapX, mapYOffset + mapY);
 		GL11.glEnd();
 		
 		
