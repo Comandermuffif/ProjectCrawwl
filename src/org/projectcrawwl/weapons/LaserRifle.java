@@ -21,7 +21,7 @@ public class LaserRifle extends BaseRangedWeapon{
 		damage = 90;
 		
 		spread = 0;
-		spreadCooldown = 0;
+		spreadAngle = 0;
 		
 		coolDown = 1000;
 		currentCoolDown = coolDown;

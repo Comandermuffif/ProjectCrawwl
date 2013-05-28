@@ -386,6 +386,11 @@ public class GameData
 					player = null;
 				}
 				allPlayers.remove(a);
+				
+				if(corpses.size() > 100){
+					corpses.remove(0);
+				}
+				
 				corpses.add(new Corpse(a.x, a.y));
 			}
 			removePlayers.clear();

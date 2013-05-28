@@ -45,19 +45,19 @@ public class BaseRangedWeapon extends BaseWeapon{
 	Audio onFire = null;
 	
 	/**
-	 * The rate at which spread increases
+	 * The rate at which spread increases, in milliseconds
 	 */
 	double spread;
 	
 	/**
-	 * The current spread of the weapon
+	 * The current spread of the weapon, in milliseconds
 	 */
 	double currentSpread = 0;
 	
 	/**
-	 * The rate at which spread cools down, in degrees per second
+	 * The spread increase as degrees per second
 	 */
-	double spreadCooldown = 1.5;
+	double spreadAngle = 1.5;
 	
 	/**
 	 * The angle of the cone for multiple pellets
@@ -84,14 +84,17 @@ public class BaseRangedWeapon extends BaseWeapon{
 	public void render(){
 		super.render();
 		//BEEP!
+		
+		GL11.glColor4d(0.0, 0.0, 0.0, 0.1);
+		
 		GL11.glBegin(GL11.GL_LINES);
-		GL11.glVertex2d(owner.renderX + Math.cos(Math.toRadians(owner.facingAngle + currentSpread + cone/2))*owner.getFarthest(), owner.renderY + Math.sin(Math.toRadians(owner.facingAngle + currentSpread + cone/2))*owner.getFarthest());
-		GL11.glVertex2d(owner.renderX + Math.cos(Math.toRadians(owner.facingAngle + currentSpread + cone/2))*(owner.getFarthest() + 200), owner.renderY + Math.sin(Math.toRadians(owner.facingAngle + currentSpread + cone/2))*(owner.getFarthest() + 200));
+		GL11.glVertex2d(owner.renderX + Math.cos(Math.toRadians(owner.facingAngle + (currentSpread/1000)*spreadAngle + cone/2))*owner.getFarthest(), owner.renderY + Math.sin(Math.toRadians(owner.facingAngle + (currentSpread/1000)*spreadAngle + cone/2))*owner.getFarthest());
+		GL11.glVertex2d(owner.renderX + Math.cos(Math.toRadians(owner.facingAngle + (currentSpread/1000)*spreadAngle + cone/2))*(owner.getFarthest() + 200), owner.renderY + Math.sin(Math.toRadians(owner.facingAngle + (currentSpread/1000)*spreadAngle + cone/2))*(owner.getFarthest() + 200));
 		GL11.glEnd();
 		
 		GL11.glBegin(GL11.GL_LINES);
-		GL11.glVertex2d(owner.renderX + Math.cos(Math.toRadians(owner.facingAngle - currentSpread - cone/2))*owner.getFarthest(), owner.renderY + Math.sin(Math.toRadians(owner.facingAngle - currentSpread - cone/2))*owner.getFarthest());
-		GL11.glVertex2d(owner.renderX + Math.cos(Math.toRadians(owner.facingAngle - currentSpread - cone/2))*(owner.getFarthest() + 200), owner.renderY + Math.sin(Math.toRadians(owner.facingAngle - currentSpread - cone/2))*(owner.getFarthest() + 200));
+		GL11.glVertex2d(owner.renderX + Math.cos(Math.toRadians(owner.facingAngle - (currentSpread/1000)*spreadAngle - cone/2))*owner.getFarthest(), owner.renderY + Math.sin(Math.toRadians(owner.facingAngle - (currentSpread/1000)*spreadAngle - cone/2))*owner.getFarthest());
+		GL11.glVertex2d(owner.renderX + Math.cos(Math.toRadians(owner.facingAngle - (currentSpread/1000)*spreadAngle - cone/2))*(owner.getFarthest() + 200), owner.renderY + Math.sin(Math.toRadians(owner.facingAngle - (currentSpread/1000)*spreadAngle - cone/2))*(owner.getFarthest() + 200));
 		GL11.glEnd();
 		
 	}
@@ -122,7 +125,7 @@ public class BaseRangedWeapon extends BaseWeapon{
 		}
 		
 		if(currentSpread > 0){
-			currentSpread -= (float)(spreadCooldown)/(delta);
+			currentSpread -= delta;
 		}
 		
 		if(currentSpread <= 0){
@@ -166,7 +169,7 @@ public class BaseRangedWeapon extends BaseWeapon{
 				if(tempG > 1){
 					tempG = 1;
 				}
-				data.addProjectile(new Bullet((float) (owner.x + Math.cos(Math.toRadians(owner.facingAngle))*(owner.r + 5)),(float) (owner.y + Math.sin(Math.toRadians(owner.facingAngle))*(owner.r+5)),(float) (velocity + random.nextGaussian()*.02),(float) ((float) owner.facingAngle + tempG*currentSpread + (Math.random() - .5)*cone), damage, owner));
+				data.addProjectile(new Bullet((float) (owner.x + Math.cos(Math.toRadians(owner.facingAngle))*(owner.r + 5)),(float) (owner.y + Math.sin(Math.toRadians(owner.facingAngle))*(owner.r+5)),(float) (velocity + random.nextGaussian()*.02),(float) ((float) owner.facingAngle + tempG*(currentSpread/1000)*spreadAngle + (Math.random() - .5)*cone), damage, owner));
 			}
 			
 			currentSpread += spread;

@@ -4,14 +4,10 @@ import java.awt.Color;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.geom.Line2D;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
 import org.lwjgl.opengl.GL11;
-import org.newdawn.slick.openal.Audio;
-import org.newdawn.slick.openal.AudioLoader;
-import org.newdawn.slick.util.ResourceLoader;
 import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.objects.BasePlayer;
 import org.projectcrawwl.objects.GameObject;
@@ -73,13 +69,14 @@ public class Bullet extends GameObject{
 		GL11.glLineWidth(2);
 		GL11.glBegin(GL11.GL_LINES);
 		GL11.glVertex2d(renderX, renderY);
-		GL11.glVertex2d(renderX + Math.cos(Math.toRadians(moveAngle))*-5, renderY + Math.sin(Math.toRadians(moveAngle))*-5);
+		GL11.glVertex2d(owner.renderX,owner.renderY);
 		GL11.glEnd();*/
 		
 		
 		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
 		GL11.glColor3d(0,0,0);
 		GL11.glVertex2d(renderX + Math.cos(Math.toRadians(moveAngle - 90))*2, renderY + Math.sin(Math.toRadians(moveAngle - 90))*2);
+		GL11.glVertex2d(renderX + Math.cos(Math.toRadians(moveAngle))*2, renderY + Math.sin(Math.toRadians(moveAngle))*2);
 		GL11.glVertex2d(renderX + Math.cos(Math.toRadians(moveAngle + 90))*2, renderY + Math.sin(Math.toRadians(moveAngle + 90))*2);
 		GL11.glColor4d(0,0,0,0);
 		GL11.glVertex2d(renderX + Math.cos(Math.toRadians(moveAngle))*-50, renderY + Math.sin(Math.toRadians(moveAngle))*-50);

@@ -11,7 +11,7 @@ import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.data.Inventory;
 import org.projectcrawwl.data.World;
 
-public class BasePlayer extends GameObject{
+public abstract class BasePlayer extends GameObject{
 	
 	public float health;
 	Inventory inventory = new Inventory(this);

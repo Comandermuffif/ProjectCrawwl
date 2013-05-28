@@ -5,16 +5,16 @@ import java.io.IOException;
 import org.newdawn.slick.openal.AudioLoader;
 import org.newdawn.slick.util.ResourceLoader;
 import org.projectcrawwl.objects.BasePlayer;
-public class DuelPistols extends BaseRangedWeapon{
+public class Pistol extends BaseRangedWeapon{
 	
-	public DuelPistols(BasePlayer tempO){
+	public Pistol(BasePlayer tempO){
 		super(tempO);
 		name = "Pistol";
 		
 		velocity = 3;
 		
-		spread = 5;
-		spreadCooldown = 2;
+		spread = 600;
+		spreadAngle = 4;
 		
 		damage = 10;
 		

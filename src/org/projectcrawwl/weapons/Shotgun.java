@@ -22,7 +22,8 @@ public class Shotgun extends BaseRangedWeapon{
 		
 		cone = 9;
 		
-		spread = 5;
+		spread = 700;
+		spreadAngle = 8;
 		
 		maxClip = 12;
 		currentClip = maxClip;

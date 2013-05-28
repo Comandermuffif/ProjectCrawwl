@@ -111,7 +111,7 @@ public class World implements Serializable{
 		}*/
 		
 		
-		for(int i = 0; i < 20; i ++){
+		for(int i = 0; i < 35; i ++){
 			int tempX = (int) (Math.random() * mapX);
 			int tempY = (int) (Math.random() * mapY);
 			

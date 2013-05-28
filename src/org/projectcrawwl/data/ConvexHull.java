@@ -123,9 +123,19 @@ public class ConvexHull implements Serializable{
 	public void render(){
 		
 		world = World.getInstance();
+		GameData data = GameData.getInstance();
 		
 		//GL11.glColor4d(0,0,0,.75);
 		GL11.glColor3d((double)(color.getRed())/255, (double)(color.getBlue())/255, (double)(color.getGreen())/255);
+		if(data.getPlayer() != null){
+			Point p = new Point((int) data.getPlayer().getX(), (int) data.getPlayer().getY());
+			
+			if(p.distance(center.x, center.y) < 255+farthest){
+				GL11.glColor4d((double)(color.getRed())/255, (double)(color.getBlue())/255, (double)(color.getGreen())/255, (double)(p.distance(center.x, center.y)-farthest)/255);
+			}
+		}
+		
+		
 		GL11.glLineWidth(1);
 		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
 		for(Line2D.Float temp : lines){
@@ -135,5 +145,8 @@ public class ConvexHull implements Serializable{
 			
 		}
 		GL11.glEnd();
+		
+		
+		
 	}
 }
