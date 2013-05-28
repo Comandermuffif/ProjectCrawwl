@@ -15,6 +15,8 @@ public class Player extends BasePlayer {
 	
 	private Texture texture;
 	
+	private double speedMult = 1;
+	
 	public Player(int tempX, int tempY){
 		super(tempX,tempY);
 		x = tempX;
@@ -128,17 +130,19 @@ public class Player extends BasePlayer {
 		float temp = 0;
 		moveAngle = 0;
 		
-		if(Keyboard.isKeyDown(Keyboard.KEY_D)){speed = .5; moveAngle += 0; temp += 1;}
-		if(Keyboard.isKeyDown(Keyboard.KEY_A)){speed = .5; moveAngle += 180; temp+=1;}
-		if(Keyboard.isKeyDown(Keyboard.KEY_S)){speed = .5; moveAngle += 270;temp+=1;}
-		if(Keyboard.isKeyDown(Keyboard.KEY_W)){speed = .5; moveAngle += 90;temp+=1;}
+		if(Keyboard.isKeyDown(Keyboard.KEY_D)){speed = .5 * speedMult; moveAngle += 0; temp += 1;}
+		if(Keyboard.isKeyDown(Keyboard.KEY_A)){speed = .5 * speedMult; moveAngle += 180; temp+=1;}
+		if(Keyboard.isKeyDown(Keyboard.KEY_S)){speed = .5 * speedMult; moveAngle += 270;temp+=1;}
+		if(Keyboard.isKeyDown(Keyboard.KEY_W)){speed = .5 * speedMult; moveAngle += 90;temp+=1;}
 		
-		if(Keyboard.isKeyDown(Keyboard.KEY_L)){}
-		if(Keyboard.isKeyDown(Keyboard.KEY_J)){}
-		if(Keyboard.isKeyDown(Keyboard.KEY_K)){}
-		if(Keyboard.isKeyDown(Keyboard.KEY_I)){}
+		speedMult = 1;
 		
-		
+		if(Keyboard.isKeyDown(Keyboard.KEY_LSHIFT)){
+			speedMult = 1.5;
+		}
+		if(Keyboard.isKeyDown(Keyboard.KEY_LCONTROL)){
+			speedMult = .5;
+		}
 		
 		if(temp != 0){
 			

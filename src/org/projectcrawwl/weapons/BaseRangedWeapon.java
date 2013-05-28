@@ -10,7 +10,7 @@ import org.projectcrawwl.objects.BasePlayer;
 import org.projectcrawwl.projectile.Bullet;
 
 
-public class BaseRangedWeapon extends BaseWeapon{
+public abstract class BaseRangedWeapon extends BaseWeapon{
 	
 	/**
 	 * Bullet velocity, will figure out what the value equivocates to later
@@ -24,9 +24,13 @@ public class BaseRangedWeapon extends BaseWeapon{
 	int maxClip;
 	
 	/**
-	 * Time to reload and current reload time
+	 * Time to reload
 	 */
 	int reloadTime;
+	
+	/**
+	 * The current reload time
+	 */
 	int currentReload;
 	
 	/**
@@ -64,6 +68,20 @@ public class BaseRangedWeapon extends BaseWeapon{
 	 */
 	double cone = 0;
 	
+	/**
+	 * The max spread in degrees, half of the spread cone
+	 */
+	int maxSpread = 45;
+	
+	/**
+	 * The min spread in degrees, half of the cone
+	 */
+	int minSpread = 1;
+	
+	/**
+	 * Creates a weapon with default parameters
+	 * @param tempO - The owner of the weapon
+	 */
 	protected BaseRangedWeapon(BasePlayer tempO){
 		super("BaseRangedWeapon",0);
 		owner = tempO;
@@ -81,6 +99,9 @@ public class BaseRangedWeapon extends BaseWeapon{
 		currentReload = reloadTime;
 	}
 	
+	/**
+	 * Where information is drawn on the screen
+	 */
 	public void render(){
 		super.render();
 		//BEEP!
@@ -88,21 +109,27 @@ public class BaseRangedWeapon extends BaseWeapon{
 		GL11.glColor4d(0.0, 0.0, 0.0, 0.1);
 		
 		GL11.glBegin(GL11.GL_LINES);
-		GL11.glVertex2d(owner.renderX + Math.cos(Math.toRadians(owner.facingAngle + (currentSpread/1000)*spreadAngle + cone/2))*owner.getFarthest(), owner.renderY + Math.sin(Math.toRadians(owner.facingAngle + (currentSpread/1000)*spreadAngle + cone/2))*owner.getFarthest());
-		GL11.glVertex2d(owner.renderX + Math.cos(Math.toRadians(owner.facingAngle + (currentSpread/1000)*spreadAngle + cone/2))*(owner.getFarthest() + 200), owner.renderY + Math.sin(Math.toRadians(owner.facingAngle + (currentSpread/1000)*spreadAngle + cone/2))*(owner.getFarthest() + 200));
+		GL11.glVertex2d(owner.renderX + Math.cos(Math.toRadians(owner.facingAngle + (currentSpread/1000)*spreadAngle + cone/2 + minSpread))*owner.getFarthest(), owner.renderY + Math.sin(Math.toRadians(owner.facingAngle + (currentSpread/1000)*spreadAngle + cone/2 + minSpread))*owner.getFarthest());
+		GL11.glVertex2d(owner.renderX + Math.cos(Math.toRadians(owner.facingAngle + (currentSpread/1000)*spreadAngle + cone/2 + minSpread))*(owner.getFarthest() + 200), owner.renderY + Math.sin(Math.toRadians(owner.facingAngle + (currentSpread/1000)*spreadAngle + cone/2 + minSpread))*(owner.getFarthest() + 200));
 		GL11.glEnd();
 		
 		GL11.glBegin(GL11.GL_LINES);
-		GL11.glVertex2d(owner.renderX + Math.cos(Math.toRadians(owner.facingAngle - (currentSpread/1000)*spreadAngle - cone/2))*owner.getFarthest(), owner.renderY + Math.sin(Math.toRadians(owner.facingAngle - (currentSpread/1000)*spreadAngle - cone/2))*owner.getFarthest());
-		GL11.glVertex2d(owner.renderX + Math.cos(Math.toRadians(owner.facingAngle - (currentSpread/1000)*spreadAngle - cone/2))*(owner.getFarthest() + 200), owner.renderY + Math.sin(Math.toRadians(owner.facingAngle - (currentSpread/1000)*spreadAngle - cone/2))*(owner.getFarthest() + 200));
+		GL11.glVertex2d(owner.renderX + Math.cos(Math.toRadians(owner.facingAngle - (currentSpread/1000)*spreadAngle - cone/2 - minSpread))*owner.getFarthest(), owner.renderY + Math.sin(Math.toRadians(owner.facingAngle - (currentSpread/1000)*spreadAngle - cone/2 - minSpread))*owner.getFarthest());
+		GL11.glVertex2d(owner.renderX + Math.cos(Math.toRadians(owner.facingAngle - (currentSpread/1000)*spreadAngle - cone/2 - minSpread))*(owner.getFarthest() + 200), owner.renderY + Math.sin(Math.toRadians(owner.facingAngle - (currentSpread/1000)*spreadAngle - cone/2 - minSpread))*(owner.getFarthest() + 200));
 		GL11.glEnd();
 		
 	}
 	
+	/**
+	 * Returns a point with (currentClip, maxClip)
+	 */
 	public Point getClip(){
 		return new Point(currentClip,maxClip);
 	}
 	
+	/**
+	 * Updates data for this file, with the delta for the time between frames
+	 */
 	public void update(int delta){
 		
 		if(reloading){
@@ -134,14 +161,23 @@ public class BaseRangedWeapon extends BaseWeapon{
 		
 	}
 	
+	/**
+	 * Returns a boolean if the weapon is reloading
+	 */
 	public boolean isReloading(){
 		return reloading;
 	}
 	
+	/**
+	 * Sets reloading to true
+	 */
 	public void reload(){
 		reloading = true;
 	}
 	
+	/**
+	 * Called when a weapon is fired
+	 */
 	public void fire(){
 		if(active == false && reloading == false){
 			if(currentClip == 0){reloading = true;return;}
@@ -152,9 +188,6 @@ public class BaseRangedWeapon extends BaseWeapon{
 			
 			active = true;
 			
-			
-			
-			
 			currentCoolDown = coolDown;
 			
 			Random random = new Random();
@@ -163,16 +196,19 @@ public class BaseRangedWeapon extends BaseWeapon{
 			for(int x = 0; x < pellets; x++){
 				GameData data = GameData.getInstance();
 				
-				if(tempG < -1){
-					tempG = -1;
-				}
-				if(tempG > 1){
-					tempG = 1;
-				}
-				data.addProjectile(new Bullet((float) (owner.x + Math.cos(Math.toRadians(owner.facingAngle))*(owner.r + 5)),(float) (owner.y + Math.sin(Math.toRadians(owner.facingAngle))*(owner.r+5)),(float) (velocity + random.nextGaussian()*.02),(float) ((float) owner.facingAngle + tempG*(currentSpread/1000)*spreadAngle + (Math.random() - .5)*cone), damage, owner));
+				if(tempG < -1){tempG = -1;}
+				if(tempG > 1){tempG = 1;}
+				
+				double coneSpread = random.nextGaussian();
+				if(coneSpread < -1){coneSpread = -1;}
+				if(coneSpread > 1){coneSpread = 1;}
+				
+				data.addProjectile(new Bullet((float) (owner.x + Math.cos(Math.toRadians(owner.facingAngle))*(owner.r + 5)),(float) (owner.y + Math.sin(Math.toRadians(owner.facingAngle))*(owner.r+5)),(float) (velocity + random.nextGaussian()*.02),(float) ((float) owner.facingAngle + tempG*((currentSpread/1000)*spreadAngle + minSpread) + (coneSpread)*cone), damage, owner));
+			}
+			if(currentSpread/1000*spreadAngle < maxSpread){
+				currentSpread += spread;
 			}
 			
-			currentSpread += spread;
 			currentClip -= 1;
 			if(currentClip == 0){reloading = true;}
 		}

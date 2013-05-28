@@ -7,9 +7,10 @@ import org.projectcrawwl.objects.GameObject;
 
 public class Particle extends GameObject{
 	
-	/** The time in milliseconds this particle exists */
+	/** The current time in milliseconds this will exist */
 	private int lifetime;
 	
+	/** The time in milliseconds this particle exists */
 	private int setLife;
 	
 	private Color color = new Color(0,0,0);
@@ -32,14 +33,17 @@ public class Particle extends GameObject{
 		setLife = L;
 	}
 	
+	/**
+	 * Create a particle effect that dissipates over time
+	 * @param X - x coordinate
+	 * @param Y - y coordinate
+	 * @param A - Angle in degrees that it is moving
+	 * @param S - the speed it moves at
+	 * @param L - How long it lives, in milliseconds
+	 * @param c - the color of the particle
+	 */
 	public Particle(float X, float Y, float A, double S, int L, Color c){
-		super(X,Y);
-		x = X;
-		y = Y;
-		moveAngle = A;
-		speed = S;
-		lifetime = L;
-		setLife = L;
+		this(X,Y,A,S,L);
 		color = c;
 	}
 	

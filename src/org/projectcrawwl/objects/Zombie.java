@@ -12,6 +12,8 @@ public class Zombie extends BasePlayer {
 	Random random = new Random();
 	BasePlayer target;
 	
+	private int move = 0;
+	
 	public Zombie(int tempX, int tempY){
 		super(tempX,tempY, 0 , 100, 25);
 		moveAngle = (float) (Math.random()*360);
@@ -39,6 +41,19 @@ public class Zombie extends BasePlayer {
 		GL11.glLoadIdentity();
 		GL11.glOrtho(-data.zoom, settings.getScreenX()  + data.zoom, -data.zoom*(ratio), settings.getScreenY() + data.zoom*(ratio), -1, 1);
 		
+		/*
+		 * The lines used to get target without walking into walls and getting caught
+		if(target != null){
+			GL11.glBegin(GL11.GL_LINES);
+			GL11.glVertex2d(renderX + Math.cos(Math.atan2(target.getY() - y, target.getX() - x))*0 - Math.sin(Math.atan2(target.getY() - y, target.getX() - x))*farthest + (target.x - x), renderY + Math.sin(Math.atan2(target.getY() - y, target.getX() - x))*0 + Math.cos(Math.atan2(target.getY() - y, target.getX() - x))*farthest + (target.y - y));
+			GL11.glVertex2d(renderX + Math.cos(Math.atan2(target.getY() - y, target.getX() - x))*0 - Math.sin(Math.atan2(target.getY() - y, target.getX() - x))*farthest, renderY + Math.sin(Math.atan2(target.getY() - y, target.getX() - x))*0 + Math.cos(Math.atan2(target.getY() - y, target.getX() - x))*farthest);
+			GL11.glEnd();
+			
+			GL11.glBegin(GL11.GL_LINES);
+			GL11.glVertex2d(renderX + Math.cos(Math.atan2(target.getY() - y, target.getX() - x))*0 - Math.sin(Math.atan2(target.getY() - y, target.getX() - x))*-farthest + (target.x - x), renderY + Math.sin(Math.atan2(target.getY() - y, target.getX() - x))*0 + Math.cos(Math.atan2(target.getY() - y, target.getX() - x))*-farthest + (target.y - y));
+			GL11.glVertex2d(renderX + Math.cos(Math.atan2(target.getY() - y, target.getX() - x))*0 - Math.sin(Math.atan2(target.getY() - y, target.getX() - x))*-farthest, renderY + Math.sin(Math.atan2(target.getY() - y, target.getX() - x))*0 + Math.cos(Math.atan2(target.getY() - y, target.getX() - x))*-farthest);
+			GL11.glEnd();
+		}*/
 	}
 
 	
@@ -47,30 +62,52 @@ public class Zombie extends BasePlayer {
 		super.update(delta);
 		
 		//updateViewCone();
-		
+		if(target == null){
+			move -= delta;
+			if(move <= 0){
+				move = 500;
+				moveAngle += random.nextGaussian()*(5);
+			}
+		}
 		tempFacing = moveAngle;
 		
 		if(speed == 0){
 			
 			target = null;
 			
-			
-			
 			moveAngle += 1;
 			speed = .03;
 		}
-		
 		
 		if(target == null){
 			double dist = -1;
 			for(BasePlayer friendly : data.getFriendlies()){
 				Line2D.Float sight = new Line2D.Float(x, y, friendly.x, friendly.y);
+				//Time to get crazy
+				
+				Line2D.Double sightL = new Line2D.Double(
+						x + Math.cos(Math.atan2(friendly.getY() - y, friendly.getX() - x))*0 - Math.sin(Math.atan2(friendly.getY() - y, friendly.getX() - x))*farthest,
+						y + Math.sin(Math.atan2(friendly.getY() - y, friendly.getX() - x))*0 + Math.cos(Math.atan2(friendly.getY() - y, friendly.getX() - x))*farthest,
+						x + Math.cos(Math.atan2(friendly.getY() - y, friendly.getX() - x))*0 - Math.sin(Math.atan2(friendly.getY() - y, friendly.getX() - x))*farthest + (friendly.x - x),
+						y + Math.sin(Math.atan2(friendly.getY() - y, friendly.getX() - x))*0 + Math.cos(Math.atan2(friendly.getY() - y, friendly.getX() - x))*farthest + (friendly.y - y)
+						);
+				Line2D.Double sightR = new Line2D.Double(
+						x + Math.cos(Math.atan2(friendly.getY() - y, friendly.getX() - x))*0 - Math.sin(Math.atan2(friendly.getY() - y, friendly.getX() - x))*-farthest,
+						y + Math.sin(Math.atan2(friendly.getY() - y, friendly.getX() - x))*0 + Math.cos(Math.atan2(friendly.getY() - y, friendly.getX() - x))*-farthest,
+						x + Math.cos(Math.atan2(friendly.getY() - y, friendly.getX() - x))*0 - Math.sin(Math.atan2(friendly.getY() - y, friendly.getX() - x))*-farthest + (friendly.x - x),
+						y + Math.sin(Math.atan2(friendly.getY() - y, friendly.getX() - x))*0 + Math.cos(Math.atan2(friendly.getY() - y, friendly.getX() - x))*-farthest + (friendly.y - y)
+						);
+				
 				
 				boolean flag = true;
 				
 				for(ConvexHull hull : world.getHulls()){
 					for(Line2D.Float line : hull.getLines()){
-						if(line.intersectsLine(sight)){
+						if(line.intersectsLine(sightL)){
+							flag = false;
+							break;
+						}
+						if(line.intersectsLine(sightR)){
 							flag = false;
 							break;
 						}
@@ -88,7 +125,6 @@ public class Zombie extends BasePlayer {
 					}
 				}
 			}
-			
 		}else{
 			moveAngle = (float) (Math.toDegrees(Math.atan2(target.getY() - y, target.getX() - x)));
 			

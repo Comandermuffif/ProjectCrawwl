@@ -66,7 +66,7 @@ public class Bullet extends GameObject{
 		GL11.glEnd();
 		
 		GL11.glColor3d(0,0,0);
-		GL11.glLineWidth(2);
+		GL11.glLineWidth(1);
 		GL11.glBegin(GL11.GL_LINES);
 		GL11.glVertex2d(renderX, renderY);
 		GL11.glVertex2d(owner.renderX,owner.renderY);

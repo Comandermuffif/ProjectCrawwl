@@ -27,7 +27,7 @@ public class ConvexHull implements Serializable{
 	
 	private double farthest = 0;
 	
-	private Color color = new Color(128,0,0);
+	private Color color = new Color(0,0,0);
 	
 	public ConvexHull(){	
 	}
