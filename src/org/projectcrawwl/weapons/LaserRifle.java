@@ -19,7 +19,10 @@ public class LaserRifle extends BaseRangedWeapon{
 		name = "Laser Rifle";
 		velocity = 5;
 		damage = 90;
-		spread = .1;
+		
+		spread = 0;
+		spreadCooldown = 0;
+		
 		coolDown = 1000;
 		currentCoolDown = coolDown;
 		range = 1000;

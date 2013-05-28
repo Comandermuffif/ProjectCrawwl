@@ -13,7 +13,9 @@ public class SMG extends BaseRangedWeapon{
 		name = "SMG";
 		
 		velocity = 3;
-		spread = 1.5;
+		
+		spread = 1;
+		spreadCooldown = 1.5;
 		
 		damage = 10;
 		

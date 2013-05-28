@@ -69,10 +69,10 @@ public class Main {
     	
     	data.renderInit();
     	
-    	Update update = new Update();
+    	//Update update = new Update();
     	
     	//render.start(); //Render must be main thread
-    	update.start();
+    	//update.start();
     	
         while (!Display.isCloseRequested()) {
         	Display.sync(60);
@@ -85,7 +85,7 @@ public class Main {
     	    			 GL11.GL_STENCIL_BUFFER_BIT);	
         	
         	
-        	//update();
+        	update();
         	render();
         	updateFPS();
     	    Display.update();
@@ -98,7 +98,7 @@ public class Main {
      
         
         //render.cancel();
-        update.cancel();
+        //update.cancel();
         AL.destroy();
     	Display.destroy();
         System.exit(0);

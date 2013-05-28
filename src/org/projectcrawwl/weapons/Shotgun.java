@@ -10,7 +10,7 @@ public class Shotgun extends BaseRangedWeapon{
 	public Shotgun(BasePlayer tempO){
 		super(tempO);
 		name = "Combat Shotgun";
-		spread = 3;
+		
 		coolDown = (float) (1000/1.5);
 		
 		reloadTime = 3300;
@@ -19,6 +19,10 @@ public class Shotgun extends BaseRangedWeapon{
 		currentCoolDown = coolDown;
 		velocity = 3;
 		pellets = 9;
+		
+		cone = 9;
+		
+		spread = 5;
 		
 		maxClip = 12;
 		currentClip = maxClip;
