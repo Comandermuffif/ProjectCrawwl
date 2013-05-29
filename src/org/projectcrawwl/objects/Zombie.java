@@ -53,7 +53,8 @@ public class Zombie extends BasePlayer {
 			GL11.glVertex2d(renderX + Math.cos(Math.atan2(target.getY() - y, target.getX() - x))*0 - Math.sin(Math.atan2(target.getY() - y, target.getX() - x))*-farthest + (target.x - x), renderY + Math.sin(Math.atan2(target.getY() - y, target.getX() - x))*0 + Math.cos(Math.atan2(target.getY() - y, target.getX() - x))*-farthest + (target.y - y));
 			GL11.glVertex2d(renderX + Math.cos(Math.atan2(target.getY() - y, target.getX() - x))*0 - Math.sin(Math.atan2(target.getY() - y, target.getX() - x))*-farthest, renderY + Math.sin(Math.atan2(target.getY() - y, target.getX() - x))*0 + Math.cos(Math.atan2(target.getY() - y, target.getX() - x))*-farthest);
 			GL11.glEnd();
-		}*/
+		}
+		*/
 	}
 
 	
