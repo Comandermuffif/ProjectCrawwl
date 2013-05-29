@@ -26,7 +26,9 @@ public class Pistol extends BaseRangedWeapon{
 		currentClip = maxClip;
 		
 		try {
-			onFire = AudioLoader.getAudio("OGG", ResourceLoader.getResourceAsStream("res/Wpn_pistol_44magnum_fire_2d.ogg"));
+			
+			onFire = AudioLoader.getAudio("OGG", ResourceLoader.getResourceAsStream("res/Wpn_riflelincolns_fire_2d.ogg"));
+			//onFire = AudioLoader.getAudio("OGG", ResourceLoader.getResourceAsStream("res/Wpn_pistol_44magnum_fire_2d.ogg"));
 		} catch (IOException e) {e.printStackTrace();}
 	}
 }
