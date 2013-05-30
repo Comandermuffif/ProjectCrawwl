@@ -126,31 +126,66 @@ public class ConvexHull implements Serializable{
 		GameData data = GameData.getInstance();
 		
 		
-		//Draw shadow
-		GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
-		double length = world.getMapX();
-		for(int i = 0; i < polygon.npoints; i ++){
-			boolean flag = true;
-			double angle = Math.atan2(polygon.ypoints[i] - data.getPlayer().y, polygon.xpoints[i] - data.getPlayer().x);
-			Line2D.Float temp = new Line2D.Float(polygon.xpoints[i], polygon.ypoints[i], (float) (polygon.xpoints[i] + Math.cos(angle)*length), (float) (polygon.ypoints[i] + Math.sin(angle)*length));
+		//Draw shadow, they are so sexy
+		GL11.glColor3d(0,0,0);
+		
+		
+		double length = 200;//world.getMapX();
+		
+		for(Line2D.Float line : lines){
+			boolean flag = false;
+			Line2D.Float mid = new Line2D.Float(data.getPlayer().x, data.getPlayer().y, (line.x1 + line.x2)/2, (line.y1 + line.y2)/2);
 			for(Line2D.Float l : lines){
-				
-				if(l.getP1().equals(temp.getP1()) || l.getP1().equals(temp.getP2()) || l.getP2().equals(temp.getP1()) || l.getP2().equals(temp.getP2())){
+				if(line.equals(l)){
 					continue;
 				}
-				
-				
-				if(l.intersectsLine(temp)){
-					flag = false;
+				if(l.intersectsLine(mid)){
+					flag = true;
 					break;
 				}
 			}
 			if(flag){
-				GL11.glVertex2d(temp.getX1() + world.getMapXOffset(), temp.getY1() + world.getMapYOffset());
-				GL11.glVertex2d(temp.getX2() + world.getMapXOffset(), temp.getY2() + world.getMapYOffset());
+				GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
+				GL11.glVertex2d(line.getX1() + world.getMapXOffset(),line.getY1() + world.getMapYOffset());
+				GL11.glVertex2d(line.getX2() + world.getMapXOffset(), line.getY2() + world.getMapYOffset());
+				
+				double angle = Math.atan2(line.getY1() - data.getPlayer().y, line.getX1() - data.getPlayer().x);
+				
+				GL11.glVertex2d(line.getX1() + world.getMapXOffset() + Math.cos(angle)*length,line.getY1() + world.getMapYOffset() + Math.sin(angle)*length);
+				
+				angle = Math.atan2(line.getY2() - data.getPlayer().y, line.getX2() - data.getPlayer().x);
+				
+				GL11.glVertex2d(line.getX2() + world.getMapXOffset() + Math.cos(angle)*length, line.getY2() + world.getMapYOffset() + Math.sin(angle)*length);
+				
+				
+				GL11.glEnd();
 			}
 		}
-		GL11.glEnd();
+		
+		
+//		for(int i = 0; i < polygon.npoints; i ++){
+//			boolean flag = true;
+//			double angle = Math.atan2(polygon.ypoints[i] - data.getPlayer().y, polygon.xpoints[i] - data.getPlayer().x);
+//			Line2D.Float temp = new Line2D.Float(polygon.xpoints[i], polygon.ypoints[i], (float) (polygon.xpoints[i] + Math.cos(angle)*length), (float) (polygon.ypoints[i] + Math.sin(angle)*length));
+//			for(Line2D.Float l : lines){
+//				
+//				if(l.getP1().equals(temp.getP1()) || l.getP1().equals(temp.getP2()) || l.getP2().equals(temp.getP1()) || l.getP2().equals(temp.getP2())){
+//					continue;
+//				}
+//				
+//				
+//				if(l.intersectsLine(temp)){
+//					flag = false;
+//					break;
+//				}
+//			}
+//			if(flag){
+//				GL11.glVertex2d(temp.getX1() + world.getMapXOffset(), temp.getY1() + world.getMapYOffset());
+//				GL11.glVertex2d(temp.getX2() + world.getMapXOffset(), temp.getY2() + world.getMapYOffset());
+//			}
+//		}
+//		GL11.glEnd();
+		
 		
 		
 		//White hull
@@ -185,6 +220,5 @@ public class ConvexHull implements Serializable{
 			
 		}
 		GL11.glEnd();
-		
 	}
 }
