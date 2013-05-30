@@ -27,7 +27,7 @@ public class ConvexHull implements Serializable{
 	
 	private double farthest = 0;
 	
-	private Color color = new Color(0,0,0);
+	private Color color = new Color((int)(Math.random()*255),(int) (Math.random()*255),(int) (Math.random()*255));//new Color(0,0,0);
 	
 	public ConvexHull(){	
 	}
@@ -124,13 +124,14 @@ public class ConvexHull implements Serializable{
 		
 		world = World.getInstance();
 		GameData data = GameData.getInstance();
+		GameSettings settings = GameSettings.getInstance();
 		
 		
 		//Draw shadow, they are so sexy
 		GL11.glColor3d(0,0,0);
 		
 		
-		double length = 200;//world.getMapX();
+		double length = 2*data.zoom + settings.getScreenX();//world.getMapX();
 		
 		for(Line2D.Float line : lines){
 			boolean flag = false;
@@ -156,12 +157,9 @@ public class ConvexHull implements Serializable{
 				angle = Math.atan2(line.getY2() - data.getPlayer().y, line.getX2() - data.getPlayer().x);
 				
 				GL11.glVertex2d(line.getX2() + world.getMapXOffset() + Math.cos(angle)*length, line.getY2() + world.getMapYOffset() + Math.sin(angle)*length);
-				
-				
 				GL11.glEnd();
 			}
 		}
-		
 		
 //		for(int i = 0; i < polygon.npoints; i ++){
 //			boolean flag = true;
@@ -186,30 +184,16 @@ public class ConvexHull implements Serializable{
 //		}
 //		GL11.glEnd();
 		
-		
-		
-		//White hull
-		GL11.glColor3d(1,1,1);
-		GL11.glLineWidth(1);
-		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
-		for(Line2D.Float temp : lines){
-			//Reordered, SO HAPPY
-			GL11.glVertex2f(temp.x2 + world.getMapXOffset(), temp.y2 + world.getMapYOffset());
-			GL11.glVertex2f(temp.x1 + world.getMapXOffset(), temp.y1 + world.getMapYOffset());
-			
-		}
-		GL11.glEnd();
-		
-		
 		//The hull
 		GL11.glColor3d((double)(color.getRed())/255, (double)(color.getBlue())/255, (double)(color.getGreen())/255);
+		/*
 		if(data.getPlayer() != null){
 			Point p = new Point((int) data.getPlayer().getX(), (int) data.getPlayer().getY());
 			
 			if(p.distance(center.x, center.y) < 255+farthest){
 				GL11.glColor4d((double)(color.getRed())/255, (double)(color.getBlue())/255, (double)(color.getGreen())/255, (double)(p.distance(center.x, center.y)-farthest)/512 + .5);
 			}
-		}
+		}*/
 		
 		GL11.glLineWidth(1);
 		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
