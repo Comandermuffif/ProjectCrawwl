@@ -53,10 +53,13 @@ public class Main {
     	GL11.glEnable(GL11.GL_ALPHA);
     	GL11.glEnable(GL11.GL_ALPHA_TEST);
     	GL11.glEnable(GL11.GL_STENCIL_TEST);
+    	GL11.glEnable(GL11.GL_DEPTH_TEST);
     	
     	GL11.glAlphaFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
     	GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         
+    	GL11.glDepthFunc(GL11.GL_LESS);
+    	
     	System.out.println("Entering Main State");
 		
 		data.setMapXOffset((settings.getScreenX() - data.getMapX())/2);

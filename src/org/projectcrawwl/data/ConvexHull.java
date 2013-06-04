@@ -128,11 +128,7 @@ public class ConvexHull implements Serializable{
 		GameData data = GameData.getInstance();
 		GameSettings settings = GameSettings.getInstance();
 		
-		
 		//Draw shadow, they are so sexy
-		GL11.glColor4d(0,0,0,.75);
-		
-		
 		double length = 2*data.zoom + settings.getScreenX();//world.getMapX();
 		if(data.getPlayer() != null){
 			BasePlayer player = data.getPlayer();
@@ -149,67 +145,45 @@ public class ConvexHull implements Serializable{
 					}
 				}
 				if(flag){
+					double angle = 0;
 					
+					
+					GL11.glEnable(GL11.GL_DEPTH_TEST);
+					GL11.glDepthFunc(GL11.GL_NOTEQUAL);
+					
+					GL11.glColor4d(0,0,0,.75);
 					GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
-					GL11.glVertex2d(line.getX1() + world.getMapXOffset(),line.getY1() + world.getMapYOffset());
-					GL11.glVertex2d(line.getX2() + world.getMapXOffset(), line.getY2() + world.getMapYOffset());
-					
-					double angle = Math.atan2(line.getY1() - player.y, line.getX1() - player.x);
-					
-					GL11.glVertex2d(line.getX1() + world.getMapXOffset() + Math.cos(angle)*length,line.getY1() + world.getMapYOffset() + Math.sin(angle)*length);
-					
+					GL11.glVertex3d(line.getX1() + world.getMapXOffset(),line.getY1() + world.getMapYOffset(), .5);
+					GL11.glVertex3d(line.getX2() + world.getMapXOffset(), line.getY2() + world.getMapYOffset(), .5);
+					angle = Math.atan2(line.getY1() - player.y, line.getX1() - player.x);
+					GL11.glVertex3d(line.getX1() + world.getMapXOffset() + Math.cos(angle)*length,line.getY1() + world.getMapYOffset() + Math.sin(angle)*length, .5);
 					angle = Math.atan2(line.getY2() - player.y, line.getX2() - player.x);
-					
-					GL11.glVertex2d(line.getX2() + world.getMapXOffset() + Math.cos(angle)*length, line.getY2() + world.getMapYOffset() + Math.sin(angle)*length);
+					GL11.glVertex3d(line.getX2() + world.getMapXOffset() + Math.cos(angle)*length, line.getY2() + world.getMapYOffset() + Math.sin(angle)*length, .5);
 					GL11.glEnd();
+					
+					GL11.glDisable(GL11.GL_DEPTH_TEST);
 					
 				}
 			}
 		}
 		
+		GL11.glEnable(GL11.GL_DEPTH_TEST);
+		GL11.glDepthFunc(GL11.GL_NOTEQUAL);
 		
-//		for(int i = 0; i < polygon.npoints; i ++){
-//			boolean flag = true;
-//			double angle = Math.atan2(polygon.ypoints[i] - data.getPlayer().y, polygon.xpoints[i] - data.getPlayer().x);
-//			Line2D.Float temp = new Line2D.Float(polygon.xpoints[i], polygon.ypoints[i], (float) (polygon.xpoints[i] + Math.cos(angle)*length), (float) (polygon.ypoints[i] + Math.sin(angle)*length));
-//			for(Line2D.Float l : lines){
-//				
-//				if(l.getP1().equals(temp.getP1()) || l.getP1().equals(temp.getP2()) || l.getP2().equals(temp.getP1()) || l.getP2().equals(temp.getP2())){
-//					continue;
-//				}
-//				
-//				
-//				if(l.intersectsLine(temp)){
-//					flag = false;
-//					break;
-//				}
-//			}
-//			if(flag){
-//				GL11.glVertex2d(temp.getX1() + world.getMapXOffset(), temp.getY1() + world.getMapYOffset());
-//				GL11.glVertex2d(temp.getX2() + world.getMapXOffset(), temp.getY2() + world.getMapYOffset());
-//			}
-//		}
-//		GL11.glEnd();
 		
 		//The hull
 		GL11.glColor3d((double)(color.getRed())/255, (double)(color.getBlue())/255, (double)(color.getGreen())/255);
-		/*
-		if(data.getPlayer() != null){
-			Point p = new Point((int) data.getPlayer().getX(), (int) data.getPlayer().getY());
-			
-			if(p.distance(center.x, center.y) < 255+farthest){
-				GL11.glColor4d((double)(color.getRed())/255, (double)(color.getBlue())/255, (double)(color.getGreen())/255, (double)(p.distance(center.x, center.y)-farthest)/512 + .5);
-			}
-		}*/
 		
 		GL11.glLineWidth(1);
 		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
 		for(Line2D.Float temp : lines){
 			//Reordered, SO HAPPY
-			GL11.glVertex2f(temp.x2 + world.getMapXOffset(), temp.y2 + world.getMapYOffset());
-			GL11.glVertex2f(temp.x1 + world.getMapXOffset(), temp.y1 + world.getMapYOffset());
+			GL11.glVertex3d(temp.x2 + world.getMapXOffset(), temp.y2 + world.getMapYOffset(), 0);
+			GL11.glVertex3d(temp.x1 + world.getMapXOffset(), temp.y1 + world.getMapYOffset(), 0);
 			
 		}
 		GL11.glEnd();
+		
+		GL11.glDisable(GL11.GL_DEPTH_TEST);
 	}
 }
