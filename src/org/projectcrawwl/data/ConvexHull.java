@@ -1,6 +1,7 @@
 package org.projectcrawwl.data;
 
 import java.awt.Color;
+import java.awt.List;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.geom.Line2D;
@@ -9,6 +10,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 import org.lwjgl.opengl.GL11;
+import org.projectcrawwl.objects.BasePlayer;
 
 public class ConvexHull implements Serializable{
 	
@@ -128,38 +130,43 @@ public class ConvexHull implements Serializable{
 		
 		
 		//Draw shadow, they are so sexy
-		GL11.glColor3d(0,0,0);
+		GL11.glColor4d(0,0,0,.75);
 		
 		
 		double length = 2*data.zoom + settings.getScreenX();//world.getMapX();
-		
-		for(Line2D.Float line : lines){
-			boolean flag = false;
-			Line2D.Float mid = new Line2D.Float(data.getPlayer().x, data.getPlayer().y, (line.x1 + line.x2)/2, (line.y1 + line.y2)/2);
-			for(Line2D.Float l : lines){
-				if(line.equals(l)){
-					continue;
+		if(data.getPlayer() != null){
+			BasePlayer player = data.getPlayer();
+			for(Line2D.Float line : lines){
+				boolean flag = false;
+				Line2D.Float mid = new Line2D.Float(player.x, player.y, (line.x1 + line.x2)/2, (line.y1 + line.y2)/2);
+				for(Line2D.Float l : lines){
+					if(line.equals(l)){
+						continue;
+					}
+					if(l.intersectsLine(mid)){
+						flag = true;
+						break;
+					}
 				}
-				if(l.intersectsLine(mid)){
-					flag = true;
-					break;
+				if(flag){
+					
+					GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
+					GL11.glVertex2d(line.getX1() + world.getMapXOffset(),line.getY1() + world.getMapYOffset());
+					GL11.glVertex2d(line.getX2() + world.getMapXOffset(), line.getY2() + world.getMapYOffset());
+					
+					double angle = Math.atan2(line.getY1() - player.y, line.getX1() - player.x);
+					
+					GL11.glVertex2d(line.getX1() + world.getMapXOffset() + Math.cos(angle)*length,line.getY1() + world.getMapYOffset() + Math.sin(angle)*length);
+					
+					angle = Math.atan2(line.getY2() - player.y, line.getX2() - player.x);
+					
+					GL11.glVertex2d(line.getX2() + world.getMapXOffset() + Math.cos(angle)*length, line.getY2() + world.getMapYOffset() + Math.sin(angle)*length);
+					GL11.glEnd();
+					
 				}
-			}
-			if(flag){
-				GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
-				GL11.glVertex2d(line.getX1() + world.getMapXOffset(),line.getY1() + world.getMapYOffset());
-				GL11.glVertex2d(line.getX2() + world.getMapXOffset(), line.getY2() + world.getMapYOffset());
-				
-				double angle = Math.atan2(line.getY1() - data.getPlayer().y, line.getX1() - data.getPlayer().x);
-				
-				GL11.glVertex2d(line.getX1() + world.getMapXOffset() + Math.cos(angle)*length,line.getY1() + world.getMapYOffset() + Math.sin(angle)*length);
-				
-				angle = Math.atan2(line.getY2() - data.getPlayer().y, line.getX2() - data.getPlayer().x);
-				
-				GL11.glVertex2d(line.getX2() + world.getMapXOffset() + Math.cos(angle)*length, line.getY2() + world.getMapYOffset() + Math.sin(angle)*length);
-				GL11.glEnd();
 			}
 		}
+		
 		
 //		for(int i = 0; i < polygon.npoints; i ++){
 //			boolean flag = true;
