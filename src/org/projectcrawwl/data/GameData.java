@@ -31,7 +31,10 @@ public class GameData
 	private ArrayList<GameObject> removeParticles = new ArrayList<GameObject>();
 	private Object particleLock = new Object();
 	
-	private ArrayList<GameObject> corpses = new ArrayList<GameObject>();
+	private ArrayList<GameObject> allBloodStains = new ArrayList<GameObject>();
+	private ArrayList<GameObject> addBloodStains = new ArrayList<GameObject>();
+	private ArrayList<GameObject> removeBloodStains = new ArrayList<GameObject>();
+	private Object bloodStainLock = new Object();
 	
 	private static GameData instance = null;
 	
@@ -67,8 +70,12 @@ public class GameData
 		return ups;
 	}
 	
-	public ArrayList<GameObject> getCorpses(){
-		return corpses;
+	public ArrayList<GameObject> getBloodStains(){
+		return allBloodStains;
+	}
+	
+	public void addBloodStain(BloodStain g){
+		addBloodStains.add(g);
 	}
 	
 	public void setUPS(int temp){
@@ -300,11 +307,21 @@ public class GameData
 
 		world.renderBackground();
 		
-		synchronized(playerLock){
-			for(GameObject a : corpses){
+		for(ConvexHull x : world.getHulls()){
+			x.renderHull();
+		}
+		
+		synchronized(bloodStainLock){
+			for(GameObject a : allBloodStains){
 				a.render();
 			}
 		}
+		
+		for(ConvexHull x : world.getHulls()){
+			x.renderShadow();
+		}
+		
+		
 		
 		synchronized(playerLock){
 			for(BasePlayer a : allPlayers){
@@ -330,11 +347,6 @@ public class GameData
 			}
 		}
 		
-		
-		for(ConvexHull x : world.getHulls()){
-			x.render();
-		}
-		
 		synchronized(playerLock){
 			if(player != null){
 				player.renderHUD();
@@ -348,6 +360,22 @@ public class GameData
 		if(Keyboard.isKeyDown(Keyboard.KEY_LEFT)){world.setMapXOffset(world.getMapXOffset() + delta);}
 		if(Keyboard.isKeyDown(Keyboard.KEY_UP)){world.setMapYOffset(world.getMapYOffset() - delta);}
 		if(Keyboard.isKeyDown(Keyboard.KEY_DOWN)){world.setMapYOffset(world.getMapYOffset() + delta);}
+		
+		synchronized(bloodStainLock){
+			for(GameObject a : addBloodStains){
+				allBloodStains.add(a);
+			}
+			addBloodStains.clear();
+		}
+		
+		synchronized(bloodStainLock){
+			for(GameObject a : removeBloodStains){
+				allBloodStains.remove(a);
+			}
+			removeBloodStains.clear();
+		}
+		
+		synchronized(bloodStainLock){}
 		
 		synchronized(projectileLock){
 			//Removes projectiles that are off screen
@@ -386,14 +414,16 @@ public class GameData
 				}
 				allPlayers.remove(a);
 				
-				if(corpses.size() > 100){
-					corpses.remove(0);
+				if(allBloodStains.size() > 200){
+					removeBloodStains.add(allBloodStains.get(0));
 				}
 				
-				corpses.add(new Corpse(a.x, a.y));
+				addBloodStains.add(new Corpse(a.x, a.y));
 			}
 			removePlayers.clear();
 		}
+		
+		
 		
 		synchronized(playerLock){
 			for(BasePlayer a : addPlayers){
@@ -409,7 +439,7 @@ public class GameData
 			b.update(delta);
 		}
 		
-		for(GameObject c : getCorpses()){
+		for(GameObject c : getBloodStains()){
 			c.update(delta);
 		}
 		

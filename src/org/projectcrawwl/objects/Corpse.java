@@ -2,19 +2,13 @@ package org.projectcrawwl.objects;
 
 import org.lwjgl.opengl.GL11;
 
-public class Corpse extends GameObject{
+public class Corpse extends BloodStain{
 	
 	private int dots = 5;
 	
 	private double[] angles = new double[dots];
 	private double[] dist = new double[dots];
 	private double[] radious = new double[dots];
-	
-	private int totalTimer = 250;
-	private int timer = totalTimer;
-	
-	
-	
 	
 	public Corpse(float tempx, float tempy){
 		x = tempx;

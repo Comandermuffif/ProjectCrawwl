@@ -10,6 +10,7 @@ import java.util.Random;
 import org.lwjgl.opengl.GL11;
 import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.objects.BasePlayer;
+import org.projectcrawwl.objects.BloodStain;
 import org.projectcrawwl.objects.GameObject;
 
 public class Bullet extends GameObject{
@@ -139,6 +140,8 @@ public class Bullet extends GameObject{
 					b.damage(damage, owner);
 					damage -= 10;
 					lastHit = b;
+					
+					data.addBloodStain(new BloodStain(x,y));
 					
 					for(int i = 0; i < 4; i ++){
 						Random r = new Random();

@@ -64,11 +64,14 @@ public class Player extends BasePlayer {
 		
 		
 		if(anti){
-			GL11.glEnable(GL11.GL_LINE_SMOOTH);GL11.glEnable(GL11.GL_POLYGON_SMOOTH);
+			GL11.glEnable(GL11.GL_LINE_SMOOTH);
+			GL11.glEnable(GL11.GL_POLYGON_SMOOTH);
 			
 		}else{
-			GL11.glDisable(GL11.GL_LINE_SMOOTH);GL11.glDisable(GL11.GL_POLYGON_SMOOTH);
+			GL11.glDisable(GL11.GL_LINE_SMOOTH);
+			GL11.glDisable(GL11.GL_POLYGON_SMOOTH);
 		}
+		
 	
 //		float ratio = ((float) (settings.getScreenY())/settings.getScreenX());
 //		
@@ -84,55 +87,6 @@ public class Player extends BasePlayer {
 		GL11.glLoadIdentity();
 		GL11.glOrtho(0, settings.getScreenX(), 0, settings.getScreenY(), -1, 1);
 		
-		/*
-		//stencil test
-		GL11.glEnable(GL11.GL_STENCIL_TEST);
-		GL11.glStencilFunc(GL11.GL_NEVER, 1, 0xFF);
-		GL11.glStencilOp(GL11.GL_REPLACE, GL11.GL_KEEP, GL11.GL_KEEP);
-		
-		GL11.glColorMask(false, false, false, false);
-		GL11.glDepthMask(false);
-		GL11.glStencilMask(0xFF);
-		GL11.glClear(GL11.GL_STENCIL_BUFFER_BIT);
-		
-		//draw stencil
-		
-		data.getFont().drawString(620, settings.getScreenY() - 40, "Heath: " + health);
-		
-		GL11.glDisable(GL11.GL_TEXTURE_2D);
-		
-		GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
-		GL11.glVertex2d(0, 0);
-		GL11.glVertex2d(640, 0);
-		GL11.glVertex2d(0, 720);
-		GL11.glVertex2d(640, 720);
-		GL11.glEnd();
-		
-		GL11.glColorMask(true, true, true, true);
-		GL11.glDepthMask(true);
-		GL11.glStencilMask(0x00);
-		//Draw where 0
-		GL11.glStencilFunc(GL11.GL_EQUAL, 0, 0xFF);
-		
-		GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
-		GL11.glColor3d(1.0, 0.0, 0.0);
-		GL11.glVertex2d(0, 0);
-		GL11.glColor3d(0.0, 1.0, 0.0);
-		GL11.glVertex2d(1280, 0);
-		GL11.glVertex2d(0, 720);
-		GL11.glColor3d(0.0, 0.0, 1.0);
-		GL11.glVertex2d(1280, 720);
-		GL11.glEnd();
-		
-		//Draw where 1
-		GL11.glStencilFunc(GL11.GL_EQUAL, 1, 0xFF);
-		
-		GL11.glDisable(GL11.GL_STENCIL_TEST);
-		
-		//end test
-		*/
-		
-		
 		GL11.glColor3d(0,0,0);
 		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
 		GL11.glVertex2d(0, 0);
@@ -140,7 +94,6 @@ public class Player extends BasePlayer {
 		GL11.glVertex2d(250, 100);
 		GL11.glVertex2d(0, 100);
 		GL11.glEnd();
-		
 		
 		//Re scale view so text is right side up
 		GL11.glLoadIdentity();

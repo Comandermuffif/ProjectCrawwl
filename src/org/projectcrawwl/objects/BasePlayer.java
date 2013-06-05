@@ -76,20 +76,17 @@ public abstract class BasePlayer extends GameObject{
 		super.render();
 		inventory.render();
 		
+		GL11.glEnable(GL11.GL_DEPTH_TEST);
+		GL11.glDepthFunc(GL11.GL_LESS);
+		
 		GL11.glColor4d(1.0, 0, 0,.5);
 		GL11.glLineWidth(1);
 		GL11.glBegin(GL11.GL_LINES);
-		GL11.glVertex2f(renderX, renderY);
-		GL11.glVertex2d(renderX + 75 * Math.cos(Math.toRadians(facingAngle)), renderY + 75 * Math.sin(Math.toRadians(facingAngle)));
+		GL11.glVertex3d(renderX, renderY, .5);
+		GL11.glVertex3d(renderX + 75 * Math.cos(Math.toRadians(facingAngle)), renderY + 75 * Math.sin(Math.toRadians(facingAngle)), .5);
 		GL11.glEnd();
 		
-		/*
-		GL11.glColor4d(.5, .5, 0,.5);
-		GL11.glLineWidth(1);
-		GL11.glBegin(GL11.GL_LINES);
-		GL11.glVertex2f(renderX, renderY);
-		GL11.glVertex2d(renderX + sightRange * Math.cos(Math.toRadians(tempFacing)), renderY + sightRange * Math.sin(Math.toRadians(tempFacing)));
-		GL11.glEnd();*/
+		GL11.glDisable(GL11.GL_DEPTH_TEST);
 		
 		GL11.glColor4d(0, 1, 0, 1);
 		//GL11.glBegin(GL11.GL_TRIANGLE_FAN);
@@ -98,7 +95,7 @@ public abstract class BasePlayer extends GameObject{
 			float[] coord = new float[6];
 			pi.currentSegment(coord);
 			if(pi.currentSegment(coord) != pi.SEG_CLOSE){
-				GL11.glVertex2d(coord[0] + data.getMapXOffset(), coord[1] + data.getMapYOffset());
+				GL11.glVertex3d(coord[0] + data.getMapXOffset(), coord[1] + data.getMapYOffset(), .5);
 			}
 			pi.next();
 		}

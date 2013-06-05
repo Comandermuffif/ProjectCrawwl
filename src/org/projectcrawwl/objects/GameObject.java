@@ -210,6 +210,9 @@ public class GameObject {
 			return;
 		}
 		
+		GL11.glEnable(GL11.GL_DEPTH_TEST);
+		GL11.glDepthFunc(GL11.GL_LESS);
+		
 		GL11.glColor4d(.3,.3,.3,1);
 		GL11.glLineWidth(1);
 		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
@@ -219,6 +222,8 @@ public class GameObject {
 		}
 		GL11.glEnd();
 		
+
+		GL11.glDisable(GL11.GL_DEPTH_TEST);
 	}
 
 	//Do all calculations here

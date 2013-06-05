@@ -1,7 +1,6 @@
 package org.projectcrawwl.data;
 
 import java.awt.Color;
-import java.awt.List;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.geom.Line2D;
@@ -122,8 +121,7 @@ public class ConvexHull implements Serializable{
 		return lines;
 	}
 	
-	public void render(){
-		
+	public void renderShadow(){
 		world = World.getInstance();
 		GameData data = GameData.getInstance();
 		GameSettings settings = GameSettings.getInstance();
@@ -147,7 +145,6 @@ public class ConvexHull implements Serializable{
 				if(flag){
 					double angle = 0;
 					
-					
 					GL11.glEnable(GL11.GL_DEPTH_TEST);
 					GL11.glDepthFunc(GL11.GL_NOTEQUAL);
 					
@@ -162,13 +159,14 @@ public class ConvexHull implements Serializable{
 					GL11.glEnd();
 					
 					GL11.glDisable(GL11.GL_DEPTH_TEST);
-					
 				}
 			}
 		}
+	}
+	
+	public void renderHull(){
 		
-		GL11.glEnable(GL11.GL_DEPTH_TEST);
-		GL11.glDepthFunc(GL11.GL_NOTEQUAL);
+		world = World.getInstance();
 		
 		
 		//The hull
@@ -183,7 +181,5 @@ public class ConvexHull implements Serializable{
 			
 		}
 		GL11.glEnd();
-		
-		GL11.glDisable(GL11.GL_DEPTH_TEST);
 	}
 }
