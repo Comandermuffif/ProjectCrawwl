@@ -11,7 +11,7 @@ public class BloodStain extends GameObject{
 	
 	public BloodStain(float tempx, float tempy){
 		super(tempx, tempy);
-		r = Math.random() * 15;
+		r = 5 + Math.random() * 15;
 	}
 	public BloodStain(){
 		this(0,0);

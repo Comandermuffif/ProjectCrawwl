@@ -5,6 +5,7 @@ import java.io.IOException;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
+import org.projectcrawwl.data.ConvexHull;
 import org.projectcrawwl.weapons.*;
 
 import org.newdawn.slick.opengl.Texture;
@@ -18,6 +19,8 @@ public class Player extends BasePlayer {
 	private double speedMult = 1;
 	
 	boolean anti = false;
+	
+	private ConvexHull hull = null;
 	
 	public Player(int tempX, int tempY){
 		super(tempX,tempY);
@@ -206,12 +209,34 @@ public class Player extends BasePlayer {
 					anti = !anti;
 				}
 				
+				if(Keyboard.getEventKey() == Keyboard.KEY_3){
+					world.clearHulls();
+				}
+				
 			}
 		}
 		
-		Mouse.getEventButton();
+		while(Mouse.next()){
+			if(Mouse.getEventButtonState()){
+				if(Mouse.getEventButton() == 0 && !inventory.getWeapon().isAutomatic()){
+					inventory.getWeapon().fire();
+				}
+				if(Mouse.getEventButton() == 1){
+					if(hull == null){
+						hull = new ConvexHull();
+						world.addHull(hull);
+					}
+					float ratio = ((float) (settings.getScreenY())/settings.getScreenX());
+					
+					hull.addPoint((mouse_x) - world.getMapXOffset(), (mouse_y) - world.getMapYOffset());
+				}
+				if(Mouse.getEventButton() == 2){
+					hull = null;
+				}
+			}
+		}
 		
-		if(Mouse.isButtonDown(0)){
+		if(Mouse.isButtonDown(0) && inventory.getWeapon().isAutomatic()){
 			inventory.getWeapon().fire();
 		}
 

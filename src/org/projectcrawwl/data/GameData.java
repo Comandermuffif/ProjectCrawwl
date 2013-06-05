@@ -307,10 +307,6 @@ public class GameData
 
 		world.renderBackground();
 		
-		for(ConvexHull x : world.getHulls()){
-			x.renderHull();
-		}
-		
 		synchronized(bloodStainLock){
 			for(GameObject a : allBloodStains){
 				a.render();
@@ -318,10 +314,12 @@ public class GameData
 		}
 		
 		for(ConvexHull x : world.getHulls()){
-			x.renderShadow();
+			x.renderHull();
 		}
 		
-		
+		for(ConvexHull x : world.getHulls()){
+			x.renderShadow();
+		}
 		
 		synchronized(playerLock){
 			for(BasePlayer a : allPlayers){

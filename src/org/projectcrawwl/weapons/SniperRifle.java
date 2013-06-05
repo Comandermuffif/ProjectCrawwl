@@ -24,6 +24,8 @@ public class SniperRifle extends BaseRangedWeapon{
 		spread = 750;
 		spreadAngle = 7.5;
 		
+		automatic = false;
+		
 		try {
 			onFire = AudioLoader.getAudio("OGG", ResourceLoader.getResourceAsStream("res/Wpn_riflesniper_fire_2d.ogg"));
 		} catch (IOException e) {e.printStackTrace();}

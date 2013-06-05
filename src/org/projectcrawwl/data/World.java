@@ -2,6 +2,9 @@ package org.projectcrawwl.data;
 
 import java.awt.Point;
 import java.awt.geom.Line2D;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -110,6 +113,7 @@ public class World implements Serializable{
 			hulls.add(a);
 		}*/
 		
+		hulls.addAll(readFile("res/hulls.txt"));
 		
 		for(int i = 0; i < 35; i ++){
 			int tempX = (int) (Math.random() * mapX);
@@ -149,8 +153,50 @@ public class World implements Serializable{
 		
 	}
 	
+	private ArrayList<ConvexHull> readFile(String filename){
+		ArrayList<ConvexHull> data = new ArrayList<ConvexHull>();
+		try {
+			
+			BufferedReader wordStream = new BufferedReader(new FileReader(filename));
+			
+			String l;
+			ConvexHull hull = null;
+			
+			
+			while((l = wordStream.readLine()) != null){
+				if(l.equals("hull")){
+					if(hull != null){
+						data.add(hull);
+					}
+					System.out.println("new hull");
+					hull = new ConvexHull();
+				}else{
+					String[] line = l.split(" ");
+					if(line.length == 2){
+						System.out.println(line[0] + " " + line[1]);
+						hull.addPoint(Integer.parseInt(line[0]), Integer.parseInt(line[1]));
+					}
+				}
+			}
+			data.add(hull);
+			
+			wordStream.close();
+			
+		}catch(IOException e){e.printStackTrace();}
+		
+		return data;
+	}
+	
 	public ArrayList<ConvexHull> getHulls(){
 		return hulls;
+	}
+	
+	public void addHull(ConvexHull h){
+		hulls.add(h);
+	}
+	
+	public void clearHulls(){
+		hulls.clear();
 	}
 	
 	private static World instance = null;

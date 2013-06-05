@@ -23,6 +23,8 @@ public class Pistol extends BaseRangedWeapon{
 		
 		maxClip = 6;
 		
+		automatic = false;
+		
 		currentClip = maxClip;
 		
 		try {

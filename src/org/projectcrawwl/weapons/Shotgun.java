@@ -28,6 +28,8 @@ public class Shotgun extends BaseRangedWeapon{
 		maxClip = 12;
 		currentClip = maxClip;
 		
+		automatic = false;
+		
 		try {
 			onFire = AudioLoader.getAudio("OGG", ResourceLoader.getResourceAsStream("res/Wpn_shotguncombat_fire_2d.ogg"));
 		} catch (IOException e) {e.printStackTrace();}

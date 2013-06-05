@@ -16,6 +16,8 @@ public class BaseWeapon {
 	public float coolDown;
 	public float currentCoolDown;
 	
+	protected boolean automatic = true;
+	
 	public BaseWeapon(String tempName, float tempD){
 		name = tempName;
 		damage = tempD;
@@ -41,5 +43,9 @@ public class BaseWeapon {
 	}
 	public void reload(){
 		
+	}
+	
+	public boolean isAutomatic(){
+		return automatic;
 	}
 }
