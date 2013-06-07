@@ -174,6 +174,7 @@ public class ConvexHull implements Serializable{
 		
 		GL11.glLineWidth(1);
 		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
+		//GL11.glBegin(GL11.GL_LINE_LOOP);
 		for(Line2D.Float temp : lines){
 			//Reordered, SO HAPPY
 			GL11.glVertex3d(temp.x2 + world.getMapXOffset(), temp.y2 + world.getMapYOffset(), 0);

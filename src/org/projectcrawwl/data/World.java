@@ -197,6 +197,50 @@ public class World implements Serializable{
 	
 	public void clearHulls(){
 		hulls.clear();
+		
+		int subset = 20;
+		
+		for(int i = 0; i < subset; i ++){
+			{
+				ConvexHull a = new ConvexHull();
+				a.addPoint(0,(mapY/subset)*(i + 1));
+				a.addPoint(5,(mapY/subset)*(i + 1));
+				a.addPoint(5,(mapY/subset)*(i));
+				a.addPoint(0,(mapY/subset)*(i));
+				
+				hulls.add(a);
+			}
+			
+			{
+				ConvexHull a = new ConvexHull();
+				a.addPoint((mapX/subset)*(i),0);
+				a.addPoint((mapX/subset)*(i),5);
+				a.addPoint((mapX/subset)*(i+1),5);
+				a.addPoint((mapX/subset)*(i+1),0);
+				
+				hulls.add(a);
+			}
+			
+			{
+				ConvexHull a = new ConvexHull();
+				a.addPoint(mapX-5,(mapY/subset)*(i + 1));
+				a.addPoint(mapX,(mapY/subset)*(i + 1));
+				a.addPoint(mapX,(mapY/subset)*(i));
+				a.addPoint(mapX-5,(mapY/subset)*(i));
+				
+				hulls.add(a);
+			}
+			
+			{
+				ConvexHull a = new ConvexHull();
+				a.addPoint((mapX/subset)*(i),mapY);
+				a.addPoint((mapX/subset)*(i+1),mapY);
+				a.addPoint((mapX/subset)*(i+1),mapY-5);
+				a.addPoint((mapX/subset)*(i),mapY-5);
+				
+				hulls.add(a);
+			}
+		}
 	}
 	
 	private static World instance = null;

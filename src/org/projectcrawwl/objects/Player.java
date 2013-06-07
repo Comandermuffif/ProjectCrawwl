@@ -213,6 +213,10 @@ public class Player extends BasePlayer {
 					world.clearHulls();
 				}
 				
+				if(Keyboard.getEventKey() == Keyboard.KEY_4){
+					hull = null;
+				}
+				
 			}
 		}
 		
@@ -228,7 +232,7 @@ public class Player extends BasePlayer {
 					}
 					float ratio = ((float) (settings.getScreenY())/settings.getScreenX());
 					
-					hull.addPoint((mouse_x) - world.getMapXOffset(), (mouse_y) - world.getMapYOffset());
+					hull.addPoint((((float)(mouse_x)/settings.getScreenX())*(settings.getScreenX() + 2*data.zoom) - data.zoom) - world.getMapXOffset(),(((float)(mouse_y)/settings.getScreenY())*(settings.getScreenY() + 2*data.zoom*ratio) - data.zoom*ratio) - world.getMapYOffset());
 				}
 				if(Mouse.getEventButton() == 2){
 					hull = null;
