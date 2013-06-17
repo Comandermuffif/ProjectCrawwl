@@ -313,13 +313,9 @@ public class GameData
 			}
 		}
 		
-		for(ConvexHull x : world.getHulls()){
-			x.renderHull();
-		}
+		world.renderHulls();
 		
-		for(ConvexHull x : world.getHulls()){
-			x.renderShadow();
-		}
+		world.renderShadows();
 		
 		synchronized(playerLock){
 			for(BasePlayer a : allPlayers){

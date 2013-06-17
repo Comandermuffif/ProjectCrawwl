@@ -30,10 +30,23 @@ public class ConvexHull implements Serializable{
 	
 	private Color color = new Color((int)(Math.random()*255),(int) (Math.random()*255),(int) (Math.random()*255));//new Color(0,0,0);
 	
+	private int x = 0;
+	private int y = 0;
+	
 	public ConvexHull(){	
 	}
 	public ConvexHull(Color c){
 		color = c;
+	}
+	
+	/**
+	 * 
+	 * @param x - X coordinate
+	 * @param y - Y coordinate
+	 */
+	public ConvexHull(int xx, int yy){
+		this.x = xx;
+		this.y = yy;
 	}
 	
 	
@@ -46,12 +59,12 @@ public class ConvexHull implements Serializable{
 	}
 	
 	public void addPoint(Point k){
-		polygon.addPoint(k.x, k.y);
+		polygon.addPoint(k.x + this.x, k.y + this.y);
 		updateLines();
 	}
 	
-	public void addPoint(double x, double y){
-		polygon.addPoint((int) x,(int) y);
+	public void addPoint(double xx, double yy){
+		polygon.addPoint((int) (xx + this.x),(int) (yy + this.y));
 		updateLines();
 	}
 	

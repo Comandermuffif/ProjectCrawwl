@@ -7,8 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
-
-import org.lwjgl.opengl.GL11;
+import java.util.HashSet;
 
 public class World implements Serializable{
 	
@@ -20,139 +19,54 @@ public class World implements Serializable{
 	private float mapX = 4000;
 	private float mapY = 4000;
 	
-	private float mapXOffset;// = (1280-600)/2;
-	private float mapYOffset;// = (720-600)/2;
+	private float mapXOffset;
+	private float mapYOffset;
 	
 	static GameSettings settings = GameSettings.getInstance();
 	
 	private ArrayList<ConvexHull> hulls = new ArrayList<ConvexHull>();
+	private ArrayList<ConvexHull> tileHulls = new ArrayList<ConvexHull>();
+	
+	private ArrayList<WorldTile> tiles = new ArrayList<WorldTile>();
+	
+	private HashSet<WorldTile> tileMap = new HashSet<WorldTile>();
 	
 	public World(){
-		
-		int subset = 20;
-		
-		for(int i = 0; i < subset; i ++){
-			{
-				ConvexHull a = new ConvexHull();
-				a.addPoint(0,(mapY/subset)*(i + 1));
-				a.addPoint(5,(mapY/subset)*(i + 1));
-				a.addPoint(5,(mapY/subset)*(i));
-				a.addPoint(0,(mapY/subset)*(i));
-				
-				hulls.add(a);
-			}
-			
-			{
-				ConvexHull a = new ConvexHull();
-				a.addPoint((mapX/subset)*(i),0);
-				a.addPoint((mapX/subset)*(i),5);
-				a.addPoint((mapX/subset)*(i+1),5);
-				a.addPoint((mapX/subset)*(i+1),0);
-				
-				hulls.add(a);
-			}
-			
-			{
-				ConvexHull a = new ConvexHull();
-				a.addPoint(mapX-5,(mapY/subset)*(i + 1));
-				a.addPoint(mapX,(mapY/subset)*(i + 1));
-				a.addPoint(mapX,(mapY/subset)*(i));
-				a.addPoint(mapX-5,(mapY/subset)*(i));
-				
-				hulls.add(a);
-			}
-			
-			{
-				ConvexHull a = new ConvexHull();
-				a.addPoint((mapX/subset)*(i),mapY);
-				a.addPoint((mapX/subset)*(i+1),mapY);
-				a.addPoint((mapX/subset)*(i+1),mapY-5);
-				a.addPoint((mapX/subset)*(i),mapY-5);
-				
-				hulls.add(a);
-			}
-		}
-		/*
 		{
-			ConvexHull a = new ConvexHull();
-			a.addPoint(0,mapY);
-			a.addPoint(5,mapY);
-			a.addPoint(5,0);
-			a.addPoint(0,0);
-			
-			hulls.add(a);
+			int[] t = {0,0,0,0};
+			tiles.add(new WorldTile(0, 0, t));
 		}
 		
 		{
-			ConvexHull a = new ConvexHull();
-			a.addPoint(0,0);
-			a.addPoint(0,5);
-			a.addPoint(mapX,5);
-			a.addPoint(mapX,0);
-			
-			hulls.add(a);
+			int[] t = {1,1,1,0};
+			tiles.add(new WorldTile(1, 0, t));
 		}
 		
 		{
-			ConvexHull a = new ConvexHull();
-			a.addPoint(mapX-5,mapY);
-			a.addPoint(mapX,mapY);
-			a.addPoint(mapX,0);
-			a.addPoint(mapX-5,0);
-			
-			hulls.add(a);
+			int[] t = {1,0,1,1};
+			tiles.add(new WorldTile(-1, 0, t));
 		}
-		
 		{
-			ConvexHull a = new ConvexHull();
-			a.addPoint(0,mapY);
-			a.addPoint(mapX,mapY);
-			a.addPoint(mapX,mapY-5);
-			a.addPoint(0,mapY-5);
-			
-			hulls.add(a);
-		}*/
-		
-		hulls.addAll(readFile("res/hulls.txt"));
-		
-		for(int i = 0; i < 35; i ++){
-			int tempX = (int) (Math.random() * mapX);
-			int tempY = (int) (Math.random() * mapY);
-			
-			boolean flag = true;
-			
-
-			ConvexHull a = new ConvexHull();
-			a.addPoint(tempX, tempY);
-			a.addPoint(tempX + 100,tempY + 100);
-			a.addPoint(tempX + 200,tempY);
-			a.addPoint(tempX + 100,tempY - 100);			
-			
-			for(ConvexHull hull : hulls){
-				
-				for(Line2D.Float line : hull.getLines()){
-					for(Line2D.Float line2 : a.getLines()){
-						if(line.intersectsLine(line2)){
-							flag = false;
-							break;
-						}
-					}
-					if(!flag){
-						break;
-					}
-				}
-				if(!flag){
-					break;
-				}
-			}
-			if(flag){
-				hulls.add(a);
-			}
+			int[] t = {0,1,0,1};
+			tiles.add(new WorldTile(0, 1, t));
+		}
+		{
+			int[] t = {1,0,0,1};
+			tiles.add(new WorldTile(0, 2, t));
+		}
+		{
+			int[] t = {0,1,1,1};
+			tiles.add(new WorldTile(0, -1, t));
 		}
 		
+		tileMap.addAll(tiles);
 		
+		for(WorldTile t : tiles){
+			tileHulls.addAll(t.getHulls());
+		}
 	}
 	
+	@SuppressWarnings("unused")
 	private ArrayList<ConvexHull> readFile(String filename){
 		ArrayList<ConvexHull> data = new ArrayList<ConvexHull>();
 		try {
@@ -188,7 +102,10 @@ public class World implements Serializable{
 	}
 	
 	public ArrayList<ConvexHull> getHulls(){
-		return hulls;
+		ArrayList<ConvexHull> data = new ArrayList<ConvexHull>();
+		data.addAll(tileHulls);
+		data.addAll(hulls);
+		return data;
 	}
 	
 	public void addHull(ConvexHull h){
@@ -197,50 +114,6 @@ public class World implements Serializable{
 	
 	public void clearHulls(){
 		hulls.clear();
-		
-		int subset = 20;
-		
-		for(int i = 0; i < subset; i ++){
-			{
-				ConvexHull a = new ConvexHull();
-				a.addPoint(0,(mapY/subset)*(i + 1));
-				a.addPoint(5,(mapY/subset)*(i + 1));
-				a.addPoint(5,(mapY/subset)*(i));
-				a.addPoint(0,(mapY/subset)*(i));
-				
-				hulls.add(a);
-			}
-			
-			{
-				ConvexHull a = new ConvexHull();
-				a.addPoint((mapX/subset)*(i),0);
-				a.addPoint((mapX/subset)*(i),5);
-				a.addPoint((mapX/subset)*(i+1),5);
-				a.addPoint((mapX/subset)*(i+1),0);
-				
-				hulls.add(a);
-			}
-			
-			{
-				ConvexHull a = new ConvexHull();
-				a.addPoint(mapX-5,(mapY/subset)*(i + 1));
-				a.addPoint(mapX,(mapY/subset)*(i + 1));
-				a.addPoint(mapX,(mapY/subset)*(i));
-				a.addPoint(mapX-5,(mapY/subset)*(i));
-				
-				hulls.add(a);
-			}
-			
-			{
-				ConvexHull a = new ConvexHull();
-				a.addPoint((mapX/subset)*(i),mapY);
-				a.addPoint((mapX/subset)*(i+1),mapY);
-				a.addPoint((mapX/subset)*(i+1),mapY-5);
-				a.addPoint((mapX/subset)*(i),mapY-5);
-				
-				hulls.add(a);
-			}
-		}
 	}
 	
 	private static World instance = null;
@@ -295,22 +168,29 @@ public class World implements Serializable{
 		return a * d - b * c;
 	}
 
-	public void renderLights(){
-		//I have no idea what I want to do here
+	public void renderHulls(){
+		for(ConvexHull x : getHulls()){
+			x.renderHull();
+		}
+		
+		for(WorldTile t : tiles){
+			t.renderHulls();
+		}
+	}
+	
+	public void renderShadows(){
+		for(ConvexHull x : getHulls()){
+			x.renderShadow();
+		}
+		
+		for(WorldTile t : tiles){
+			t.renderShadows();
+		}
 	}
 	
 	public void renderBackground(){
-		
-		GL11.glColor4d(1,1,1,1);
-		GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
-		GL11.glVertex2f(mapXOffset, mapYOffset);
-		GL11.glVertex2f(mapXOffset, mapYOffset + mapY);
-		GL11.glVertex2f(mapXOffset + mapX, mapYOffset);
-		GL11.glVertex2f(mapXOffset + mapX, mapYOffset + mapY);
-		GL11.glEnd();
-		
-		
-		
-		
+		for(WorldTile t : tiles){
+			t.renderBackground();
+		}	
 	}
 }
