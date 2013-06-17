@@ -210,9 +210,6 @@ public class GameObject {
 			return;
 		}
 		
-		GL11.glEnable(GL11.GL_DEPTH_TEST);
-		GL11.glDepthFunc(GL11.GL_LESS);
-		
 		GL11.glColor4d(.3,.3,.3,1);
 		GL11.glLineWidth(1);
 		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
@@ -222,8 +219,6 @@ public class GameObject {
 		}
 		GL11.glEnd();
 		
-
-		GL11.glDisable(GL11.GL_DEPTH_TEST);
 	}
 
 	//Do all calculations here
@@ -234,21 +229,8 @@ public class GameObject {
 		
 		renderX = x + data.getMapXOffset();
 		renderY = y + data.getMapYOffset();
-		/*
-		if(Math.abs(facingAngle - tempFacing) > 180){
-			if(facingAngle < 0){
-				facingAngle += 360;
-			}
-			if(tempFacing < 0){
-				tempFacing += 360;
-			}
-		}*/
-		
-		
 		
 		if(facingAngle != tempFacing){
-			
-			//System.out.println(facingAngle - tempFacing);
 			if(Math.abs(facingAngle - tempFacing) > delta*(turnSpeed)){
 				if(facingAngle - tempFacing > delta*(turnSpeed) && Math.abs(facingAngle - tempFacing) < 180){
 					tempFacing = (float) (facingAngle - delta*(turnSpeed));
