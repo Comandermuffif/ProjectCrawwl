@@ -79,7 +79,7 @@ public abstract class BasePlayer extends GameObject{
 		GL11.glEnable(GL11.GL_DEPTH_TEST);
 		GL11.glDepthFunc(GL11.GL_LESS);
 		
-		GL11.glColor4d(1.0, 0, 0,.5);
+		GL11.glColor4d(1.0, 0.0, 0,.5);
 		GL11.glLineWidth(1);
 		GL11.glBegin(GL11.GL_LINES);
 		GL11.glVertex3d(renderX, renderY, .5);
@@ -100,6 +100,8 @@ public abstract class BasePlayer extends GameObject{
 			pi.next();
 		}
 		GL11.glEnd();
+		
+		
 	}
 	
 	public void renderHUD(){

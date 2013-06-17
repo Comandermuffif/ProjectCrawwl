@@ -210,6 +210,9 @@ public class GameObject {
 			return;
 		}
 		
+		GL11.glEnable(GL11.GL_DEPTH_TEST);
+		GL11.glDepthFunc(GL11.GL_LESS);
+		
 		GL11.glColor4d(.3,.3,.3,1);
 		GL11.glLineWidth(1);
 		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
@@ -218,6 +221,8 @@ public class GameObject {
 			GL11.glVertex2d(temp.x1*Math.cos(Math.toRadians(facingAngle)) - temp.y1*Math.sin(Math.toRadians(facingAngle)) + renderX, temp.x1*Math.sin(Math.toRadians(facingAngle)) + temp.y1*Math.cos(Math.toRadians(facingAngle)) + renderY);
 		}
 		GL11.glEnd();
+		
+		GL11.glDisable(GL11.GL_DEPTH_TEST);
 		
 	}
 

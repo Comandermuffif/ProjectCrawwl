@@ -62,8 +62,8 @@ public class Main {
     	
     	System.out.println("Entering Main State");
 		
-		data.setMapXOffset((settings.getScreenX() - data.getMapX())/2);
-		data.setMapYOffset((settings.getScreenY() - data.getMapY())/2);
+		data.setMapXOffset(0);
+		data.setMapYOffset(0);
 
 		data.addPlayer();
     	getDelta();

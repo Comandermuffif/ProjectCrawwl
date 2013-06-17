@@ -21,6 +21,11 @@ public class WorldTile {
 	 */
 	private int[] sides = new int[4];
 	
+	public WorldTile(int ii, int jj){
+		x = ii * width;
+		y = jj * height;
+	}
+	
 	/**
 	 * @param tempSide - the sides to make walls(1), random(-1), and open(0)
 	 */
@@ -43,7 +48,7 @@ public class WorldTile {
 			}
 		}
 		
-		int subset = 20;
+		int subset = 5;
 		
 		for(int i = 0; i < subset; i ++){
 			if(sides[3] == 1)
@@ -97,12 +102,20 @@ public class WorldTile {
 		return sides;
 	}
 	
+	public int getWidth(){
+		return width;
+	}
+	
+	public int getHeight(){
+		return height;
+	}
+	
 	public int getX(){
-		return x;
+		return x/width;
 	}
 	
 	public int getY(){
-		return y;
+		return y/height;
 	}
 	
 	public void renderHulls(){
@@ -120,7 +133,7 @@ public class WorldTile {
 	public void renderBackground(){
 		World w = World.getInstance();
 		
-		GL11.glColor4d(1,1,1,.5);
+		GL11.glColor3d(1,1,1);
 		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
 		GL11.glVertex2d(x + w.getMapXOffset(), y + w.getMapYOffset());
 		GL11.glVertex2d(x + width + w.getMapXOffset(), y + w.getMapYOffset());
@@ -135,6 +148,15 @@ public class WorldTile {
 		hash = 71 * hash + x/width;
 		hash = 71 * hash + y/height;
 		return hash;
+	}
+	
+	@Override
+	public boolean equals(Object t){
+		WorldTile u = (WorldTile) t;
+		if(u.getX() == this.getX() && u.getY() == this.getY()){
+			return true;
+		}
+		return false;
 	}
 
 }

@@ -16,9 +16,6 @@ public class World implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private float mapX = 4000;
-	private float mapY = 4000;
-	
 	private float mapXOffset;
 	private float mapYOffset;
 	
@@ -35,31 +32,78 @@ public class World implements Serializable{
 		{
 			int[] t = {0,0,0,0};
 			tiles.add(new WorldTile(0, 0, t));
+			tileMap.add(new WorldTile(0, 0, t));
 		}
 		
-		{
-			int[] t = {1,1,1,0};
-			tiles.add(new WorldTile(1, 0, t));
-		}
+		ArrayList<WorldTile> queue = new ArrayList<WorldTile>();
 		
-		{
-			int[] t = {1,0,1,1};
-			tiles.add(new WorldTile(-1, 0, t));
-		}
-		{
-			int[] t = {0,1,0,1};
-			tiles.add(new WorldTile(0, 1, t));
-		}
-		{
-			int[] t = {1,0,0,1};
-			tiles.add(new WorldTile(0, 2, t));
-		}
-		{
-			int[] t = {0,1,1,1};
-			tiles.add(new WorldTile(0, -1, t));
-		}
+		queue.addAll(tiles);
 		
-		tileMap.addAll(tiles);
+		int i = 0;
+		
+		while(!queue.isEmpty()){
+			
+			i ++;
+			
+			WorldTile current = queue.get(0);
+			queue.remove(0);
+			
+			if(i > 50){
+				if(current.getSides()[0] == 0 && !tileMap.contains(new WorldTile(current.getX(), current.getY() + 1))){
+					WorldTile t = new WorldTile(current.getX(), current.getY() + 1, new int[]{1,1,0,1});
+					tiles.add(t);
+					tileMap.add(t);
+					queue.add(t);
+				}
+				
+				if(current.getSides()[1] == 0 && !tileMap.contains(new WorldTile(current.getX() + 1, current.getY()))){
+					WorldTile t = new WorldTile(current.getX() + 1, current.getY(), new int[]{1,1,1,0});
+					tiles.add(t);
+					tileMap.add(t);
+					queue.add(t);
+				}
+				
+				if(current.getSides()[2] == 0 && !tileMap.contains(new WorldTile(current.getX(), current.getY() - 1))){
+					WorldTile t = new WorldTile(current.getX(), current.getY() - 1, new int[]{0,1,1,1});
+					tiles.add(t);
+					tileMap.add(t);
+					queue.add(t);
+				}
+				if(current.getSides()[3] == 0 && !tileMap.contains(new WorldTile(current.getX() - 1, current.getY()))){
+					WorldTile t = new WorldTile(current.getX() - 1, current.getY(), new int[]{1,0,1,1});
+					tiles.add(t);
+					tileMap.add(t);
+					queue.add(t);
+				}
+			}else{
+				if(current.getSides()[0] == 0 && !tileMap.contains(new WorldTile(current.getX(), current.getY() + 1))){
+					WorldTile t = new WorldTile(current.getX(), current.getY() + 1, new int[]{-1,-1,0,-1});
+					tiles.add(t);
+					tileMap.add(t);
+					queue.add(t);
+				}
+				
+				if(current.getSides()[1] == 0 && !tileMap.contains(new WorldTile(current.getX() + 1, current.getY()))){
+					WorldTile t = new WorldTile(current.getX() + 1, current.getY(), new int[]{-1,-1,-1,0});
+					tiles.add(t);
+					tileMap.add(t);
+					queue.add(t);
+				}
+				
+				if(current.getSides()[2] == 0 && !tileMap.contains(new WorldTile(current.getX(), current.getY() - 1))){
+					WorldTile t = new WorldTile(current.getX(), current.getY() - 1, new int[]{0,-1,-1,-1});
+					tiles.add(t);
+					tileMap.add(t);
+					queue.add(t);
+				}
+				if(current.getSides()[3] == 0 && !tileMap.contains(new WorldTile(current.getX() - 1, current.getY()))){
+					WorldTile t = new WorldTile(current.getX() - 1, current.getY(), new int[]{-1,0,-1,-1});
+					tiles.add(t);
+					tileMap.add(t);
+					queue.add(t);
+				}
+			}
+		}
 		
 		for(WorldTile t : tiles){
 			tileHulls.addAll(t.getHulls());
@@ -101,6 +145,10 @@ public class World implements Serializable{
 		return data;
 	}
 	
+	public ArrayList<WorldTile> getTiles(){
+		return tiles;
+	}
+	
 	public ArrayList<ConvexHull> getHulls(){
 		ArrayList<ConvexHull> data = new ArrayList<ConvexHull>();
 		data.addAll(tileHulls);
@@ -124,13 +172,6 @@ public class World implements Serializable{
 			instance = new World();
 		}
 		return instance;
-	}
-	
-	public float getMapX(){
-		return mapX;
-	}
-	public float getMapY(){
-		return mapY;
 	}
 	
 	public float getMapXOffset(){

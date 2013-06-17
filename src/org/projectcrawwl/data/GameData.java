@@ -96,13 +96,6 @@ public class GameData
 		world.setMapYOffset(temp);
 	}
 	
-	public float getMapX(){
-		return world.getMapX();
-	}
-	public float getMapY(){
-		return world.getMapY();
-	}
-	
 	public static GameData getInstance()
 	{
 		if(instance == null)
@@ -127,8 +120,11 @@ public class GameData
 	}
 	
 	public void addPlayer(){
-		int tempX = (int) (Math.random() * world.getMapX());
-		int tempY = (int) (Math.random() * world.getMapY());
+		
+		WorldTile t = world.getTiles().get((int) Math.floor(Math.random()*world.getTiles().size()));
+		
+		int tempX = (int) ((Math.random() + t.getX()) * t.getWidth());
+		int tempY = (int) ((Math.random() + t.getY()) * t.getHeight());
 		
 		player = new Player(tempX, tempY);
 		
@@ -172,8 +168,10 @@ public class GameData
 	}
 	
 	public void addZombie(){
-		int tempX = (int) (Math.random() * world.getMapX());
-		int tempY = (int) (Math.random() * world.getMapY());
+		WorldTile t = world.getTiles().get((int) Math.floor(Math.random()*world.getTiles().size()));
+		
+		int tempX = (int) ((Math.random() + t.getX()) * t.getWidth());
+		int tempY = (int) ((Math.random() + t.getY()) * t.getHeight());
 		
 		BasePlayer zombie = new Zombie(tempX, tempY);
 		
@@ -244,8 +242,11 @@ public class GameData
 	}
 	
 	public void addFriendly(){
-		int tempX = (int) (Math.random() * world.getMapX());
-		int tempY = (int) (Math.random() * world.getMapY());
+		WorldTile t = world.getTiles().get((int) Math.floor(Math.random()*world.getTiles().size()));
+		
+		int tempX = (int) ((Math.random() + t.getX()) * t.getWidth());
+		int tempY = (int) ((Math.random() + t.getY()) * t.getHeight());
+
 		
 		BasePlayer friendly = new Friendly(tempX, tempY);
 		
