@@ -154,6 +154,8 @@ public class ConvexHull implements Serializable{
 	
 	public void renderShadow(){
 		
+		if(true){return;}
+		
 		world = World.getInstance();
 		GameData data = GameData.getInstance();
 		GameSettings settings = GameSettings.getInstance();
@@ -203,6 +205,8 @@ public class ConvexHull implements Serializable{
 	public void renderHull(){
 		
 		world = World.getInstance();
+		GameData data = GameData.getInstance();
+		GameSettings settings = GameSettings.getInstance();
 		
 		if(!isOnScreen()){
 			return;
@@ -211,13 +215,52 @@ public class ConvexHull implements Serializable{
 		//The hull
 		GL11.glColor3d((double)(color.getRed())/255, (double)(color.getBlue())/255, (double)(color.getGreen())/255);
 		
+		double length = 100;
+		
 		GL11.glLineWidth(1);
 		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
 		//GL11.glBegin(GL11.GL_LINE_LOOP);
-		for(Line2D.Float temp : lines){
-			//Reordered, SO HAPPY
-			GL11.glVertex3d(temp.x2 + world.getMapXOffset(), temp.y2 + world.getMapYOffset(), 0);
-			GL11.glVertex3d(temp.x1 + world.getMapXOffset(), temp.y1 + world.getMapYOffset(), 0);
+		for(Line2D.Float line : lines){
+			boolean flag = true;
+			
+			Line2D.Float mid = new Line2D.Float(settings.getScreenX()/2 - world.getMapXOffset(), settings.getScreenY()/2 - world.getMapYOffset(), (line.x1 + line.x2)/2, (line.y1 + line.y2)/2);
+			
+			for(Line2D.Float l : lines){
+				if(line.equals(l)){
+					continue;
+				}
+				if(l.intersectsLine(mid)){
+					flag = false;
+				}
+			}
+			if(flag){
+				double angle = 0;
+				
+				GL11.glEnable(GL11.GL_DEPTH_TEST);
+				GL11.glDepthFunc(GL11.GL_NOTEQUAL);
+				
+				GL11.glColor4d(0,0,0,.75);
+				//GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
+				GL11.glBegin(GL11.GL_LINES);
+				
+				GL11.glVertex3d(line.getX1() + world.getMapXOffset(),line.getY1() + world.getMapYOffset(), .5);
+				
+				GL11.glVertex3d(line.getX2() + world.getMapXOffset(), line.getY2() + world.getMapYOffset(), .5);
+				
+				GL11.glEnd();
+				
+				
+				
+//				angle = Math.atan2(line.getY1() - (settings.getScreenY()/2 - world.getMapYOffset()), line.getX1() - (settings.getScreenX()/2 - world.getMapXOffset()));
+//				GL11.glVertex3d(line.getX1() + world.getMapXOffset() + Math.cos(angle)*length,line.getY1() + world.getMapYOffset() + Math.sin(angle)*length, .5);
+//				angle = Math.atan2(line.getY2() - (settings.getScreenY()/2 - world.getMapYOffset()), line.getX2() - (settings.getScreenY()/2 - world.getMapYOffset()));
+//				GL11.glVertex3d(line.getX2() + world.getMapXOffset() + Math.cos(angle)*length, line.getY2() + world.getMapYOffset() + Math.sin(angle)*length, .5);
+//				GL11.glEnd();
+				
+				GL11.glDisable(GL11.GL_DEPTH_TEST);
+			}
+			
+			
 			
 		}
 		GL11.glEnd();

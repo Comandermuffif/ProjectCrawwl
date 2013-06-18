@@ -30,7 +30,7 @@ public class World implements Serializable{
 	
 	public World(){
 		{
-			WorldTile t = new WorldTile(0,0, new int[]{0,0,0,0});
+			WorldTile t = new WorldTile(0,0, new int[]{1,1,0,1});
 			ConvexHull h = new ConvexHull();
 			h.addPoint(125,125);
 			h.addPoint(375,125);
