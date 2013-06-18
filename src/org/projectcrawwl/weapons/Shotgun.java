@@ -31,7 +31,7 @@ public class Shotgun extends BaseRangedWeapon{
 		automatic = false;
 		
 		try {
-			onFire = AudioLoader.getAudio("OGG", ResourceLoader.getResourceAsStream("res/Wpn_shotguncombat_fire_2d.ogg"));
+			onFire = AudioLoader.getAudio("OGG", ResourceLoader.getResourceAsStream("res/SoundFiles/Wpn_shotguncombat_fire_2d.ogg"));
 		} catch (IOException e) {e.printStackTrace();}
 		
 	}

@@ -174,9 +174,12 @@ public class Player extends BasePlayer {
 		
 		data.zoom -= Mouse.getDWheel();
 		
-		
 		if(data.zoom < 0){
 			data.zoom = 0;
+		}
+		
+		if(data.zoom > 360){
+			data.zoom = 360;
 		}
 		
 		while(Keyboard.next()){

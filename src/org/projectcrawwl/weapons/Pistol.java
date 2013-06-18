@@ -13,12 +13,12 @@ public class Pistol extends BaseRangedWeapon{
 		
 		velocity = 3;
 		
-		spread = 600;
-		spreadAngle = 4;
+		spread = 300;
+		spreadAngle = 6;
 		
-		damage = 10;
+		damage = 75;
 		
-		coolDown = 500;
+		coolDown = 50;
 		currentCoolDown = coolDown;
 		
 		maxClip = 6;
@@ -29,7 +29,7 @@ public class Pistol extends BaseRangedWeapon{
 		
 		try {
 			
-			onFire = AudioLoader.getAudio("OGG", ResourceLoader.getResourceAsStream("res/Wpn_riflelincolns_fire_2d.ogg"));
+			onFire = AudioLoader.getAudio("OGG", ResourceLoader.getResourceAsStream("res/SoundFiles/Wpn_riflelincolns_fire_2d.ogg"));
 			//onFire = AudioLoader.getAudio("OGG", ResourceLoader.getResourceAsStream("res/Wpn_pistol_44magnum_fire_2d.ogg"));
 		} catch (IOException e) {e.printStackTrace();}
 	}

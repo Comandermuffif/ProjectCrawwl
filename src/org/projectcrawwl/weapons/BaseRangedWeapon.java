@@ -203,7 +203,12 @@ public abstract class BaseRangedWeapon extends BaseWeapon{
 				if(coneSpread < -1){coneSpread = -1;}
 				if(coneSpread > 1){coneSpread = 1;}
 				
-				data.addProjectile(new Bullet((float) (owner.x + Math.cos(Math.toRadians(owner.facingAngle))*(owner.r + 5)),(float) (owner.y + Math.sin(Math.toRadians(owner.facingAngle))*(owner.r+5)),(float) (velocity + random.nextGaussian()*.02),(float) ((float) owner.facingAngle + tempG*((currentSpread/1000)*spreadAngle + minSpread) + (coneSpread)*cone), damage, owner));
+				if(currentSpread == 0){
+					data.addProjectile(new Bullet((float) (owner.x + Math.cos(Math.toRadians(owner.facingAngle))*(owner.r + 5)),(float) (owner.y + Math.sin(Math.toRadians(owner.facingAngle))*(owner.r+5)),(float) (velocity + random.nextGaussian()*.02),(float) ((float) owner.facingAngle + (coneSpread)*cone), damage, owner));
+				}else{
+					data.addProjectile(new Bullet((float) (owner.x + Math.cos(Math.toRadians(owner.facingAngle))*(owner.r + 5)),(float) (owner.y + Math.sin(Math.toRadians(owner.facingAngle))*(owner.r+5)),(float) (velocity + random.nextGaussian()*.02),(float) ((float) owner.facingAngle + tempG*((currentSpread/1000)*spreadAngle + minSpread) + (coneSpread)*cone), damage, owner));
+				}
+				
 			}
 			if(currentSpread/1000*spreadAngle < maxSpread){
 				currentSpread += spread;

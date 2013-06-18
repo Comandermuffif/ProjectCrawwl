@@ -134,10 +134,33 @@ public class ConvexHull implements Serializable{
 		return lines;
 	}
 	
+	public boolean isOnScreen(){
+		
+		GameSettings settings = GameSettings.getInstance();
+		
+		GameData data = GameData.getInstance();
+		
+		float ratio = ((float) (settings.getScreenY())/settings.getScreenX());
+		
+		if(getCenter().x + world.getMapXOffset() + getFarthest() < -data.zoom || getCenter().x + world.getMapXOffset() - getFarthest() > settings.getScreenX()  + data.zoom){
+			return false;
+		}
+		if(getCenter().y + world.getMapYOffset() + getFarthest() < -data.zoom*(ratio) || getCenter().y + world.getMapYOffset() - getFarthest() > settings.getScreenY()  + data.zoom*(ratio)){
+			return false;
+		}
+		
+		return true;
+	}
+	
 	public void renderShadow(){
+		
 		world = World.getInstance();
 		GameData data = GameData.getInstance();
 		GameSettings settings = GameSettings.getInstance();
+		
+		if(!isOnScreen()){
+			return;
+		}
 		
 		//Draw shadow, they are so sexy
 		double length = 2*data.zoom + settings.getScreenX();//world.getMapX();
@@ -181,6 +204,9 @@ public class ConvexHull implements Serializable{
 		
 		world = World.getInstance();
 		
+		if(!isOnScreen()){
+			return;
+		}
 		
 		//The hull
 		GL11.glColor3d((double)(color.getRed())/255, (double)(color.getBlue())/255, (double)(color.getGreen())/255);

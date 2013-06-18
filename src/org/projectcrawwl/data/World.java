@@ -16,8 +16,8 @@ public class World implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private float mapXOffset;
-	private float mapYOffset;
+	private float mapXOffset = 0;
+	private float mapYOffset = 0;
 	
 	static GameSettings settings = GameSettings.getInstance();
 	
@@ -30,10 +30,22 @@ public class World implements Serializable{
 	
 	public World(){
 		{
-			int[] t = {0,0,0,0};
-			tiles.add(new WorldTile(0, 0, t));
-			tileMap.add(new WorldTile(0, 0, t));
+			WorldTile t = new WorldTile(0,0, new int[]{0,0,0,0});
+			ConvexHull h = new ConvexHull();
+			h.addPoint(125,125);
+			h.addPoint(375,125);
+			h.addPoint(375,375);
+			h.addPoint(125,375);
+			t.addHull(h);
+			tiles.add(t);
+			tileMap.add(t);
 		}
+		{
+			WorldTile t = new WorldTile("res/WorldTiles/tile1.WorldTile");
+			tiles.add(t);
+			tileMap.add(t);
+		}
+		
 		
 		ArrayList<WorldTile> queue = new ArrayList<WorldTile>();
 		

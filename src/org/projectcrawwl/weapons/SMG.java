@@ -28,7 +28,7 @@ public class SMG extends BaseRangedWeapon{
 		currentClip = 25;
 		
 		try {
-			onFire = AudioLoader.getAudio("OGG", ResourceLoader.getResourceAsStream("res/Wpn_45_smg_2d_01.ogg"));
+			onFire = AudioLoader.getAudio("OGG", ResourceLoader.getResourceAsStream("res/SoundFiles/Wpn_45_smg_2d_01.ogg"));
 		} catch (IOException e) {e.printStackTrace();}
 	}
 }

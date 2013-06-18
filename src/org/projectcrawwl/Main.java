@@ -61,9 +61,6 @@ public class Main {
     	GL11.glDepthFunc(GL11.GL_LESS);
     	
     	System.out.println("Entering Main State");
-		
-		data.setMapXOffset(0);
-		data.setMapYOffset(0);
 
 		data.addPlayer();
     	getDelta();
