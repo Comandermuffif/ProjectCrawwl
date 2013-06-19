@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 
 public class World implements Serializable{
@@ -23,6 +24,8 @@ public class World implements Serializable{
 	
 	private ArrayList<ConvexHull> hulls = new ArrayList<ConvexHull>();
 	private ArrayList<ConvexHull> tileHulls = new ArrayList<ConvexHull>();
+	private ArrayList<ConvexHull> allHulls = new ArrayList<ConvexHull>();
+	
 	
 	private ArrayList<WorldTile> tiles = new ArrayList<WorldTile>();
 	
@@ -30,7 +33,7 @@ public class World implements Serializable{
 	
 	public World(){
 		{
-			WorldTile t = new WorldTile(0,0, new int[]{1,1,0,1});
+			WorldTile t = new WorldTile(0,0, new int[]{0,0,0,0});
 			ConvexHull h = new ConvexHull();
 			h.addPoint(125,125);
 			h.addPoint(375,125);
@@ -41,9 +44,9 @@ public class World implements Serializable{
 			tileMap.add(t);
 		}
 		{
-			WorldTile t = new WorldTile("res/WorldTiles/tile1.WorldTile");
-			tiles.add(t);
-			tileMap.add(t);
+//			WorldTile t = new WorldTile("res/WorldTiles/tile1.WorldTile");
+//			tiles.add(t);
+//			tileMap.add(t);
 		}
 		
 		
@@ -120,6 +123,9 @@ public class World implements Serializable{
 		for(WorldTile t : tiles){
 			tileHulls.addAll(t.getHulls());
 		}
+		
+		allHulls.addAll(tileHulls);
+		allHulls.addAll(hulls);
 	}
 	
 	@SuppressWarnings("unused")
@@ -162,14 +168,12 @@ public class World implements Serializable{
 	}
 	
 	public ArrayList<ConvexHull> getHulls(){
-		ArrayList<ConvexHull> data = new ArrayList<ConvexHull>();
-		data.addAll(tileHulls);
-		data.addAll(hulls);
-		return data;
+		return allHulls;
 	}
 	
 	public void addHull(ConvexHull h){
 		hulls.add(h);
+		allHulls.add(h);
 	}
 	
 	public void clearHulls(){
@@ -222,22 +226,17 @@ public class World implements Serializable{
 	}
 
 	public void renderHulls(){
-		for(ConvexHull x : getHulls()){
-			x.renderHull();
-		}
 		
-		for(WorldTile t : tiles){
-			t.renderHulls();
+		Collections.sort(allHulls);
+		
+		for(ConvexHull x : allHulls){
+			x.renderHull();
 		}
 	}
 	
 	public void renderShadows(){
-		for(ConvexHull x : getHulls()){
+		for(ConvexHull x : allHulls){
 			x.renderShadow();
-		}
-		
-		for(WorldTile t : tiles){
-			t.renderShadows();
 		}
 	}
 	

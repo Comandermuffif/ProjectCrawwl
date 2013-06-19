@@ -314,10 +314,6 @@ public class GameData
 			}
 		}
 		
-		world.renderHulls();
-		
-		world.renderShadows();
-		
 		synchronized(playerLock){
 			for(BasePlayer a : allPlayers){
 				a.render();
@@ -341,6 +337,10 @@ public class GameData
 				player.render();
 			}
 		}
+		
+		world.renderHulls();
+		
+		world.renderShadows();
 		
 		synchronized(playerLock){
 			if(player != null){

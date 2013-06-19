@@ -5,13 +5,14 @@ import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.geom.Line2D;
 import java.awt.geom.PathIterator;
+import java.awt.geom.Point2D;
 import java.io.Serializable;
 import java.util.ArrayList;
 
 import org.lwjgl.opengl.GL11;
 import org.projectcrawwl.objects.BasePlayer;
 
-public class ConvexHull implements Serializable{
+public class ConvexHull implements Comparable<ConvexHull>{
 	
 	/**
 	 * 
@@ -204,8 +205,8 @@ public class ConvexHull implements Serializable{
 	
 	public void renderHull(){
 		
-		world = World.getInstance();
 		GameData data = GameData.getInstance();
+		world = World.getInstance();
 		GameSettings settings = GameSettings.getInstance();
 		
 		if(!isOnScreen()){
@@ -215,54 +216,114 @@ public class ConvexHull implements Serializable{
 		//The hull
 		GL11.glColor3d((double)(color.getRed())/255, (double)(color.getBlue())/255, (double)(color.getGreen())/255);
 		
-		double length = 100;
+		double length = 50;
 		
-		GL11.glLineWidth(1);
-		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
 		//GL11.glBegin(GL11.GL_LINE_LOOP);
-		for(Line2D.Float line : lines){
-			boolean flag = true;
-			
-			Line2D.Float mid = new Line2D.Float(settings.getScreenX()/2 - world.getMapXOffset(), settings.getScreenY()/2 - world.getMapYOffset(), (line.x1 + line.x2)/2, (line.y1 + line.y2)/2);
-			
-			for(Line2D.Float l : lines){
-				if(line.equals(l)){
-					continue;
+		if(data.getPlayer() != null){
+			BasePlayer player = data.getPlayer();
+			for(Line2D.Float line : lines){
+				boolean flag = true;
+				
+				Line2D.Float mid = new Line2D.Float(player.x, player.y, (line.x1 + line.x2)/2, (line.y1 + line.y2)/2);
+				
+				for(Line2D.Float l : lines){
+					if(line.equals(l)){
+						continue;
+					}
+					if(l.intersectsLine(mid)){
+						flag = false;
+					}
 				}
-				if(l.intersectsLine(mid)){
-					flag = false;
+				if(flag){
+					double angle = 0;
+					
+					GL11.glColor4d(1,0,0,1);
+					GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
+					//GL11.glBegin(GL11.GL_LINES);
+					
+					GL11.glVertex3d(line.getX1() + world.getMapXOffset(), line.getY1() + world.getMapYOffset(), .5);
+					GL11.glVertex3d(line.getX2() + world.getMapXOffset(), line.getY2() + world.getMapYOffset(), .5);
+					angle = Math.atan2(line.y1 - mid.y1, line.x1 - mid.x1);
+					GL11.glVertex3d(line.getX1() + world.getMapXOffset() + Math.cos(angle)*length, line.getY1() + world.getMapYOffset() + Math.sin(angle)*length, .5);
+					angle = Math.atan2(line.y2 - mid.y1, line.x2 - mid.x1);
+					GL11.glVertex3d(line.getX2() + world.getMapXOffset() + Math.cos(angle)*length, line.getY2() + world.getMapYOffset() + Math.sin(angle)*length, .5);
+					GL11.glEnd();
+					
+					GL11.glColor4d(0,0,0,1);
+					GL11.glBegin(GL11.GL_LINES);
+					
+					GL11.glVertex3d(line.getX1() + world.getMapXOffset(), line.getY1() + world.getMapYOffset(), .5);
+					
+					angle = Math.atan2(line.y1 - mid.y1, line.x1 - mid.x1);
+					GL11.glVertex3d(line.getX1() + world.getMapXOffset() + Math.cos(angle)*length, line.getY1() + world.getMapYOffset() + Math.sin(angle)*length, .5);
+					
+					GL11.glEnd();
+					
+					GL11.glColor4d(0,0,0,1);
+					GL11.glBegin(GL11.GL_LINES);
+					
+					GL11.glVertex3d(line.getX2() + world.getMapXOffset(), line.getY2() + world.getMapYOffset(), .5);
+					angle = Math.atan2(line.y2 - mid.y1, line.x2 - mid.x1);
+					GL11.glVertex3d(line.getX2() + world.getMapXOffset() + Math.cos(angle)*length, line.getY2() + world.getMapYOffset() + Math.sin(angle)*length, .5);
+					GL11.glEnd();
+					
+					GL11.glBegin(GL11.GL_LINES);
+					
+					GL11.glVertex3d(line.getX1() + world.getMapXOffset(),line.getY1() + world.getMapYOffset(), .5);
+					
+					GL11.glVertex3d(line.getX2() + world.getMapXOffset(), line.getY2() + world.getMapYOffset(), .5);
+					
+					GL11.glEnd();
+					
 				}
 			}
-			if(flag){
+			
+			//Black cap
+			
+			GL11.glColor4d(0,0,0,1);
+			GL11.glBegin(GL11.GL_TRIANGLE_FAN);
+			for(Line2D.Float line : lines){
+				
+				Line2D.Float mid = new Line2D.Float(player.x, player.y, (line.x1 + line.x2)/2, (line.y1 + line.y2)/2);
+			
 				double angle = 0;
 				
-				GL11.glEnable(GL11.GL_DEPTH_TEST);
-				GL11.glDepthFunc(GL11.GL_NOTEQUAL);
+				angle = Math.atan2(line.y1 - mid.y1, line.x1 - mid.x1);
 				
-				GL11.glColor4d(0,0,0,.75);
-				//GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
-				GL11.glBegin(GL11.GL_LINES);
+				GL11.glVertex3d(line.getX1() + world.getMapXOffset() + Math.cos(angle)*length, line.getY1() + world.getMapYOffset() + Math.sin(angle)*length, .5);
 				
-				GL11.glVertex3d(line.getX1() + world.getMapXOffset(),line.getY1() + world.getMapYOffset(), .5);
+				angle = Math.atan2(line.y2 - mid.y1, line.x2 - mid.x1);
 				
-				GL11.glVertex3d(line.getX2() + world.getMapXOffset(), line.getY2() + world.getMapYOffset(), .5);
-				
-				GL11.glEnd();
+				GL11.glVertex3d(line.getX2() + world.getMapXOffset() + Math.cos(angle)*length, line.getY2() + world.getMapYOffset() + Math.sin(angle)*length, .5);
 				
 				
+
 				
-//				angle = Math.atan2(line.getY1() - (settings.getScreenY()/2 - world.getMapYOffset()), line.getX1() - (settings.getScreenX()/2 - world.getMapXOffset()));
-//				GL11.glVertex3d(line.getX1() + world.getMapXOffset() + Math.cos(angle)*length,line.getY1() + world.getMapYOffset() + Math.sin(angle)*length, .5);
-//				angle = Math.atan2(line.getY2() - (settings.getScreenY()/2 - world.getMapYOffset()), line.getX2() - (settings.getScreenY()/2 - world.getMapYOffset()));
-//				GL11.glVertex3d(line.getX2() + world.getMapXOffset() + Math.cos(angle)*length, line.getY2() + world.getMapYOffset() + Math.sin(angle)*length, .5);
-//				GL11.glEnd();
-				
-				GL11.glDisable(GL11.GL_DEPTH_TEST);
+			}
+			GL11.glEnd();
+		}
+		
+	}
+	@Override
+	public int compareTo(ConvexHull h) {
+		
+		GameData data = GameData.getInstance();
+		
+		if(data.getPlayer() != null){
+			BasePlayer p = data.getPlayer();
+			
+			if(h.getCenter().distance(p.getCenter()) > this.getCenter().distance(p.getCenter())){
+				return 1;
 			}
 			
-			
+			if(h.getCenter().distance(p.getCenter()) < this.getCenter().distance(p.getCenter())){
+				return -1;
+			}
 			
 		}
-		GL11.glEnd();
+		
+		
+		
+		return 0;
 	}
 }
