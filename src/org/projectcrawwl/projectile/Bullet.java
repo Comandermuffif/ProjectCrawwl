@@ -73,13 +73,43 @@ public class Bullet extends GameObject{
 		GL11.glVertex2d(owner.renderX,owner.renderY);
 		GL11.glEnd();*/
 		
+		GameData data = GameData.getInstance();
+		if(data.getPlayer() != null){
+			BasePlayer player = data.getPlayer();
+			
+			double angle = 0;
+			double length = 0;
+			
+			GL11.glBegin(GL11.GL_TRIANGLE_FAN);
+			GL11.glColor3d(0,0,0);
+			
+			angle = Math.atan2((y + Math.sin(Math.toRadians(moveAngle - 90))*2) - player.y, (x + Math.cos(Math.toRadians(moveAngle - 90))*2) - player.x);
+			length = Math.pow(Math.pow((x + Math.cos(Math.toRadians(moveAngle - 90))*2) - player.getX(), 2) + Math.pow((y + Math.sin(Math.toRadians(moveAngle - 90))*2) - player.getY(), 2), .5) * ((double)1000/900 - 1);
+			GL11.glVertex3d((x + Math.cos(Math.toRadians(moveAngle - 90))*2) + world.getMapXOffset() + Math.cos(angle)*length, (y + Math.sin(Math.toRadians(moveAngle - 90))*2) + world.getMapYOffset() + Math.sin(angle)*length, .5);
+			
+			angle = Math.atan2((y + Math.sin(Math.toRadians(moveAngle + 90))*2) - player.y, (x + Math.cos(Math.toRadians(moveAngle + 90))*2) - player.x);
+			length = Math.pow(Math.pow((x + Math.cos(Math.toRadians(moveAngle + 90))*2) - player.getX(), 2) + Math.pow((y + Math.sin(Math.toRadians(moveAngle + 90))*2) - player.getY(), 2), .5) * ((double)1000/900 - 1);
+			GL11.glVertex3d((x + Math.cos(Math.toRadians(moveAngle + 90))*2) + world.getMapXOffset() + Math.cos(angle)*length, (y + Math.sin(Math.toRadians(moveAngle + 90))*2) + world.getMapYOffset() + Math.sin(angle)*length, .5);
+			
+			GL11.glColor4d(0,0,0,0);
+			
+			angle = Math.atan2((y + Math.sin(Math.toRadians(moveAngle))*-50) - player.y, (x + Math.cos(Math.toRadians(moveAngle))*-50) - player.x);
+			length = Math.pow(Math.pow((x + Math.cos(Math.toRadians(moveAngle - 90))*-50) - player.getX(), 2) + Math.pow((y + Math.sin(Math.toRadians(moveAngle))*-50) - player.getY(), 2), .5) * ((double)1000/900 - 1);
+			GL11.glVertex3d((x + Math.cos(Math.toRadians(moveAngle))*-50) + world.getMapXOffset() + Math.cos(angle)*length, (y + Math.sin(Math.toRadians(moveAngle))*-50) + world.getMapYOffset() + Math.sin(angle)*length, .5);
+			
+			
+			
+			GL11.glEnd();
+			
+		}
 		
-		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
-		GL11.glColor3d(0,0,0);
+		//GL11.glBegin(GL11.GL_TRIANGLE_FAN);
+		GL11.glBegin(GL11.GL_LINE_LOOP);
+		GL11.glColor3d(1,0,0);
 		GL11.glVertex2d(renderX + Math.cos(Math.toRadians(moveAngle - 90))*2, renderY + Math.sin(Math.toRadians(moveAngle - 90))*2);
 		GL11.glVertex2d(renderX + Math.cos(Math.toRadians(moveAngle))*2, renderY + Math.sin(Math.toRadians(moveAngle))*2);
 		GL11.glVertex2d(renderX + Math.cos(Math.toRadians(moveAngle + 90))*2, renderY + Math.sin(Math.toRadians(moveAngle + 90))*2);
-		GL11.glColor4d(0,0,0,0);
+		//GL11.glColor4d(0,0,0,0);
 		GL11.glVertex2d(renderX + Math.cos(Math.toRadians(moveAngle))*-50, renderY + Math.sin(Math.toRadians(moveAngle))*-50);
 		
 		GL11.glEnd();
