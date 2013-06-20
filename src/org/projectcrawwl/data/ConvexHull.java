@@ -216,8 +216,6 @@ public class ConvexHull implements Comparable<ConvexHull>{
 		//The hull
 		GL11.glColor3d((double)(color.getRed())/255, (double)(color.getBlue())/255, (double)(color.getGreen())/255);
 		
-		double length = 50;
-		
 		//GL11.glBegin(GL11.GL_LINE_LOOP);
 		if(data.getPlayer() != null){
 			BasePlayer player = data.getPlayer();
@@ -237,15 +235,25 @@ public class ConvexHull implements Comparable<ConvexHull>{
 				if(flag){
 					double angle = 0;
 					
+					double length = 50;
+					
 					GL11.glColor4d(1,0,0,1);
 					GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
 					//GL11.glBegin(GL11.GL_LINES);
 					
 					GL11.glVertex3d(line.getX1() + world.getMapXOffset(), line.getY1() + world.getMapYOffset(), .5);
 					GL11.glVertex3d(line.getX2() + world.getMapXOffset(), line.getY2() + world.getMapYOffset(), .5);
+					
 					angle = Math.atan2(line.y1 - mid.y1, line.x1 - mid.x1);
+					length = Math.pow(Math.pow(line.getX1() + world.getMapXOffset() - settings.getScreenX()/2, 2) + Math.pow(line.getY1() + world.getMapYOffset() - settings.getScreenY()/2, 2), .5) * ((double)1000/900 - 1);
+					
 					GL11.glVertex3d(line.getX1() + world.getMapXOffset() + Math.cos(angle)*length, line.getY1() + world.getMapYOffset() + Math.sin(angle)*length, .5);
+					
 					angle = Math.atan2(line.y2 - mid.y1, line.x2 - mid.x1);
+					length = Math.pow(Math.pow(line.getX2() + world.getMapXOffset() - settings.getScreenX()/2, 2) + Math.pow(line.getY2() + world.getMapYOffset() - settings.getScreenY()/2, 2), .5) * ((double)1000/900 - 1);
+					
+					System.out.println(length);
+					
 					GL11.glVertex3d(line.getX2() + world.getMapXOffset() + Math.cos(angle)*length, line.getY2() + world.getMapYOffset() + Math.sin(angle)*length, .5);
 					GL11.glEnd();
 					
@@ -255,6 +263,8 @@ public class ConvexHull implements Comparable<ConvexHull>{
 					GL11.glVertex3d(line.getX1() + world.getMapXOffset(), line.getY1() + world.getMapYOffset(), .5);
 					
 					angle = Math.atan2(line.y1 - mid.y1, line.x1 - mid.x1);
+					length = Math.pow(Math.pow(line.getX1() + world.getMapXOffset() - settings.getScreenX()/2, 2) + Math.pow(line.getY1() + world.getMapYOffset() - settings.getScreenY()/2, 2), .5) * ((double)1000/900 - 1);
+					
 					GL11.glVertex3d(line.getX1() + world.getMapXOffset() + Math.cos(angle)*length, line.getY1() + world.getMapYOffset() + Math.sin(angle)*length, .5);
 					
 					GL11.glEnd();
@@ -263,7 +273,10 @@ public class ConvexHull implements Comparable<ConvexHull>{
 					GL11.glBegin(GL11.GL_LINES);
 					
 					GL11.glVertex3d(line.getX2() + world.getMapXOffset(), line.getY2() + world.getMapYOffset(), .5);
+					
 					angle = Math.atan2(line.y2 - mid.y1, line.x2 - mid.x1);
+					length = Math.pow(Math.pow(line.getX2() + world.getMapXOffset() - settings.getScreenX()/2, 2) + Math.pow(line.getY2() + world.getMapYOffset() - settings.getScreenY()/2, 2), .5) * ((double)1000/900 - 1);
+					
 					GL11.glVertex3d(line.getX2() + world.getMapXOffset() + Math.cos(angle)*length, line.getY2() + world.getMapYOffset() + Math.sin(angle)*length, .5);
 					GL11.glEnd();
 					
@@ -287,6 +300,8 @@ public class ConvexHull implements Comparable<ConvexHull>{
 				Line2D.Float mid = new Line2D.Float(player.x, player.y, (line.x1 + line.x2)/2, (line.y1 + line.y2)/2);
 			
 				double angle = 0;
+				
+				double length = 50;
 				
 				angle = Math.atan2(line.y1 - mid.y1, line.x1 - mid.x1);
 				
