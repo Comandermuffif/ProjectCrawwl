@@ -1,15 +1,8 @@
 package org.projectcrawwl.objects;
 
-import java.awt.Point;
-import java.awt.Polygon;
-import java.awt.geom.Line2D;
-import java.awt.geom.PathIterator;
-
 import org.lwjgl.opengl.GL11;
-import org.projectcrawwl.data.ConvexHull;
 import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.data.Inventory;
-import org.projectcrawwl.data.World;
 
 public abstract class BasePlayer extends GameObject{
 	
@@ -22,8 +15,6 @@ public abstract class BasePlayer extends GameObject{
 	float sightAngle = 90; //Total view cone
 	
 	Boolean state = false;
-	protected Polygon viewCone = new Polygon();
-	
 	
 	public BasePlayer(float tempX, float tempY, float tempA, float tempH, float tempR){
 		super();
@@ -69,8 +60,6 @@ public abstract class BasePlayer extends GameObject{
 		return health;
 	}
 
-
-	@SuppressWarnings("static-access")
 	public void render(){
 		if(!isReady){return;}
 		super.render();
@@ -88,55 +77,10 @@ public abstract class BasePlayer extends GameObject{
 		
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
 		
-		GL11.glColor4d(0, 1, 0, 1);
-		//GL11.glBegin(GL11.GL_TRIANGLE_FAN);
-		GL11.glBegin(GL11.GL_LINE_LOOP);
-		for(PathIterator pi = viewCone.getPathIterator(null); !pi.isDone(); pi.next()){
-			float[] coord = new float[6];
-			pi.currentSegment(coord);
-			if(pi.currentSegment(coord) != pi.SEG_CLOSE){
-				GL11.glVertex3d(coord[0] + data.getMapXOffset(), coord[1] + data.getMapYOffset(), .5);
-			}
-			pi.next();
-		}
-		GL11.glEnd();
-		
-		
 	}
 	
 	public void renderHUD(){
 		
-	}
-	
-	public void updateViewCone(){
-		Polygon tempView = new Polygon();
-		
-		tempView.addPoint((int)x, (int)y);
-		World world = World.getInstance();
-		
-		
-		
-		for(float a = facingAngle - sightAngle/2; a < facingAngle + sightAngle/2; a += .25){
-			Line2D.Float line = new Line2D.Float(x, y,(float) (x + Math.cos(Math.toRadians(a))*sightRange), (float) (y + Math.sin(Math.toRadians(a))*sightRange));
-			
-			Point intersect = new Point((int)(x + Math.cos(Math.toRadians(a))*sightRange), (int)(y + Math.sin(Math.toRadians(a))*sightRange));
-			
-			double dist = intersect.distance(x,y);
-			
-			for(ConvexHull hull : world.getHulls()){
-				for(Line2D.Float edge : hull.getLines()){
-					if(line.intersectsLine(edge)){
-						Point temp = world.getLineLineIntersection(edge, line);
-						if(temp.distance(x, y) < dist){
-							intersect = temp;
-							dist = temp.distance(x, y);
-						}
-					}
-				}
-			}
-			tempView.addPoint(intersect.x, intersect.y);
-		}
-		viewCone = tempView;
 	}
 	
 	//Do all calculations here

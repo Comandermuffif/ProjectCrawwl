@@ -308,6 +308,10 @@ public class GameData
 
 		world.renderBackground();
 		
+		world.renderHulls();
+		
+		world.renderShadows();
+		
 		synchronized(bloodStainLock){
 			for(GameObject a : allBloodStains){
 				a.render();
@@ -337,10 +341,6 @@ public class GameData
 				player.render();
 			}
 		}
-		
-		world.renderHulls();
-		
-		world.renderShadows();
 		
 		synchronized(playerLock){
 			if(player != null){

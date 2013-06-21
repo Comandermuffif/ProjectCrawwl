@@ -5,6 +5,7 @@ import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.geom.Line2D;
 import java.awt.geom.PathIterator;
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
 import org.lwjgl.opengl.GL11;
@@ -200,8 +201,8 @@ public class ConvexHull implements Comparable<ConvexHull>{
 	
 	public void renderHull(){
 		
-		GameData data = GameData.getInstance();
 		world = World.getInstance();
+		GameSettings settings = GameSettings.getInstance();
 		
 		if(!isOnScreen()){
 			return;
@@ -210,121 +211,121 @@ public class ConvexHull implements Comparable<ConvexHull>{
 		//The hull
 		
 		//GL11.glBegin(GL11.GL_LINE_LOOP);
-		if(data.getPlayer() != null){
-			BasePlayer player = data.getPlayer();
-			for(Line2D.Float line : lines){
-				boolean flag = true;
-				
-				Line2D.Float mid = new Line2D.Float(player.x, player.y, (line.x1 + line.x2)/2, (line.y1 + line.y2)/2);
-				
-				for(Line2D.Float l : lines){
-					if(line.equals(l)){
-						continue;
-					}
-					if(l.intersectsLine(mid)){
-						flag = false;
-					}
+		for(Line2D.Float line : lines){
+			boolean flag = true;
+			
+			//Line2D.Float mid = new Line2D.Float(player.x, player.y, (line.x1 + line.x2)/2, (line.y1 + line.y2)/2);
+			Line2D.Float mid = new Line2D.Float(settings.getScreenX()/2 - world.getMapXOffset(), settings.getScreenY()/2 - world.getMapYOffset(), (line.x1 + line.x2)/2, (line.y1 + line.y2)/2);
+			
+			
+			for(Line2D.Float l : lines){
+				if(line.equals(l)){
+					continue;
 				}
-				if(flag){
-					double angle = 0;
-					
-					double length = 50;
-					
-					GL11.glColor3d((double)(color.getRed())/255, (double)(color.getBlue())/255, (double)(color.getGreen())/255);
-					GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
-					//GL11.glBegin(GL11.GL_LINES);
-					
-					GL11.glVertex3d(line.getX1() + world.getMapXOffset(), line.getY1() + world.getMapYOffset(), .5);
-					GL11.glVertex3d(line.getX2() + world.getMapXOffset(), line.getY2() + world.getMapYOffset(), .5);
-					
-					angle = Math.atan2(line.y1 - mid.y1, line.x1 - mid.x1);
-					length = Math.pow(Math.pow(line.getX1() - player.getX(), 2) + Math.pow(line.getY1() - player.getY(), 2), .5) * ((double)1000/900 - 1);
-					
-					GL11.glVertex3d(line.getX1() + world.getMapXOffset() + Math.cos(angle)*length, line.getY1() + world.getMapYOffset() + Math.sin(angle)*length, .5);
-					
-					angle = Math.atan2(line.y2 - mid.y1, line.x2 - mid.x1);
-					length = Math.pow(Math.pow(line.getX2() - player.getX(), 2) + Math.pow(line.getY2() - player.getY(), 2), .5) * ((double)1000/900 - 1);
-					
-					GL11.glVertex3d(line.getX2() + world.getMapXOffset() + Math.cos(angle)*length, line.getY2() + world.getMapYOffset() + Math.sin(angle)*length, .5);
-					GL11.glEnd();
-					
-					GL11.glColor4d(0,0,0,1);
-					GL11.glBegin(GL11.GL_LINES);
-					
-					GL11.glVertex3d(line.getX1() + world.getMapXOffset(), line.getY1() + world.getMapYOffset(), .5);
-					
-					angle = Math.atan2(line.y1 - mid.y1, line.x1 - mid.x1);
-					length = Math.pow(Math.pow(line.getX1() - player.getX(), 2) + Math.pow(line.getY1() - player.getY(), 2), .5) * ((double)1000/900 - 1);
-					
-					GL11.glVertex3d(line.getX1() + world.getMapXOffset() + Math.cos(angle)*length, line.getY1() + world.getMapYOffset() + Math.sin(angle)*length, .5);
-					
-					GL11.glEnd();
-					
-					GL11.glColor4d(0,0,0,1);
-					GL11.glBegin(GL11.GL_LINES);
-					
-					GL11.glVertex3d(line.getX2() + world.getMapXOffset(), line.getY2() + world.getMapYOffset(), .5);
-					
-					angle = Math.atan2(line.y2 - mid.y1, line.x2 - mid.x1);
-					length = Math.pow(Math.pow(line.getX2() - player.getX(), 2) + Math.pow(line.getY2() - player.getY(), 2), .5) * ((double)1000/900 - 1);
-					
-					GL11.glVertex3d(line.getX2() + world.getMapXOffset() + Math.cos(angle)*length, line.getY2() + world.getMapYOffset() + Math.sin(angle)*length, .5);
-					GL11.glEnd();
-					
-					GL11.glBegin(GL11.GL_LINES);
-					
-					GL11.glVertex3d(line.getX1() + world.getMapXOffset(),line.getY1() + world.getMapYOffset(), .5);
-					
-					GL11.glVertex3d(line.getX2() + world.getMapXOffset(), line.getY2() + world.getMapYOffset(), .5);
-					
-					GL11.glEnd();
-					
+				if(l.intersectsLine(mid)){
+					flag = false;
 				}
 			}
-			
-			//Black cap
-			
-			GL11.glColor4d(0,0,0,1);
-			GL11.glBegin(GL11.GL_TRIANGLE_FAN);
-			for(Line2D.Float line : lines){
-				
-				Line2D.Float mid = new Line2D.Float(player.x, player.y, (line.x1 + line.x2)/2, (line.y1 + line.y2)/2);
-			
+			if(flag){
 				double angle = 0;
 				
-				double length = 50;
+				double length = 0;
+				
+				GL11.glColor3d((double)(color.getRed())/255, (double)(color.getBlue())/255, (double)(color.getGreen())/255);
+				GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
+				//GL11.glBegin(GL11.GL_LINES);
+				
+				GL11.glVertex3d(line.getX1() + world.getMapXOffset(), line.getY1() + world.getMapYOffset(), .5);
+				GL11.glVertex3d(line.getX2() + world.getMapXOffset(), line.getY2() + world.getMapYOffset(), .5);
 				
 				angle = Math.atan2(line.y1 - mid.y1, line.x1 - mid.x1);
-				length = Math.pow(Math.pow(line.getX1() - player.getX(), 2) + Math.pow(line.getY1() - player.getY(), 2), .5) * ((double)1000/900 - 1);
+				length = Math.pow(Math.pow(line.getX1() - mid.x1, 2) + Math.pow(line.getY1() - mid.y1, 2), .5) * ((double)1000/900 - 1);
 				
 				GL11.glVertex3d(line.getX1() + world.getMapXOffset() + Math.cos(angle)*length, line.getY1() + world.getMapYOffset() + Math.sin(angle)*length, .5);
 				
 				angle = Math.atan2(line.y2 - mid.y1, line.x2 - mid.x1);
-				length = Math.pow(Math.pow(line.getX2() - player.getX(), 2) + Math.pow(line.getY2() - player.getY(), 2), .5) * ((double)1000/900 - 1);
+				length = Math.pow(Math.pow(line.getX2() - mid.x1, 2) + Math.pow(line.getY2() - mid.y1, 2), .5) * ((double)1000/900 - 1);
 				
-				GL11.glVertex3d(line.getX2() + world.getMapXOffset() + Math.cos(angle)*length, line.getY2() + world.getMapYOffset() + Math.sin(angle)*length, .5);				
+				GL11.glVertex3d(line.getX2() + world.getMapXOffset() + Math.cos(angle)*length, line.getY2() + world.getMapYOffset() + Math.sin(angle)*length, .5);
+				GL11.glEnd();
+				
+				GL11.glColor4d(0,0,0,1);
+				GL11.glBegin(GL11.GL_LINES);
+				
+				GL11.glVertex3d(line.getX1() + world.getMapXOffset(), line.getY1() + world.getMapYOffset(), .5);
+				
+				angle = Math.atan2(line.y1 - mid.y1, line.x1 - mid.x1);
+				length = Math.pow(Math.pow(line.getX1() - mid.x1, 2) + Math.pow(line.getY1() - mid.y1, 2), .5) * ((double)1000/900 - 1);
+				
+				GL11.glVertex3d(line.getX1() + world.getMapXOffset() + Math.cos(angle)*length, line.getY1() + world.getMapYOffset() + Math.sin(angle)*length, .5);
+				
+				GL11.glEnd();
+				
+				
+				
+				GL11.glColor4d(0,0,0,1);
+				GL11.glBegin(GL11.GL_LINES);
+				
+				GL11.glVertex3d(line.getX2() + world.getMapXOffset(), line.getY2() + world.getMapYOffset(), .5);
+				
+				angle = Math.atan2(line.y2 - mid.y1, line.x2 - mid.x1);
+				length = Math.pow(Math.pow(line.getX2() - mid.x1, 2) + Math.pow(line.getY2() - mid.y1, 2), .5) * ((double)1000/900 - 1);
+				
+				GL11.glVertex3d(line.getX2() + world.getMapXOffset() + Math.cos(angle)*length, line.getY2() + world.getMapYOffset() + Math.sin(angle)*length, .5);
+				GL11.glEnd();
+				
+				GL11.glBegin(GL11.GL_LINES);
+				
+				GL11.glVertex3d(line.getX1() + world.getMapXOffset(),line.getY1() + world.getMapYOffset(), .5);
+				
+				GL11.glVertex3d(line.getX2() + world.getMapXOffset(), line.getY2() + world.getMapYOffset(), .5);
+				
+				GL11.glEnd();
+				
 			}
-			GL11.glEnd();
 		}
+		
+		//Black cap
+		
+		GL11.glColor4d(0,0,0,1);
+		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
+		for(Line2D.Float line : lines){
+			
+			Line2D.Float mid = new Line2D.Float(settings.getScreenX()/2 - world.getMapXOffset(), settings.getScreenY()/2 - world.getMapYOffset(), (line.x1 + line.x2)/2, (line.y1 + line.y2)/2);
+			
+			double angle = 0;
+			
+			double length = 0;
+			
+			angle = Math.atan2(line.y1 - mid.y1, line.x1 - mid.x1);
+			length = Math.pow(Math.pow(line.getX1() - mid.x1, 2) + Math.pow(line.getY1() - mid.y1, 2), .5) * ((double)1000/900 - 1);
+			
+			GL11.glVertex3d(line.getX1() + world.getMapXOffset() + Math.cos(angle)*length, line.getY1() + world.getMapYOffset() + Math.sin(angle)*length, .5);
+			
+			angle = Math.atan2(line.y2 - mid.y1, line.x2 - mid.x1);
+			length = Math.pow(Math.pow(line.getX2() - mid.x1, 2) + Math.pow(line.getY2() - mid.y1, 2), .5) * ((double)1000/900 - 1);
+			
+			GL11.glVertex3d(line.getX2() + world.getMapXOffset() + Math.cos(angle)*length, line.getY2() + world.getMapYOffset() + Math.sin(angle)*length, .5);				
+		}
+		GL11.glEnd();
+	
 		
 	}
 	@Override
 	public int compareTo(ConvexHull h) {
 		
-		GameData data = GameData.getInstance();
+		GameSettings settings = GameSettings.getInstance();
 		
-		if(data.getPlayer() != null){
-			BasePlayer p = data.getPlayer();
-			
-			if(h.getCenter().distance(p.getCenter()) > this.getCenter().distance(p.getCenter())){
-				return 1;
-			}
-			
-			if(h.getCenter().distance(p.getCenter()) < this.getCenter().distance(p.getCenter())){
-				return -1;
-			}
-			
+		Point2D.Double p = new Point2D.Double(settings.getScreenX()/2 - world.getMapXOffset(), settings.getScreenY()/2 - world.getMapYOffset());
+		
+		if(h.getCenter().distance(p) > this.getCenter().distance(p)){
+			return 1;
 		}
+		
+		if(h.getCenter().distance(p) < this.getCenter().distance(p)){
+			return -1;
+		}
+			
 		return 0;
 	}
 }

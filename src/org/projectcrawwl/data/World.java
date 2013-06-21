@@ -236,7 +236,7 @@ public class World implements Serializable{
 	
 	public void renderShadows(){
 		for(ConvexHull x : allHulls){
-			x.renderShadow();
+			//x.renderShadow();
 		}
 	}
 	
