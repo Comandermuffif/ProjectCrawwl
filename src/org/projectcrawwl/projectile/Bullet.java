@@ -102,18 +102,6 @@ public class Bullet extends GameObject{
 		
 		GL11.glEnd();
 		
-		
-		//GL11.glBegin(GL11.GL_TRIANGLE_FAN);
-		GL11.glBegin(GL11.GL_LINE_LOOP);
-		GL11.glColor3d(1,0,0);
-		GL11.glVertex2d(renderX + Math.cos(Math.toRadians(moveAngle - 90))*2, renderY + Math.sin(Math.toRadians(moveAngle - 90))*2);
-		GL11.glVertex2d(renderX + Math.cos(Math.toRadians(moveAngle))*2, renderY + Math.sin(Math.toRadians(moveAngle))*2);
-		GL11.glVertex2d(renderX + Math.cos(Math.toRadians(moveAngle + 90))*2, renderY + Math.sin(Math.toRadians(moveAngle + 90))*2);
-		//GL11.glColor4d(0,0,0,0);
-		GL11.glVertex2d(renderX + Math.cos(Math.toRadians(moveAngle))*-50, renderY + Math.sin(Math.toRadians(moveAngle))*-50);
-		
-		GL11.glEnd();
-		
 		GL11.glLineWidth(1);
 	}
 

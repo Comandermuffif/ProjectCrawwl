@@ -10,8 +10,9 @@ import java.util.ArrayList;
 
 import org.lwjgl.opengl.GL11;
 import org.projectcrawwl.objects.BasePlayer;
+import org.projectcrawwl.objects.GameObject;
 
-public class ConvexHull implements Comparable<ConvexHull>{
+public class ConvexHull extends GameObject implements Comparable<ConvexHull>{
 
 	private Polygon polygon = new Polygon();
 	
@@ -315,6 +316,8 @@ public class ConvexHull implements Comparable<ConvexHull>{
 	public int compareTo(ConvexHull h) {
 		
 		GameSettings settings = GameSettings.getInstance();
+		
+		world = World.getInstance();
 		
 		Point2D.Double p = new Point2D.Double(settings.getScreenX()/2 - world.getMapXOffset(), settings.getScreenY()/2 - world.getMapYOffset());
 		

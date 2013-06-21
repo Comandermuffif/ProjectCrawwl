@@ -31,8 +31,9 @@ public class GameObject {
 	public Polygon boundingBox = new Polygon();
 	public ArrayList<Line2D.Float> boundingLines = new ArrayList<Line2D.Float>();
 	
-	public GameData data = GameData.getInstance();
-	public GameSettings settings = GameSettings.getInstance();
+	public GameData data;
+	public GameSettings settings;
+	public World world;
 	
 	private Point center = new Point();
 	
@@ -40,7 +41,7 @@ public class GameObject {
 	
 	public boolean passThroughPlayers = false;
 	
-	public World world = World.getInstance();
+	
 	
 	public boolean isReady = false;
 	
@@ -334,7 +335,10 @@ public class GameObject {
 	public void update(int delta){
 		if(!isReady){isReady = true;}
 		
-		World world = World.getInstance();
+		world = World.getInstance();
+		data = GameData.getInstance();
+		settings = GameSettings.getInstance();
+		
 		
 		renderX = x + data.getMapXOffset();
 		renderY = y + data.getMapYOffset();

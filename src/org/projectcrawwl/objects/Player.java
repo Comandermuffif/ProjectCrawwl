@@ -6,6 +6,9 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
 import org.projectcrawwl.data.ConvexHull;
+import org.projectcrawwl.data.GameData;
+import org.projectcrawwl.data.GameSettings;
+import org.projectcrawwl.data.World;
 import org.projectcrawwl.weapons.*;
 
 import org.newdawn.slick.opengl.Texture;
@@ -130,7 +133,9 @@ public class Player extends BasePlayer {
 	//Do all calculations here
 	public void update(int delta){
 		
-		//updateViewCone();
+		world = World.getInstance();
+		data = GameData.getInstance();
+		settings = GameSettings.getInstance();
 		
 		//Key and mouse input control
 		
@@ -179,7 +184,7 @@ public class Player extends BasePlayer {
 		}
 		
 		if(data.zoom > 360){
-			data.zoom = 360;
+			//data.zoom = 360;
 		}
 		
 		while(Keyboard.next()){

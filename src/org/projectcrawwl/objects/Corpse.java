@@ -1,6 +1,9 @@
 package org.projectcrawwl.objects;
 
 import org.lwjgl.opengl.GL11;
+import org.projectcrawwl.data.GameData;
+import org.projectcrawwl.data.GameSettings;
+import org.projectcrawwl.data.World;
 
 public class Corpse extends BloodStain{
 	
@@ -50,6 +53,10 @@ public class Corpse extends BloodStain{
 	}
 	
 	public void update(int delta){
+		
+		world = World.getInstance();
+		data = GameData.getInstance();
+		settings = GameSettings.getInstance();
 		
 		if(timer > 0){
 			timer -= delta;

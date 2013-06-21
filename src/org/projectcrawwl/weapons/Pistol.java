@@ -12,7 +12,6 @@ public class Pistol extends BaseRangedWeapon{
 		name = "Pistol";
 		
 		velocity = 3;
-		velocity = (float) .5;
 		
 		spread = 300;
 		spreadAngle = 6;
