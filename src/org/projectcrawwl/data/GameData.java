@@ -3,6 +3,7 @@ package org.projectcrawwl.data;
 import java.awt.Font;
 import java.awt.geom.Line2D;
 import java.util.ArrayList;
+import java.util.Collections;
 
 import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.SlickException;
@@ -14,12 +15,13 @@ import org.projectcrawwl.projectile.Particle;
 
 public class GameData 
 {	
-	private ArrayList<Bullet> allProjectiles = new ArrayList<Bullet>();//Projectiles
-	private ArrayList<Bullet> removeProjectiles = new ArrayList<Bullet>();//Projectiles to be removed
-	private ArrayList<Bullet> addProjectiles = new ArrayList<Bullet>();//Projectiles to be removed
+	
+	private ArrayList<GameObject> allObjects = new ArrayList<GameObject>();
+	
+	private ArrayList<Bullet> allProjectiles = new ArrayList<Bullet>();
+	private ArrayList<Bullet> removeProjectiles = new ArrayList<Bullet>();
+	private ArrayList<Bullet> addProjectiles = new ArrayList<Bullet>();
 	private Object projectileLock = new Object();
-
-	private BasePlayer player;
 
 	private ArrayList<BasePlayer> allPlayers = new ArrayList<BasePlayer>();
 	private ArrayList<BasePlayer> addPlayers = new ArrayList<BasePlayer>();
@@ -35,6 +37,8 @@ public class GameData
 	private ArrayList<GameObject> addBloodStains = new ArrayList<GameObject>();
 	private ArrayList<GameObject> removeBloodStains = new ArrayList<GameObject>();
 	private Object bloodStainLock = new Object();
+	
+	private BasePlayer player;
 	
 	private static GameData instance = null;
 	
@@ -308,46 +312,26 @@ public class GameData
 
 		world.renderBackground();
 		
-		world.renderHulls();
-		
-		world.renderShadows();
-		
 		synchronized(bloodStainLock){
 			for(GameObject a : allBloodStains){
 				a.render();
 			}
 		}
 		
-		synchronized(playerLock){
-			for(BasePlayer a : allPlayers){
-				a.render();
-			}
+		Collections.sort(allObjects);
+		
+		for(GameObject a : allObjects){
+			a.render();
 		}
 		
-		synchronized(particleLock){
-			for(GameObject a : allParticles){
-				a.render();
-			}
-		}
 		
-		synchronized(projectileLock){
-			for(Bullet a : allProjectiles){
-				a.render();
-			}
-		}
-		
-		synchronized(playerLock){
-			if(player != null){
-				player.render();
-			}
-		}
-		
+
+
 		synchronized(playerLock){
 			if(player != null){
 				player.renderHUD();
 			}
 		}
-		
 	}
 	public void update(int delta){
 		
@@ -441,6 +425,14 @@ public class GameData
 		for(GameObject d : allParticles){
 			d.update(delta);
 		}
+		
+		allObjects.clear();
+		
+		allObjects.addAll(allParticles);
+		allObjects.addAll(allPlayers);
+		allObjects.addAll(allProjectiles);
+		allObjects.addAll(world.getHulls());
+		
 	}
 }
 

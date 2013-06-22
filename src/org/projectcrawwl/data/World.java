@@ -230,13 +230,13 @@ public class World implements Serializable{
 		Collections.sort(allHulls);
 		
 		for(ConvexHull x : allHulls){
-			x.renderHull();
+			x.render();
 		}
 	}
 	
 	public void renderShadows(){
 		for(ConvexHull x : allHulls){
-			//x.renderShadow();
+			x.renderShadow();
 		}
 	}
 	

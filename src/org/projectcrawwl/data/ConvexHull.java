@@ -12,7 +12,7 @@ import org.lwjgl.opengl.GL11;
 import org.projectcrawwl.objects.BasePlayer;
 import org.projectcrawwl.objects.GameObject;
 
-public class ConvexHull extends GameObject implements Comparable<ConvexHull>{
+public class ConvexHull extends GameObject{
 
 	private Polygon polygon = new Polygon();
 	
@@ -50,6 +50,7 @@ public class ConvexHull extends GameObject implements Comparable<ConvexHull>{
 		return farthest;
 	}
 	
+	@Override
 	public Point getCenter(){
 		return center;
 	}
@@ -200,7 +201,7 @@ public class ConvexHull extends GameObject implements Comparable<ConvexHull>{
 		}
 	}
 	
-	public void renderHull(){
+	public void render(){
 		
 		world = World.getInstance();
 		GameSettings settings = GameSettings.getInstance();
@@ -311,24 +312,5 @@ public class ConvexHull extends GameObject implements Comparable<ConvexHull>{
 		GL11.glEnd();
 	
 		
-	}
-	@Override
-	public int compareTo(ConvexHull h) {
-		
-		GameSettings settings = GameSettings.getInstance();
-		
-		world = World.getInstance();
-		
-		Point2D.Double p = new Point2D.Double(settings.getScreenX()/2 - world.getMapXOffset(), settings.getScreenY()/2 - world.getMapYOffset());
-		
-		if(h.getCenter().distance(p) > this.getCenter().distance(p)){
-			return 1;
-		}
-		
-		if(h.getCenter().distance(p) < this.getCenter().distance(p)){
-			return -1;
-		}
-			
-		return 0;
 	}
 }

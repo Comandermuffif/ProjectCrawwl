@@ -232,7 +232,7 @@ public class WorldTile {
 	
 	public void renderHulls(){
 		for(ConvexHull h : hulls){
-			h.renderHull();
+			h.render();
 		}
 	}
 	

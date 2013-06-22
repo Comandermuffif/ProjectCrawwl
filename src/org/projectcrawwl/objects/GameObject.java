@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.geom.Line2D;
 import java.awt.geom.PathIterator;
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
 import org.lwjgl.opengl.GL11;
@@ -12,7 +13,7 @@ import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.data.GameSettings;
 import org.projectcrawwl.data.World;
 
-public class GameObject {
+public class GameObject implements Comparable<GameObject>{
 	public float x;
 	public float y;
 	public float r;
@@ -461,4 +462,24 @@ public class GameObject {
 			}
 		}
 	}
+	
+	public int compareTo(GameObject h) {
+		
+		GameSettings settings = GameSettings.getInstance();
+		
+		world = World.getInstance();
+		
+		Point2D.Double p = new Point2D.Double(settings.getScreenX()/2 - world.getMapXOffset(), settings.getScreenY()/2 - world.getMapYOffset());
+		
+		if(h.getCenter().distance(p) > this.getCenter().distance(p)){
+			return 1;
+		}
+		
+		if(h.getCenter().distance(p)< this.getCenter().distance(p)){
+			return -1;
+		}
+			
+		return 0;
+	}
+	
 }
