@@ -5,7 +5,6 @@ import java.awt.geom.Line2D;
 import java.util.Random;
 
 import org.lwjgl.opengl.GL11;
-import org.projectcrawwl.data.ConvexHull;
 
 
 public class Zombie extends BasePlayer {

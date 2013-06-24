@@ -8,7 +8,6 @@ import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
 import org.lwjgl.opengl.GL11;
-import org.projectcrawwl.data.ConvexHull;
 import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.data.GameSettings;
 import org.projectcrawwl.data.World;

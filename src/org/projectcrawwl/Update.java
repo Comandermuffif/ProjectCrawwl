@@ -22,22 +22,13 @@ public class Update extends Thread{
 			delta = getDelta();
 			
 			data.update(delta);
-			
-			updateUPS();
 		}
 	}
 	
 	public long getTime() {
 	    return (Sys.getTime() * 1000) / Sys.getTimerResolution();
 	}
-	public void updateUPS() {
-		if (getTime() - lastUPS > 1000) {
-			data.setUPS(ups);
-			ups = 0;
-			lastUPS += 1000;
-		}
-		ups++;
-	}
+
 	public int getDelta() {
 	    long time = getTime();
 	    int delta = (int) (time - lastFrame);

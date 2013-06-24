@@ -1,5 +1,7 @@
 package org.projectcrawwl.objects;
 
+import java.util.ArrayList;
+
 import org.lwjgl.opengl.GL11;
 import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.data.Inventory;
@@ -104,4 +106,8 @@ public abstract class BasePlayer extends GameObject{
 	public void newKill(){
 		kills += 1;
 	}
+	
+	public void mouseInput(ArrayList<Integer> a){}
+	
+	public void keyboardInput(ArrayList<Integer> a){}
 }

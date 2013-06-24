@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import org.lwjgl.opengl.GL11;
+import org.projectcrawwl.objects.ConvexHull;
 
 public class WorldTile {
 	

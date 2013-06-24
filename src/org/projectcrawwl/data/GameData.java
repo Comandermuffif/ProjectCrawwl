@@ -9,6 +9,7 @@ import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.UnicodeFont;
 import org.newdawn.slick.font.effects.ColorEffect;
+import org.projectcrawwl.menu.Button;
 import org.projectcrawwl.objects.*;
 import org.projectcrawwl.projectile.Bullet;
 import org.projectcrawwl.projectile.Particle;
@@ -42,8 +43,6 @@ public class GameData
 	
 	private static GameData instance = null;
 	
-	private int ups = 0;
-	
 	private World world = World.getInstance();
 	
 	public float zoom = 0;
@@ -70,20 +69,12 @@ public class GameData
 		return font;
 	}
 	
-	public int getUPS(){
-		return ups;
-	}
-	
 	public ArrayList<GameObject> getBloodStains(){
 		return allBloodStains;
 	}
 	
 	public void addBloodStain(BloodStain g){
 		addBloodStains.add(g);
-	}
-	
-	public void setUPS(int temp){
-		ups = temp;
 	}
 	
 	public float getMapXOffset(){

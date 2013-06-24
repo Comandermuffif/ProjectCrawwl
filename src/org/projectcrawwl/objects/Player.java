@@ -1,14 +1,15 @@
 package org.projectcrawwl.objects;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
-import org.projectcrawwl.data.ConvexHull;
 import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.data.GameSettings;
 import org.projectcrawwl.data.World;
+import org.projectcrawwl.menu.Button;
 import org.projectcrawwl.weapons.*;
 
 import org.newdawn.slick.opengl.Texture;
@@ -24,6 +25,8 @@ public class Player extends BasePlayer {
 	boolean anti = false;
 	
 	private ConvexHull hull = null;
+	
+	private Button b = new Button(0,695,125,25, "Return to main menu",2);
 	
 	public Player(int tempX, int tempY){
 		super(tempX,tempY);
@@ -89,6 +92,8 @@ public class Player extends BasePlayer {
 	public void renderHUD(){
 		
 		super.renderHUD();
+		
+		b.render();
 		
 		GL11.glLoadIdentity();
 		GL11.glOrtho(0, settings.getScreenX(), 0, settings.getScreenY(), -1, 1);
@@ -184,68 +189,7 @@ public class Player extends BasePlayer {
 		}
 		
 		if(data.zoom > 360){
-			//data.zoom = 360;
-		}
-		
-		while(Keyboard.next()){
-			if (Keyboard.getEventKeyState()) {
-				if (Keyboard.getEventKey() == Keyboard.KEY_1){
-					inventory.prevWeapon();
-				}
-				if (Keyboard.getEventKey() == Keyboard.KEY_2){
-					inventory.nextWeapon();
-				}
-				if (Keyboard.getEventKey() == Keyboard.KEY_SPACE){
-					data.addZombie();
-				}
-				if (Keyboard.getEventKey() == Keyboard.KEY_G){
-					data.addFriendly();
-				}
-				if (Keyboard.getEventKey() == Keyboard.KEY_NUMPAD0){
-					data.zoom = 0;
-				}
-				if (Keyboard.getEventKey() == Keyboard.KEY_R){
-					inventory.getWeapon().reload();
-				}
-				
-				if (Keyboard.getEventKey() == Keyboard.KEY_NUMPAD1){
-					for(int i = 0; i < 10; i ++){
-						data.addZombie();
-					}
-				}
-				if(Keyboard.getEventKey() == Keyboard.KEY_Q){
-					anti = !anti;
-				}
-				
-				if(Keyboard.getEventKey() == Keyboard.KEY_3){
-					world.clearHulls();
-				}
-				
-				if(Keyboard.getEventKey() == Keyboard.KEY_4){
-					hull = null;
-				}
-				
-			}
-		}
-		
-		while(Mouse.next()){
-			if(Mouse.getEventButtonState()){
-				if(Mouse.getEventButton() == 0 && !inventory.getWeapon().isAutomatic()){
-					inventory.getWeapon().fire();
-				}
-				if(Mouse.getEventButton() == 1){
-					if(hull == null){
-						hull = new ConvexHull();
-						world.addHull(hull);
-					}
-					float ratio = ((float) (settings.getScreenY())/settings.getScreenX());
-					
-					hull.addPoint((((float)(mouse_x)/settings.getScreenX())*(settings.getScreenX() + 2*data.zoom) - data.zoom) - world.getMapXOffset(),(((float)(mouse_y)/settings.getScreenY())*(settings.getScreenY() + 2*data.zoom*ratio) - data.zoom*ratio) - world.getMapYOffset());
-				}
-				if(Mouse.getEventButton() == 2){
-					hull = null;
-				}
-			}
+			data.zoom = 360;
 		}
 		
 		if(Mouse.isButtonDown(0) && inventory.getWeapon().isAutomatic()){
@@ -253,5 +197,73 @@ public class Player extends BasePlayer {
 		}
 
 		super.update(delta);
+	}
+	
+	@Override
+	public void mouseInput(ArrayList<Integer> a){
+		
+		b.mouseInput(a);
+		
+		int mouse_x = Mouse.getX();
+		int mouse_y = Mouse.getY();
+		
+		for(Integer i : a){
+			if(i == 0 && !inventory.getWeapon().isAutomatic()){
+				inventory.getWeapon().fire();
+			}
+			if(i == 1){
+				if(hull == null){
+					hull = new ConvexHull();
+					world.addHull(hull);
+				}
+				float ratio = ((float) (settings.getScreenY())/settings.getScreenX());
+				
+				hull.addPoint((((float)(mouse_x)/settings.getScreenX())*(settings.getScreenX() + 2*data.zoom) - data.zoom) - world.getMapXOffset(),(((float)(mouse_y)/settings.getScreenY())*(settings.getScreenY() + 2*data.zoom*ratio) - data.zoom*ratio) - world.getMapYOffset());
+			}
+			if(i == 2){
+				hull = null;
+			}
+		}
+	}
+	
+	@Override
+	public void keyboardInput(ArrayList<Integer> a){
+		for(Integer i : a){
+			if (i == Keyboard.KEY_1){
+				inventory.prevWeapon();
+			}
+			if (i == Keyboard.KEY_2){
+				inventory.nextWeapon();
+			}
+			if (i == Keyboard.KEY_Z){
+				data.addZombie();
+			}
+			if (i == Keyboard.KEY_G){
+				data.addFriendly();
+			}
+			if (i == Keyboard.KEY_NUMPAD0){
+				data.zoom = 0;
+			}
+			if (i == Keyboard.KEY_R){
+				inventory.getWeapon().reload();
+			}
+			
+			if (i == Keyboard.KEY_NUMPAD1){
+				for(int ii = 0; ii < 10; ii ++){
+					data.addZombie();
+				}
+			}
+			if(i == Keyboard.KEY_Q){
+				anti = !anti;
+			}
+			
+			if(i == Keyboard.KEY_3){
+				world.clearHulls();
+			}
+			
+			if(i == Keyboard.KEY_4){
+				hull = null;
+			}
+		}
 	}
 }

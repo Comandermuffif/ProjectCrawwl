@@ -1,16 +1,16 @@
-package org.projectcrawwl.data;
+package org.projectcrawwl.objects;
 
 import java.awt.Color;
 import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.geom.Line2D;
 import java.awt.geom.PathIterator;
-import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
 import org.lwjgl.opengl.GL11;
-import org.projectcrawwl.objects.BasePlayer;
-import org.projectcrawwl.objects.GameObject;
+import org.projectcrawwl.data.GameData;
+import org.projectcrawwl.data.GameSettings;
+import org.projectcrawwl.data.World;
 
 public class ConvexHull extends GameObject{
 

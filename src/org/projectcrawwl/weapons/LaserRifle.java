@@ -4,9 +4,9 @@ import java.awt.Point;
 import java.awt.geom.Line2D;
 
 import org.lwjgl.opengl.GL11;
-import org.projectcrawwl.data.ConvexHull;
 import org.projectcrawwl.data.World;
 import org.projectcrawwl.objects.BasePlayer;
+import org.projectcrawwl.objects.ConvexHull;
 
 public class LaserRifle extends BaseRangedWeapon{
 	
