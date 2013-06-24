@@ -304,11 +304,11 @@ public class GameData
 
 		world.renderBackground();
 		
-		synchronized(bloodStainLock){
+		//synchronized(bloodStainLock){
 			for(GameObject a : allBloodStains){
 				a.render();
 			}
-		}
+		//}
 		
 		Collections.sort(allObjects);
 		
@@ -316,11 +316,11 @@ public class GameData
 			a.render();
 		}
 
-		synchronized(playerLock){
+		//synchronized(playerLock){
 			if(player != null && StateController.getGameState() == Main.IN_GAME){
 				player.renderHUD();
 			}
-		}
+		//}
 	}
 	public void update(int delta){
 		
@@ -329,53 +329,53 @@ public class GameData
 		if(Keyboard.isKeyDown(Keyboard.KEY_UP)){world.setMapYOffset(world.getMapYOffset() - delta);}
 		if(Keyboard.isKeyDown(Keyboard.KEY_DOWN)){world.setMapYOffset(world.getMapYOffset() + delta);}
 		
-		synchronized(bloodStainLock){
+		//synchronized(bloodStainLock){
 			for(GameObject a : addBloodStains){
 				allBloodStains.add(a);
 			}
 			addBloodStains.clear();
-		}
+		//}
 		
-		synchronized(bloodStainLock){
+		//synchronized(bloodStainLock){
 			for(GameObject a : removeBloodStains){
 				allBloodStains.remove(a);
 			}
 			removeBloodStains.clear();
-		}
+		//}
 		
-		synchronized(bloodStainLock){}
+		//synchronized(bloodStainLock){}
 		
-		synchronized(projectileLock){
+		//synchronized(projectileLock){
 			//Removes projectiles that are off screen
 			for(Bullet a : removeProjectiles){
 				allProjectiles.remove(a);
 			}
 			removeProjectiles.clear();
-		}
+		//}
 		
-		synchronized(projectileLock){
+		//synchronized(projectileLock){
 			//Removes projectiles that are off screen
 			for(Bullet a : addProjectiles){
 				allProjectiles.add(a);
 			}
 			addProjectiles.clear();
-		}
+		//}
 		
-		synchronized(particleLock){
+		//synchronized(particleLock){
 			for(GameObject a : removeParticles){
 				allParticles.remove(a);
 			}
 			removeParticles.clear();
-		}
+		//}
 		
-		synchronized(particleLock){
+		//synchronized(particleLock){
 			for(GameObject a : addParticles){
 				allParticles.add(a);
 			}
 			addParticles.clear();
-		}
+		//}
 		
-		synchronized(playerLock){
+		//synchronized(playerLock){
 			for(BasePlayer a : removePlayers){
 				if(a instanceof Player){
 					player = null;
@@ -389,16 +389,16 @@ public class GameData
 				addBloodStains.add(new Corpse(a.x, a.y));
 			}
 			removePlayers.clear();
-		}
+		//}
 		
 		
 		
-		synchronized(playerLock){
+		//synchronized(playerLock){
 			for(BasePlayer a : addPlayers){
 				allPlayers.add(a);
 			}
 			addPlayers.clear();
-		}
+		//}
 		
 		for(BasePlayer a : getAllPlayers()){
 			a.update(delta);
