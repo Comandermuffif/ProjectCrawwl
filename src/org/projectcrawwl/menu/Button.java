@@ -3,7 +3,10 @@ package org.projectcrawwl.menu;
 import java.awt.Color;
 import java.util.ArrayList;
 
+import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Mouse;
+import org.lwjgl.openal.AL;
+import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.GL11;
 import org.projectcrawwl.Main;
 import org.projectcrawwl.data.GameData;
@@ -20,7 +23,7 @@ public class Button {
 	
 	private String name;
 	
-	private Color color = new Color((int)(Math.random()*255),(int) (Math.random()*255),(int) (Math.random()*255));
+	private Color color = new Color(128,128,128);
 	
 	private int ID = 0;
 	
@@ -72,6 +75,14 @@ public class Button {
 		GL11.glVertex2d(x, y + height);
 		GL11.glEnd();
 		
+		GL11.glColor3d(0, 0, 0);
+		GL11.glBegin(GL11.GL_LINE_LOOP);
+		GL11.glVertex2d(x, y);
+		GL11.glVertex2d(x + width, y);
+		GL11.glVertex2d(x + width, y + height);
+		GL11.glVertex2d(x, y + height);
+		GL11.glEnd();
+		
 		
 		GL11.glLoadIdentity();
 		GL11.glOrtho(0, settings.getScreenX(), settings.getScreenY(), 0, -1, 1);
@@ -98,6 +109,12 @@ public class Button {
 		}
 		if(ID == 2){
 			StateController.setGameState(Main.MAIN_MENU);
+		}
+		
+		if(ID == -1){
+			 AL.destroy();
+	    	Display.destroy();
+	        System.exit(0);
 		}
 		
 	}

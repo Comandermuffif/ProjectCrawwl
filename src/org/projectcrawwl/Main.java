@@ -2,7 +2,6 @@ package org.projectcrawwl;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.Sys;
-import org.lwjgl.input.Keyboard;
 import org.lwjgl.openal.AL;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
@@ -64,15 +63,19 @@ public class Main {
         
     	GL11.glDepthFunc(GL11.GL_LESS);
     	
-    	getDelta();
     	
     	lastFPS = getTime();
     	
+    	getDelta();
+    	
+    	data.renderInit();
+    	
 		StateController.addGameState(IN_GAME);
 		StateController.addGameState(MAIN_MENU);
+		
+		StateController.setGameState(IN_GAME);
 		StateController.setGameState(MAIN_MENU);
 		
-    	
         while (!Display.isCloseRequested()) {
         	//Display.sync(60);
         	GL11.glDepthMask(true);
@@ -87,18 +90,12 @@ public class Main {
     	    
         	updateFPS();
     	    Display.update();
-    	    
-    	    if(Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)){
-    	    	break;
-    	    }
-    	    
     	}
         
         AL.destroy();
     	Display.destroy();
         System.exit(0);
 	}
-	
 	
 	public static  long getTime() {
 	    return (Sys.getTime() * 1000) / Sys.getTimerResolution();

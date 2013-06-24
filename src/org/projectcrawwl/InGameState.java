@@ -2,6 +2,9 @@ package org.projectcrawwl;
 
 import java.util.ArrayList;
 
+import org.lwjgl.input.Keyboard;
+import org.projectcrawwl.data.StateController;
+
 public class InGameState implements GameState{
 
 	@Override
@@ -10,8 +13,6 @@ public class InGameState implements GameState{
 		if(Main.data.getPlayer() == null){
 			Main.data.addPlayer();
 		}
-		
-		Main.data.renderInit();
 		
 		System.out.println("Entering in-game state");
 		
@@ -25,22 +26,30 @@ public class InGameState implements GameState{
 
 	@Override
 	public void main(int delta) {
-		
 		Main.data.update(delta);
 		
 		Main.data.render();
-		
 	}
 	
 	@Override
 	public void mouseInput(ArrayList<Integer> a) {
-		Main.data.getPlayer().mouseInput(a);
+		
+		if(Main.data.getPlayer() != null){
+			Main.data.getPlayer().mouseInput(a);
+		}
 	}
 
 	@Override
 	public void keyboardInput(ArrayList<Integer> a) {
 		
-		Main.data.getPlayer().keyboardInput(a);
+		for(Integer i : a){
+			if(i == Keyboard.KEY_ESCAPE){
+				StateController.setGameState(Main.MAIN_MENU);
+			}
+		}
 		
+		if(Main.data.getPlayer() != null){
+			Main.data.getPlayer().keyboardInput(a);
+		}
 	}
 }

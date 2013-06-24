@@ -9,6 +9,7 @@ import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.UnicodeFont;
 import org.newdawn.slick.font.effects.ColorEffect;
+import org.projectcrawwl.Main;
 import org.projectcrawwl.menu.Button;
 import org.projectcrawwl.objects.*;
 import org.projectcrawwl.projectile.Bullet;
@@ -314,12 +315,9 @@ public class GameData
 		for(GameObject a : allObjects){
 			a.render();
 		}
-		
-		
-
 
 		synchronized(playerLock){
-			if(player != null){
+			if(player != null && StateController.getGameState() == Main.IN_GAME){
 				player.renderHUD();
 			}
 		}
