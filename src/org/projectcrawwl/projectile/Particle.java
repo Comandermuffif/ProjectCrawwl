@@ -4,8 +4,8 @@ import java.awt.Color;
 import java.awt.geom.Point2D;
 
 import org.lwjgl.opengl.GL11;
-import org.projectcrawwl.data.GameData;
-import org.projectcrawwl.objects.BasePlayer;
+import org.projectcrawwl.data.GameSettings;
+import org.projectcrawwl.data.World;
 import org.projectcrawwl.objects.GameObject;
 
 public class Particle extends GameObject{
@@ -64,26 +64,26 @@ public class Particle extends GameObject{
 		
 		double height =  ((double)1000/975 - 1);
 		
-		Point2D.Double p = new Point2D.Double(settings.getScreenX()/2 - world.getMapXOffset(), settings.getScreenY()/2 - world.getMapYOffset());
+		Point2D.Double p = new Point2D.Double(GameSettings.getScreenX()/2 - World.getMapXOffset(), GameSettings.getScreenY()/2 - World.getMapYOffset());
 		
 		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
 		GL11.glColor4d(((double)color.getRed()/255),((double)color.getGreen()/255),((double)color.getBlue()/255),((double)(lifetime)/setLife));
 		
 		angle = Math.atan2((y) - p.y, (x + 2) - p.x);
 		length = Math.pow(Math.pow((x + 2) - p.x, 2) + Math.pow((y) - p.y, 2), .5) * height;
-		GL11.glVertex3d((x + 2) + world.getMapXOffset() + Math.cos(angle)*length, (y) + world.getMapYOffset() + Math.sin(angle)*length, .5);
+		GL11.glVertex3d((x + 2) + World.getMapXOffset() + Math.cos(angle)*length, (y) + World.getMapYOffset() + Math.sin(angle)*length, .5);
 		
 		angle = Math.atan2((y) - p.y, (x - 2) - p.x);
 		length = Math.pow(Math.pow((x - 2) - p.getX(), 2) + Math.pow((y) - p.getY(), 2), .5) * height;
-		GL11.glVertex3d((x - 2) + world.getMapXOffset() + Math.cos(angle)*length, (y) + world.getMapYOffset() + Math.sin(angle)*length, .5);
+		GL11.glVertex3d((x - 2) + World.getMapXOffset() + Math.cos(angle)*length, (y) + World.getMapYOffset() + Math.sin(angle)*length, .5);
 		
 		angle = Math.atan2((y + 2) - p.y, (x) - p.x);
 		length = Math.pow(Math.pow((x) - p.getX(), 2) + Math.pow((y + 2) - p.getY(), 2), .5) * height;
-		GL11.glVertex3d((x) + world.getMapXOffset() + Math.cos(angle)*length, (y + 2) + world.getMapYOffset() + Math.sin(angle)*length, .5);
+		GL11.glVertex3d((x) + World.getMapXOffset() + Math.cos(angle)*length, (y + 2) + World.getMapYOffset() + Math.sin(angle)*length, .5);
 		
 		angle = Math.atan2((y - 2) - p.y, (x) - p.x);
 		length = Math.pow(Math.pow((x) - p.getX(), 2) + Math.pow((y - 2) - p.getY(), 2), .5) * height;
-		GL11.glVertex3d((x) + world.getMapXOffset() + Math.cos(angle)*length, (y - 2) + world.getMapYOffset() + Math.sin(angle)*length, .5);
+		GL11.glVertex3d((x) + World.getMapXOffset() + Math.cos(angle)*length, (y - 2) + World.getMapYOffset() + Math.sin(angle)*length, .5);
 		
 		GL11.glEnd();
 		

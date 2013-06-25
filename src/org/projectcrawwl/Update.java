@@ -2,10 +2,8 @@ package org.projectcrawwl;
 
 import org.lwjgl.Sys;
 import org.projectcrawwl.data.GameData;
-import org.projectcrawwl.data.GameSettings;
 public class Update extends Thread{
 	
-	static GameSettings settings = GameSettings.getInstance();
 	static GameData data = GameData.getInstance();
 	
 	public volatile boolean quit = false;

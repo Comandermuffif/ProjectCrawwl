@@ -5,6 +5,7 @@ import java.awt.Point;
 import java.awt.Polygon;
 import java.awt.geom.Line2D;
 import java.awt.geom.PathIterator;
+import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
 import org.lwjgl.opengl.GL11;
@@ -15,8 +16,6 @@ import org.projectcrawwl.data.World;
 public class ConvexHull extends GameObject{
 
 	private Polygon polygon = new Polygon();
-	
-	World world;
 	
 	ArrayList<Line2D.Float> lines = new ArrayList<Line2D.Float>();
 	
@@ -133,16 +132,14 @@ public class ConvexHull extends GameObject{
 	
 	public boolean isOnScreen(){
 		
-		GameSettings settings = GameSettings.getInstance();
-		
 		GameData data = GameData.getInstance();
 		
-		float ratio = ((float) (settings.getScreenY())/settings.getScreenX());
+		float ratio = ((float) (GameSettings.getScreenY())/GameSettings.getScreenX());
 		
-		if(getCenter().x + world.getMapXOffset() + getFarthest() < -data.zoom || getCenter().x + world.getMapXOffset() - getFarthest() > settings.getScreenX()  + data.zoom){
+		if(getCenter().x + World.getMapXOffset() + getFarthest() < -data.zoom || getCenter().x + World.getMapXOffset() - getFarthest() > GameSettings.getScreenX()  + data.zoom){
 			return false;
 		}
-		if(getCenter().y + world.getMapYOffset() + getFarthest() < -data.zoom*(ratio) || getCenter().y + world.getMapYOffset() - getFarthest() > settings.getScreenY()  + data.zoom*(ratio)){
+		if(getCenter().y + World.getMapYOffset() + getFarthest() < -data.zoom*(ratio) || getCenter().y + World.getMapYOffset() - getFarthest() > GameSettings.getScreenY()  + data.zoom*(ratio)){
 			return false;
 		}
 		
@@ -155,16 +152,14 @@ public class ConvexHull extends GameObject{
 			//return;
 		}
 		
-		world = World.getInstance();
 		GameData data = GameData.getInstance();
-		GameSettings settings = GameSettings.getInstance();
 		
 		if(!isOnScreen()){
 			return;
 		}
 		
 		//Draw shadow, they are so sexy
-		double length = 2*data.zoom + settings.getScreenX();//world.getMapX();
+		double length = 2*data.zoom + GameSettings.getScreenX();//world.getMapX();
 		if(data.getPlayer() != null){
 			BasePlayer player = data.getPlayer();
 			for(Line2D.Float line : lines){
@@ -187,12 +182,12 @@ public class ConvexHull extends GameObject{
 					
 					GL11.glColor4d(0,0,0,.75);
 					GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
-					GL11.glVertex3d(line.getX1() + world.getMapXOffset(),line.getY1() + world.getMapYOffset(), .5);
-					GL11.glVertex3d(line.getX2() + world.getMapXOffset(), line.getY2() + world.getMapYOffset(), .5);
+					GL11.glVertex3d(line.getX1() + World.getMapXOffset(),line.getY1() + World.getMapYOffset(), .5);
+					GL11.glVertex3d(line.getX2() + World.getMapXOffset(), line.getY2() + World.getMapYOffset(), .5);
 					angle = Math.atan2(line.getY1() - player.y, line.getX1() - player.x);
-					GL11.glVertex3d(line.getX1() + world.getMapXOffset() + Math.cos(angle)*length,line.getY1() + world.getMapYOffset() + Math.sin(angle)*length, .5);
+					GL11.glVertex3d(line.getX1() + World.getMapXOffset() + Math.cos(angle)*length,line.getY1() + World.getMapYOffset() + Math.sin(angle)*length, .5);
 					angle = Math.atan2(line.getY2() - player.y, line.getX2() - player.x);
-					GL11.glVertex3d(line.getX2() + world.getMapXOffset() + Math.cos(angle)*length, line.getY2() + world.getMapYOffset() + Math.sin(angle)*length, .5);
+					GL11.glVertex3d(line.getX2() + World.getMapXOffset() + Math.cos(angle)*length, line.getY2() + World.getMapYOffset() + Math.sin(angle)*length, .5);
 					GL11.glEnd();
 					
 					GL11.glDisable(GL11.GL_DEPTH_TEST);
@@ -202,9 +197,6 @@ public class ConvexHull extends GameObject{
 	}
 	
 	public void render(){
-		
-		world = World.getInstance();
-		GameSettings settings = GameSettings.getInstance();
 		
 		if(!isOnScreen()){
 			return;
@@ -217,7 +209,7 @@ public class ConvexHull extends GameObject{
 			boolean flag = true;
 			
 			//Line2D.Float mid = new Line2D.Float(player.x, player.y, (line.x1 + line.x2)/2, (line.y1 + line.y2)/2);
-			Line2D.Float mid = new Line2D.Float(settings.getScreenX()/2 - world.getMapXOffset(), settings.getScreenY()/2 - world.getMapYOffset(), (line.x1 + line.x2)/2, (line.y1 + line.y2)/2);
+			Line2D.Float mid = new Line2D.Float(GameSettings.getScreenX()/2 - World.getMapXOffset(), GameSettings.getScreenY()/2 - World.getMapYOffset(), (line.x1 + line.x2)/2, (line.y1 + line.y2)/2);
 			
 			
 			for(Line2D.Float l : lines){
@@ -237,29 +229,29 @@ public class ConvexHull extends GameObject{
 				GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
 				//GL11.glBegin(GL11.GL_LINES);
 				
-				GL11.glVertex3d(line.getX1() + world.getMapXOffset(), line.getY1() + world.getMapYOffset(), .5);
-				GL11.glVertex3d(line.getX2() + world.getMapXOffset(), line.getY2() + world.getMapYOffset(), .5);
+				GL11.glVertex3d(line.getX1() + World.getMapXOffset(), line.getY1() + World.getMapYOffset(), .5);
+				GL11.glVertex3d(line.getX2() + World.getMapXOffset(), line.getY2() + World.getMapYOffset(), .5);
 				
 				angle = Math.atan2(line.y1 - mid.y1, line.x1 - mid.x1);
 				length = Math.pow(Math.pow(line.getX1() - mid.x1, 2) + Math.pow(line.getY1() - mid.y1, 2), .5) * ((double)1000/900 - 1);
 				
-				GL11.glVertex3d(line.getX1() + world.getMapXOffset() + Math.cos(angle)*length, line.getY1() + world.getMapYOffset() + Math.sin(angle)*length, .5);
+				GL11.glVertex3d(line.getX1() + World.getMapXOffset() + Math.cos(angle)*length, line.getY1() + World.getMapYOffset() + Math.sin(angle)*length, .5);
 				
 				angle = Math.atan2(line.y2 - mid.y1, line.x2 - mid.x1);
 				length = Math.pow(Math.pow(line.getX2() - mid.x1, 2) + Math.pow(line.getY2() - mid.y1, 2), .5) * ((double)1000/900 - 1);
 				
-				GL11.glVertex3d(line.getX2() + world.getMapXOffset() + Math.cos(angle)*length, line.getY2() + world.getMapYOffset() + Math.sin(angle)*length, .5);
+				GL11.glVertex3d(line.getX2() + World.getMapXOffset() + Math.cos(angle)*length, line.getY2() + World.getMapYOffset() + Math.sin(angle)*length, .5);
 				GL11.glEnd();
 				
 				GL11.glColor4d(0,0,0,1);
 				GL11.glBegin(GL11.GL_LINES);
 				
-				GL11.glVertex3d(line.getX1() + world.getMapXOffset(), line.getY1() + world.getMapYOffset(), .5);
+				GL11.glVertex3d(line.getX1() + World.getMapXOffset(), line.getY1() + World.getMapYOffset(), .5);
 				
 				angle = Math.atan2(line.y1 - mid.y1, line.x1 - mid.x1);
 				length = Math.pow(Math.pow(line.getX1() - mid.x1, 2) + Math.pow(line.getY1() - mid.y1, 2), .5) * ((double)1000/900 - 1);
 				
-				GL11.glVertex3d(line.getX1() + world.getMapXOffset() + Math.cos(angle)*length, line.getY1() + world.getMapYOffset() + Math.sin(angle)*length, .5);
+				GL11.glVertex3d(line.getX1() + World.getMapXOffset() + Math.cos(angle)*length, line.getY1() + World.getMapYOffset() + Math.sin(angle)*length, .5);
 				
 				GL11.glEnd();
 				
@@ -268,19 +260,19 @@ public class ConvexHull extends GameObject{
 				GL11.glColor4d(0,0,0,1);
 				GL11.glBegin(GL11.GL_LINES);
 				
-				GL11.glVertex3d(line.getX2() + world.getMapXOffset(), line.getY2() + world.getMapYOffset(), .5);
+				GL11.glVertex3d(line.getX2() + World.getMapXOffset(), line.getY2() + World.getMapYOffset(), .5);
 				
 				angle = Math.atan2(line.y2 - mid.y1, line.x2 - mid.x1);
 				length = Math.pow(Math.pow(line.getX2() - mid.x1, 2) + Math.pow(line.getY2() - mid.y1, 2), .5) * ((double)1000/900 - 1);
 				
-				GL11.glVertex3d(line.getX2() + world.getMapXOffset() + Math.cos(angle)*length, line.getY2() + world.getMapYOffset() + Math.sin(angle)*length, .5);
+				GL11.glVertex3d(line.getX2() + World.getMapXOffset() + Math.cos(angle)*length, line.getY2() + World.getMapYOffset() + Math.sin(angle)*length, .5);
 				GL11.glEnd();
 				
 				GL11.glBegin(GL11.GL_LINES);
 				
-				GL11.glVertex3d(line.getX1() + world.getMapXOffset(),line.getY1() + world.getMapYOffset(), .5);
+				GL11.glVertex3d(line.getX1() + World.getMapXOffset(),line.getY1() + World.getMapYOffset(), .5);
 				
-				GL11.glVertex3d(line.getX2() + world.getMapXOffset(), line.getY2() + world.getMapYOffset(), .5);
+				GL11.glVertex3d(line.getX2() + World.getMapXOffset(), line.getY2() + World.getMapYOffset(), .5);
 				
 				GL11.glEnd();
 				
@@ -293,7 +285,7 @@ public class ConvexHull extends GameObject{
 		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
 		for(Line2D.Float line : lines){
 			
-			Line2D.Float mid = new Line2D.Float(settings.getScreenX()/2 - world.getMapXOffset(), settings.getScreenY()/2 - world.getMapYOffset(), (line.x1 + line.x2)/2, (line.y1 + line.y2)/2);
+			Line2D.Float mid = new Line2D.Float(GameSettings.getScreenX()/2 - World.getMapXOffset(), GameSettings.getScreenY()/2 - World.getMapYOffset(), (line.x1 + line.x2)/2, (line.y1 + line.y2)/2);
 			
 			double angle = 0;
 			
@@ -302,15 +294,35 @@ public class ConvexHull extends GameObject{
 			angle = Math.atan2(line.y1 - mid.y1, line.x1 - mid.x1);
 			length = Math.pow(Math.pow(line.getX1() - mid.x1, 2) + Math.pow(line.getY1() - mid.y1, 2), .5) * ((double)1000/900 - 1);
 			
-			GL11.glVertex3d(line.getX1() + world.getMapXOffset() + Math.cos(angle)*length, line.getY1() + world.getMapYOffset() + Math.sin(angle)*length, .5);
+			GL11.glVertex3d(line.getX1() + World.getMapXOffset() + Math.cos(angle)*length, line.getY1() + World.getMapYOffset() + Math.sin(angle)*length, .5);
 			
 			angle = Math.atan2(line.y2 - mid.y1, line.x2 - mid.x1);
 			length = Math.pow(Math.pow(line.getX2() - mid.x1, 2) + Math.pow(line.getY2() - mid.y1, 2), .5) * ((double)1000/900 - 1);
 			
-			GL11.glVertex3d(line.getX2() + world.getMapXOffset() + Math.cos(angle)*length, line.getY2() + world.getMapYOffset() + Math.sin(angle)*length, .5);				
+			GL11.glVertex3d(line.getX2() + World.getMapXOffset() + Math.cos(angle)*length, line.getY2() + World.getMapYOffset() + Math.sin(angle)*length, .5);				
 		}
 		GL11.glEnd();
 	
 		
+	}
+	
+	@Override
+	protected double getNearest(){
+		
+		double nearest = -1;
+		
+		for(Line2D.Float l : lines){
+			
+			Point2D.Double p = new Point2D.Double(l.getX1(), l.getY1());
+			Point2D.Double pp = new Point2D.Double(GameSettings.getScreenX()/2 - World.getMapXOffset(), GameSettings.getScreenY()/2 - World.getMapYOffset());
+			
+			double tempD = p.distance(pp);
+			
+			if(nearest == -1 || tempD < nearest){
+				nearest = tempD;
+			}
+		}
+		
+		return nearest;
 	}
 }

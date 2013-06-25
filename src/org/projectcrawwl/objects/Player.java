@@ -96,7 +96,7 @@ public class Player extends BasePlayer {
 		b.render();
 		
 		GL11.glLoadIdentity();
-		GL11.glOrtho(0, settings.getScreenX(), 0, settings.getScreenY(), -1, 1);
+		GL11.glOrtho(0, GameSettings.getScreenX(), 0, GameSettings.getScreenY(), -1, 1);
 		
 		GL11.glColor3d(0,0,0);
 		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
@@ -108,39 +108,37 @@ public class Player extends BasePlayer {
 		
 		//Re scale view so text is right side up
 		GL11.glLoadIdentity();
-		GL11.glOrtho(0, settings.getScreenX(), settings.getScreenY(), 0, -1, 1);
+		GL11.glOrtho(0, GameSettings.getScreenX(), GameSettings.getScreenY(), 0, -1, 1);
 		
 		
-		data.getFont().drawString(20, settings.getScreenY() - 80, "Weapon: " + inventory.getWeapon().getName());
+		data.getFont().drawString(20, GameSettings.getScreenY() - 80, "Weapon: " + inventory.getWeapon().getName());
 		if(!(inventory.getWeapon() instanceof BaseMeleeWeapon)){
 			if(inventory.getWeapon().isReloading()){
-				data.getFont().drawString(20, settings.getScreenY() - 60, "Clip: Reloading...");
+				data.getFont().drawString(20, GameSettings.getScreenY() - 60, "Clip: Reloading...");
 			}else{
-				data.getFont().drawString(20, settings.getScreenY() - 60, "Clip: " + inventory.getWeapon().getClip().x + "/" + inventory.getWeapon().getClip().y);
+				data.getFont().drawString(20, GameSettings.getScreenY() - 60, "Clip: " + inventory.getWeapon().getClip().x + "/" + inventory.getWeapon().getClip().y);
 			}
 		}
-		data.getFont().drawString(20, settings.getScreenY() - 40, "Heath: " + health);
+		data.getFont().drawString(20, GameSettings.getScreenY() - 40, "Heath: " + health);
 		
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		
 		//Reset to zoom
 		
-		float ratio = ((float) (settings.getScreenY())/settings.getScreenX());
+		float ratio = ((float) (GameSettings.getScreenY())/GameSettings.getScreenX());
 		
 		GL11.glLoadIdentity();
 		
     	GL11.glAlphaFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
     	GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
     	
-		GL11.glOrtho(-data.zoom, settings.getScreenX()  + data.zoom, -data.zoom*(ratio), settings.getScreenY() + data.zoom*(ratio), -1, 1);
+		GL11.glOrtho(-data.zoom, GameSettings.getScreenX()  + data.zoom, -data.zoom*(ratio), GameSettings.getScreenY() + data.zoom*(ratio), -1, 1);
 	}
 	
 	//Do all calculations here
 	public void update(int delta){
 		
-		world = World.getInstance();
 		data = GameData.getInstance();
-		settings = GameSettings.getInstance();
 		
 		//Key and mouse input control
 		
@@ -149,8 +147,8 @@ public class Player extends BasePlayer {
 		
 		tempFacing = (float) (Math.toDegrees(Math.atan2(mouse_y - renderY, mouse_x - renderX)));
 		
-		data.setMapXOffset((float) (settings.getScreenX()/2 - x - (mouse_x - settings.getScreenX()/2)*1));
-		data.setMapYOffset((float) (settings.getScreenY()/2 - y - (mouse_y - settings.getScreenY()/2)*1));
+		data.setMapXOffset((float) (GameSettings.getScreenX()/2 - x - (mouse_x - GameSettings.getScreenX()/2)*1));
+		data.setMapYOffset((float) (GameSettings.getScreenY()/2 - y - (mouse_y - GameSettings.getScreenY()/2)*1));
 		
 		float temp = 0;
 		moveAngle = 0;
@@ -189,7 +187,7 @@ public class Player extends BasePlayer {
 		}
 		
 		if(data.zoom > 360){
-			data.zoom = 360;
+			//data.zoom = 360;
 		}
 		
 		if(Mouse.isButtonDown(0) && inventory.getWeapon().isAutomatic()){
@@ -214,11 +212,11 @@ public class Player extends BasePlayer {
 			if(i == 1){
 				if(hull == null){
 					hull = new ConvexHull();
-					world.addHull(hull);
+					World.addHull(hull);
 				}
-				float ratio = ((float) (settings.getScreenY())/settings.getScreenX());
+				float ratio = ((float) (GameSettings.getScreenY())/GameSettings.getScreenX());
 				
-				hull.addPoint((((float)(mouse_x)/settings.getScreenX())*(settings.getScreenX() + 2*data.zoom) - data.zoom) - world.getMapXOffset(),(((float)(mouse_y)/settings.getScreenY())*(settings.getScreenY() + 2*data.zoom*ratio) - data.zoom*ratio) - world.getMapYOffset());
+				hull.addPoint((((float)(mouse_x)/GameSettings.getScreenX())*(GameSettings.getScreenX() + 2*data.zoom) - data.zoom) - World.getMapXOffset(),(((float)(mouse_y)/GameSettings.getScreenY())*(GameSettings.getScreenY() + 2*data.zoom*ratio) - data.zoom*ratio) - World.getMapYOffset());
 			}
 			if(i == 2){
 				hull = null;
@@ -258,7 +256,7 @@ public class Player extends BasePlayer {
 			}
 			
 			if(i == Keyboard.KEY_3){
-				world.clearHulls();
+				World.clearHulls();
 			}
 			
 			if(i == Keyboard.KEY_4){

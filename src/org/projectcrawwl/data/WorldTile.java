@@ -36,6 +36,8 @@ public class WorldTile {
 			
 			String l;
 			
+			ConvexHull h = new ConvexHull();
+			
 			while((l = wordStream.readLine()) != null){
 				l = l.replaceAll("\\s", "");
 				
@@ -55,29 +57,49 @@ public class WorldTile {
 				if(s[0].equals("y")){
 					y = Integer.parseInt(s[1]) * height;
 				}
+				
+				if(s[0].equals("hull")){
+					
+					hulls.add(h);
+					h = new ConvexHull(x,y);
+				}
+				
+				if(s[0].equals("p")){
+					
+					String ss = s[1].replace("{", "");
+					ss = ss.replace("}", "");
+					String[] temp = ss.split(",");
+					
+					h.addPoint(Integer.parseInt(temp[0]), Integer.parseInt(temp[1]));
+				}
+				
 				if(s[0].equals("sides")){
 					String ss = s[1].replace("{", "");
 					ss = ss.replace("}", "");
 					String[] temp = ss.split(",");
 					
-					sides = new int[]{Integer.parseInt(temp[0]),Integer.parseInt(temp[1]),Integer.parseInt(temp[2]),Integer.parseInt(temp[3])};
+					for(int i = 0; i < 4; i ++){
+						switch(Integer.parseInt(temp[i])){
+							case 1:
+								sides[i] = 1;
+								break;
+							case -1:
+								sides[i] = (int) Math.rint(Math.random());
+								break;
+							case 0:
+								sides[i] = 0;
+								break;
+						}
+					}
 				}
 				
 			}
 			
+			hulls.add(h);
+			
 			wordStream.close();
 			
 		}catch(IOException e){e.printStackTrace();}
-		
-		System.out.println("Generated");
-		System.out.println(x);
-		System.out.println(y);
-		System.out.println(width);
-		System.out.println(height);
-		System.out.println(sides[0]);
-		System.out.println(sides[1]);
-		System.out.println(sides[2]);
-		System.out.println(sides[3]);
 		
 		int subset = 5;
 		
@@ -124,6 +146,316 @@ public class WorldTile {
 			}
 		}
 		
+	}
+	
+	public static int[] possibleTiles(String filename){
+		
+		int[] sides = new int[]{0,0,0,0};
+		
+		try {
+			
+			BufferedReader wordStream = new BufferedReader(new FileReader(filename));
+			
+			String l;
+			
+			while((l = wordStream.readLine()) != null){
+				l = l.replaceAll("\\s", "");
+				
+				l = l.toLowerCase();
+				
+				String[] s = l.split("=");
+				
+				if(s[0].equals("sides")){
+					String ss = s[1].replace("{", "");
+					ss = ss.replace("}", "");
+					String[] temp = ss.split(",");
+					
+					for(int i = 0; i < 4; i ++){
+						switch(Integer.parseInt(temp[i])){
+							case 1:
+								sides[i] = 1;
+								break;
+							case -1:
+								sides[i] = 0;
+								break;
+							case 0:
+								sides[i] = 0;
+								break;
+						}
+					}
+				}
+				
+			}
+			
+			wordStream.close();
+			
+		}catch(IOException e){e.printStackTrace();}
+		
+		return sides;
+	}
+	
+	public WorldTile(int xx, int yy, String filename, int override){
+		
+		this.x = xx * width;
+		this.y = yy * height;
+		
+		try {
+			
+			BufferedReader wordStream = new BufferedReader(new FileReader(filename));
+			
+			String l;
+			
+			ConvexHull h = new ConvexHull();
+			
+			while((l = wordStream.readLine()) != null){
+				l = l.replaceAll("\\s", "");
+				
+				l = l.toLowerCase();
+				
+				String[] s = l.split("=");
+				
+				if(s[0].equals("width")){
+					width = Integer.parseInt(s[1]);
+				}
+				if(s[0].equals("height")){
+					height = Integer.parseInt(s[1]);
+				}
+				
+				if(s[0].equals("hull")){
+					
+					hulls.add(h);
+					h = new ConvexHull(x,y);
+				}
+				
+				if(s[0].equals("p")){
+					
+					String ss = s[1].replace("{", "");
+					ss = ss.replace("}", "");
+					String[] temp = ss.split(",");
+					
+					h.addPoint(Integer.parseInt(temp[0]), Integer.parseInt(temp[1]));
+				}
+				
+				if(s[0].equals("sides")){
+					String ss = s[1].replace("{", "");
+					ss = ss.replace("}", "");
+					String[] temp = ss.split(",");
+					
+					for(int i = 0; i < 4; i ++){
+						switch(Integer.parseInt(temp[i])){
+							case 1:
+								sides[i] = 1;
+								break;
+							case -1:
+								sides[i] = (int) Math.rint(Math.random());
+								break;
+							case 0:
+								sides[i] = 0;
+								break;
+						}
+					}
+				}
+				
+			}
+			
+			sides[override] = 0;
+			
+			hulls.add(h);
+			
+			wordStream.close();
+			
+		}catch(IOException e){e.printStackTrace();}
+		
+		
+		int subset = 5;
+		
+		for(int i = 0; i < subset; i ++){
+			if(sides[3] == 1)
+			{
+				ConvexHull a = new ConvexHull(x,y);
+				a.addPoint(0,(height/subset)*(i + 1));
+				a.addPoint(5,(height/subset)*(i + 1));
+				a.addPoint(5,(height/subset)*(i));
+				a.addPoint(0,(height/subset)*(i));
+				
+				hulls.add(a);
+			}
+			if(sides[2] == 1)
+			{
+				ConvexHull a = new ConvexHull(x,y);
+				a.addPoint((width/subset)*(i),0);
+				a.addPoint((width/subset)*(i),5);
+				a.addPoint((width/subset)*(i+1),5);
+				a.addPoint((width/subset)*(i+1),0);
+				
+				hulls.add(a);
+			}
+			if(sides[1] == 1)
+			{
+				ConvexHull a = new ConvexHull(x,y);
+				a.addPoint(width-5,(height/subset)*(i + 1));
+				a.addPoint(width,(height/subset)*(i + 1));
+				a.addPoint(width,(height/subset)*(i));
+				a.addPoint(width-5,(height/subset)*(i));
+				
+				hulls.add(a);
+			}
+			if(sides[0] == 1)
+			{
+				ConvexHull a = new ConvexHull(x,y);
+				a.addPoint((width/subset)*(i),height);
+				a.addPoint((width/subset)*(i+1),height);
+				a.addPoint((width/subset)*(i+1),height-5);
+				a.addPoint((width/subset)*(i),height-5);
+				
+				hulls.add(a);
+			}
+		}
+		
+	}
+	
+	
+	public static ArrayList<WorldTile> generateTiles(String filename){
+		ArrayList<WorldTile> data = new ArrayList<WorldTile>();
+		
+		int width = 500;
+		int height = 500;
+		int x = 0;
+		int y = 0;
+		
+		ArrayList<ConvexHull> hulls = new ArrayList<ConvexHull>();
+		
+		int[] sides = new int[4];
+		
+		try {
+			
+			BufferedReader wordStream = new BufferedReader(new FileReader(filename));
+			
+			String l;
+			
+			ConvexHull h = new ConvexHull();
+			
+			while((l = wordStream.readLine()) != null){
+				l = l.replaceAll("\\s", "");
+				
+				l = l.toLowerCase();
+				
+				String[] s = l.split("=");
+				
+				if(s[0].equals("width")){
+					width = Integer.parseInt(s[1]);
+				}
+				if(s[0].equals("height")){
+					height = Integer.parseInt(s[1]);
+				}
+				if(s[0].equals("x")){
+					x = Integer.parseInt(s[1]) * width;
+				}
+				if(s[0].equals("y")){
+					y = Integer.parseInt(s[1]) * height;
+				}
+				
+				if(s[0].equals("hull")){
+					
+					hulls.add(h);
+					h = new ConvexHull(x,y);
+				}
+				
+				if(s[0].equals("p")){
+					
+					String ss = s[1].replace("{", "");
+					ss = ss.replace("}", "");
+					String[] temp = ss.split(",");
+					
+					h.addPoint(Integer.parseInt(temp[0]), Integer.parseInt(temp[1]));
+				}
+				
+				if(s[0].equals("sides")){
+					String ss = s[1].replace("{", "");
+					ss = ss.replace("}", "");
+					String[] temp = ss.split(",");
+					
+					for(int i = 0; i < 4; i ++){
+						sides[i] = Integer.parseInt(temp[i]);
+					}
+				}
+			}
+			
+			hulls.add(h);
+			
+			wordStream.close();
+			
+		}catch(IOException e){e.printStackTrace();}
+		
+		int subset = 5;
+		
+		for(int i = 0; i < subset; i ++){
+			if(sides[3] == 1)
+			{
+				ConvexHull a = new ConvexHull(x,y);
+				a.addPoint(0,(height/subset)*(i + 1));
+				a.addPoint(5,(height/subset)*(i + 1));
+				a.addPoint(5,(height/subset)*(i));
+				a.addPoint(0,(height/subset)*(i));
+				
+				hulls.add(a);
+			}
+			if(sides[2] == 1)
+			{
+				ConvexHull a = new ConvexHull(x,y);
+				a.addPoint((width/subset)*(i),0);
+				a.addPoint((width/subset)*(i),5);
+				a.addPoint((width/subset)*(i+1),5);
+				a.addPoint((width/subset)*(i+1),0);
+				
+				hulls.add(a);
+			}
+			if(sides[1] == 1)
+			{
+				ConvexHull a = new ConvexHull(x,y);
+				a.addPoint(width-5,(height/subset)*(i + 1));
+				a.addPoint(width,(height/subset)*(i + 1));
+				a.addPoint(width,(height/subset)*(i));
+				a.addPoint(width-5,(height/subset)*(i));
+				
+				hulls.add(a);
+			}
+			if(sides[0] == 1)
+			{
+				ConvexHull a = new ConvexHull(x,y);
+				a.addPoint((width/subset)*(i),height);
+				a.addPoint((width/subset)*(i+1),height);
+				a.addPoint((width/subset)*(i+1),height-5);
+				a.addPoint((width/subset)*(i),height-5);
+				
+				hulls.add(a);
+			}
+		}
+		
+		ArrayList<int[]> queue = new ArrayList<int[]>();
+		
+		queue.add(sides);
+		
+		while(!queue.isEmpty()){
+			
+			int[] current = queue.remove(0);
+			
+			for(int i = 0; i < 4; i ++){
+				if(current[i] == -1){
+					int[] temp = current.clone();
+					temp[i] = 0;
+					queue.add(temp);
+					temp[i] = 1;
+					queue.add(temp);
+					break;
+				}
+			}
+			
+			data.add(new WorldTile(x,y,current));
+			
+		}
+		
+		return data;
 	}
 	
 	public WorldTile(int ii, int jj){
@@ -231,6 +563,14 @@ public class WorldTile {
 		return y/height;
 	}
 	
+	public void setX(int a){
+		x = a * width;
+	}
+	
+	public void setY(int a){
+		y = a * height;
+	}
+	
 	public void renderHulls(){
 		for(ConvexHull h : hulls){
 			h.render();
@@ -244,14 +584,13 @@ public class WorldTile {
 	}
 	
 	public void renderBackground(){
-		World w = World.getInstance();
 		
 		GL11.glColor3d(1,1,1);
 		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
-		GL11.glVertex2d(x + w.getMapXOffset(), y + w.getMapYOffset());
-		GL11.glVertex2d(x + width + w.getMapXOffset(), y + w.getMapYOffset());
-		GL11.glVertex2d(x + width + w.getMapXOffset(), y + height + w.getMapYOffset());
-		GL11.glVertex2d(x + w.getMapXOffset(), y + height + w.getMapYOffset());
+		GL11.glVertex2d(x + World.getMapXOffset(), y + World.getMapYOffset());
+		GL11.glVertex2d(x + width + World.getMapXOffset(), y + World.getMapYOffset());
+		GL11.glVertex2d(x + width + World.getMapXOffset(), y + height + World.getMapYOffset());
+		GL11.glVertex2d(x + World.getMapXOffset(), y + height + World.getMapYOffset());
 		GL11.glEnd();
 	}
 	
@@ -270,6 +609,11 @@ public class WorldTile {
 			return true;
 		}
 		return false;
+	}
+	
+	public String toString(){
+		String s = "{" + x + ", " +  y + ", " + sides +"}";
+		return s;
 	}
 
 }

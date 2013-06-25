@@ -54,9 +54,7 @@ public class LaserRifle extends BaseRangedWeapon{
 			
 			double dist = q.getP1().distance(q.getP2());
 			
-			World world = World.getInstance();
-			
-			for(ConvexHull hull : world.getHulls()){
+			for(ConvexHull hull : World.getHulls()){
 				
 				if(q.ptSegDist(hull.getCenter()) > hull.getFarthest()*2){
 					continue;
@@ -64,7 +62,7 @@ public class LaserRifle extends BaseRangedWeapon{
 				
 				for(Line2D.Float tempLine : hull.getLines()){
 					if(tempLine.intersectsLine(q)){
-						Point temp = world.getLineLineIntersection(q, tempLine);
+						Point temp = World.getLineLineIntersection(q, tempLine);
 						double tempD = temp.distance(q.getP1());
 						if(tempD < dist){
 							dist = tempD;

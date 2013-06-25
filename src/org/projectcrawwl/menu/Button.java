@@ -3,7 +3,6 @@ package org.projectcrawwl.menu;
 import java.awt.Color;
 import java.util.ArrayList;
 
-import org.lwjgl.LWJGLException;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.openal.AL;
 import org.lwjgl.opengl.Display;
@@ -60,12 +59,10 @@ public class Button {
 	}
 	
 	public void render(){
-		
-		GameSettings settings = GameSettings.getInstance();
 		GameData data = GameData.getInstance();
 		
 		GL11.glLoadIdentity();
-		GL11.glOrtho(0, settings.getScreenX(), 0, settings.getScreenY(), -1, 1);
+		GL11.glOrtho(0, GameSettings.getScreenX(), 0, GameSettings.getScreenY(), -1, 1);
 		
 		GL11.glColor3d((double)(color.getRed())/255, (double)(color.getBlue())/255, (double)(color.getGreen())/255);
 		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
@@ -85,16 +82,16 @@ public class Button {
 		
 		
 		GL11.glLoadIdentity();
-		GL11.glOrtho(0, settings.getScreenX(), settings.getScreenY(), 0, -1, 1);
-		data.getFont().drawString(x + width/2 - data.getFont().getWidth(name)/2, settings.getScreenY() - (y + height/2 + data.getFont().getHeight(name)/2), name);
+		GL11.glOrtho(0, GameSettings.getScreenX(), GameSettings.getScreenY(), 0, -1, 1);
+		data.getFont().drawString(x + width/2 - data.getFont().getWidth(name)/2, GameSettings.getScreenY() - (y + height/2 + data.getFont().getHeight(name)/2), name);
 		
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		
 		
 		
-		float ratio = ((float) (settings.getScreenY())/settings.getScreenX());
+		float ratio = ((float) (GameSettings.getScreenY())/GameSettings.getScreenX());
 		GL11.glLoadIdentity();
-		GL11.glOrtho(-data.zoom, settings.getScreenX()  + data.zoom, -data.zoom*(ratio), settings.getScreenY() + data.zoom*(ratio), -1, 1);
+		GL11.glOrtho(-data.zoom, GameSettings.getScreenX()  + data.zoom, -data.zoom*(ratio), GameSettings.getScreenY() + data.zoom*(ratio), -1, 1);
 		
 	}
 	

@@ -4,11 +4,14 @@ import java.util.ArrayList;
 
 import org.lwjgl.input.Keyboard;
 import org.projectcrawwl.data.StateController;
+import org.projectcrawwl.data.World;
 
 public class InGameState implements GameState{
 
 	@Override
 	public void onEnter() {
+		
+		World.generateWorld();
 		
 		if(Main.data.getPlayer() == null){
 			Main.data.addPlayer();

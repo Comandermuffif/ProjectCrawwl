@@ -32,8 +32,6 @@ public class GameObject implements Comparable<GameObject>{
 	public ArrayList<Line2D.Float> boundingLines = new ArrayList<Line2D.Float>();
 	
 	public GameData data;
-	public GameSettings settings;
-	public World world;
 	
 	private Point center = new Point();
 	
@@ -193,12 +191,12 @@ public class GameObject implements Comparable<GameObject>{
 	 */
 	public boolean isOnScreen(){
 		
-		float ratio = ((float) (settings.getScreenY())/settings.getScreenX());
+		float ratio = ((float) (GameSettings.getScreenY())/GameSettings.getScreenX());
 		
-		if(renderX + getFarthest() < -data.zoom || renderX - getFarthest() > settings.getScreenX()  + data.zoom){
+		if(renderX + getFarthest() < -data.zoom || renderX - getFarthest() > GameSettings.getScreenX()  + data.zoom){
 			return false;
 		}
-		if(renderY  + getFarthest() < -data.zoom*(ratio) || renderY - getFarthest() > settings.getScreenY()  + data.zoom*(ratio)){
+		if(renderY  + getFarthest() < -data.zoom*(ratio) || renderY - getFarthest() > GameSettings.getScreenY()  + data.zoom*(ratio)){
 			return false;
 		}
 		
@@ -211,8 +209,6 @@ public class GameObject implements Comparable<GameObject>{
 			return;
 		}
 		
-		world = World.getInstance();
-		
 		if(!isOnScreen()){
 			return;
 		}
@@ -220,7 +216,7 @@ public class GameObject implements Comparable<GameObject>{
 		ArrayList<Line2D.Float> lines = new ArrayList<Line2D.Float>();
 		
 		for(Line2D.Float temp : boundingLines){
-			lines.add(new Line2D.Float((float) (temp.x1*Math.cos(Math.toRadians(facingAngle)) - temp.y1*Math.sin(Math.toRadians(facingAngle)) + x),(float) (temp.x1*Math.sin(Math.toRadians(facingAngle)) + temp.y1*Math.cos(Math.toRadians(facingAngle)) + y),(float) (temp.x2*Math.cos(Math.toRadians(facingAngle)) - temp.y2*Math.sin(Math.toRadians(facingAngle)) + x),(float) (temp.x2*Math.sin(Math.toRadians(facingAngle)) + temp.y2*Math.cos(Math.toRadians(facingAngle)) + y)));
+			lines.add(new Line2D.Float((float) (temp.x1*Math.cos(Math.toRadians(facingAngle)) - temp.y1*Math.sin(Math.toRadians(facingAngle)) + (renderX - World.getMapXOffset())),(float) (temp.x1*Math.sin(Math.toRadians(facingAngle)) + temp.y1*Math.cos(Math.toRadians(facingAngle)) + (renderY - World.getMapYOffset())),(float) (temp.x2*Math.cos(Math.toRadians(facingAngle)) - temp.y2*Math.sin(Math.toRadians(facingAngle)) + (renderX - World.getMapXOffset())),(float) (temp.x2*Math.sin(Math.toRadians(facingAngle)) + temp.y2*Math.cos(Math.toRadians(facingAngle)) + (renderY - World.getMapYOffset()))));
 		}
 		
 		GL11.glEnable(GL11.GL_DEPTH_TEST);
@@ -231,7 +227,7 @@ public class GameObject implements Comparable<GameObject>{
 		for(Line2D.Float line : lines){
 			boolean flag = true;
 			
-			Line2D.Float mid = new Line2D.Float(settings.getScreenX()/2 - world.getMapXOffset(), settings.getScreenY()/2 - world.getMapYOffset(), (line.x1 + line.x2)/2, (line.y1 + line.y2)/2);
+			Line2D.Float mid = new Line2D.Float(GameSettings.getScreenX()/2 - World.getMapXOffset(), GameSettings.getScreenY()/2 - World.getMapYOffset(), (line.x1 + line.x2)/2, (line.y1 + line.y2)/2);
 			
 			for(Line2D.Float l : lines){
 				if(line.equals(l)){
@@ -252,48 +248,48 @@ public class GameObject implements Comparable<GameObject>{
 				GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
 				//GL11.glBegin(GL11.GL_LINES);
 				
-				GL11.glVertex3d(line.getX1() + world.getMapXOffset(), line.getY1() + world.getMapYOffset(), .5);
-				GL11.glVertex3d(line.getX2() + world.getMapXOffset(), line.getY2() + world.getMapYOffset(), .5);
+				GL11.glVertex3d(line.getX1() + World.getMapXOffset(), line.getY1() + World.getMapYOffset(), .5);
+				GL11.glVertex3d(line.getX2() + World.getMapXOffset(), line.getY2() + World.getMapYOffset(), .5);
 				
 				angle = Math.atan2(line.y1 - mid.y1, line.x1 - mid.x1);
 				length = Math.pow(Math.pow(line.getX1() - mid.x1, 2) + Math.pow(line.getY1() - mid.y1, 2), .5) * height;
 				
-				GL11.glVertex3d(line.getX1() + world.getMapXOffset() + Math.cos(angle)*length, line.getY1() + world.getMapYOffset() + Math.sin(angle)*length, .5);
+				GL11.glVertex3d(line.getX1() + World.getMapXOffset() + Math.cos(angle)*length, line.getY1() + World.getMapYOffset() + Math.sin(angle)*length, .5);
 				
 				angle = Math.atan2(line.y2 - mid.y1, line.x2 - mid.x1);
 				length = Math.pow(Math.pow(line.getX2() - mid.x1, 2) + Math.pow(line.getY2() - mid.y1, 2), .5) * height;
 				
-				GL11.glVertex3d(line.getX2() + world.getMapXOffset() + Math.cos(angle)*length, line.getY2() + world.getMapYOffset() + Math.sin(angle)*length, .5);
+				GL11.glVertex3d(line.getX2() + World.getMapXOffset() + Math.cos(angle)*length, line.getY2() + World.getMapYOffset() + Math.sin(angle)*length, .5);
 				GL11.glEnd();
 				
 				GL11.glColor4d(0,0,0,1);
 				GL11.glBegin(GL11.GL_LINES);
 				
-				GL11.glVertex3d(line.getX1() + world.getMapXOffset(), line.getY1() + world.getMapYOffset(), .5);
+				GL11.glVertex3d(line.getX1() + World.getMapXOffset(), line.getY1() + World.getMapYOffset(), .5);
 				
 				angle = Math.atan2(line.y1 - mid.y1, line.x1 - mid.x1);
 				length = Math.pow(Math.pow(line.getX1() - mid.x1, 2) + Math.pow(line.getY1() - mid.y1, 2), .5) * height;
 				
-				GL11.glVertex3d(line.getX1() + world.getMapXOffset() + Math.cos(angle)*length, line.getY1() + world.getMapYOffset() + Math.sin(angle)*length, .5);
+				GL11.glVertex3d(line.getX1() + World.getMapXOffset() + Math.cos(angle)*length, line.getY1() + World.getMapYOffset() + Math.sin(angle)*length, .5);
 				
 				GL11.glEnd();
 				
 				GL11.glColor4d(0,0,0,1);
 				GL11.glBegin(GL11.GL_LINES);
 				
-				GL11.glVertex3d(line.getX2() + world.getMapXOffset(), line.getY2() + world.getMapYOffset(), .5);
+				GL11.glVertex3d(line.getX2() + World.getMapXOffset(), line.getY2() + World.getMapYOffset(), .5);
 				
 				angle = Math.atan2(line.y2 - mid.y1, line.x2 - mid.x1);
 				length = Math.pow(Math.pow(line.getX2() - mid.x1, 2) + Math.pow(line.getY2() - mid.y1, 2), .5) * height;
 				
-				GL11.glVertex3d(line.getX2() + world.getMapXOffset() + Math.cos(angle)*length, line.getY2() + world.getMapYOffset() + Math.sin(angle)*length, .5);
+				GL11.glVertex3d(line.getX2() + World.getMapXOffset() + Math.cos(angle)*length, line.getY2() + World.getMapYOffset() + Math.sin(angle)*length, .5);
 				GL11.glEnd();
 				
 				GL11.glBegin(GL11.GL_LINES);
 				
-				GL11.glVertex3d(line.getX1() + world.getMapXOffset(),line.getY1() + world.getMapYOffset(), .5);
+				GL11.glVertex3d(line.getX1() + World.getMapXOffset(),line.getY1() + World.getMapYOffset(), .5);
 				
-				GL11.glVertex3d(line.getX2() + world.getMapXOffset(), line.getY2() + world.getMapYOffset(), .5);
+				GL11.glVertex3d(line.getX2() + World.getMapXOffset(), line.getY2() + World.getMapYOffset(), .5);
 				
 				GL11.glEnd();
 				
@@ -306,7 +302,7 @@ public class GameObject implements Comparable<GameObject>{
 		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
 		for(Line2D.Float line : lines){
 			
-			Line2D.Float mid = new Line2D.Float(settings.getScreenX()/2 - world.getMapXOffset(), settings.getScreenY()/2 - world.getMapYOffset(), (line.x1 + line.x2)/2, (line.y1 + line.y2)/2);
+			Line2D.Float mid = new Line2D.Float(GameSettings.getScreenX()/2 - World.getMapXOffset(), GameSettings.getScreenY()/2 - World.getMapYOffset(), (line.x1 + line.x2)/2, (line.y1 + line.y2)/2);
 			
 			double angle = 0;
 			
@@ -317,12 +313,12 @@ public class GameObject implements Comparable<GameObject>{
 			angle = Math.atan2(line.y1 - mid.y1, line.x1 - mid.x1);
 			length = Math.pow(Math.pow(line.getX1() - mid.x1, 2) + Math.pow(line.getY1() - mid.y1, 2), .5) * height;
 			
-			GL11.glVertex3d(line.getX1() + world.getMapXOffset() + Math.cos(angle)*length, line.getY1() + world.getMapYOffset() + Math.sin(angle)*length, .5);
+			GL11.glVertex3d(line.getX1() + World.getMapXOffset() + Math.cos(angle)*length, line.getY1() + World.getMapYOffset() + Math.sin(angle)*length, .5);
 			
 			angle = Math.atan2(line.y2 - mid.y1, line.x2 - mid.x1);
 			length = Math.pow(Math.pow(line.getX2() - mid.x1, 2) + Math.pow(line.getY2() - mid.y1, 2), .5) * height;
 			
-			GL11.glVertex3d(line.getX2() + world.getMapXOffset() + Math.cos(angle)*length, line.getY2() + world.getMapYOffset() + Math.sin(angle)*length, .5);				
+			GL11.glVertex3d(line.getX2() + World.getMapXOffset() + Math.cos(angle)*length, line.getY2() + World.getMapYOffset() + Math.sin(angle)*length, .5);				
 		}
 		GL11.glEnd();
 	
@@ -335,9 +331,7 @@ public class GameObject implements Comparable<GameObject>{
 	public void update(int delta){
 		if(!isReady){isReady = true;}
 		
-		world = World.getInstance();
 		data = GameData.getInstance();
-		settings = GameSettings.getInstance();
 		
 		
 		renderX = x + data.getMapXOffset();
@@ -365,7 +359,7 @@ public class GameObject implements Comparable<GameObject>{
 			}
 			
 			boolean flag = true;
-			for(ConvexHull k : world.getHulls()){
+			for(ConvexHull k : World.getHulls()){
 				Point p = new Point((int) x, (int) y);
 				if(p.distance(k.getCenter()) > k.getFarthest() + getFarthest()){
 					continue;
@@ -405,7 +399,7 @@ public class GameObject implements Comparable<GameObject>{
 			
 			Line2D.Float tempLine = new Line2D.Float(x,y,tempx,tempy);
 			
-			for(ConvexHull k : world.getHulls()){
+			for(ConvexHull k : World.getHulls()){
 				
 				if(tempLine.ptSegDist(k.getCenter()) > k.getFarthest() + getFarthest()){
 					continue;
@@ -460,15 +454,47 @@ public class GameObject implements Comparable<GameObject>{
 				speed = 0;
 			}
 		}
+		
+		
+	}
+	
+	protected double getNearest(){
+		double nearest = -1;
+		
+		for(Line2D.Float l : boundingLines){
+			
+			Point2D.Double p = new Point2D.Double();
+			Point2D.Double pp = new Point2D.Double(GameSettings.getScreenX()/2 - World.getMapXOffset(), GameSettings.getScreenY()/2 - World.getMapYOffset());
+			
+			p.x = l.x1*Math.cos(Math.toRadians(facingAngle)) - l.y1*Math.sin(Math.toRadians(facingAngle)) + x;
+			p.y = l.x1*Math.sin(Math.toRadians(facingAngle)) + l.y1*Math.cos(Math.toRadians(facingAngle)) + y;
+			
+			double tempD = p.distance(pp);
+			
+			if(nearest == -1 || tempD < nearest){
+				nearest = tempD;
+			}
+		}
+		
+		return nearest;
+	}
+	
+	public int compareToNEW(GameObject h) {
+
+		if(h.getNearest() > this.getNearest()){
+			return 1;
+		}
+		
+		if(h.getNearest() < this.getNearest()){
+			return -1;
+		}
+			
+		return 0;
 	}
 	
 	public int compareTo(GameObject h) {
 		
-		GameSettings settings = GameSettings.getInstance();
-		
-		world = World.getInstance();
-		
-		Point2D.Double p = new Point2D.Double(settings.getScreenX()/2 - world.getMapXOffset(), settings.getScreenY()/2 - world.getMapYOffset());
+		Point2D.Double p = new Point2D.Double(GameSettings.getScreenX()/2 - World.getMapXOffset(), GameSettings.getScreenY()/2 - World.getMapYOffset());
 		
 		if(h.getCenter().distance(p) > this.getCenter().distance(p)){
 			return 1;

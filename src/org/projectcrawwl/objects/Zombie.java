@@ -5,6 +5,8 @@ import java.awt.geom.Line2D;
 import java.util.Random;
 
 import org.lwjgl.opengl.GL11;
+import org.projectcrawwl.data.GameSettings;
+import org.projectcrawwl.data.World;
 
 
 public class Zombie extends BasePlayer {
@@ -26,10 +28,10 @@ public class Zombie extends BasePlayer {
 	public void render(){
 		if(!isReady){return;}
 		super.render();
-		float ratio = ((float) (settings.getScreenY())/settings.getScreenX());
+		float ratio = ((float) (GameSettings.getScreenY())/GameSettings.getScreenX());
 		//Re scale view so text is right side up
 		GL11.glLoadIdentity();
-		GL11.glOrtho(-data.zoom, settings.getScreenX() + data.zoom, settings.getScreenY() + data.zoom*(ratio),-data.zoom*(ratio), -1, 1);
+		GL11.glOrtho(-data.zoom, GameSettings.getScreenX() + data.zoom, GameSettings.getScreenY() + data.zoom*(ratio),-data.zoom*(ratio), -1, 1);
 		
 		
 		//data.getFont().drawString((renderX - 25), settings.getScreenY() - (renderY + 40), "Zombie", Color.red);
@@ -38,7 +40,7 @@ public class Zombie extends BasePlayer {
 		
 		
 		GL11.glLoadIdentity();
-		GL11.glOrtho(-data.zoom, settings.getScreenX()  + data.zoom, -data.zoom*(ratio), settings.getScreenY() + data.zoom*(ratio), -1, 1);
+		GL11.glOrtho(-data.zoom, GameSettings.getScreenX()  + data.zoom, -data.zoom*(ratio), GameSettings.getScreenY() + data.zoom*(ratio), -1, 1);
 		
 		/*
 		 * The lines used to get target without walking into walls and getting caught
@@ -101,7 +103,7 @@ public class Zombie extends BasePlayer {
 				
 				boolean flag = true;
 				
-				for(ConvexHull hull : world.getHulls()){
+				for(ConvexHull hull : World.getHulls()){
 					for(Line2D.Float line : hull.getLines()){
 						if(line.intersectsLine(sightL)){
 							flag = false;

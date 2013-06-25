@@ -16,7 +16,6 @@ public class Main {
 	public static GameState IN_GAME = new InGameState();
 	public static GameState MAIN_MENU = new MainMenuState();
 	
-	static GameSettings settings = GameSettings.getInstance();
 	static GameData data = GameData.getInstance();
 	
 	static long lastFrame;
@@ -28,12 +27,12 @@ public class Main {
 
 	public void start() {
 		
-		settings.setScreenX(1280);
-		settings.setScreenY(720);
+		GameSettings.setScreenX(1280);
+		GameSettings.setScreenY(720);
 		
         try {
         	
-		    Display.setDisplayMode(new DisplayMode(settings.getScreenX(),settings.getScreenY()));
+		    Display.setDisplayMode(new DisplayMode(GameSettings.getScreenX(),GameSettings.getScreenY()));
 		    Display.setFullscreen(true);
 		    Display.create();
 		    Display.setTitle("Project Crawwl");
@@ -50,7 +49,7 @@ public class Main {
         
         GL11.glDisable(GL11.GL_CULL_FACE);
         
-    	GL11.glOrtho(0, settings.getScreenX(), 0, settings.getScreenY(), 1, -1);
+    	GL11.glOrtho(0, GameSettings.getScreenX(), 0, GameSettings.getScreenY(), 1, -1);
   
     	GL11.glEnable(GL11.GL_BLEND);
     	GL11.glEnable(GL11.GL_ALPHA);
@@ -77,7 +76,7 @@ public class Main {
 		StateController.setGameState(MAIN_MENU);
 		
         while (!Display.isCloseRequested()) {
-        	Display.sync(60);
+        	//Display.sync(60);
         	GL11.glDepthMask(true);
     		GL11.glClearDepth(1f);
     		GL11.glClearColor(0.0f,0.0f,0.0f,0.0f);

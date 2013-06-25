@@ -2,38 +2,67 @@ package org.projectcrawwl.data;
 
 import java.awt.Point;
 import java.awt.geom.Line2D;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.Serializable;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 
 import org.projectcrawwl.objects.ConvexHull;
 
-public class World implements Serializable{
+public class World{
 	
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+	private static float mapXOffset = 0;
+	private static float mapYOffset = 0;
 	
-	private float mapXOffset = 0;
-	private float mapYOffset = 0;
-	
-	static GameSettings settings = GameSettings.getInstance();
-	
-	private ArrayList<ConvexHull> hulls = new ArrayList<ConvexHull>();
-	private ArrayList<ConvexHull> tileHulls = new ArrayList<ConvexHull>();
-	private ArrayList<ConvexHull> allHulls = new ArrayList<ConvexHull>();
+	private static ArrayList<ConvexHull> hulls = new ArrayList<ConvexHull>();
+	private static ArrayList<ConvexHull> tileHulls = new ArrayList<ConvexHull>();
+	private static ArrayList<ConvexHull> allHulls = new ArrayList<ConvexHull>();
 	
 	
-	private ArrayList<WorldTile> tiles = new ArrayList<WorldTile>();
+	private static ArrayList<WorldTile> tiles = new ArrayList<WorldTile>();
 	
-	private HashSet<WorldTile> tileMap = new HashSet<WorldTile>();
+	private static HashSet<WorldTile> tileMap = new HashSet<WorldTile>();
 	
-	public World(){
+	private static int tileLimit = 50;
+	
+	public static void generateWorld(){
+		
+		tiles.clear();
+		tileMap.clear();
+		
+		hulls.clear();
+		tileHulls.clear();
+		allHulls.clear();
+		
+		ArrayList<String> up = new ArrayList<String>();
+		ArrayList<String> down = new ArrayList<String>();
+		ArrayList<String> left = new ArrayList<String>();
+		ArrayList<String> right = new ArrayList<String>();
+		
+		
+		for(final File file : new File("res/WorldTiles").listFiles()){
+			if(file.isFile()){
+				String extension = file.getName().split("\\.")[file.getName().split("\\.").length - 1].toLowerCase();
+				
+				if(extension.equals("worldtile")){
+					int[] data = WorldTile.possibleTiles(file.getPath());
+					
+					if(data[0] == 0){
+						up.add(file.getPath());
+					}
+					if(data[1] == 0){
+						right.add(file.getPath());
+					}
+					if(data[2] == 0){
+						down.add(file.getPath());
+					}
+					if(data[3] == 0){
+						left.add(file.getPath());
+					}
+				}
+			}
+		}
+		
 		{
 			WorldTile t = new WorldTile(0,0, new int[]{0,0,0,0});
 			ConvexHull h = new ConvexHull();
@@ -44,11 +73,6 @@ public class World implements Serializable{
 			t.addHull(h);
 			tiles.add(t);
 			tileMap.add(t);
-		}
-		{
-//			WorldTile t = new WorldTile("res/WorldTiles/tile1.WorldTile");
-//			tiles.add(t);
-//			tileMap.add(t);
 		}
 		
 		
@@ -65,7 +89,7 @@ public class World implements Serializable{
 			WorldTile current = queue.get(0);
 			queue.remove(0);
 			
-			if(i > 50){
+			if(i + queue.size() >= tileLimit){
 				if(current.getSides()[0] == 0 && !tileMap.contains(new WorldTile(current.getX(), current.getY() + 1))){
 					WorldTile t = new WorldTile(current.getX(), current.getY() + 1, new int[]{1,1,0,1});
 					tiles.add(t);
@@ -93,28 +117,32 @@ public class World implements Serializable{
 					queue.add(t);
 				}
 			}else{
+				//top
 				if(current.getSides()[0] == 0 && !tileMap.contains(new WorldTile(current.getX(), current.getY() + 1))){
-					WorldTile t = new WorldTile(current.getX(), current.getY() + 1, new int[]{-1,-1,0,-1});
+					WorldTile t = new WorldTile(current.getX(), current.getY() + 1, down.get((int) (Math.random()*down.size())) , 2);
 					tiles.add(t);
 					tileMap.add(t);
 					queue.add(t);
 				}
-				
+				//Right
 				if(current.getSides()[1] == 0 && !tileMap.contains(new WorldTile(current.getX() + 1, current.getY()))){
-					WorldTile t = new WorldTile(current.getX() + 1, current.getY(), new int[]{-1,-1,-1,0});
+					WorldTile t = new WorldTile(current.getX() + 1, current.getY(), left.get((int) (Math.random()*left.size())) , 3);
 					tiles.add(t);
 					tileMap.add(t);
 					queue.add(t);
 				}
-				
+				//bottom
 				if(current.getSides()[2] == 0 && !tileMap.contains(new WorldTile(current.getX(), current.getY() - 1))){
-					WorldTile t = new WorldTile(current.getX(), current.getY() - 1, new int[]{0,-1,-1,-1});
+					
+					WorldTile t = new WorldTile(current.getX(), current.getY() - 1, up.get((int) (Math.random()*up.size())) , 0);
+					
 					tiles.add(t);
 					tileMap.add(t);
 					queue.add(t);
 				}
+				//right
 				if(current.getSides()[3] == 0 && !tileMap.contains(new WorldTile(current.getX() - 1, current.getY()))){
-					WorldTile t = new WorldTile(current.getX() - 1, current.getY(), new int[]{-1,0,-1,-1});
+					WorldTile t = new WorldTile(current.getX() - 1, current.getY(), right.get((int) (Math.random()*right.size())) , 1);
 					tiles.add(t);
 					tileMap.add(t);
 					queue.add(t);
@@ -128,85 +156,42 @@ public class World implements Serializable{
 		
 		allHulls.addAll(tileHulls);
 		allHulls.addAll(hulls);
-	}
-	
-	@SuppressWarnings("unused")
-	private ArrayList<ConvexHull> readFile(String filename){
-		ArrayList<ConvexHull> data = new ArrayList<ConvexHull>();
-		try {
-			
-			BufferedReader wordStream = new BufferedReader(new FileReader(filename));
-			
-			String l;
-			ConvexHull hull = null;
-			
-			
-			while((l = wordStream.readLine()) != null){
-				if(l.equals("hull")){
-					if(hull != null){
-						data.add(hull);
-					}
-					System.out.println("new hull");
-					hull = new ConvexHull();
-				}else{
-					String[] line = l.split(" ");
-					if(line.length == 2){
-						System.out.println(line[0] + " " + line[1]);
-						hull.addPoint(Integer.parseInt(line[0]), Integer.parseInt(line[1]));
-					}
-				}
-			}
-			data.add(hull);
-			
-			wordStream.close();
-			
-		}catch(IOException e){e.printStackTrace();}
 		
-		return data;
+		
 	}
-	
-	public ArrayList<WorldTile> getTiles(){
+
+	public static ArrayList<WorldTile> getTiles(){
 		return tiles;
 	}
 	
-	public ArrayList<ConvexHull> getHulls(){
+	public static ArrayList<ConvexHull> getHulls(){
 		return allHulls;
 	}
 	
-	public void addHull(ConvexHull h){
+	public static void addHull(ConvexHull h){
 		hulls.add(h);
 		allHulls.add(h);
 	}
 	
-	public void clearHulls(){
+	public static void clearHulls(){
 		hulls.clear();
 	}
 	
-	private static World instance = null;
-
-	public static World getInstance()
-	{
-		if(instance == null){
-			instance = new World();
-		}
-		return instance;
-	}
-	
-	public float getMapXOffset(){
+	public static float getMapXOffset(){
 		return mapXOffset;
 	}
-	public float getMapYOffset(){
+	public static float getMapYOffset(){
 		return mapYOffset;
 	}
 	
-	public void setMapXOffset(float temp){
+	public static void setMapXOffset(float temp){
 		mapXOffset = temp;
 	}
-	public void setMapYOffset(float temp){
+	public static void setMapYOffset(float temp){
 		mapYOffset = temp;
 	}
 	
-	public Point getLineLineIntersection(Line2D.Float a, Line2D.Float b) {
+	public static Point getLineLineIntersection(Line2D.Float a, Line2D.Float b) {
 		double x1 = a.x1; double y1 = a.y1; double x2 = a.x2; double y2 = a.y2; double x3 = b. x1; double y3 = b.y1; double x4 = b.x2; double y4 = b.y2;
 	    double det1And2 = det(x1, y1, x2, y2);
 	    double det3And4 = det(x3, y3, x4, y4);
@@ -223,11 +208,11 @@ public class World implements Serializable{
 	    double y = (det(det1And2, y1LessY2, det3And4, y3LessY4) / det1Less2And3Less4);
 	    return new Point((int)x, (int)y);
 	}
-	protected double det(double a, double b, double c, double d) {
+	private  static double det(double a, double b, double c, double d) {
 		return a * d - b * c;
 	}
 
-	public void renderHulls(){
+	public static void renderHulls(){
 		
 		Collections.sort(allHulls);
 		
@@ -236,15 +221,19 @@ public class World implements Serializable{
 		}
 	}
 	
-	public void renderShadows(){
+	public static void renderShadows(){
 		for(ConvexHull x : allHulls){
 			x.renderShadow();
 		}
 	}
 	
-	public void renderBackground(){
+	public static void renderBackground(){
 		for(WorldTile t : tiles){
 			t.renderBackground();
 		}	
+	}
+	
+	public static void setTileLimit(int limit){
+		tileLimit = limit;
 	}
 }

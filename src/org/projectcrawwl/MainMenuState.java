@@ -33,26 +33,25 @@ public class MainMenuState implements GameState {
 
 	@Override
 	public void main(int delta) {
-		GameSettings settings = Main.settings;
 		GameData data = Main.data;
 		
 		Main.data.render();
 		
 		GL11.glLoadIdentity();
-		GL11.glOrtho(0, settings.getScreenX(), 0, settings.getScreenY(), -1, 1);
+		GL11.glOrtho(0, GameSettings.getScreenX(), 0, GameSettings.getScreenY(), -1, 1);
 		
 		
 		GL11.glColor4d(0,0,0, .7);
 		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
 		GL11.glVertex2d(0, 0);
-		GL11.glVertex2d(settings.getScreenX(), 0);
-		GL11.glVertex2d(settings.getScreenX(), settings.getScreenY());
-		GL11.glVertex2d(0, settings.getScreenY());
+		GL11.glVertex2d(GameSettings.getScreenX(), 0);
+		GL11.glVertex2d(GameSettings.getScreenX(), GameSettings.getScreenY());
+		GL11.glVertex2d(0, GameSettings.getScreenY());
 		GL11.glEnd();
 		
-		float ratio = ((float) (settings.getScreenY())/settings.getScreenX());
+		float ratio = ((float) (GameSettings.getScreenY())/GameSettings.getScreenX());
 		GL11.glLoadIdentity();
-		GL11.glOrtho(-data.zoom, settings.getScreenX()  + data.zoom, -data.zoom*(ratio), settings.getScreenY() + data.zoom*(ratio), -1, 1);
+		GL11.glOrtho(-data.zoom, GameSettings.getScreenX()  + data.zoom, -data.zoom*(ratio), GameSettings.getScreenY() + data.zoom*(ratio), -1, 1);
 		
 		for(Button b : buttons){
 			b.render();

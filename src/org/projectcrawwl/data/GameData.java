@@ -10,7 +10,6 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.UnicodeFont;
 import org.newdawn.slick.font.effects.ColorEffect;
 import org.projectcrawwl.Main;
-import org.projectcrawwl.menu.Button;
 import org.projectcrawwl.objects.*;
 import org.projectcrawwl.projectile.Bullet;
 import org.projectcrawwl.projectile.Particle;
@@ -43,8 +42,6 @@ public class GameData
 	private BasePlayer player;
 	
 	private static GameData instance = null;
-	
-	private World world = World.getInstance();
 	
 	public float zoom = 0;
 	
@@ -79,17 +76,17 @@ public class GameData
 	}
 	
 	public float getMapXOffset(){
-		return world.getMapXOffset();
+		return World.getMapXOffset();
 	}
 	public float getMapYOffset(){
-		return world.getMapYOffset();
+		return World.getMapYOffset();
 	}
 	
 	public void setMapXOffset(float temp){
-		world.setMapXOffset(temp);
+		World.setMapXOffset(temp);
 	}
 	public void setMapYOffset(float temp){
-		world.setMapYOffset(temp);
+		World.setMapYOffset(temp);
 	}
 	
 	public static GameData getInstance()
@@ -117,7 +114,7 @@ public class GameData
 	
 	public void addPlayer(){
 		
-		WorldTile t = world.getTiles().get((int) Math.floor(Math.random()*world.getTiles().size()));
+		WorldTile t = World.getTiles().get((int) Math.floor(Math.random()*World.getTiles().size()));
 		
 		int tempX = (int) ((Math.random() + t.getX()) * t.getWidth());
 		int tempY = (int) ((Math.random() + t.getY()) * t.getHeight());
@@ -126,7 +123,7 @@ public class GameData
 		
 		boolean flag = true;
 		
-		for(ConvexHull k : world.getHulls()){
+		for(ConvexHull k : World.getHulls()){
 			
 			if(k.getPolygon().contains(player.x, player.y)){
 				flag = false;
@@ -164,7 +161,7 @@ public class GameData
 	}
 	
 	public void addZombie(){
-		WorldTile t = world.getTiles().get((int) Math.floor(Math.random()*world.getTiles().size()));
+		WorldTile t = World.getTiles().get((int) Math.floor(Math.random()*World.getTiles().size()));
 		
 		int tempX = (int) ((Math.random() + t.getX()) * t.getWidth());
 		int tempY = (int) ((Math.random() + t.getY()) * t.getHeight());
@@ -173,7 +170,7 @@ public class GameData
 		
 		boolean flag = true;
 		
-		for(ConvexHull k : world.getHulls()){
+		for(ConvexHull k : World.getHulls()){
 			
 			if(k.getPolygon().contains(zombie.x, zombie.y)){
 				flag = false;
@@ -238,7 +235,7 @@ public class GameData
 	}
 	
 	public void addFriendly(){
-		WorldTile t = world.getTiles().get((int) Math.floor(Math.random()*world.getTiles().size()));
+		WorldTile t = World.getTiles().get((int) Math.floor(Math.random()*World.getTiles().size()));
 		
 		int tempX = (int) ((Math.random() + t.getX()) * t.getWidth());
 		int tempY = (int) ((Math.random() + t.getY()) * t.getHeight());
@@ -248,7 +245,7 @@ public class GameData
 		
 		boolean flag = true;
 		
-		for(ConvexHull k : world.getHulls()){
+		for(ConvexHull k : World.getHulls()){
 			
 			if(k.getPolygon().contains(friendly.x, friendly.y)){
 				flag = false;
@@ -302,7 +299,7 @@ public class GameData
 	public void render(){
 		
 
-		world.renderBackground();
+		World.renderBackground();
 		
 		//synchronized(bloodStainLock){
 			for(GameObject a : allBloodStains){
@@ -315,7 +312,6 @@ public class GameData
 		for(GameObject a : allObjects){
 			a.render();
 		}
-
 		//synchronized(playerLock){
 			if(player != null && StateController.getGameState() == Main.IN_GAME){
 				player.renderHUD();
@@ -324,10 +320,10 @@ public class GameData
 	}
 	public void update(int delta){
 		
-		if(Keyboard.isKeyDown(Keyboard.KEY_RIGHT)){world.setMapXOffset(world.getMapXOffset() - delta);}
-		if(Keyboard.isKeyDown(Keyboard.KEY_LEFT)){world.setMapXOffset(world.getMapXOffset() + delta);}
-		if(Keyboard.isKeyDown(Keyboard.KEY_UP)){world.setMapYOffset(world.getMapYOffset() - delta);}
-		if(Keyboard.isKeyDown(Keyboard.KEY_DOWN)){world.setMapYOffset(world.getMapYOffset() + delta);}
+		if(Keyboard.isKeyDown(Keyboard.KEY_RIGHT)){World.setMapXOffset(World.getMapXOffset() - delta);}
+		if(Keyboard.isKeyDown(Keyboard.KEY_LEFT)){World.setMapXOffset(World.getMapXOffset() + delta);}
+		if(Keyboard.isKeyDown(Keyboard.KEY_UP)){World.setMapYOffset(World.getMapYOffset() - delta);}
+		if(Keyboard.isKeyDown(Keyboard.KEY_DOWN)){World.setMapYOffset(World.getMapYOffset() + delta);}
 		
 		//synchronized(bloodStainLock){
 			for(GameObject a : addBloodStains){
@@ -420,7 +416,7 @@ public class GameData
 		allObjects.addAll(allParticles);
 		allObjects.addAll(allPlayers);
 		allObjects.addAll(allProjectiles);
-		allObjects.addAll(world.getHulls());
+		allObjects.addAll(World.getHulls());
 		
 	}
 }
