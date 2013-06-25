@@ -194,7 +194,6 @@ public abstract class BaseRangedWeapon extends BaseWeapon{
 			double tempG = random.nextGaussian();
 			
 			for(int x = 0; x < pellets; x++){
-				GameData data = GameData.getInstance();
 				
 				if(tempG < -1){tempG = -1;}
 				if(tempG > 1){tempG = 1;}
@@ -204,9 +203,9 @@ public abstract class BaseRangedWeapon extends BaseWeapon{
 				if(coneSpread > 1){coneSpread = 1;}
 				
 				if(currentSpread == 0){
-					data.addProjectile(new Bullet((float) (owner.x + Math.cos(Math.toRadians(owner.facingAngle))*(owner.r + 5)),(float) (owner.y + Math.sin(Math.toRadians(owner.facingAngle))*(owner.r+5)),(float) (velocity + random.nextGaussian()*.02),(float) ((float) owner.facingAngle + (coneSpread)*cone), damage, owner));
+					GameData.addProjectile(new Bullet((float) (owner.x + Math.cos(Math.toRadians(owner.facingAngle))*(owner.r + 5)),(float) (owner.y + Math.sin(Math.toRadians(owner.facingAngle))*(owner.r+5)),(float) (velocity + random.nextGaussian()*.02),(float) ((float) owner.facingAngle + (coneSpread)*cone), damage, owner));
 				}else{
-					data.addProjectile(new Bullet((float) (owner.x + Math.cos(Math.toRadians(owner.facingAngle))*(owner.r + 5)),(float) (owner.y + Math.sin(Math.toRadians(owner.facingAngle))*(owner.r+5)),(float) (velocity + random.nextGaussian()*.02),(float) ((float) owner.facingAngle + tempG*((currentSpread/1000)*spreadAngle + minSpread) + (coneSpread)*cone), damage, owner));
+					GameData.addProjectile(new Bullet((float) (owner.x + Math.cos(Math.toRadians(owner.facingAngle))*(owner.r + 5)),(float) (owner.y + Math.sin(Math.toRadians(owner.facingAngle))*(owner.r+5)),(float) (velocity + random.nextGaussian()*.02),(float) ((float) owner.facingAngle + tempG*((currentSpread/1000)*spreadAngle + minSpread) + (coneSpread)*cone), damage, owner));
 				}
 				
 			}

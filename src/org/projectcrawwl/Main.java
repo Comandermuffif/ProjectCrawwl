@@ -9,14 +9,13 @@ import org.lwjgl.opengl.GL11;
 import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.data.GameSettings;
 import org.projectcrawwl.data.StateController;
+import org.projectcrawwl.data.World;
 
 public class Main {
 
 	//Make an enum of all states
 	public static GameState IN_GAME = new InGameState();
 	public static GameState MAIN_MENU = new MainMenuState();
-	
-	static GameData data = GameData.getInstance();
 	
 	static long lastFrame;
 	/** frames per second */
@@ -67,12 +66,12 @@ public class Main {
     	
     	getDelta();
     	
-    	data.renderInit();
+    	GameData.renderInit();
+    	World.generateWorld();
     	
 		StateController.addGameState(IN_GAME);
 		StateController.addGameState(MAIN_MENU);
 		
-		StateController.setGameState(IN_GAME);
 		StateController.setGameState(MAIN_MENU);
 		
         while (!Display.isCloseRequested()) {
@@ -108,7 +107,7 @@ public class Main {
 	    return delta;
 	}
 	
-	public void updateFPS() {
+	public static void updateFPS() {
 		if (getTime() - lastFPS > 1000) {
 			Display.setTitle("FPS: " + fps);
 			fps = 0;

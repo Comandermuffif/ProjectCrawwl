@@ -111,15 +111,15 @@ public class Player extends BasePlayer {
 		GL11.glOrtho(0, GameSettings.getScreenX(), GameSettings.getScreenY(), 0, -1, 1);
 		
 		
-		data.getFont().drawString(20, GameSettings.getScreenY() - 80, "Weapon: " + inventory.getWeapon().getName());
+		GameData.getFont().drawString(20, GameSettings.getScreenY() - 80, "Weapon: " + inventory.getWeapon().getName());
 		if(!(inventory.getWeapon() instanceof BaseMeleeWeapon)){
 			if(inventory.getWeapon().isReloading()){
-				data.getFont().drawString(20, GameSettings.getScreenY() - 60, "Clip: Reloading...");
+				GameData.getFont().drawString(20, GameSettings.getScreenY() - 60, "Clip: Reloading...");
 			}else{
-				data.getFont().drawString(20, GameSettings.getScreenY() - 60, "Clip: " + inventory.getWeapon().getClip().x + "/" + inventory.getWeapon().getClip().y);
+				GameData.getFont().drawString(20, GameSettings.getScreenY() - 60, "Clip: " + inventory.getWeapon().getClip().x + "/" + inventory.getWeapon().getClip().y);
 			}
 		}
-		data.getFont().drawString(20, GameSettings.getScreenY() - 40, "Heath: " + health);
+		GameData.getFont().drawString(20, GameSettings.getScreenY() - 40, "Heath: " + health);
 		
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		
@@ -132,13 +132,11 @@ public class Player extends BasePlayer {
     	GL11.glAlphaFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
     	GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
     	
-		GL11.glOrtho(-data.zoom, GameSettings.getScreenX()  + data.zoom, -data.zoom*(ratio), GameSettings.getScreenY() + data.zoom*(ratio), -1, 1);
+		GL11.glOrtho(-GameData.zoom, GameSettings.getScreenX()  + GameData.zoom, -GameData.zoom*(ratio), GameSettings.getScreenY() + GameData.zoom*(ratio), -1, 1);
 	}
 	
 	//Do all calculations here
 	public void update(int delta){
-		
-		data = GameData.getInstance();
 		
 		//Key and mouse input control
 		
@@ -147,8 +145,8 @@ public class Player extends BasePlayer {
 		
 		tempFacing = (float) (Math.toDegrees(Math.atan2(mouse_y - renderY, mouse_x - renderX)));
 		
-		data.setMapXOffset((float) (GameSettings.getScreenX()/2 - x - (mouse_x - GameSettings.getScreenX()/2)*1));
-		data.setMapYOffset((float) (GameSettings.getScreenY()/2 - y - (mouse_y - GameSettings.getScreenY()/2)*1));
+		GameData.setMapXOffset((float) (GameSettings.getScreenX()/2 - x - (mouse_x - GameSettings.getScreenX()/2)*1));
+		GameData.setMapYOffset((float) (GameSettings.getScreenY()/2 - y - (mouse_y - GameSettings.getScreenY()/2)*1));
 		
 		float temp = 0;
 		moveAngle = 0;
@@ -180,13 +178,13 @@ public class Player extends BasePlayer {
 		}
 		
 		
-		data.zoom -= Mouse.getDWheel();
+		GameData.zoom -= Mouse.getDWheel();
 		
-		if(data.zoom < 0){
-			data.zoom = 0;
+		if(GameData.zoom < 0){
+			GameData.zoom = 0;
 		}
 		
-		if(data.zoom > 360){
+		if(GameData.zoom > 360){
 			//data.zoom = 360;
 		}
 		
@@ -216,7 +214,7 @@ public class Player extends BasePlayer {
 				}
 				float ratio = ((float) (GameSettings.getScreenY())/GameSettings.getScreenX());
 				
-				hull.addPoint((((float)(mouse_x)/GameSettings.getScreenX())*(GameSettings.getScreenX() + 2*data.zoom) - data.zoom) - World.getMapXOffset(),(((float)(mouse_y)/GameSettings.getScreenY())*(GameSettings.getScreenY() + 2*data.zoom*ratio) - data.zoom*ratio) - World.getMapYOffset());
+				hull.addPoint((((float)(mouse_x)/GameSettings.getScreenX())*(GameSettings.getScreenX() + 2*GameData.zoom) - GameData.zoom) - World.getMapXOffset(),(((float)(mouse_y)/GameSettings.getScreenY())*(GameSettings.getScreenY() + 2*GameData.zoom*ratio) - GameData.zoom*ratio) - World.getMapYOffset());
 			}
 			if(i == 2){
 				hull = null;
@@ -234,13 +232,13 @@ public class Player extends BasePlayer {
 				inventory.nextWeapon();
 			}
 			if (i == Keyboard.KEY_Z){
-				data.addZombie();
+				GameData.addZombie();
 			}
 			if (i == Keyboard.KEY_G){
-				data.addFriendly();
+				GameData.addFriendly();
 			}
 			if (i == Keyboard.KEY_NUMPAD0){
-				data.zoom = 0;
+				GameData.zoom = 0;
 			}
 			if (i == Keyboard.KEY_R){
 				inventory.getWeapon().reload();
@@ -248,7 +246,7 @@ public class Player extends BasePlayer {
 			
 			if (i == Keyboard.KEY_NUMPAD1){
 				for(int ii = 0; ii < 10; ii ++){
-					data.addZombie();
+					GameData.addZombie();
 				}
 			}
 			if(i == Keyboard.KEY_Q){

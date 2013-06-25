@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.awt.geom.Line2D;
 
 import org.lwjgl.opengl.GL11;
+import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.data.World;
 import org.projectcrawwl.objects.BasePlayer;
 import org.projectcrawwl.objects.ConvexHull;
@@ -33,8 +34,8 @@ public class LaserRifle extends BaseRangedWeapon{
 		if(active && coolDown - currentCoolDown < coolDown*(.1)){
 			GL11.glColor3d(1.0 * (currentCoolDown/coolDown), 0.0, 0.0);
 			GL11.glBegin(GL11.GL_LINES);
-			GL11.glVertex2d(line.getX1() + data.getMapXOffset(), line.getY1() + data.getMapYOffset());
-			GL11.glVertex2d(line.getX2() + data.getMapXOffset(), line.getY2() + data.getMapYOffset());
+			GL11.glVertex2d(line.getX1() + GameData.getMapXOffset(), line.getY1() + GameData.getMapYOffset());
+			GL11.glVertex2d(line.getX2() + GameData.getMapXOffset(), line.getY2() + GameData.getMapYOffset());
 			GL11.glEnd();
 		}
 	}
@@ -74,7 +75,7 @@ public class LaserRifle extends BaseRangedWeapon{
 			
 			line.setLine(tempL);
 			
-			for(BasePlayer p : data.getAllPlayers()){
+			for(BasePlayer p : GameData.getAllPlayers()){
 				boolean flag = false;
 				for(Line2D.Float bound : p.boundingLines){
 						

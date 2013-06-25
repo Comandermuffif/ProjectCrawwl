@@ -1,5 +1,6 @@
 package org.projectcrawwl.objects;
 
+import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.weapons.SMG;
 import org.projectcrawwl.weapons.Shotgun;
 
@@ -76,7 +77,7 @@ public class Friendly extends BasePlayer {
 		
 		double distToTarg = -1;
 		
-		for(BasePlayer a : data.getAI()){
+		for(BasePlayer a : GameData.getAI()){
 			double dist = Math.pow(Math.pow(a.getX() - getX(), 2) + Math.pow(a.getY() - getY(), 2), .5);
 			
 			if(dist > 400){

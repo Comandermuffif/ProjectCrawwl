@@ -2,15 +2,12 @@ package org.projectcrawwl.weapons;
 
 import java.awt.Point;
 
-import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.objects.BasePlayer;
 
 public class BaseWeapon {
 	public String name;
 	public float damage;
 	public BasePlayer owner;
-	
-	GameData data = GameData.getInstance();
 	
 	public Boolean active = false;
 	public float coolDown;

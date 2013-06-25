@@ -27,6 +27,8 @@ public class World{
 	
 	public static void generateWorld(){
 		
+		GameData.clearData();
+		
 		tiles.clear();
 		tileMap.clear();
 		
@@ -157,6 +159,8 @@ public class World{
 		allHulls.addAll(tileHulls);
 		allHulls.addAll(hulls);
 		
+		GameData.addPlayer();
+		GameData.update(0);
 		
 	}
 

@@ -34,16 +34,14 @@ public class BloodStain extends GameObject{
 	
 	public void update(int delta){
 		
-		data = GameData.getInstance();
-		
 		if(timer > 0){
 			timer -= delta;
 		}
 		
 		isReady = true;
 		
-		renderX = x + data.getMapXOffset();
-		renderY = y + data.getMapYOffset();
+		renderX = x + GameData.getMapXOffset();
+		renderY = y + GameData.getMapYOffset();
 	}
 
 }

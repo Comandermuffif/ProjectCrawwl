@@ -11,6 +11,7 @@ import org.projectcrawwl.Main;
 import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.data.GameSettings;
 import org.projectcrawwl.data.StateController;
+import org.projectcrawwl.data.World;
 
 public class Button {
 	
@@ -59,7 +60,6 @@ public class Button {
 	}
 	
 	public void render(){
-		GameData data = GameData.getInstance();
 		
 		GL11.glLoadIdentity();
 		GL11.glOrtho(0, GameSettings.getScreenX(), 0, GameSettings.getScreenY(), -1, 1);
@@ -83,7 +83,7 @@ public class Button {
 		
 		GL11.glLoadIdentity();
 		GL11.glOrtho(0, GameSettings.getScreenX(), GameSettings.getScreenY(), 0, -1, 1);
-		data.getFont().drawString(x + width/2 - data.getFont().getWidth(name)/2, GameSettings.getScreenY() - (y + height/2 + data.getFont().getHeight(name)/2), name);
+		GameData.getFont().drawString(x + width/2 - GameData.getFont().getWidth(name)/2, GameSettings.getScreenY() - (y + height/2 + GameData.getFont().getHeight(name)/2), name);
 		
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		
@@ -91,7 +91,7 @@ public class Button {
 		
 		float ratio = ((float) (GameSettings.getScreenY())/GameSettings.getScreenX());
 		GL11.glLoadIdentity();
-		GL11.glOrtho(-data.zoom, GameSettings.getScreenX()  + data.zoom, -data.zoom*(ratio), GameSettings.getScreenY() + data.zoom*(ratio), -1, 1);
+		GL11.glOrtho(-GameData.zoom, GameSettings.getScreenX()  + GameData.zoom, -GameData.zoom*(ratio), GameSettings.getScreenY() + GameData.zoom*(ratio), -1, 1);
 		
 	}
 	
@@ -106,6 +106,9 @@ public class Button {
 		}
 		if(ID == 2){
 			StateController.setGameState(Main.MAIN_MENU);
+		}
+		if(ID == 3){
+			World.generateWorld();
 		}
 		
 		if(ID == -1){

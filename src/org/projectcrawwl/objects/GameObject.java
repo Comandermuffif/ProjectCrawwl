@@ -31,8 +31,6 @@ public class GameObject implements Comparable<GameObject>{
 	public Polygon boundingBox = new Polygon();
 	public ArrayList<Line2D.Float> boundingLines = new ArrayList<Line2D.Float>();
 	
-	public GameData data;
-	
 	private Point center = new Point();
 	
 	protected double farthest = 0;
@@ -193,10 +191,10 @@ public class GameObject implements Comparable<GameObject>{
 		
 		float ratio = ((float) (GameSettings.getScreenY())/GameSettings.getScreenX());
 		
-		if(renderX + getFarthest() < -data.zoom || renderX - getFarthest() > GameSettings.getScreenX()  + data.zoom){
+		if(renderX + getFarthest() < -GameData.zoom || renderX - getFarthest() > GameSettings.getScreenX()  + GameData.zoom){
 			return false;
 		}
-		if(renderY  + getFarthest() < -data.zoom*(ratio) || renderY - getFarthest() > GameSettings.getScreenY()  + data.zoom*(ratio)){
+		if(renderY  + getFarthest() < -GameData.zoom*(ratio) || renderY - getFarthest() > GameSettings.getScreenY()  + GameData.zoom*(ratio)){
 			return false;
 		}
 		
@@ -331,11 +329,9 @@ public class GameObject implements Comparable<GameObject>{
 	public void update(int delta){
 		if(!isReady){isReady = true;}
 		
-		data = GameData.getInstance();
 		
-		
-		renderX = x + data.getMapXOffset();
-		renderY = y + data.getMapYOffset();
+		renderX = x + GameData.getMapXOffset();
+		renderY = y + GameData.getMapYOffset();
 		
 		if(facingAngle != tempFacing){
 			if(Math.abs(facingAngle - tempFacing) > delta*(turnSpeed)){

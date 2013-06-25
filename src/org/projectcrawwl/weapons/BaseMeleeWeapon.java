@@ -144,8 +144,7 @@ public class BaseMeleeWeapon extends BaseWeapon{
 			active = true;
 			currentCoolDown = coolDown;
 			
-			GameData data = GameData.getInstance();
-			ArrayList<BasePlayer> temp = data.getAllPlayers();
+			ArrayList<BasePlayer> temp = GameData.getAllPlayers();
 			
 			for(BasePlayer b : temp){
 				

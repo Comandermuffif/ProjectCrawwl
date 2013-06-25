@@ -17,38 +17,58 @@ import org.projectcrawwl.projectile.Particle;
 public class GameData 
 {	
 	
-	private ArrayList<GameObject> allObjects = new ArrayList<GameObject>();
+	private static ArrayList<GameObject> allObjects = new ArrayList<GameObject>();
 	
-	private ArrayList<Bullet> allProjectiles = new ArrayList<Bullet>();
-	private ArrayList<Bullet> removeProjectiles = new ArrayList<Bullet>();
-	private ArrayList<Bullet> addProjectiles = new ArrayList<Bullet>();
-	private Object projectileLock = new Object();
+	private static ArrayList<Bullet> allProjectiles = new ArrayList<Bullet>();
+	private static ArrayList<Bullet> removeProjectiles = new ArrayList<Bullet>();
+	private static ArrayList<Bullet> addProjectiles = new ArrayList<Bullet>();
+	private static Object projectileLock = new Object();
 
-	private ArrayList<BasePlayer> allPlayers = new ArrayList<BasePlayer>();
-	private ArrayList<BasePlayer> addPlayers = new ArrayList<BasePlayer>();
-	private ArrayList<BasePlayer> removePlayers = new ArrayList<BasePlayer>();
-	private Object playerLock = new Object();
+	private static ArrayList<BasePlayer> allPlayers = new ArrayList<BasePlayer>();
+	private static ArrayList<BasePlayer> addPlayers = new ArrayList<BasePlayer>();
+	private static ArrayList<BasePlayer> removePlayers = new ArrayList<BasePlayer>();
+	private static ArrayList<BasePlayer> killPlayers = new ArrayList<BasePlayer>();
+	private static Object playerLock = new Object();
 	
-	private ArrayList<GameObject> allParticles = new ArrayList<GameObject>();
-	private ArrayList<GameObject> addParticles = new ArrayList<GameObject>();
-	private ArrayList<GameObject> removeParticles = new ArrayList<GameObject>();
-	private Object particleLock = new Object();
+	private static ArrayList<GameObject> allParticles = new ArrayList<GameObject>();
+	private static ArrayList<GameObject> addParticles = new ArrayList<GameObject>();
+	private static ArrayList<GameObject> removeParticles = new ArrayList<GameObject>();
+	private static Object particleLock = new Object();
 	
-	private ArrayList<GameObject> allBloodStains = new ArrayList<GameObject>();
-	private ArrayList<GameObject> addBloodStains = new ArrayList<GameObject>();
-	private ArrayList<GameObject> removeBloodStains = new ArrayList<GameObject>();
-	private Object bloodStainLock = new Object();
+	private static ArrayList<GameObject> allBloodStains = new ArrayList<GameObject>();
+	private static ArrayList<GameObject> addBloodStains = new ArrayList<GameObject>();
+	private static ArrayList<GameObject> removeBloodStains = new ArrayList<GameObject>();
+	private static Object bloodStainLock = new Object();
 	
-	private BasePlayer player;
+	private static BasePlayer player;
 	
-	private static GameData instance = null;
+	public static float zoom = 0;
 	
-	public float zoom = 0;
+	private static UnicodeFont font;
 	
-	private UnicodeFont font;
+	public static void clearData(){
+		allObjects.clear();
+		allProjectiles.clear();
+		removeProjectiles.clear();
+		addProjectiles.clear();
+		allPlayers.clear();
+		addPlayers.clear();
+		removePlayers.clear();
+		killPlayers.clear();
+		allParticles.clear();
+		addParticles.clear();
+		removeParticles.clear();
+		allBloodStains.clear();
+		addBloodStains.clear();
+		removeBloodStains.clear();
+		
+		zoom = 0;
+		
+		player = null;
+	}
 	
 	@SuppressWarnings("unchecked")
-	public void renderInit(){
+	public static void renderInit(){
 		
 		System.out.println("Initializing Render Data");
 		
@@ -63,42 +83,35 @@ public class GameData
 		}catch(SlickException e){e.printStackTrace();}
 	}
 	
-	public UnicodeFont getFont(){
+	public static UnicodeFont getFont(){
 		return font;
 	}
 	
-	public ArrayList<GameObject> getBloodStains(){
+	public static ArrayList<GameObject> getBloodStains(){
 		return allBloodStains;
 	}
 	
-	public void addBloodStain(BloodStain g){
+	public static void addBloodStain(BloodStain g){
 		addBloodStains.add(g);
 	}
 	
-	public float getMapXOffset(){
+	public static float getMapXOffset(){
 		return World.getMapXOffset();
 	}
-	public float getMapYOffset(){
+	public static float getMapYOffset(){
 		return World.getMapYOffset();
 	}
 	
-	public void setMapXOffset(float temp){
+	public static void setMapXOffset(float temp){
 		World.setMapXOffset(temp);
 	}
-	public void setMapYOffset(float temp){
+	public static void setMapYOffset(float temp){
 		World.setMapYOffset(temp);
 	}
-	
-	public static GameData getInstance()
-	{
-		if(instance == null)
-			instance = new GameData();
-		return instance;
-	}
-	public BasePlayer getPlayer(){
+	public static BasePlayer getPlayer(){
 		return player;
 	}
-	public ArrayList<BasePlayer> getAI(){
+	public static ArrayList<BasePlayer> getAI(){
 		ArrayList<BasePlayer> temp = new ArrayList<BasePlayer>();
 		for(BasePlayer a : allPlayers){
 			if(a instanceof org.projectcrawwl.objects.Zombie){
@@ -107,13 +120,13 @@ public class GameData
 		}
 		return temp;
 	}
-	public void setPlayer(Player tempPlayer){
+	public static void setPlayer(Player tempPlayer){
 		player = tempPlayer;
 		addPlayers.add(player);
 	}
 	
-	public void addPlayer(){
-		
+	public static void addPlayer(){
+
 		WorldTile t = World.getTiles().get((int) Math.floor(Math.random()*World.getTiles().size()));
 		
 		int tempX = (int) ((Math.random() + t.getX()) * t.getWidth());
@@ -160,7 +173,7 @@ public class GameData
 		}
 	}
 	
-	public void addZombie(){
+	public static void addZombie(){
 		WorldTile t = World.getTiles().get((int) Math.floor(Math.random()*World.getTiles().size()));
 		
 		int tempX = (int) ((Math.random() + t.getX()) * t.getWidth());
@@ -206,35 +219,38 @@ public class GameData
 		}
 	}
 	
-	public void addZombie(BasePlayer temp){
+	public static void addZombie(BasePlayer temp){
 		addPlayers.add(temp);
 	}
-	public void removeObject(BasePlayer gameObject) {
+	public static void removePlayer(BasePlayer gameObject) {
 		removePlayers.add(gameObject);
 	}
-	public void addProjectile(Bullet temp){
+	public static void killPlayer(BasePlayer gameObject) {
+		killPlayers.add(gameObject);
+	}
+	public static void addProjectile(Bullet temp){
 		addProjectiles.add(temp);
 	}
-	public void removeProjectile(Bullet temp){
+	public static void removeProjectile(Bullet temp){
 		removeProjectiles.add(temp);
 	}
 	
-	public void addParticle(Particle p){
+	public static void addParticle(Particle p){
 		addParticles.add(p);
 	}
 	
-	public void removeParticle(Particle p){
+	public static void removeParticle(Particle p){
 		removeParticles.add(p);
 	}
 	
-	public ArrayList<Bullet> getProjectiles(){
+	public static ArrayList<Bullet> getProjectiles(){
 		return allProjectiles;
 	}
-	public ArrayList<BasePlayer> getAllPlayers(){
+	public static ArrayList<BasePlayer> getAllPlayers(){
 		return allPlayers;
 	}
 	
-	public void addFriendly(){
+	public static void addFriendly(){
 		WorldTile t = World.getTiles().get((int) Math.floor(Math.random()*World.getTiles().size()));
 		
 		int tempX = (int) ((Math.random() + t.getX()) * t.getWidth());
@@ -283,7 +299,7 @@ public class GameData
 	
 	}
 	
-	public ArrayList<BasePlayer> getFriendlies(){
+	public static ArrayList<BasePlayer> getFriendlies(){
 		ArrayList<BasePlayer> temp = new ArrayList<BasePlayer>();
 		for(BasePlayer a : allPlayers){
 			if(a instanceof org.projectcrawwl.objects.Friendly){
@@ -296,7 +312,7 @@ public class GameData
 		return temp;
 	}
 	
-	public void render(){
+	public static void render(){
 		
 
 		World.renderBackground();
@@ -318,7 +334,7 @@ public class GameData
 			}
 		//}
 	}
-	public void update(int delta){
+	public static void update(int delta){
 		
 		if(Keyboard.isKeyDown(Keyboard.KEY_RIGHT)){World.setMapXOffset(World.getMapXOffset() - delta);}
 		if(Keyboard.isKeyDown(Keyboard.KEY_LEFT)){World.setMapXOffset(World.getMapXOffset() + delta);}
@@ -377,6 +393,14 @@ public class GameData
 					player = null;
 				}
 				allPlayers.remove(a);
+			}
+			removePlayers.clear();
+			
+			for(BasePlayer a : killPlayers){
+				if(a instanceof Player){
+					player = null;
+				}
+				allPlayers.remove(a);
 				
 				if(allBloodStains.size() > 200){
 					removeBloodStains.add(allBloodStains.get(0));
@@ -384,7 +408,8 @@ public class GameData
 				
 				addBloodStains.add(new Corpse(a.x, a.y));
 			}
-			removePlayers.clear();
+			killPlayers.clear();
+			
 		//}
 		
 		

@@ -5,6 +5,7 @@ import java.awt.geom.Line2D;
 import java.util.Random;
 
 import org.lwjgl.opengl.GL11;
+import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.data.GameSettings;
 import org.projectcrawwl.data.World;
 
@@ -31,7 +32,7 @@ public class Zombie extends BasePlayer {
 		float ratio = ((float) (GameSettings.getScreenY())/GameSettings.getScreenX());
 		//Re scale view so text is right side up
 		GL11.glLoadIdentity();
-		GL11.glOrtho(-data.zoom, GameSettings.getScreenX() + data.zoom, GameSettings.getScreenY() + data.zoom*(ratio),-data.zoom*(ratio), -1, 1);
+		GL11.glOrtho(-GameData.zoom, GameSettings.getScreenX() + GameData.zoom, GameSettings.getScreenY() + GameData.zoom*(ratio),-GameData.zoom*(ratio), -1, 1);
 		
 		
 		//data.getFont().drawString((renderX - 25), settings.getScreenY() - (renderY + 40), "Zombie", Color.red);
@@ -40,7 +41,7 @@ public class Zombie extends BasePlayer {
 		
 		
 		GL11.glLoadIdentity();
-		GL11.glOrtho(-data.zoom, GameSettings.getScreenX()  + data.zoom, -data.zoom*(ratio), GameSettings.getScreenY() + data.zoom*(ratio), -1, 1);
+		GL11.glOrtho(-GameData.zoom, GameSettings.getScreenX()  + GameData.zoom, -GameData.zoom*(ratio), GameSettings.getScreenY() + GameData.zoom*(ratio), -1, 1);
 		
 		/*
 		 * The lines used to get target without walking into walls and getting caught
@@ -83,7 +84,7 @@ public class Zombie extends BasePlayer {
 		
 		if(target == null){
 			double dist = -1;
-			for(BasePlayer friendly : data.getFriendlies()){
+			for(BasePlayer friendly : GameData.getFriendlies()){
 				Line2D.Float sight = new Line2D.Float(x, y, friendly.x, friendly.y);
 				//Time to get crazy
 				

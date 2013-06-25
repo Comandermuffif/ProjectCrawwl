@@ -94,11 +94,10 @@ public abstract class BasePlayer extends GameObject{
 		
 		if(health <= 0){
 			lastHit.newKill();
-			GameData data = GameData.getInstance();
 			if(this instanceof org.projectcrawwl.objects.Zombie){
-				data.addZombie();
+				GameData.addZombie();
 			}
-			data.removeObject(this);
+			GameData.killPlayer(this);
 		}
 	}
 	

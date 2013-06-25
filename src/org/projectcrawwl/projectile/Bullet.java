@@ -20,7 +20,6 @@ public class Bullet extends GameObject{
 	
 	BasePlayer owner;
 	public float damage;
-	GameData data = GameData.getInstance();
 	Point lastPos = new Point();
 	
 	BasePlayer lastHit = null;
@@ -117,13 +116,13 @@ public class Bullet extends GameObject{
 		
 		Line2D.Float line = new Line2D.Float(x,y,lastPos.x,lastPos.y);
 		
-		ArrayList<BasePlayer> temp = data.getAllPlayers();
+		ArrayList<BasePlayer> temp = GameData.getAllPlayers();
 		//System.out.println(x + " : " + y+ " : " +lastPos.x+ " : " +lastPos.y );
 		boolean flag = false;
 		
 		if(speed == 0){
 			//System.out.println("Stopped");
-			data.removeProjectile(this);
+			GameData.removeProjectile(this);
 			
 			
 			for(int i = 0; i < 4; i ++){
@@ -132,7 +131,7 @@ public class Bullet extends GameObject{
 				
 				float a = (float) (r.nextGaussian()*60 + (moveAngle - 180));
 				
-				data.addParticle(new Particle(x, y, a , .05 + r.nextGaussian()*.01, 500));
+				GameData.addParticle(new Particle(x, y, a , .05 + r.nextGaussian()*.01, 500));
 			}
 			
 			
@@ -161,16 +160,16 @@ public class Bullet extends GameObject{
 					damage -= 10;
 					lastHit = b;
 					
-					data.addBloodStain(new BloodStain(x,y));
+					GameData.addBloodStain(new BloodStain(x,y));
 					
 					for(int i = 0; i < 4; i ++){
 						Random r = new Random();
 						float a = (float) (r.nextGaussian()*60 + (moveAngle - 180));
-						data.addParticle(new Particle(x, y, a , .05 + r.nextGaussian()*.01, 250, new Color(255,0,0)));
+						GameData.addParticle(new Particle(x, y, a , .05 + r.nextGaussian()*.01, 250, new Color(255,0,0)));
 					}
 					
 					if(this instanceof DumbMissle){
-						data.removeProjectile(this);
+						GameData.removeProjectile(this);
 					}
 					break;
 				}
@@ -194,11 +193,11 @@ public class Bullet extends GameObject{
 					for(int i = 0; i < 4; i ++){
 						Random r = new Random();
 						float a = (float) (r.nextGaussian()*60 + (moveAngle - 180));
-						data.addParticle(new Particle(x, y, a , .05 + r.nextGaussian()*.01, 250, new Color(255,0,0)));
+						GameData.addParticle(new Particle(x, y, a , .05 + r.nextGaussian()*.01, 250, new Color(255,0,0)));
 					}
 					
 					if(this instanceof DumbMissle){
-						data.removeProjectile(this);
+						GameData.removeProjectile(this);
 					}
 					break;
 				}
@@ -206,7 +205,7 @@ public class Bullet extends GameObject{
 			if(flag){break;}
 		}
 		if(damage <= 0){
-			data.removeProjectile(this);
+			GameData.removeProjectile(this);
 		}
 	}
 }

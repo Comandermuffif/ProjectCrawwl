@@ -132,14 +132,12 @@ public class ConvexHull extends GameObject{
 	
 	public boolean isOnScreen(){
 		
-		GameData data = GameData.getInstance();
-		
 		float ratio = ((float) (GameSettings.getScreenY())/GameSettings.getScreenX());
 		
-		if(getCenter().x + World.getMapXOffset() + getFarthest() < -data.zoom || getCenter().x + World.getMapXOffset() - getFarthest() > GameSettings.getScreenX()  + data.zoom){
+		if(getCenter().x + World.getMapXOffset() + getFarthest() < -GameData.zoom || getCenter().x + World.getMapXOffset() - getFarthest() > GameSettings.getScreenX()  + GameData.zoom){
 			return false;
 		}
-		if(getCenter().y + World.getMapYOffset() + getFarthest() < -data.zoom*(ratio) || getCenter().y + World.getMapYOffset() - getFarthest() > GameSettings.getScreenY()  + data.zoom*(ratio)){
+		if(getCenter().y + World.getMapYOffset() + getFarthest() < -GameData.zoom*(ratio) || getCenter().y + World.getMapYOffset() - getFarthest() > GameSettings.getScreenY()  + GameData.zoom*(ratio)){
 			return false;
 		}
 		
@@ -152,16 +150,14 @@ public class ConvexHull extends GameObject{
 			//return;
 		}
 		
-		GameData data = GameData.getInstance();
-		
 		if(!isOnScreen()){
 			return;
 		}
 		
 		//Draw shadow, they are so sexy
-		double length = 2*data.zoom + GameSettings.getScreenX();//world.getMapX();
-		if(data.getPlayer() != null){
-			BasePlayer player = data.getPlayer();
+		double length = 2*GameData.zoom + GameSettings.getScreenX();//world.getMapX();
+		if(GameData.getPlayer() != null){
+			BasePlayer player = GameData.getPlayer();
 			for(Line2D.Float line : lines){
 				boolean flag = false;
 				Line2D.Float mid = new Line2D.Float(player.x, player.y, (line.x1 + line.x2)/2, (line.y1 + line.y2)/2);

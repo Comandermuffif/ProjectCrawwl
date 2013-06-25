@@ -4,8 +4,6 @@ import org.lwjgl.Sys;
 import org.projectcrawwl.data.GameData;
 public class Update extends Thread{
 	
-	static GameData data = GameData.getInstance();
-	
 	public volatile boolean quit = false;
 	long lastFrame;
 	int delta;
@@ -19,7 +17,7 @@ public class Update extends Thread{
 			
 			delta = getDelta();
 			
-			data.update(delta);
+			GameData.update(delta);
 		}
 	}
 	

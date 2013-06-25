@@ -16,13 +16,15 @@ public class MainMenuState implements GameState {
 	@Override
 	public void onEnter() {
 		
-		buttons.add(new Button(540,360,200,100, "Enter game", 1));
+		buttons.add(new Button(540,360,200,100, "Enter Game", 1));
 		
-		buttons.add(new Button(540,250,200,100, "Close game", -1));
+		buttons.add(new Button(540,250,200,100, "Generate World", 3));
+		
+		buttons.add(new Button(540,140,200,100, "Close Game", -1));
 		
 		System.out.println("Entering main menu state");
 		
-		Main.data.update(0);
+		GameData.update(0);
 	}
 
 	@Override
@@ -33,9 +35,8 @@ public class MainMenuState implements GameState {
 
 	@Override
 	public void main(int delta) {
-		GameData data = Main.data;
 		
-		Main.data.render();
+		GameData.render();
 		
 		GL11.glLoadIdentity();
 		GL11.glOrtho(0, GameSettings.getScreenX(), 0, GameSettings.getScreenY(), -1, 1);
@@ -51,7 +52,7 @@ public class MainMenuState implements GameState {
 		
 		float ratio = ((float) (GameSettings.getScreenY())/GameSettings.getScreenX());
 		GL11.glLoadIdentity();
-		GL11.glOrtho(-data.zoom, GameSettings.getScreenX()  + data.zoom, -data.zoom*(ratio), GameSettings.getScreenY() + data.zoom*(ratio), -1, 1);
+		GL11.glOrtho(-GameData.zoom, GameSettings.getScreenX()  + GameData.zoom, -GameData.zoom*(ratio), GameSettings.getScreenY() + GameData.zoom*(ratio), -1, 1);
 		
 		for(Button b : buttons){
 			b.render();

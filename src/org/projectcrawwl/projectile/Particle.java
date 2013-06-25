@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.geom.Point2D;
 
 import org.lwjgl.opengl.GL11;
+import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.data.GameSettings;
 import org.projectcrawwl.data.World;
 import org.projectcrawwl.objects.GameObject;
@@ -109,10 +110,10 @@ public class Particle extends GameObject{
 		lifetime -= delta;
 		
 		if(lifetime <= 0){
-			data.removeParticle(this);
+			GameData.removeParticle(this);
 		}
 		if(speed == 0){
-			data.removeParticle(this);
+			GameData.removeParticle(this);
 		}
 	}
 
