@@ -1,16 +1,21 @@
 package org.projectcrawwl.weapons;
 
 import java.awt.Point;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Random;
 
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.openal.Audio;
+import org.newdawn.slick.openal.AudioLoader;
+import org.newdawn.slick.util.ResourceLoader;
 import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.objects.BasePlayer;
 import org.projectcrawwl.projectile.Bullet;
 
 
-public abstract class BaseRangedWeapon extends BaseWeapon{
+public class BaseRangedWeapon extends BaseWeapon{
 	
 	/**
 	 * Bullet velocity, will figure out what the value equivocates to later
@@ -120,6 +125,85 @@ public abstract class BaseRangedWeapon extends BaseWeapon{
 		
 	}
 	
+	public BaseRangedWeapon(BasePlayer o, String filename){
+		super("BaseRangedWeapon",0);
+		owner = o;
+		try {
+			
+			if(!filename.split("\\.")[1].equalsIgnoreCase("RangedWeapon")){
+				System.out.println("Error loading weapon: " + filename);
+				return;
+			}
+			
+			BufferedReader wordStream = new BufferedReader(new FileReader(filename));
+			
+			String l;
+			
+			while((l = wordStream.readLine()) != null){
+				
+				String[] s = l.split("=");
+				
+				for(int i = 0; i < s.length; i ++){
+					s[i] = s[i].trim();
+				}
+				
+				////////////////////////////////////////
+				if(s[0].equalsIgnoreCase("name")){
+					name = s[1].replaceAll("^\"|\"$", "");;
+				}
+				if(s[0].equalsIgnoreCase("velocity")){
+					velocity = Float.parseFloat(s[1]);
+				}
+				if(s[0].equalsIgnoreCase("spread")){
+					spread = Double.parseDouble(s[1]);
+				}
+				if(s[0].equalsIgnoreCase("spreadangle")){
+					spreadAngle = Double.parseDouble(s[1]);
+				}
+				if(s[0].equalsIgnoreCase("damage")){
+					damage = Double.parseDouble(s[1]);
+				}
+				if(s[0].equalsIgnoreCase("cooldown")){
+					coolDown = Float.parseFloat(s[1]);
+				}
+				if(s[0].equalsIgnoreCase("reloadtime")){
+					reloadTime = Integer.parseInt(s[1]);
+				}
+				if(s[0].equalsIgnoreCase("pellets")){
+					pellets = Integer.parseInt(s[1]);
+				}
+				if(s[0].equalsIgnoreCase("cone")){
+					cone = Integer.parseInt(s[1]);
+				}
+				if(s[0].equalsIgnoreCase("maxclip")){
+					maxClip = Integer.parseInt(s[1]);
+				}
+				if(s[0].equals("maxSpread")){
+					maxSpread = Integer.parseInt(s[1]);
+				}
+				if(s[0].equalsIgnoreCase("onfire")){
+					
+					try {
+						onFire = AudioLoader.getAudio("OGG", ResourceLoader.getResourceAsStream(s[1].replaceAll("^\"|\"$", "")));
+					} catch (IOException e) {e.printStackTrace();}
+				}
+				
+				if(s[0].equalsIgnoreCase("automatic")){
+					automatic = Boolean.parseBoolean(s[1]);
+				}
+				
+				
+			}
+			
+			wordStream.close();
+			
+		}catch(IOException e){e.printStackTrace();}
+		
+		currentCoolDown = coolDown;
+		
+		currentClip = maxClip;
+	}
+	
 	/**
 	 * Returns a point with (currentClip, maxClip)
 	 */
@@ -138,9 +222,21 @@ public abstract class BaseRangedWeapon extends BaseWeapon{
 		
 		if(currentReload <= 0){
 			reloading = false;
-			currentReload = reloadTime;
-			currentClip = maxClip;
-			currentSpread = 0;
+			
+			if(owner.getInventory().bullets >= maxClip){
+				owner.getInventory().bullets -= maxClip;
+				
+				currentReload = reloadTime;
+				currentClip = maxClip;
+				currentSpread = 0;
+				
+			}else{
+				
+				currentReload = reloadTime;
+				currentClip = owner.getInventory().bullets;
+				owner.getInventory().bullets = 0;
+				currentSpread = 0;
+			}
 		}
 		
 		if(active){
@@ -216,5 +312,9 @@ public abstract class BaseRangedWeapon extends BaseWeapon{
 			currentClip -= 1;
 			if(currentClip == 0){reloading = true;}
 		}
+	}
+	
+	public String toString(){
+		return "[ " + owner  + ", " + name + ", " + velocity + ", " + maxClip + ", " + reloadTime + ", " + pellets + ", " + spread + ", " + cone + ", " + damage + "]";
 	}
 }

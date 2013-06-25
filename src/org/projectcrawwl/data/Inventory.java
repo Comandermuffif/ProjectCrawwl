@@ -7,6 +7,14 @@ import org.projectcrawwl.weapons.BaseWeapon;
 import org.projectcrawwl.weapons.Fists;
 
 public class Inventory {
+	
+	public static int FIFTYCAL = 100;
+	public static int TWELVEGAUGE = 35;
+	public static int NINEMM = 50;
+	public static int FIVEFIVESIX = 20;
+	
+	public int bullets = 99;
+	
 	private BasePlayer owner;
 	private ArrayList<BaseWeapon> weapons = new ArrayList<BaseWeapon>();
 	private int counter = 0;

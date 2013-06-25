@@ -6,7 +6,7 @@ import org.projectcrawwl.objects.BasePlayer;
 
 public class BaseWeapon {
 	public String name;
-	public float damage;
+	public double damage;
 	public BasePlayer owner;
 	
 	public Boolean active = false;
@@ -15,7 +15,7 @@ public class BaseWeapon {
 	
 	protected boolean automatic = true;
 	
-	public BaseWeapon(String tempName, float tempD){
+	public BaseWeapon(String tempName, double tempD){
 		name = tempName;
 		damage = tempD;
 	}

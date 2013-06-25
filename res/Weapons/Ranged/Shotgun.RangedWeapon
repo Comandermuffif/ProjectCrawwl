@@ -1,0 +1,12 @@
+name = "Combat Shotgun"
+coolDown = 666
+reloadTime = 3300
+damage = 35
+velocity = 3
+pellets = 9
+cone = 9
+spread = 700
+spreadAngle = 8
+maxClip = 12
+automatic = false
+onFire = "res/SoundFiles/Wpn_shotguncombat_fire_2d.ogg"

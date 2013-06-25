@@ -10,6 +10,7 @@ import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.objects.BasePlayer;
 
 public class BaseMeleeWeapon extends BaseWeapon{
+	
 	public float range;
 	public float angle;
 	
@@ -91,11 +92,6 @@ public class BaseMeleeWeapon extends BaseWeapon{
 		super.render();
 		if(active){
 			GL11.glColor3f((float) (currentCoolDown/coolDown), (float) (currentCoolDown/coolDown), 0);
-			/*
-			GL11.glBegin(GL11.GL_LINES);
-			GL11.glVertex2d((owner.r + range)*Math.cos(Math.toRadians(owner.facingAngle - angle/2 + angle*(currentCoolDown/coolDown))) + owner.renderX, (owner.r + range)*Math.sin(Math.toRadians(owner.facingAngle - angle/2 + angle*(currentCoolDown/coolDown))) + owner.renderY);
-			GL11.glVertex2d(owner.renderX, owner.renderY);
-			GL11.glEnd();*/
 			
 			GL11.glLineWidth(1);
 			GL11.glBegin(GL11.GL_LINES);
@@ -106,23 +102,6 @@ public class BaseMeleeWeapon extends BaseWeapon{
 			
 			
 			GL11.glEnd();
-			
-			/*
-			GL11.glBegin(GL11.GL_TRIANGLE_FAN);
-		      {
-		    	  GL11.glVertex2f(owner.getRenderX(), owner.getRenderY());
-		    	  
-		        for (double x= Math.toRadians(owner.facingAngle - angle/2); x<=Math.toRadians(owner.facingAngle + angle/2); x+=((Math.PI*2)/64) )
-		        {
-		        	GL11.glVertex2f( (owner.r + range)*(float)Math.cos(x) + owner.getRenderX(),
-		        			(owner.r + range)*(float)Math.sin(x) + owner.getRenderY());  
-		        }
-		        GL11.glVertex2f( (owner.r + range)*(float)Math.cos(Math.toRadians(owner.facingAngle + angle/2)) + owner.getRenderX(),
-	        			(owner.r + range)*(float)Math.sin(Math.toRadians(owner.facingAngle + angle/2)) + owner.getRenderY());  
-		        //GL11.glVertex2f(owner.getRenderX()+range, owner.getRenderY());
-		      }
-		   GL11.glEnd();
-		   */
 			
 		}
 	}

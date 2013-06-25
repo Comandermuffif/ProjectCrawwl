@@ -1,0 +1,9 @@
+name = "SMG"
+velocity = 3
+spread = 150
+spreadAngle = 8
+damage = 10
+coolDown = 90.909
+reloadTime = 2200
+maxClip = 25
+onFire = "res/SoundFiles/Wpn_45_smg_2d_01.ogg"

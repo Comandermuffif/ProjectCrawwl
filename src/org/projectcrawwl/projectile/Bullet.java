@@ -19,7 +19,7 @@ import org.projectcrawwl.objects.GameObject;
 public class Bullet extends GameObject{
 	
 	BasePlayer owner;
-	public float damage;
+	public double damage;
 	Point lastPos = new Point();
 	
 	BasePlayer lastHit = null;
@@ -33,7 +33,7 @@ public class Bullet extends GameObject{
 	 * @param tempD - Damage it does
 	 * @param own - The person who shot it
 	 */
-	public Bullet(float tempX, float tempY, float tempSpeed, float tempAngle, float tempD, BasePlayer own){
+	public Bullet(float tempX, float tempY, float tempSpeed, float tempAngle, double tempD, BasePlayer own){
 		super(tempX, tempY);
 		x = tempX;
 		y = tempY;

@@ -54,7 +54,7 @@ public abstract class BasePlayer extends GameObject{
         updateLines();
 	}
 	
-	public void damage(float damage, BasePlayer shooter){
+	public void damage(double damage, BasePlayer shooter){
 		health -= damage;
 		lastHit = shooter;
 	}
@@ -104,6 +104,10 @@ public abstract class BasePlayer extends GameObject{
 	
 	public void newKill(){
 		kills += 1;
+	}
+	
+	public Inventory getInventory(){
+		return inventory;
 	}
 	
 	public void mouseInput(ArrayList<Integer> a){}

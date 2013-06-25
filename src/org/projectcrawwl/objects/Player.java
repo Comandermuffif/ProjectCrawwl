@@ -39,11 +39,11 @@ public class Player extends BasePlayer {
 		
 		inventory.addWeapon(new Katana(this));
 		inventory.addWeapon(new SniperRifle(this));
-		inventory.addWeapon(new SMG(this));
-		inventory.addWeapon(new Shotgun(this));
+		inventory.addWeapon(new BaseRangedWeapon(this, "res/Weapons/Ranged/SMG.RangedWeapon"));
+		//inventory.addWeapon(new SMG(this));
+		//inventory.addWeapon(new Shotgun(this));
+		inventory.addWeapon(new BaseRangedWeapon(this, "res/Weapons/Ranged/Shotgun.RangedWeapon"));
 		inventory.addWeapon(new Pistol(this));
-		//inventory.addWeapon(new LaserRifle(this));
-		//inventory.addWeapon(new MissleLauncher(this));
 		
 		this.createBoundingBox();
 		
@@ -114,9 +114,10 @@ public class Player extends BasePlayer {
 		GameData.getFont().drawString(20, GameSettings.getScreenY() - 80, "Weapon: " + inventory.getWeapon().getName());
 		if(!(inventory.getWeapon() instanceof BaseMeleeWeapon)){
 			if(inventory.getWeapon().isReloading()){
-				GameData.getFont().drawString(20, GameSettings.getScreenY() - 60, "Clip: Reloading...");
+				GameData.getFont().drawString(20, GameSettings.getScreenY() - 60, "Clip: " + "--" + "/" + String.format("%1$02d", inventory.getWeapon().getClip().y) +"/"+String.format("%1$02d", inventory.bullets));
 			}else{
-				GameData.getFont().drawString(20, GameSettings.getScreenY() - 60, "Clip: " + inventory.getWeapon().getClip().x + "/" + inventory.getWeapon().getClip().y);
+				GameData.getFont().drawString(20, GameSettings.getScreenY() - 60, "Clip: " + String.format("%1$02d", inventory.getWeapon().getClip().x) + "/" + String.format("%1$02d", inventory.getWeapon().getClip().y) +"/"+String.format("%1$02d", inventory.bullets));
+				
 			}
 		}
 		GameData.getFont().drawString(20, GameSettings.getScreenY() - 40, "Heath: " + health);

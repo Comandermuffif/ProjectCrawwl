@@ -15,7 +15,7 @@ public class DumbMissle extends Bullet{
 	 * @param tempD - Damage
 	 * @param tempO - owner
 	 */
-	public DumbMissle(float tempX, float tempY, float tempSpeed, float tempAngle, float tempD, BasePlayer tempO){
+	public DumbMissle(float tempX, float tempY, float tempSpeed, float tempAngle, double tempD, BasePlayer tempO){
 		super( tempX,  tempY,  tempSpeed,  tempAngle,  tempD, tempO);
 		facingAngle = tempAngle;
 		turnSpeed = .2;
