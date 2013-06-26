@@ -77,4 +77,8 @@ public class Inventory {
 			counter = weapons.size()-1;
 		}
 	}
+
+	public ArrayList<BaseWeapon> getWeapons() {
+		return weapons;
+	}
 }

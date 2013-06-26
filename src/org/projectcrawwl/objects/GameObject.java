@@ -457,10 +457,13 @@ public class GameObject implements Comparable<GameObject>{
 	protected double getNearest(){
 		double nearest = -1;
 		
+		Point2D.Double pp = new Point2D.Double(GameSettings.getScreenX()/2 - World.getMapXOffset(), GameSettings.getScreenY()/2 - World.getMapYOffset());
+		
+		Point2D.Double q = new Point2D.Double();
+		
 		for(Line2D.Float l : boundingLines){
 			
 			Point2D.Double p = new Point2D.Double();
-			Point2D.Double pp = new Point2D.Double(GameSettings.getScreenX()/2 - World.getMapXOffset(), GameSettings.getScreenY()/2 - World.getMapYOffset());
 			
 			p.x = l.x1*Math.cos(Math.toRadians(facingAngle)) - l.y1*Math.sin(Math.toRadians(facingAngle)) + x;
 			p.y = l.x1*Math.sin(Math.toRadians(facingAngle)) + l.y1*Math.cos(Math.toRadians(facingAngle)) + y;
@@ -469,6 +472,7 @@ public class GameObject implements Comparable<GameObject>{
 			
 			if(nearest == -1 || tempD < nearest){
 				nearest = tempD;
+				
 			}
 		}
 		

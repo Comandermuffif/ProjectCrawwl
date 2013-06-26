@@ -16,9 +16,11 @@ public class StateController {
 	
 	public static void setGameState(GameState a){
 		if(currentState != null){
+			System.out.println("Leaving " + currentState.getName());
 			currentState.onExit();
 		}
 		currentState = states.get(a);
+		System.out.println("Entering " + currentState.getName());
 		currentState.onEnter();
 	}
 	

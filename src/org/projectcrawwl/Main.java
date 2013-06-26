@@ -16,6 +16,7 @@ public class Main {
 	//Make an enum of all states
 	public static GameState IN_GAME = new InGameState();
 	public static GameState MAIN_MENU = new MainMenuState();
+	public static GameState INVENTORY = new InventoryState();
 	
 	static long lastFrame;
 	/** frames per second */
@@ -71,6 +72,7 @@ public class Main {
     	
 		StateController.addGameState(IN_GAME);
 		StateController.addGameState(MAIN_MENU);
+		StateController.addGameState(INVENTORY);
 		
 		StateController.setGameState(MAIN_MENU);
 		

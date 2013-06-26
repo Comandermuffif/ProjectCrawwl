@@ -6,8 +6,10 @@ import java.util.ArrayList;
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.GL11;
+import org.projectcrawwl.Main;
 import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.data.GameSettings;
+import org.projectcrawwl.data.StateController;
 import org.projectcrawwl.data.World;
 import org.projectcrawwl.menu.Button;
 import org.projectcrawwl.weapons.*;
@@ -146,8 +148,10 @@ public class Player extends BasePlayer {
 		
 		tempFacing = (float) (Math.toDegrees(Math.atan2(mouse_y - renderY, mouse_x - renderX)));
 		
-		GameData.setMapXOffset((float) (GameSettings.getScreenX()/2 - x - (mouse_x - GameSettings.getScreenX()/2)*1));
-		GameData.setMapYOffset((float) (GameSettings.getScreenY()/2 - y - (mouse_y - GameSettings.getScreenY()/2)*1));
+		if(StateController.getGameState() == Main.IN_GAME){
+			GameData.setMapXOffset((float) (GameSettings.getScreenX()/2 - x - (mouse_x - GameSettings.getScreenX()/2)*1));
+			GameData.setMapYOffset((float) (GameSettings.getScreenY()/2 - y - (mouse_y - GameSettings.getScreenY()/2)*1));
+		}
 		
 		float temp = 0;
 		moveAngle = 0;
@@ -257,6 +261,11 @@ public class Player extends BasePlayer {
 			if(i == Keyboard.KEY_3){
 				World.clearHulls();
 			}
+			
+			if(i == Keyboard.KEY_I){
+				StateController.setGameState(Main.INVENTORY);
+			}
+			
 			
 			if(i == Keyboard.KEY_4){
 				hull = null;

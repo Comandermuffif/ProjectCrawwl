@@ -22,15 +22,12 @@ public class MainMenuState implements GameState {
 		
 		buttons.add(new Button(540,140,200,100, "Close Game", -1));
 		
-		System.out.println("Entering main menu state");
-		
 		GameData.update(0);
 	}
 
 	@Override
 	public void onExit() {
-		System.out.println("Exiting main menu state");
-
+		
 	}
 
 	@Override
@@ -75,6 +72,11 @@ public class MainMenuState implements GameState {
 				StateController.setGameState(Main.IN_GAME);
 			}
 		}
+	}
+
+	@Override
+	public String getName() {
+		return "Main Menu";
 	}
 
 }

@@ -146,10 +146,6 @@ public class ConvexHull extends GameObject{
 	
 	public void renderShadow(){
 		
-		if(true){
-			//return;
-		}
-		
 		if(!isOnScreen()){
 			return;
 		}
@@ -173,10 +169,10 @@ public class ConvexHull extends GameObject{
 				if(flag){
 					double angle = 0;
 					
-					GL11.glEnable(GL11.GL_DEPTH_TEST);
-					GL11.glDepthFunc(GL11.GL_NOTEQUAL);
+					//GL11.glEnable(GL11.GL_DEPTH_TEST);
+					//GL11.glDepthFunc(GL11.GL_NOTEQUAL);
 					
-					GL11.glColor4d(0,0,0,.75);
+					GL11.glColor4d(0,0,0,1);
 					GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
 					GL11.glVertex3d(line.getX1() + World.getMapXOffset(),line.getY1() + World.getMapYOffset(), .5);
 					GL11.glVertex3d(line.getX2() + World.getMapXOffset(), line.getY2() + World.getMapYOffset(), .5);
@@ -186,7 +182,7 @@ public class ConvexHull extends GameObject{
 					GL11.glVertex3d(line.getX2() + World.getMapXOffset() + Math.cos(angle)*length, line.getY2() + World.getMapYOffset() + Math.sin(angle)*length, .5);
 					GL11.glEnd();
 					
-					GL11.glDisable(GL11.GL_DEPTH_TEST);
+					//GL11.glDisable(GL11.GL_DEPTH_TEST);
 				}
 			}
 		}
@@ -197,6 +193,8 @@ public class ConvexHull extends GameObject{
 		if(!isOnScreen()){
 			return;
 		}
+		
+		renderShadow();
 		
 		//The hull
 		
