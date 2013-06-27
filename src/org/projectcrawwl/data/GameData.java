@@ -323,8 +323,6 @@ public class GameData
 			}
 		//}
 		
-		Collections.sort(allObjects);
-		
 		for(GameObject a : allObjects){
 			a.render();
 		}
@@ -442,6 +440,8 @@ public class GameData
 		allObjects.addAll(allPlayers);
 		allObjects.addAll(allProjectiles);
 		allObjects.addAll(World.getHulls());
+		
+		Collections.sort(allObjects);
 		
 	}
 }

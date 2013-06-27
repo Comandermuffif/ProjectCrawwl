@@ -454,12 +454,11 @@ public class GameObject implements Comparable<GameObject>{
 		
 	}
 	
-	protected double getNearest(){
-		double nearest = -1;
-		
+	protected Point2D.Double getNearest(){
+
 		Point2D.Double pp = new Point2D.Double(GameSettings.getScreenX()/2 - World.getMapXOffset(), GameSettings.getScreenY()/2 - World.getMapYOffset());
 		
-		Point2D.Double q = new Point2D.Double();
+		Point2D.Double q = new Point2D.Double(x,y);
 		
 		for(Line2D.Float l : boundingLines){
 			
@@ -468,27 +467,52 @@ public class GameObject implements Comparable<GameObject>{
 			p.x = l.x1*Math.cos(Math.toRadians(facingAngle)) - l.y1*Math.sin(Math.toRadians(facingAngle)) + x;
 			p.y = l.x1*Math.sin(Math.toRadians(facingAngle)) + l.y1*Math.cos(Math.toRadians(facingAngle)) + y;
 			
-			double tempD = p.distance(pp);
-			
-			if(nearest == -1 || tempD < nearest){
-				nearest = tempD;
-				
+			if(q.x == x || q.y == y){
+				q = (Point2D.Double) p.clone();
+			}else{
+				if(pp.distance(p) < pp.distance(q)){
+					q = (Point2D.Double) p.clone();
+				}
 			}
 		}
 		
-		return nearest;
+		return q;
+		
 	}
 	
-	public int compareToNEW(GameObject h) {
-
-		if(h.getNearest() > this.getNearest()){
+	public int compareToOLD(GameObject h) {
+		
+		Point2D.Double pp = new Point2D.Double(GameSettings.getScreenX()/2 - World.getMapXOffset(), GameSettings.getScreenY()/2 - World.getMapYOffset());
+		
+		if(Math.abs(pp.x - this.getNearest().x)  < Math.abs(pp.x - h.getNearest().x) && Math.abs(pp.y - this.getNearest().y) < Math.abs(pp.y - h.getNearest().y)){
 			return 1;
 		}
 		
-		if(h.getNearest() < this.getNearest()){
+		if(Math.abs(pp.x - this.getNearest().x)  > Math.abs(pp.x - h.getNearest().x) && Math.abs(pp.y - this.getNearest().y) > Math.abs(pp.y - h.getNearest().y)){
 			return -1;
 		}
-			
+		
+		
+		
+		
+		if(Math.abs(pp.x - this.getNearest().x)  < Math.abs(pp.x - h.getNearest().x) && Math.abs(pp.x - this.getNearest().x) < Math.abs(pp.y - h.getNearest().y)){
+			return 1;
+		}
+		
+		if(Math.abs(pp.y - this.getNearest().y)  < Math.abs(pp.x - h.getNearest().x) && Math.abs(pp.y - this.getNearest().y) < Math.abs(pp.y - h.getNearest().y)){
+			return 1;
+		}
+		
+		
+		
+		if(Math.abs(pp.x - h.getNearest().x)  < Math.abs(pp.x - this.getNearest().x) && Math.abs(pp.x - h.getNearest().x) < Math.abs(pp.y - this.getNearest().y)){
+			return -1;
+		}
+		
+		if(Math.abs(pp.y - h.getNearest().y)  < Math.abs(pp.x - this.getNearest().x) && Math.abs(pp.y - h.getNearest().y) < Math.abs(pp.y - this.getNearest().y)){
+			return -1;
+		}
+		
 		return 0;
 	}
 	

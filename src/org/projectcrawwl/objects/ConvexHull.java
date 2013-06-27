@@ -23,7 +23,7 @@ public class ConvexHull extends GameObject{
 	
 	private double farthest = 0;
 	
-	private Color color = new Color((int)(Math.random()*255),(int) (Math.random()*255),(int) (Math.random()*255));//new Color(0,0,0);
+	private Color color = new Color((int)(50 + Math.random()*40),(int) (50 + Math.random()*40),(int) (100+Math.random()*80));//new Color(0,0,0);
 	
 	private int x = 0;
 	private int y = 0;
@@ -194,7 +194,7 @@ public class ConvexHull extends GameObject{
 			return;
 		}
 		
-		renderShadow();
+		//renderShadow();
 		
 		//The hull
 		
@@ -300,23 +300,58 @@ public class ConvexHull extends GameObject{
 		
 	}
 	
-	@Override
-	protected double getNearest(){
+	//@Override
+	protected Point2D.Double getNearestNEW(){
 		
-		double nearest = -1;
+		float ratio = ((float) (GameSettings.getScreenY())/GameSettings.getScreenX());
+		
+		Point2D.Double pp = new Point2D.Double(GameSettings.getScreenX()/2 - World.getMapXOffset(), GameSettings.getScreenY()/2 - World.getMapYOffset());
+		
+		Point2D.Double q = new Point2D.Double(x,y);
 		
 		for(Line2D.Float l : lines){
 			
 			Point2D.Double p = new Point2D.Double(l.getX1(), l.getY1());
-			Point2D.Double pp = new Point2D.Double(GameSettings.getScreenX()/2 - World.getMapXOffset(), GameSettings.getScreenY()/2 - World.getMapYOffset());
 			
-			double tempD = p.distance(pp);
-			
-			if(nearest == -1 || tempD < nearest){
-				nearest = tempD;
+			if(q.x == x || q.y == y){
+				q = (Point2D.Double) p.clone();
+			}else{
+				if(Math.abs(pp.x - p.x)  < Math.abs(pp.x - q.x) || Math.abs(pp.y - p.y)/(ratio)  < Math.abs(pp.y - q.y)/(ratio)){
+					q = (Point2D.Double) p.clone();
+				}
+				if(Math.abs(pp.x - p.x)  < Math.abs(pp.y - q.y)/(ratio) || Math.abs(pp.y - p.y)/(ratio)  < Math.abs(pp.x - q.x)){
+					q = (Point2D.Double) p.clone();
+				}
 			}
 		}
 		
-		return nearest;
+		return q;
+	}
+	
+	//@Override
+	protected Point2D.Double getNearest(){
+
+		Point2D.Double pp = new Point2D.Double(GameSettings.getScreenX()/2 - World.getMapXOffset(), GameSettings.getScreenY()/2 - World.getMapYOffset());
+		
+		Point2D.Double q = new Point2D.Double(x,y);
+		
+		for(Line2D.Float l : boundingLines){
+			
+			Point2D.Double p = new Point2D.Double();
+			
+			p.x = l.x1*Math.cos(Math.toRadians(facingAngle)) - l.y1*Math.sin(Math.toRadians(facingAngle)) + x;
+			p.y = l.x1*Math.sin(Math.toRadians(facingAngle)) + l.y1*Math.cos(Math.toRadians(facingAngle)) + y;
+			
+			if(q.x == x || q.y == y){
+				q = (Point2D.Double) p.clone();
+			}else{
+				if(pp.distance(p) < pp.distance(q)){
+					q = (Point2D.Double) p.clone();
+				}
+			}
+		}
+		
+		return q;
+		
 	}
 }
