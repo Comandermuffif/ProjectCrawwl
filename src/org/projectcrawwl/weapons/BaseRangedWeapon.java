@@ -202,6 +202,10 @@ public class BaseRangedWeapon extends BaseWeapon{
 		currentCoolDown = coolDown;
 		
 		currentClip = maxClip;
+		
+		currentReload = reloadTime;
+		
+		reloading = false;
 	}
 	
 	/**
@@ -276,7 +280,10 @@ public class BaseRangedWeapon extends BaseWeapon{
 	 */
 	public void fire(){
 		if(active == false && reloading == false){
-			if(currentClip == 0){reloading = true;return;}
+			if(currentClip == 0){
+				//reloading = true;
+				return;
+			}
 			
 			if(onFire != null){
 				onFire.playAsSoundEffect(1.0f, 1.0f, false);
@@ -299,9 +306,9 @@ public class BaseRangedWeapon extends BaseWeapon{
 				if(coneSpread > 1){coneSpread = 1;}
 				
 				if(currentSpread == 0){
-					GameData.addProjectile(new Bullet((float) (owner.x + Math.cos(Math.toRadians(owner.facingAngle))*(owner.r + 5)),(float) (owner.y + Math.sin(Math.toRadians(owner.facingAngle))*(owner.r+5)),(float) (velocity + random.nextGaussian()*.02),(float) ((float) owner.facingAngle + (coneSpread)*cone), damage, owner));
+					GameData.addProjectile(new Bullet((float) (owner.x + Math.cos(Math.toRadians(owner.facingAngle))*(owner.getFarthest())),(float) (owner.y + Math.sin(Math.toRadians(owner.facingAngle))*(owner.getFarthest())),(float) (velocity + random.nextGaussian()*.02),(float) ((float) owner.facingAngle + (coneSpread)*cone), damage, owner));
 				}else{
-					GameData.addProjectile(new Bullet((float) (owner.x + Math.cos(Math.toRadians(owner.facingAngle))*(owner.r + 5)),(float) (owner.y + Math.sin(Math.toRadians(owner.facingAngle))*(owner.r+5)),(float) (velocity + random.nextGaussian()*.02),(float) ((float) owner.facingAngle + tempG*((currentSpread/1000)*spreadAngle + minSpread) + (coneSpread)*cone), damage, owner));
+					GameData.addProjectile(new Bullet((float) (owner.x + Math.cos(Math.toRadians(owner.facingAngle))*(owner.getFarthest())),(float) (owner.y + Math.sin(Math.toRadians(owner.facingAngle))*(owner.getFarthest())),(float) (velocity + random.nextGaussian()*.02),(float) ((float) owner.facingAngle + tempG*((currentSpread/1000)*spreadAngle + minSpread) + (coneSpread)*cone), damage, owner));
 				}
 				
 			}
@@ -310,7 +317,9 @@ public class BaseRangedWeapon extends BaseWeapon{
 			}
 			
 			currentClip -= 1;
-			if(currentClip == 0){reloading = true;}
+			if(currentClip == 0){
+				//reloading = true;
+			}
 		}
 	}
 	

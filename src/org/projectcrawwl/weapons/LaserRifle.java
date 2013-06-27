@@ -47,7 +47,7 @@ public class LaserRifle extends BaseRangedWeapon{
 			active = true;
 			currentCoolDown = coolDown;
 			
-			Line2D.Float q = new Line2D.Float((float)(owner.x + Math.cos(Math.toRadians(owner.facingAngle))*(owner.r + 5)), (float)(owner.y + Math.sin(Math.toRadians(owner.facingAngle))*(owner.r+5)), (float)(owner.x + Math.cos(Math.toRadians(owner.facingAngle))*(owner.r + range)), (float)(owner.y + Math.sin(Math.toRadians(owner.facingAngle))*(owner.r+range)));
+			Line2D.Float q = new Line2D.Float((float)(owner.x + Math.cos(Math.toRadians(owner.facingAngle))*(owner.getFarthest())), (float)(owner.y + Math.sin(Math.toRadians(owner.facingAngle))*(owner.getFarthest())), (float)(owner.x + Math.cos(Math.toRadians(owner.facingAngle))*(owner.getFarthest() + range)), (float)(owner.y + Math.sin(Math.toRadians(owner.facingAngle))*(owner.getFarthest()+range)));
 			
 			Line2D.Float tempL = (Line2D.Float) q.clone();
 			

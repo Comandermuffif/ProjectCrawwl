@@ -97,6 +97,12 @@ public class Button {
 	
 	private void onPress(){
 		
+		if(ID == -1){
+			 AL.destroy();
+	    	Display.destroy();
+	        System.exit(0);
+		}
+		
 		if(ID == 0){
 			color = new Color((int)(Math.random()*255),(int) (Math.random()*255),(int) (Math.random()*255));
 		}
@@ -110,12 +116,11 @@ public class Button {
 		if(ID == 3){
 			World.generateWorld();
 		}
-		
-		if(ID == -1){
-			 AL.destroy();
-	    	Display.destroy();
-	        System.exit(0);
+		if(ID == 4){
+			StateController.setGameState(Main.LOAD_MENU);
 		}
+		
+		
 		
 	}
 }

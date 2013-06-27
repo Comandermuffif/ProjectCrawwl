@@ -40,17 +40,12 @@ public class Inventory {
 		}else{
 			fists.update(delta);
 		}
-		
-//		for(BaseWeapon a : weapons){
-//			a.update(delta);
-//		}
 	}
 	
 	public void setWeapon(int n){
 		
 		counter = n % (weapons.size()-1);
 		
-		//counter = n;
 	}
 	
 	public void addWeapon(BaseWeapon tempW){

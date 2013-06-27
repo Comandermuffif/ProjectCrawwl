@@ -1,9 +1,10 @@
-package org.projectcrawwl;
+package org.projectcrawwl.states;
 
 import java.util.ArrayList;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
+import org.projectcrawwl.Main;
 import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.data.GameSettings;
 import org.projectcrawwl.data.StateController;
@@ -32,8 +33,6 @@ public class InGameState implements GameState{
 	public void onExit() {
 		mouseX = Mouse.getX();
 		mouseY = Mouse.getY();
-		
-		System.out.println(mouseX + " " + mouseY);
 	}
 
 	@Override

@@ -1,12 +1,10 @@
-package org.projectcrawwl;
+package org.projectcrawwl.states;
 
 import java.util.ArrayList;
 
-import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
 import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.data.GameSettings;
-import org.projectcrawwl.data.StateController;
 import org.projectcrawwl.menu.Button;
 
 public class MainMenuState implements GameState {
@@ -15,13 +13,15 @@ public class MainMenuState implements GameState {
 
 	@Override
 	public void onEnter() {
-		
-		buttons.add(new Button(540,360,200,100, "Enter Game", 1));
-		
-		buttons.add(new Button(540,250,200,100, "Generate World", 3));
-		
-		buttons.add(new Button(540,140,200,100, "Close Game", -1));
-		
+		if(buttons.size() == 0){
+			buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY() - 200,200,100, "New Game", 1));
+			
+			buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY() - 310,200,100, "Load Game", 4));
+			
+			buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY() - 420,200,100, "Generate World", 3));
+			
+			buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY() - 530,200,100, "Close Game", -1));
+		}
 		GameData.update(0);
 	}
 
@@ -67,11 +67,7 @@ public class MainMenuState implements GameState {
 
 	@Override
 	public void keyboardInput(ArrayList<Integer> a) {
-		for(Integer i : a){
-			if(i == Keyboard.KEY_ESCAPE){
-				StateController.setGameState(Main.IN_GAME);
-			}
-		}
+		
 	}
 
 	@Override

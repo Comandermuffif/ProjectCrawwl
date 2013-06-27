@@ -39,7 +39,6 @@ public class Bullet extends GameObject{
 		y = tempY;
 		speed = tempSpeed;
 		moveAngle = tempAngle;
-		r = 5;
 		damage = tempD;
 		owner = own;
 		

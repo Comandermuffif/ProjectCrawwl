@@ -15,7 +15,6 @@ import org.projectcrawwl.data.World;
 public class GameObject implements Comparable<GameObject>{
 	public float x;
 	public float y;
-	public float r;
 	public float facingAngle;
 	
 	public float tempFacing;
@@ -50,12 +49,11 @@ public class GameObject implements Comparable<GameObject>{
 	 * @param tempA Facing angle
 	 * @param tempH Health
 	 */
-	public GameObject(float tempX, float tempY, float tempA, float tempR){
+	public GameObject(float tempX, float tempY, float tempA){
 		x = tempX;
 		y = tempY;
 		facingAngle = tempA;
 		tempFacing = facingAngle;
-		r = tempR;
 	}
 	
 	
@@ -64,14 +62,12 @@ public class GameObject implements Comparable<GameObject>{
 		y = tempY;
 		facingAngle = 0;
 		tempFacing = facingAngle;
-		r = 10;
 	}
 	public GameObject(){
 		x = 0;
 		y = 0;
 		facingAngle = 0;
 		tempFacing = facingAngle;
-		r = 10;
 	}
 	
 	public void addPoint(Point k){

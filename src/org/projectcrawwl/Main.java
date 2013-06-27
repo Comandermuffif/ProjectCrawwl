@@ -10,6 +10,11 @@ import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.data.GameSettings;
 import org.projectcrawwl.data.StateController;
 import org.projectcrawwl.data.World;
+import org.projectcrawwl.states.GameState;
+import org.projectcrawwl.states.InGameState;
+import org.projectcrawwl.states.InventoryState;
+import org.projectcrawwl.states.LoadMenuState;
+import org.projectcrawwl.states.MainMenuState;
 
 public class Main {
 
@@ -17,6 +22,7 @@ public class Main {
 	public static GameState IN_GAME = new InGameState();
 	public static GameState MAIN_MENU = new MainMenuState();
 	public static GameState INVENTORY = new InventoryState();
+	public static GameState LOAD_MENU = new LoadMenuState();
 	
 	static long lastFrame;
 	/** frames per second */
@@ -27,8 +33,12 @@ public class Main {
 
 	public void start() {
 		
-		GameSettings.setScreenX(1280);
-		GameSettings.setScreenY(720);
+		//GameSettings.setScreenX(1280);
+		//GameSettings.setScreenY(720);
+		
+		GameSettings.setScreenX(800);
+		GameSettings.setScreenY(600);
+		
 		
         try {
         	
@@ -69,10 +79,6 @@ public class Main {
     	
     	GameData.renderInit();
     	World.generateWorld();
-    	
-		StateController.addGameState(IN_GAME);
-		StateController.addGameState(MAIN_MENU);
-		StateController.addGameState(INVENTORY);
 		
 		StateController.setGameState(MAIN_MENU);
 		

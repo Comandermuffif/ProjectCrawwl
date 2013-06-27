@@ -21,6 +21,8 @@ public class Pistol extends BaseRangedWeapon{
 		coolDown = 50;
 		currentCoolDown = coolDown;
 		
+		reloadTime = 1000;
+		
 		maxClip = 6;
 		
 		automatic = false;

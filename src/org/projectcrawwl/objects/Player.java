@@ -1,5 +1,7 @@
 package org.projectcrawwl.objects;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -11,7 +13,6 @@ import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.data.GameSettings;
 import org.projectcrawwl.data.StateController;
 import org.projectcrawwl.data.World;
-import org.projectcrawwl.menu.Button;
 import org.projectcrawwl.weapons.*;
 
 import org.newdawn.slick.opengl.Texture;
@@ -28,24 +29,65 @@ public class Player extends BasePlayer {
 	
 	private ConvexHull hull = null;
 	
-	private Button b = new Button(0,695,125,25, "Return to main menu",2);
+	public Player(String filename){
+		
+		super();
+		
+		try {
+			
+			if(!filename.split("\\.")[1].equalsIgnoreCase("Player")){
+				System.out.println("Error loading player: " + filename);
+				return;
+			}
+			
+			BufferedReader wordStream = new BufferedReader(new FileReader(filename));
+			
+			String l;
+			
+			while((l = wordStream.readLine()) != null){
+				
+				String[] s = l.split("=");
+				
+				for(int i = 0; i < s.length; i ++){
+					s[i] = s[i].trim();
+				}
+				
+				////////////////////////////////////////
+				
+				if(s[0].equalsIgnoreCase("x")){
+					x = Integer.parseInt(s[1]);
+				}
+				if(s[0].equalsIgnoreCase("y")){
+					y = Integer.parseInt(s[1]);
+				}
+				if(s[0].equalsIgnoreCase("health")){
+					health = Integer.parseInt(s[1]);
+				}
+				if(s[0].equalsIgnoreCase("turnSpeed")){
+					turnSpeed = Double.parseDouble(s[1]);
+				}
+				
+			}
+			
+			wordStream.close();
+			
+		}catch(IOException e){e.printStackTrace();}
+		
+	}
 	
 	public Player(int tempX, int tempY){
 		super(tempX,tempY);
 		x = tempX;
 		y = tempY;
-		r = 25;
 		facingAngle = 0;
 		health = 100;
 		turnSpeed = .25;
 		
 		inventory.addWeapon(new Katana(this));
-		inventory.addWeapon(new SniperRifle(this));
+		inventory.addWeapon(new BaseRangedWeapon(this, "res/Weapons/Ranged/SniperRifle.RangedWeapon"));
 		inventory.addWeapon(new BaseRangedWeapon(this, "res/Weapons/Ranged/SMG.RangedWeapon"));
-		//inventory.addWeapon(new SMG(this));
-		//inventory.addWeapon(new Shotgun(this));
 		inventory.addWeapon(new BaseRangedWeapon(this, "res/Weapons/Ranged/Shotgun.RangedWeapon"));
-		inventory.addWeapon(new Pistol(this));
+		inventory.addWeapon(new BaseRangedWeapon(this, "res/Weapons/Ranged/Pistol.RangedWeapon"));
 		
 		this.createBoundingBox();
 		
@@ -57,6 +99,7 @@ public class Player extends BasePlayer {
 		
 	}
 	
+	@Override
 	public void createBoundingBox(){
 		
 		addPoint(25,25);
@@ -94,8 +137,6 @@ public class Player extends BasePlayer {
 	public void renderHUD(){
 		
 		super.renderHUD();
-		
-		b.render();
 		
 		GL11.glLoadIdentity();
 		GL11.glOrtho(0, GameSettings.getScreenX(), 0, GameSettings.getScreenY(), -1, 1);
@@ -202,8 +243,6 @@ public class Player extends BasePlayer {
 	
 	@Override
 	public void mouseInput(ArrayList<Integer> a){
-		
-		b.mouseInput(a);
 		
 		int mouse_x = Mouse.getX();
 		int mouse_y = Mouse.getY();

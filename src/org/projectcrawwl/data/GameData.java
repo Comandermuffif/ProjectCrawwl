@@ -83,6 +83,14 @@ public class GameData
 		}catch(SlickException e){e.printStackTrace();}
 	}
 	
+	public static void loadPlayer(){
+		if(player != null){
+			removePlayers.add(player);
+		}
+		player = new Player("res/Saves/save1/Steve.Player");
+		addPlayers.add(player);
+	}
+	
 	public static UnicodeFont getFont(){
 		return font;
 	}
@@ -121,12 +129,19 @@ public class GameData
 		return temp;
 	}
 	public static void setPlayer(Player tempPlayer){
+		if(player != null){
+			removePlayers.add(player);
+		}
 		player = tempPlayer;
 		addPlayers.add(player);
 	}
 	
 	public static void addPlayer(){
-
+		
+		if(player != null){
+			removePlayers.add(player);
+		}
+		
 		WorldTile t = World.getTiles().get((int) Math.floor(Math.random()*World.getTiles().size()));
 		
 		int tempX = (int) ((Math.random() + t.getX()) * t.getWidth());

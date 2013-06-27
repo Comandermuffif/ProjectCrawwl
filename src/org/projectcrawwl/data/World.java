@@ -160,6 +160,7 @@ public class World{
 		allHulls.addAll(hulls);
 		
 		GameData.addPlayer();
+		//GameData.loadPlayer();
 		GameData.update(0);
 		
 	}

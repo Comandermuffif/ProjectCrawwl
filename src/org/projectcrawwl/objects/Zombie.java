@@ -17,7 +17,7 @@ public class Zombie extends BasePlayer {
 	private int move = 0;
 	
 	public Zombie(int tempX, int tempY){
-		super(tempX,tempY, 0 , 100, 25);
+		super(tempX,tempY, 0 , 100);
 		moveAngle = (float) (Math.random()*360);
 		speed = .03;
 		

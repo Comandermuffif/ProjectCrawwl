@@ -1,9 +1,10 @@
-package org.projectcrawwl;
+package org.projectcrawwl.states;
 
 import java.util.ArrayList;
 
 import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
+import org.projectcrawwl.Main;
 import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.data.GameSettings;
 import org.projectcrawwl.data.StateController;
@@ -82,24 +83,20 @@ public class InventoryState implements GameState {
 
 	@Override
 	public void mouseInput(ArrayList<Integer> a) {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void keyboardInput(ArrayList<Integer> a) {
-		
 		for(Integer i : a){
 			if(i == Keyboard.KEY_I){
 				StateController.setGameState(Main.IN_GAME);
 			}
 		}
-		
 	}
 
 	@Override
 	public String getName() {
 		return "Inventory";
 	}
-
 }

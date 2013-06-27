@@ -39,32 +39,33 @@ public class WorldTile {
 			ConvexHull h = new ConvexHull();
 			
 			while((l = wordStream.readLine()) != null){
-				l = l.replaceAll("\\s", "");
-				
-				l = l.toLowerCase();
 				
 				String[] s = l.split("=");
 				
-				if(s[0].equals("width")){
+				for(String a : s){
+					a = a.trim();
+				}
+				
+				if(s[0].equalsIgnoreCase("width")){
 					width = Integer.parseInt(s[1]);
 				}
-				if(s[0].equals("height")){
+				if(s[0].equalsIgnoreCase("height")){
 					height = Integer.parseInt(s[1]);
 				}
-				if(s[0].equals("x")){
+				if(s[0].equalsIgnoreCase("x")){
 					x = Integer.parseInt(s[1]) * width;
 				}
-				if(s[0].equals("y")){
+				if(s[0].equalsIgnoreCase("y")){
 					y = Integer.parseInt(s[1]) * height;
 				}
 				
-				if(s[0].equals("hull")){
+				if(s[0].equalsIgnoreCase("hull")){
 					
 					hulls.add(h);
 					h = new ConvexHull(x,y);
 				}
 				
-				if(s[0].equals("p")){
+				if(s[0].equalsIgnoreCase("p")){
 					
 					String ss = s[1].replace("{", "");
 					ss = ss.replace("}", "");
@@ -73,7 +74,7 @@ public class WorldTile {
 					h.addPoint(Integer.parseInt(temp[0]), Integer.parseInt(temp[1]));
 				}
 				
-				if(s[0].equals("sides")){
+				if(s[0].equalsIgnoreCase("sides")){
 					String ss = s[1].replace("{", "");
 					ss = ss.replace("}", "");
 					String[] temp = ss.split(",");

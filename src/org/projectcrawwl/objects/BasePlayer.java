@@ -18,13 +18,12 @@ public abstract class BasePlayer extends GameObject{
 	
 	Boolean state = false;
 	
-	public BasePlayer(float tempX, float tempY, float tempA, float tempH, float tempR){
+	public BasePlayer(float tempX, float tempY, float tempA, float tempH){
 		super();
 		x = tempX;
 		y = tempY;
 		facingAngle = tempA;
 		health = tempH;
-		r = tempR;
 	}
 	public BasePlayer(float tempX, float tempY){
 		super(tempX, tempY);
@@ -32,7 +31,6 @@ public abstract class BasePlayer extends GameObject{
 		y = tempY;
 		facingAngle = 0;
 		health = 100;
-		r = 10;
 	}
 	public BasePlayer(){
 		super();
@@ -40,7 +38,6 @@ public abstract class BasePlayer extends GameObject{
 		y = 0;
 		facingAngle = 0;
 		health = 100;
-		r = 10;
 	}
 	
 	public void createBoundingBox(){
@@ -49,7 +46,7 @@ public abstract class BasePlayer extends GameObject{
 		
         for (float angle=0; angle<=Math.PI*2; angle+=((Math.PI*2)/16) )
         {
-        	addPoint((int)((r)*(float)Math.cos(angle)), (int)((r)*(float)Math.sin(angle)));
+        	addPoint((int)((25)*(float)Math.cos(angle)), (int)((25)*(float)Math.sin(angle)));
         }
         updateLines();
 	}

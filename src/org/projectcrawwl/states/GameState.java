@@ -1,4 +1,4 @@
-package org.projectcrawwl;
+package org.projectcrawwl.states;
 
 import java.util.ArrayList;
 

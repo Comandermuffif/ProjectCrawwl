@@ -12,7 +12,6 @@ public class Friendly extends BasePlayer {
 		super(tempX,tempY);
 		x = tempX;
 		y = tempY;
-		r = 25;
 		facingAngle = 0;
 		health = 100;
 		inventory.addWeapon(new Shotgun(this));
@@ -24,7 +23,6 @@ public class Friendly extends BasePlayer {
 		super();
 		x = 0;
 		y = 0;
-		r = 25;
 		facingAngle = 0;
 		health = 100;
 		inventory.addWeapon(new Shotgun(this));
