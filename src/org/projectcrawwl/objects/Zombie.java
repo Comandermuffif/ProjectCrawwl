@@ -128,7 +128,13 @@ public class Zombie extends BasePlayer {
 					}
 				}
 			}
+			
+			speedMult = 1;
+			
 		}else{
+			
+			speedMult = 2;
+			
 			moveAngle = (float) (Math.toDegrees(Math.atan2(target.getY() - y, target.getX() - x)));
 			
 			if(target.health <= 0){

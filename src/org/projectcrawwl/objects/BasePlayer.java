@@ -16,6 +16,8 @@ public abstract class BasePlayer extends GameObject{
 	float sightRange =  500;//data.getGridX()  * 10;
 	float sightAngle = 90; //Total view cone
 	
+	public int level = 0;
+	
 	Boolean state = false;
 	
 	public BasePlayer(float tempX, float tempY, float tempA, float tempH){
@@ -58,7 +60,11 @@ public abstract class BasePlayer extends GameObject{
 	public float getHealth(){
 		return health;
 	}
-
+	
+	public int getLevel(){
+		return level;
+	}
+	
 	public void render(){
 		if(!isReady){return;}
 		super.render();

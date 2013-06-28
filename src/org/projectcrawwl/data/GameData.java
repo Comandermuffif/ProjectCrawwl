@@ -85,9 +85,9 @@ public class GameData
 	
 	public static void loadPlayer(){
 		if(player != null){
-			removePlayers.add(player);
+			System.err.println("Player loaded when player existed");
 		}
-		player = new Player("res/Saves/save1/Steve.Player");
+		player = new Player("res/Saves/save1.Player");
 		addPlayers.add(player);
 	}
 	
@@ -130,7 +130,7 @@ public class GameData
 	}
 	public static void setPlayer(Player tempPlayer){
 		if(player != null){
-			removePlayers.add(player);
+			System.err.println("Player loaded when player existed");
 		}
 		player = tempPlayer;
 		addPlayers.add(player);
@@ -139,7 +139,7 @@ public class GameData
 	public static void addPlayer(){
 		
 		if(player != null){
-			removePlayers.add(player);
+			System.err.println("Player loaded when player existed");
 		}
 		
 		WorldTile t = World.getTiles().get((int) Math.floor(Math.random()*World.getTiles().size()));
@@ -328,7 +328,6 @@ public class GameData
 	}
 	
 	public static void render(){
-		
 
 		World.renderBackground();
 		
@@ -341,6 +340,7 @@ public class GameData
 		for(GameObject a : allObjects){
 			a.render();
 		}
+		
 		//synchronized(playerLock){
 			if(player != null && StateController.getGameState() == Main.IN_GAME){
 				player.renderHUD();

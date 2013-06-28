@@ -1,6 +1,7 @@
 package org.projectcrawwl.menu;
 
 import java.awt.Color;
+import java.io.File;
 import java.util.ArrayList;
 
 import org.lwjgl.input.Mouse;
@@ -12,6 +13,7 @@ import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.data.GameSettings;
 import org.projectcrawwl.data.StateController;
 import org.projectcrawwl.data.World;
+import org.projectcrawwl.objects.Player;
 
 public class Button {
 	
@@ -24,6 +26,7 @@ public class Button {
 	private String name;
 	
 	private Color color = new Color(128,128,128);
+	private Color mouseOverColor = new Color(255,128,128);
 	
 	private int ID = 0;
 	
@@ -64,7 +67,13 @@ public class Button {
 		GL11.glLoadIdentity();
 		GL11.glOrtho(0, GameSettings.getScreenX(), 0, GameSettings.getScreenY(), -1, 1);
 		
-		GL11.glColor3d((double)(color.getRed())/255, (double)(color.getBlue())/255, (double)(color.getGreen())/255);
+		if(isMouseOver()){
+			GL11.glColor3d((double)(mouseOverColor.getRed())/255, (double)(mouseOverColor.getBlue())/255, (double)(mouseOverColor.getGreen())/255);
+		}else{
+			GL11.glColor3d((double)(color.getRed())/255, (double)(color.getBlue())/255, (double)(color.getGreen())/255);
+		}
+		
+		
 		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
 		GL11.glVertex2d(x, y);
 		GL11.glVertex2d(x + width, y);
@@ -85,6 +94,20 @@ public class Button {
 		GL11.glOrtho(0, GameSettings.getScreenX(), GameSettings.getScreenY(), 0, -1, 1);
 		GameData.getFont().drawString(x + width/2 - GameData.getFont().getWidth(name)/2, GameSettings.getScreenY() - (y + height/2 + GameData.getFont().getHeight(name)/2), name);
 		
+		if(ID >= 11 && ID <= 14){
+			if(new File("res/Saves/save" + Integer.toString(ID - 10) + ".Player").exists()){
+				
+				Player p = new Player("res/Saves/save" + Integer.toString(ID - 10) + ".Player");
+				
+				
+				GameData.getFont().drawString(x + width/2 - GameData.getFont().getWidth(name)/2,
+						GameSettings.getScreenY() - (y + height/2 + GameData.getFont().getHeight(name)/2 - 10),
+						"Level: " + p.getLevel());
+			}else{
+				GameData.getFont().drawString(x + width/2 - GameData.getFont().getWidth(name)/2, GameSettings.getScreenY() - (y + height/2 + GameData.getFont().getHeight(name)/2 - 10), "Empty");
+			}
+		}
+		
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		
 		
@@ -93,6 +116,13 @@ public class Button {
 		GL11.glLoadIdentity();
 		GL11.glOrtho(-GameData.zoom, GameSettings.getScreenX()  + GameData.zoom, -GameData.zoom*(ratio), GameSettings.getScreenY() + GameData.zoom*(ratio), -1, 1);
 		
+	}
+	
+	private boolean isMouseOver(){
+		if(Mouse.getX() >= x && Mouse.getX() <= x + width && Mouse.getY() >= y && Mouse.getY() <= y + height){
+			return true;
+		}
+		return false;
 	}
 	
 	private void onPress(){
@@ -108,6 +138,9 @@ public class Button {
 		}
 		
 		if(ID == 1){
+			GameData.clearData();
+			World.generateWorld();
+			GameData.addPlayer();
 			StateController.setGameState(Main.IN_GAME);
 		}
 		if(ID == 2){
@@ -120,7 +153,17 @@ public class Button {
 			StateController.setGameState(Main.LOAD_MENU);
 		}
 		
-		
-		
+		if(ID >= 11 && ID <= 14){
+			if(new File("res/Saves/save" + Integer.toString(ID - 10) + ".Player").exists()){
+				
+				Player p = new Player("res/Saves/save" + Integer.toString(ID - 10) + ".Player");
+				
+				GameData.clearData();
+				World.generateWorld();
+				GameData.setPlayer(p);
+				StateController.setGameState(Main.IN_GAME);
+				
+			}
+		}
 	}
 }

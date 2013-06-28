@@ -159,8 +159,6 @@ public class World{
 		allHulls.addAll(tileHulls);
 		allHulls.addAll(hulls);
 		
-		GameData.addPlayer();
-		//GameData.loadPlayer();
 		GameData.update(0);
 		
 	}

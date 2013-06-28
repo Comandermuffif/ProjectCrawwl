@@ -25,6 +25,8 @@ public class GameObject implements Comparable<GameObject>{
 	public float renderX;
 	public float renderY;
 	
+	public double speedMult = 1;
+	
 	public double turnSpeed = 0.1;
 	
 	public Polygon boundingBox = new Polygon();
@@ -384,8 +386,8 @@ public class GameObject implements Comparable<GameObject>{
 		}
 		
 		if(speed != 0){
-			float tempx = (float) (x + Math.cos(Math.toRadians(moveAngle)) * delta * speed);
-			float tempy = (float) (y + Math.sin(Math.toRadians(moveAngle)) * delta * speed);
+			float tempx = (float) (x + Math.cos(Math.toRadians(moveAngle)) * delta * speed * speedMult);
+			float tempy = (float) (y + Math.sin(Math.toRadians(moveAngle)) * delta * speed * speedMult);
 			
 			boolean flag = true;
 			

@@ -3,36 +3,20 @@ package org.projectcrawwl.states;
 import java.util.ArrayList;
 
 import org.lwjgl.input.Keyboard;
-import org.lwjgl.input.Mouse;
 import org.projectcrawwl.Main;
 import org.projectcrawwl.data.GameData;
-import org.projectcrawwl.data.GameSettings;
 import org.projectcrawwl.data.StateController;
 
 public class InGameState implements GameState{
-
-	private int mouseX = -1;
-	private int mouseY = -1;
 	
 	@Override
 	public void onEnter() {
-		
-		if(mouseX == -1){
-			mouseX = (int) (GameSettings.getScreenX()*(.5));
-		}
-		
-		if(mouseY == -1){
-			mouseY = (int) (GameSettings.getScreenY()*(.5));
-		}
-		
-		Mouse.setCursorPosition(mouseX, mouseY);
 		
 	}
 
 	@Override
 	public void onExit() {
-		mouseX = Mouse.getX();
-		mouseY = Mouse.getY();
+		
 	}
 
 	@Override

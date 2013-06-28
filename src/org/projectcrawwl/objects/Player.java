@@ -23,8 +23,6 @@ public class Player extends BasePlayer {
 	
 	private Texture texture;
 	
-	private double speedMult = 1;
-	
 	boolean anti = false;
 	
 	private ConvexHull hull = null;
@@ -65,6 +63,9 @@ public class Player extends BasePlayer {
 				}
 				if(s[0].equalsIgnoreCase("turnSpeed")){
 					turnSpeed = Double.parseDouble(s[1]);
+				}
+				if(s[0].equalsIgnoreCase("level")){
+					level = Integer.parseInt(s[1]);
 				}
 				
 			}
@@ -153,7 +154,7 @@ public class Player extends BasePlayer {
 		GL11.glLoadIdentity();
 		GL11.glOrtho(0, GameSettings.getScreenX(), GameSettings.getScreenY(), 0, -1, 1);
 		
-		
+		GameData.getFont().drawString(20, GameSettings.getScreenY() - 100, "Level: " + getLevel());
 		GameData.getFont().drawString(20, GameSettings.getScreenY() - 80, "Weapon: " + inventory.getWeapon().getName());
 		if(!(inventory.getWeapon() instanceof BaseMeleeWeapon)){
 			if(inventory.getWeapon().isReloading()){
@@ -197,10 +198,10 @@ public class Player extends BasePlayer {
 		float temp = 0;
 		moveAngle = 0;
 		
-		if(Keyboard.isKeyDown(Keyboard.KEY_D)){speed = .5 * speedMult; moveAngle += 0; temp += 1;}
-		if(Keyboard.isKeyDown(Keyboard.KEY_A)){speed = .5 * speedMult; moveAngle += 180; temp+=1;}
-		if(Keyboard.isKeyDown(Keyboard.KEY_S)){speed = .5 * speedMult; moveAngle += 270;temp+=1;}
-		if(Keyboard.isKeyDown(Keyboard.KEY_W)){speed = .5 * speedMult; moveAngle += 90;temp+=1;}
+		if(Keyboard.isKeyDown(Keyboard.KEY_D)){speed = .5; moveAngle += 0; temp += 1;}
+		if(Keyboard.isKeyDown(Keyboard.KEY_A)){speed = .5; moveAngle += 180; temp+=1;}
+		if(Keyboard.isKeyDown(Keyboard.KEY_S)){speed = .5; moveAngle += 270;temp+=1;}
+		if(Keyboard.isKeyDown(Keyboard.KEY_W)){speed = .5; moveAngle += 90;temp+=1;}
 		
 		speedMult = 1;
 		

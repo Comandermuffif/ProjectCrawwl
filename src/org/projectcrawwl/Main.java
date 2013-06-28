@@ -79,6 +79,7 @@ public class Main {
     	
     	GameData.renderInit();
     	World.generateWorld();
+    	GameData.addPlayer();
 		
 		StateController.setGameState(MAIN_MENU);
 		

@@ -12,7 +12,7 @@ public class StateController {
 			currentState.onExit();
 		}
 		currentState = a;
-		System.out.println("Entering " + currentState.getName());
+		System.out.println("Entering " + a.getName());
 		currentState.onEnter();
 	}
 	
