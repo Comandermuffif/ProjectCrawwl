@@ -1,6 +1,10 @@
 package org.projectcrawwl.data;
 
 import java.awt.Point;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
@@ -68,9 +72,28 @@ public class PlayerXMLHandler extends DefaultHandler{
 			e.printStackTrace();
 		}
 		
-		
-		
 		return null;
 	}
-
+	
+	public static void savePlayer(Player p){
+		try{
+			File file = new File("res/Saves/save" + GameData.getCurrentSave() + ".xml");
+			
+			if(!file.exists()){
+				file.createNewFile();
+			}
+			
+			FileWriter fw = new FileWriter(file.getAbsoluteFile());
+			BufferedWriter bw = new BufferedWriter(fw);
+			
+			bw.write("");
+			
+			bw.close();
+			
+			
+		}catch(IOException e){
+			e.printStackTrace();
+		}
+	}
+	
 }
