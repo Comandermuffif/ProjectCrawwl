@@ -26,7 +26,6 @@ public class InventoryState implements GameState {
 	@Override
 	public void main(int delta) {
 		
-		GameData.update(delta);
 		GameData.render();
 		
 		GL11.glLoadIdentity();

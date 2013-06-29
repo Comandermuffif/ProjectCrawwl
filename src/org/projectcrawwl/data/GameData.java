@@ -22,25 +22,21 @@ public class GameData
 	private static ArrayList<Bullet> allProjectiles = new ArrayList<Bullet>();
 	private static ArrayList<Bullet> removeProjectiles = new ArrayList<Bullet>();
 	private static ArrayList<Bullet> addProjectiles = new ArrayList<Bullet>();
-	private static Object projectileLock = new Object();
 
 	private static ArrayList<BasePlayer> allPlayers = new ArrayList<BasePlayer>();
 	private static ArrayList<BasePlayer> addPlayers = new ArrayList<BasePlayer>();
 	private static ArrayList<BasePlayer> removePlayers = new ArrayList<BasePlayer>();
 	private static ArrayList<BasePlayer> killPlayers = new ArrayList<BasePlayer>();
-	private static Object playerLock = new Object();
 	
 	private static ArrayList<GameObject> allParticles = new ArrayList<GameObject>();
 	private static ArrayList<GameObject> addParticles = new ArrayList<GameObject>();
 	private static ArrayList<GameObject> removeParticles = new ArrayList<GameObject>();
-	private static Object particleLock = new Object();
 	
 	private static ArrayList<GameObject> allBloodStains = new ArrayList<GameObject>();
 	private static ArrayList<GameObject> addBloodStains = new ArrayList<GameObject>();
 	private static ArrayList<GameObject> removeBloodStains = new ArrayList<GameObject>();
-	private static Object bloodStainLock = new Object();
 	
-	private static BasePlayer player;
+	private static BasePlayer player = null;
 	
 	public static float zoom = 0;
 	
@@ -87,7 +83,10 @@ public class GameData
 		if(player != null){
 			System.err.println("Player loaded when player existed");
 		}
-		player = new Player("res/Saves/save1.Player");
+		//player = new Player("res/Saves/save1.Player");
+		
+		player = PlayerXMLHandler.createPlayer("res/Saves/save1.xml");
+		System.out.println(player);
 		addPlayers.add(player);
 	}
 	
@@ -139,7 +138,7 @@ public class GameData
 	public static void addPlayer(){
 		
 		if(player != null){
-			System.err.println("Player loaded when player existed");
+			System.err.println("Player loaded when player existed " + player);
 		}
 		
 		WorldTile t = World.getTiles().get((int) Math.floor(Math.random()*World.getTiles().size()));
@@ -184,6 +183,7 @@ public class GameData
 			addPlayers.add(player);
 			
 		}else{
+			player = null;
 			addPlayer();
 		}
 	}

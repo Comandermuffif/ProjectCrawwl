@@ -6,11 +6,16 @@ import org.lwjgl.input.Keyboard;
 import org.lwjgl.input.Mouse;
 
 public class InputController{
+	
+	private static ArrayList<Integer> mouse = new ArrayList<Integer>();
+	
+	private static ArrayList<Integer> keyboard = new ArrayList<Integer>();
+	
 	public static void update(int delta){
 		
-		ArrayList<Integer> mouse = new ArrayList<Integer>();
+		mouse.clear();
+		keyboard.clear();
 		
-		ArrayList<Integer> keyboard = new ArrayList<Integer>();
 		
 		while(Mouse.next()){
 			if(Mouse.getEventButtonState()){

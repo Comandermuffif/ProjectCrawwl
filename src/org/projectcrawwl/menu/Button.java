@@ -11,6 +11,7 @@ import org.lwjgl.opengl.GL11;
 import org.projectcrawwl.Main;
 import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.data.GameSettings;
+import org.projectcrawwl.data.PlayerXMLHandler;
 import org.projectcrawwl.data.StateController;
 import org.projectcrawwl.data.World;
 import org.projectcrawwl.objects.Player;
@@ -152,11 +153,16 @@ public class Button {
 		if(ID == 4){
 			StateController.setGameState(Main.LOAD_MENU);
 		}
+		if(ID == 5){
+			StateController.setGameState(Main.PAUSE_MENU);
+		}
 		
 		if(ID >= 11 && ID <= 14){
 			if(new File("res/Saves/save" + Integer.toString(ID - 10) + ".Player").exists()){
 				
-				Player p = new Player("res/Saves/save" + Integer.toString(ID - 10) + ".Player");
+				//Player p = new Player("res/Saves/save" + Integer.toString(ID - 10) + ".Player");
+				
+				Player p = PlayerXMLHandler.createPlayer("res/Saves/save1.xml");
 				
 				GameData.clearData();
 				World.generateWorld();

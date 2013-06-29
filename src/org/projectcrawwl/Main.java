@@ -15,14 +15,18 @@ import org.projectcrawwl.states.InGameState;
 import org.projectcrawwl.states.InventoryState;
 import org.projectcrawwl.states.LoadMenuState;
 import org.projectcrawwl.states.MainMenuState;
+import org.projectcrawwl.states.PauseState;
 
 public class Main {
 
+	
 	//Make an enum of all states
 	public static GameState IN_GAME = new InGameState();
 	public static GameState MAIN_MENU = new MainMenuState();
 	public static GameState INVENTORY = new InventoryState();
 	public static GameState LOAD_MENU = new LoadMenuState();
+	public static GameState PAUSE_MENU = new PauseState();
+	
 	
 	static long lastFrame;
 	/** frames per second */
@@ -78,6 +82,7 @@ public class Main {
     	getDelta();
     	
     	GameData.renderInit();
+    	GameData.clearData();
     	World.generateWorld();
     	GameData.addPlayer();
 		

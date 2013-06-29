@@ -39,7 +39,7 @@ public class InGameState implements GameState{
 		
 		for(Integer i : a){
 			if(i == Keyboard.KEY_ESCAPE){
-				StateController.setGameState(Main.MAIN_MENU);
+				StateController.setGameState(Main.PAUSE_MENU);
 			}
 		}
 		

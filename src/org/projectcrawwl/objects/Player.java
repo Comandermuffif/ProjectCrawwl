@@ -100,6 +100,10 @@ public class Player extends BasePlayer {
 		
 	}
 	
+	public Player() {
+		super();
+	}
+
 	@Override
 	public void createBoundingBox(){
 		
