@@ -38,9 +38,19 @@ public class GameData
 	
 	private static BasePlayer player = null;
 	
+	private static int currentSave;
+	
 	public static float zoom = 0;
 	
 	private static UnicodeFont font;
+	
+	public static void setCurrentSave(int s){
+		currentSave = s;
+	}
+	
+	public static int getCurrentSave(){
+		return currentSave;
+	}
 	
 	public static void clearData(){
 		allObjects.clear();
