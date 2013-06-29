@@ -1,6 +1,7 @@
 package org.projectcrawwl.data;
 
 import java.awt.Point;
+import java.awt.geom.Line2D;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -9,6 +10,7 @@ import java.io.IOException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
+import org.projectcrawwl.objects.BasePlayer;
 import org.projectcrawwl.objects.Player;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
@@ -36,9 +38,9 @@ public class PlayerXMLHandler extends DefaultHandler{
 	@Override
 	public void endElement(String uri, String localName, String qName) throws SAXException{
 		if(qName.equalsIgnoreCase("x")){
-			p.x = Integer.parseInt(temp);
+			p.x = Float.parseFloat(temp);
 		}else if(qName.equalsIgnoreCase("y")){
-			p.y = Integer.parseInt(temp);
+			p.y = Float.parseFloat(temp);
 		}else if(qName.equalsIgnoreCase("health")){
 			p.health = Integer.parseInt(temp);
 		}else if(qName.equalsIgnoreCase("level")){
@@ -79,7 +81,10 @@ public class PlayerXMLHandler extends DefaultHandler{
 		return null;
 	}
 	
-	public static void savePlayer(Player p){
+	public static void savePlayer(BasePlayer p){
+		
+		System.out.println("Begin Saving");
+		
 		try{
 			File file = new File("res/Saves/save" + GameData.getCurrentSave() + ".xml");
 			
@@ -90,10 +95,32 @@ public class PlayerXMLHandler extends DefaultHandler{
 			FileWriter fw = new FileWriter(file.getAbsoluteFile());
 			BufferedWriter bw = new BufferedWriter(fw);
 			
-			bw.write("");
+			bw.write("<Player>\n");
+				bw.write("<Information>");
+					bw.write("<x>" + p.x + "</x>");
+					bw.write("<y>" + p.y + "</y>");
+					bw.write("<level>" + p.level + "</level>");
+					bw.write("<health>" + p.health + "</health>");
+					bw.write("<turnSpeed>" + p.turnSpeed + "</turnSpeed>");
+					bw.write("<boundingBox>");
+						for(Line2D.Float bound : p.boundingLines){
+							bw.write("<point>");
+								bw.write("<pX>" + bound.x1 + "<pX>");
+								bw.write("<pY>" + bound.y1 + "<pY>");
+							bw.write("</point>");
+						}
+					bw.write("</boundingBox>");
+				bw.write("</Information>");
+				
+				bw.write("<Inventory>");
+				bw.write("</Inventory>");
+				
+			bw.write("</Player>");
+			
 			
 			bw.close();
 			
+			System.out.println("Done Saving");
 			
 		}catch(IOException e){
 			e.printStackTrace();

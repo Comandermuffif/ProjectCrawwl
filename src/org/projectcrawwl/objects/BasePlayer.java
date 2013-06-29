@@ -8,19 +8,15 @@ import org.projectcrawwl.data.Inventory;
 
 public abstract class BasePlayer extends GameObject{
 	
-	public float health;
+	public int health;
 	Inventory inventory = new Inventory(this);
 	//public double speed = 0; //0 units per millisecond or 0 units per second
 	public int kills = 0;
 	BasePlayer lastHit = this;
-	float sightRange =  500;//data.getGridX()  * 10;
-	float sightAngle = 90; //Total view cone
 	
 	public int level = 0;
 	
-	Boolean state = false;
-	
-	public BasePlayer(float tempX, float tempY, float tempA, float tempH){
+	public BasePlayer(float tempX, float tempY, float tempA, int tempH){
 		super();
 		x = tempX;
 		y = tempY;

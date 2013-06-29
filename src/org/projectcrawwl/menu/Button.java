@@ -129,7 +129,8 @@ public class Button {
 	private void onPress(){
 		
 		if(ID == -1){
-			 AL.destroy();
+			PlayerXMLHandler.savePlayer(GameData.getPlayer());
+			AL.destroy();
 	    	Display.destroy();
 	        System.exit(0);
 		}

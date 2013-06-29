@@ -38,7 +38,7 @@ public class GameData
 	
 	private static BasePlayer player = null;
 	
-	private static int currentSave;
+	private static int currentSave = 2;
 	
 	public static float zoom = 0;
 	

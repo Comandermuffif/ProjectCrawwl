@@ -22,6 +22,8 @@ public class PauseState implements GameState {
 	@Override
 	public void onEnter() {
 		if(buttons.size() == 0){
+			buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY()/2 - 170,200,100, "Main Menu", 2));
+			
 			buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY()/2 - 280,200,100, "Back", 3));
 		}
 	}
