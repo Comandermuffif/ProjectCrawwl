@@ -1,31 +1,19 @@
 package org.projectcrawwl.data;
 
-public class GameSettings 
-{	
+public class GameSettings{	
+	private static int screen_x;
+	private static int screen_y;
 	
-	private int screen_x;
-	private int screen_y;
-	
-	private static GameSettings instance = null;
-
-	public static GameSettings getInstance()
-	{
-		if(instance == null)
-			instance = new GameSettings();
-
-		return instance;
-	}
-	
-	public int getScreenX(){
+	public static int getScreenX(){
 		return screen_x;
 	}
-	public int getScreenY(){
+	public static int getScreenY(){
 		return screen_y;
 	}
-	public void setScreenX(int tempX){
+	public static void setScreenX(int tempX){
 		screen_x = tempX;
 	}
-	public void setScreenY(int tempY){
+	public static void setScreenY(int tempY){
 		screen_y = tempY;
 	}
 }

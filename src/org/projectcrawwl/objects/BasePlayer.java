@@ -1,18 +1,12 @@
 package org.projectcrawwl.objects;
 
-import java.awt.Point;
-import java.awt.Polygon;
-import java.awt.geom.Line2D;
-import java.awt.geom.PathIterator;
 import java.util.ArrayList;
 
 import org.lwjgl.opengl.GL11;
-import org.projectcrawwl.data.ConvexHull;
 import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.data.Inventory;
-import org.projectcrawwl.data.World;
 
-public class BasePlayer extends GameObject{
+public abstract class BasePlayer extends GameObject{
 	
 	public float health;
 	Inventory inventory = new Inventory(this);
@@ -22,19 +16,16 @@ public class BasePlayer extends GameObject{
 	float sightRange =  500;//data.getGridX()  * 10;
 	float sightAngle = 90; //Total view cone
 	
+	public int level = 0;
+	
 	Boolean state = false;
-	protected Polygon viewCone = new Polygon();
 	
-	public Polygon boundingBox = new Polygon();
-	public ArrayList<Line2D.Float> boundingLines = new ArrayList<Line2D.Float>();
-	
-	public BasePlayer(float tempX, float tempY, float tempA, float tempH, float tempR){
+	public BasePlayer(float tempX, float tempY, float tempA, float tempH){
 		super();
 		x = tempX;
 		y = tempY;
 		facingAngle = tempA;
 		health = tempH;
-		r = tempR;
 	}
 	public BasePlayer(float tempX, float tempY){
 		super(tempX, tempY);
@@ -42,7 +33,6 @@ public class BasePlayer extends GameObject{
 		y = tempY;
 		facingAngle = 0;
 		health = 100;
-		r = 10;
 	}
 	public BasePlayer(){
 		super();
@@ -50,7 +40,6 @@ public class BasePlayer extends GameObject{
 		y = 0;
 		facingAngle = 0;
 		health = 100;
-		r = 10;
 	}
 	
 	public void createBoundingBox(){
@@ -59,95 +48,39 @@ public class BasePlayer extends GameObject{
 		
         for (float angle=0; angle<=Math.PI*2; angle+=((Math.PI*2)/16) )
         {
-        	boundingBox.addPoint((int)((r)*(float)Math.cos(angle)), (int)((r)*(float)Math.sin(angle)));  
+        	addPoint((int)((25)*(float)Math.cos(angle)), (int)((25)*(float)Math.sin(angle)));
         }
-        
-        ArrayList<Line2D.Float> temp = new ArrayList<Line2D.Float>();
-		
-		float[] coord = new float[6];
-		float[] lastCoord = new float[2];
-		float[] firstCoord = new float[2];
-		PathIterator pi = boundingBox.getPathIterator(null);
-		
-		pi.currentSegment(coord);
-		
-		pi.currentSegment(firstCoord); //Getting the first coordinate pair
-        lastCoord[0] = firstCoord[0]; //Priming the previous coordinate pair
-        lastCoord[1] = firstCoord[1];
-		
-		while(!pi.isDone()){
-			final int type = pi.currentSegment(coord);
-            switch(type) {
-                case PathIterator.SEG_LINETO : {
-                	temp.add(new Line2D.Float(coord[0], coord[1], lastCoord[0], lastCoord[1]));
-                    lastCoord[0] = coord[0];
-                    lastCoord[1] = coord[1];
-                    break;
-                }
-                case PathIterator.SEG_CLOSE : {
-                    temp.add(new Line2D.Float(coord[0], coord[1], firstCoord[0], firstCoord[1]));   
-                    break;
-                }
-            }
-            pi.next();
-		}
-		
-		boundingLines = temp;
+        updateLines();
 	}
 	
-	public void damage(float damage, BasePlayer shooter){
+	public void damage(double damage, BasePlayer shooter){
 		health -= damage;
 		lastHit = shooter;
 	}
 	public float getHealth(){
 		return health;
 	}
-
-
+	
+	public int getLevel(){
+		return level;
+	}
+	
 	public void render(){
+		if(!isReady){return;}
 		super.render();
 		inventory.render();
 		
+		GL11.glEnable(GL11.GL_DEPTH_TEST);
+		GL11.glDepthFunc(GL11.GL_LESS);
 		
-//		GL11.glColor4d(0, 0, 1,.5);
-//		GL11.glLineWidth(1);
-//		GL11.glBegin(GL11.GL_LINES);
-//		GL11.glVertex2f(renderX, renderY);
-//		GL11.glVertex2d(renderX + sightRange * Math.cos(Math.toRadians(moveAngle)), renderY + sightRange * Math.sin(Math.toRadians(moveAngle)));
-//		GL11.glEnd();
-//		
-//		GL11.glColor4d(1.0, 0, 0,.5);
-//		GL11.glLineWidth(1);
-//		GL11.glBegin(GL11.GL_LINES);
-//		GL11.glVertex2f(renderX, renderY);
-//		GL11.glVertex2d(renderX + sightRange * Math.cos(Math.toRadians(facingAngle)), renderY + sightRange * Math.sin(Math.toRadians(facingAngle)));
-//		GL11.glEnd();
-		
-		
-		GL11.glColor4d(0, 1, 0, 1);
-		//GL11.glBegin(GL11.GL_TRIANGLE_FAN);
-		GL11.glBegin(GL11.GL_LINE_LOOP);
-		for(PathIterator pi = viewCone.getPathIterator(null); !pi.isDone(); pi.next()){
-			float[] coord = new float[6];
-			pi.currentSegment(coord);
-			if(pi.currentSegment(coord) != pi.SEG_CLOSE){
-				GL11.glVertex2d(coord[0] + data.getMapXOffset(), coord[1] + data.getMapYOffset());
-			}
-			pi.next();
-		}
-		GL11.glEnd();
-		
-		
-		GL11.glColor4d(.2,.3,.7,1);
+		GL11.glColor4d(1.0, 0.0, 0,.5);
 		GL11.glLineWidth(1);
-		GL11.glBegin(GL11.GL_LINE_LOOP);
-		for(Line2D.Float temp : boundingLines){
-			GL11.glVertex2f(temp.x1 + renderX, temp.y1 + renderY);
-			GL11.glVertex2f(temp.x2 + renderX, temp.y2 + renderY);
-		}
-		
-		
+		GL11.glBegin(GL11.GL_LINES);
+		GL11.glVertex3d(renderX, renderY, .5);
+		GL11.glVertex3d(renderX + 75 * Math.cos(Math.toRadians(facingAngle)), renderY + 75 * Math.sin(Math.toRadians(facingAngle)), .5);
 		GL11.glEnd();
+		
+		GL11.glDisable(GL11.GL_DEPTH_TEST);
 		
 	}
 	
@@ -159,50 +92,15 @@ public class BasePlayer extends GameObject{
 	public void update(int delta){
 		super.update(delta);
 		
-		
-		Polygon tempView = new Polygon();
-		
-		tempView.addPoint((int)x, (int)y);
-		World world = World.getInstance();
-		
-		
-		
-		for(float a = facingAngle - sightAngle/2; a < facingAngle + sightAngle/2; a += .25){
-			Line2D.Float line = new Line2D.Float(x, y,(float) (x + Math.cos(Math.toRadians(a))*sightRange), (float) (y + Math.sin(Math.toRadians(a))*sightRange));
-			
-			Point intersect = new Point((int)(x + Math.cos(Math.toRadians(a))*sightRange), (int)(y + Math.sin(Math.toRadians(a))*sightRange));
-			
-			double dist = intersect.distance(x,y);
-			
-			for(ConvexHull hull : world.getHulls()){
-				for(Line2D.Float edge : hull.getLines()){
-					if(line.intersectsLine(edge)){
-						Point temp = world.getLineLineIntersection(edge, line);
-						if(temp.distance(x, y) < dist){
-							intersect = temp;
-							dist = temp.distance(x, y);
-						}
-					}
-				}
-			}
-			
-			tempView.addPoint(intersect.x, intersect.y);
-		}
-		
-		//viewCone.reset();
-		viewCone = tempView;
-		
-		
 		inventory.update(delta);
 		//BOOP!
 		
 		if(health <= 0){
 			lastHit.newKill();
-			GameData data = GameData.getInstance();
 			if(this instanceof org.projectcrawwl.objects.Zombie){
-				data.addZombie();
+				GameData.addZombie();
 			}
-			data.removeObject(this);
+			GameData.killPlayer(this);
 		}
 	}
 	
@@ -210,4 +108,12 @@ public class BasePlayer extends GameObject{
 	public void newKill(){
 		kills += 1;
 	}
+	
+	public Inventory getInventory(){
+		return inventory;
+	}
+	
+	public void mouseInput(ArrayList<Integer> a){}
+	
+	public void keyboardInput(ArrayList<Integer> a){}
 }

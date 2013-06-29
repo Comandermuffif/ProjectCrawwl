@@ -2,34 +2,52 @@ package org.projectcrawwl;
 
 import org.lwjgl.LWJGLException;
 import org.lwjgl.Sys;
-import org.lwjgl.input.Keyboard;
+import org.lwjgl.openal.AL;
 import org.lwjgl.opengl.Display;
 import org.lwjgl.opengl.DisplayMode;
 import org.lwjgl.opengl.GL11;
 import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.data.GameSettings;
-import org.projectcrawwl.objects.BasePlayer;
-import org.projectcrawwl.objects.GameObject;
+import org.projectcrawwl.data.StateController;
+import org.projectcrawwl.data.World;
+import org.projectcrawwl.states.GameState;
+import org.projectcrawwl.states.InGameState;
+import org.projectcrawwl.states.InventoryState;
+import org.projectcrawwl.states.LoadMenuState;
+import org.projectcrawwl.states.MainMenuState;
+import org.projectcrawwl.states.PauseState;
 
 public class Main {
 
+	
 	//Make an enum of all states
-	public static int MAIN_STATE = 0;
+	public static GameState IN_GAME = new InGameState();
+	public static GameState MAIN_MENU = new MainMenuState();
+	public static GameState INVENTORY = new InventoryState();
+	public static GameState LOAD_MENU = new LoadMenuState();
+	public static GameState PAUSE_MENU = new PauseState();
 	
-	static GameSettings settings = GameSettings.getInstance();
-	static GameData data = GameData.getInstance();
 	
-	long lastFrame;
+	static long lastFrame;
 	/** frames per second */
-	int fps;
+	static int fps;
 	/** last fps time */
-	long lastFPS;
+	static long lastFPS;
 	
 
 	public void start() {
+		
+		//GameSettings.setScreenX(1280);
+		//GameSettings.setScreenY(720);
+		
+		GameSettings.setScreenX(800);
+		GameSettings.setScreenY(600);
+		
+		
         try {
         	
-		    Display.setDisplayMode(new DisplayMode(settings.getScreenX(),settings.getScreenY()));
+		    Display.setDisplayMode(new DisplayMode(GameSettings.getScreenX(),GameSettings.getScreenY()));
+		    Display.setFullscreen(true);
 		    Display.create();
 		    Display.setTitle("Project Crawwl");
         } catch (LWJGLException e) {
@@ -42,37 +60,34 @@ public class Main {
     	GL11.glLoadIdentity();
         GL11.glMatrixMode(GL11.GL_MODELVIEW);
         GL11.glLoadIdentity();
-        //GL11.glMatrixMode(GL11.GL_TEXTURE);
-        //GL11.glLoadIdentity();
-    	
+        
         GL11.glDisable(GL11.GL_CULL_FACE);
         
-    	GL11.glOrtho(0, settings.getScreenX(), 0, settings.getScreenY(), 1, -1);
-    	GL11.glMatrixMode(GL11.GL_MODELVIEW);
-     
-    	
+    	GL11.glOrtho(0, GameSettings.getScreenX(), 0, GameSettings.getScreenY(), 1, -1);
+  
     	GL11.glEnable(GL11.GL_BLEND);
-    	//GL11.glBlendFunc(GL11.GL_DST_ALPHA, GL11.GL_ONE);
-    	GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
+    	GL11.glEnable(GL11.GL_ALPHA);
+    	GL11.glEnable(GL11.GL_ALPHA_TEST);
+    	GL11.glEnable(GL11.GL_STENCIL_TEST);
+    	GL11.glEnable(GL11.GL_DEPTH_TEST);
+    	
+    	GL11.glAlphaFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
+    	GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         
+    	GL11.glDepthFunc(GL11.GL_LESS);
     	
-    	System.out.println("Entering Main State");
-		
-		data.setMapXOffset((settings.getScreenX() - data.getMapX())/2);
-		data.setMapYOffset((settings.getScreenY() - data.getMapY())/2);
-
-		data.addPlayer();
-    	getDelta();
+    	
     	lastFPS = getTime();
-    	//Render render = new Render();
-    	System.out.println("Update thread started");
-    	//Update update = new Update();
     	
-    	//render.start(); //Render must be main thread
-    	//update.start();
+    	getDelta();
     	
-    	
-    	
+    	GameData.renderInit();
+    	GameData.clearData();
+    	World.generateWorld();
+    	GameData.addPlayer();
+		
+		StateController.setGameState(MAIN_MENU);
+		
         while (!Display.isCloseRequested()) {
         	//Display.sync(60);
         	GL11.glDepthMask(true);
@@ -83,32 +98,22 @@ public class Main {
     	    			 GL11.GL_DEPTH_BUFFER_BIT |
     	    			 GL11.GL_STENCIL_BUFFER_BIT);	
         	
-        	
-        	update();
-        	render();
+    	    StateController.update(getDelta());
+    	    
         	updateFPS();
     	    Display.update();
-    	    
-    	    if(Keyboard.isKeyDown(Keyboard.KEY_ESCAPE)){
-    	    	break;
-    	    }
-    	    
     	}
-     
         
-        //render.cancel();
-        //update.cancel();
+        AL.destroy();
     	Display.destroy();
         System.exit(0);
-        
 	}
 	
-	
-	public long getTime() {
+	public static  long getTime() {
 	    return (Sys.getTime() * 1000) / Sys.getTimerResolution();
 	}
 	
-	public int getDelta() {
+	public static int getDelta() {
 	    long time = getTime();
 	    int delta = (int) (time - lastFrame);
 	    lastFrame = time;
@@ -116,36 +121,16 @@ public class Main {
 	    return delta;
 	}
 	
-	public void updateFPS() {
+	public static void updateFPS() {
 		if (getTime() - lastFPS > 1000) {
-			Display.setTitle("FPS: " + fps + " UPS: " + data.getUPS());
+			Display.setTitle("FPS: " + fps);
 			fps = 0;
 			lastFPS += 1000;
 		}
 		fps++;
 	}
 	
-	public void update(){
-		int delta = getDelta();
-		
-		data.update(delta);
-		
-		for(BasePlayer a : data.getAllPlayers()){
-			a.update(delta);
-		}
-		for(GameObject b : data.getProjectiles()){
-			b.update(delta);
-		}
-	}
-	
-	public void render(){
-		data.render();
-	}
-	
 	public static void main(String[] argv) {
-		settings.setScreenX(1280);
-		settings.setScreenY(720);
-		
         Main main = new Main();
         main.start();
     }

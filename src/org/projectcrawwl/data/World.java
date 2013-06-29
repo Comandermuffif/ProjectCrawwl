@@ -2,150 +2,199 @@ package org.projectcrawwl.data;
 
 import java.awt.Point;
 import java.awt.geom.Line2D;
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 
-import org.lwjgl.opengl.GL11;
+import org.projectcrawwl.objects.ConvexHull;
 
-public class World {
+public class World{
 	
-	private float mapX = 2000;
-	private float mapY = 1000;
+	private static float mapXOffset = 0;
+	private static float mapYOffset = 0;
 	
-	private float gridX = 10;//10
-	private float gridY = 10;//10
+	private static ArrayList<ConvexHull> hulls = new ArrayList<ConvexHull>();
+	private static ArrayList<ConvexHull> tileHulls = new ArrayList<ConvexHull>();
+	private static ArrayList<ConvexHull> allHulls = new ArrayList<ConvexHull>();
 	
-	private float mapXOffset;// = (1280-600)/2;
-	private float mapYOffset;// = (720-600)/2;
 	
-	static GameSettings settings = GameSettings.getInstance();
+	private static ArrayList<WorldTile> tiles = new ArrayList<WorldTile>();
 	
-	private ArrayList<ConvexHull> hulls = new ArrayList<ConvexHull>();
+	private static HashSet<WorldTile> tileMap = new HashSet<WorldTile>();
 	
-	public World(){
+	private static int tileLimit = 50;
+	
+	public static void generateWorld(){
 		
-		{
-			ConvexHull a = new ConvexHull();
-			a.addPoint(0,mapY);
-			a.addPoint(5,mapY);
-			a.addPoint(5,0);
-			a.addPoint(0,0);
-			
-			hulls.add(a);
-		}
+		GameData.clearData();
 		
-		{
-			ConvexHull a = new ConvexHull();
-			a.addPoint(0,0);
-			a.addPoint(0,5);
-			a.addPoint(mapX,5);
-			a.addPoint(mapX,0);
-			
-			hulls.add(a);
-		}
+		tiles.clear();
+		tileMap.clear();
 		
-		{
-			ConvexHull a = new ConvexHull();
-			a.addPoint(mapX-5,mapY);
-			a.addPoint(mapX,mapY);
-			a.addPoint(mapX,0);
-			a.addPoint(mapX-5,0);
-			
-			hulls.add(a);
-		}
+		hulls.clear();
+		tileHulls.clear();
+		allHulls.clear();
 		
-		{
-			ConvexHull a = new ConvexHull();
-			a.addPoint(0,mapY);
-			a.addPoint(mapX,mapY);
-			a.addPoint(mapX,mapY-5);
-			a.addPoint(0,mapY-5);
-			
-			hulls.add(a);
-		}
+		ArrayList<String> up = new ArrayList<String>();
+		ArrayList<String> down = new ArrayList<String>();
+		ArrayList<String> left = new ArrayList<String>();
+		ArrayList<String> right = new ArrayList<String>();
 		
 		
-		for(int i = 0; i < 10; i ++){
-			int tempX = (int) (Math.random() * mapX);
-			int tempY = (int) (Math.random() * mapY);
-			
-			boolean flag = true;
-			
-
-			ConvexHull a = new ConvexHull();
-			a.addPoint(tempX, tempY);
-			a.addPoint(tempX + 100,tempY + 100);
-			a.addPoint(tempX + 200,tempY);
-			a.addPoint(tempX + 100,tempY - 100);			
-			
-			for(ConvexHull hull : hulls){
+		for(final File file : new File("res/WorldTiles").listFiles()){
+			if(file.isFile()){
+				String extension = file.getName().split("\\.")[file.getName().split("\\.").length - 1].toLowerCase();
 				
-				for(Line2D.Float line : hull.getLines()){
-					for(Line2D.Float line2 : a.getLines()){
-						if(line.intersectsLine(line2)){
-							flag = false;
-							break;
-						}
+				if(extension.equals("worldtile")){
+					int[] data = WorldTile.possibleTiles(file.getPath());
+					
+					if(data[0] == 0){
+						up.add(file.getPath());
 					}
-					if(!flag){
-						break;
+					if(data[1] == 0){
+						right.add(file.getPath());
+					}
+					if(data[2] == 0){
+						down.add(file.getPath());
+					}
+					if(data[3] == 0){
+						left.add(file.getPath());
 					}
 				}
-				if(!flag){
-					break;
-				}
-			}
-			if(flag){
-				hulls.add(a);
 			}
 		}
 		
+		{
+			WorldTile t = new WorldTile(0,0, new int[]{0,0,0,0});
+			ConvexHull h = new ConvexHull();
+			h.addPoint(125,125);
+			h.addPoint(375,125);
+			h.addPoint(375,375);
+			h.addPoint(125,375);
+			t.addHull(h);
+			tiles.add(t);
+			tileMap.add(t);
+		}
+		
+		
+		ArrayList<WorldTile> queue = new ArrayList<WorldTile>();
+		
+		queue.addAll(tiles);
+		
+		int i = 0;
+		
+		while(!queue.isEmpty()){
+			
+			i ++;
+			
+			WorldTile current = queue.get(0);
+			queue.remove(0);
+			
+			if(i + queue.size() >= tileLimit){
+				if(current.getSides()[0] == 0 && !tileMap.contains(new WorldTile(current.getX(), current.getY() + 1))){
+					WorldTile t = new WorldTile(current.getX(), current.getY() + 1, new int[]{1,1,0,1});
+					tiles.add(t);
+					tileMap.add(t);
+					queue.add(t);
+				}
+				
+				if(current.getSides()[1] == 0 && !tileMap.contains(new WorldTile(current.getX() + 1, current.getY()))){
+					WorldTile t = new WorldTile(current.getX() + 1, current.getY(), new int[]{1,1,1,0});
+					tiles.add(t);
+					tileMap.add(t);
+					queue.add(t);
+				}
+				
+				if(current.getSides()[2] == 0 && !tileMap.contains(new WorldTile(current.getX(), current.getY() - 1))){
+					WorldTile t = new WorldTile(current.getX(), current.getY() - 1, new int[]{0,1,1,1});
+					tiles.add(t);
+					tileMap.add(t);
+					queue.add(t);
+				}
+				if(current.getSides()[3] == 0 && !tileMap.contains(new WorldTile(current.getX() - 1, current.getY()))){
+					WorldTile t = new WorldTile(current.getX() - 1, current.getY(), new int[]{1,0,1,1});
+					tiles.add(t);
+					tileMap.add(t);
+					queue.add(t);
+				}
+			}else{
+				//top
+				if(current.getSides()[0] == 0 && !tileMap.contains(new WorldTile(current.getX(), current.getY() + 1))){
+					WorldTile t = new WorldTile(current.getX(), current.getY() + 1, down.get((int) (Math.random()*down.size())) , 2);
+					tiles.add(t);
+					tileMap.add(t);
+					queue.add(t);
+				}
+				//Right
+				if(current.getSides()[1] == 0 && !tileMap.contains(new WorldTile(current.getX() + 1, current.getY()))){
+					WorldTile t = new WorldTile(current.getX() + 1, current.getY(), left.get((int) (Math.random()*left.size())) , 3);
+					tiles.add(t);
+					tileMap.add(t);
+					queue.add(t);
+				}
+				//bottom
+				if(current.getSides()[2] == 0 && !tileMap.contains(new WorldTile(current.getX(), current.getY() - 1))){
+					
+					WorldTile t = new WorldTile(current.getX(), current.getY() - 1, up.get((int) (Math.random()*up.size())) , 0);
+					
+					tiles.add(t);
+					tileMap.add(t);
+					queue.add(t);
+				}
+				//right
+				if(current.getSides()[3] == 0 && !tileMap.contains(new WorldTile(current.getX() - 1, current.getY()))){
+					WorldTile t = new WorldTile(current.getX() - 1, current.getY(), right.get((int) (Math.random()*right.size())) , 1);
+					tiles.add(t);
+					tileMap.add(t);
+					queue.add(t);
+				}
+			}
+		}
+		
+		for(WorldTile t : tiles){
+			tileHulls.addAll(t.getHulls());
+		}
+		
+		allHulls.addAll(tileHulls);
+		allHulls.addAll(hulls);
+		
+		GameData.update();
 		
 	}
-	
-	public ArrayList<ConvexHull> getHulls(){
-		return hulls;
-	}
-	
-	private static World instance = null;
 
-	public static World getInstance()
-	{
-		if(instance == null)
-			instance = new World();
-
-		return instance;
+	public static ArrayList<WorldTile> getTiles(){
+		return tiles;
 	}
 	
-	public float getMapX(){
-		return mapX;
-	}
-	public float getMapY(){
-		return mapY;
+	public static ArrayList<ConvexHull> getHulls(){
+		return allHulls;
 	}
 	
-	public float getGridX(){
-		return gridX;
-	}
-	public float getGridY(){
-		return gridY;
+	public static void addHull(ConvexHull h){
+		hulls.add(h);
+		allHulls.add(h);
 	}
 	
-	public float getMapXOffset(){
+	public static void clearHulls(){
+		hulls.clear();
+	}
+	
+	public static float getMapXOffset(){
 		return mapXOffset;
 	}
-	public float getMapYOffset(){
+	public static float getMapYOffset(){
 		return mapYOffset;
 	}
 	
-	public void setMapXOffset(float temp){
+	public static void setMapXOffset(float temp){
 		mapXOffset = temp;
 	}
-	public void setMapYOffset(float temp){
+	public static void setMapYOffset(float temp){
 		mapYOffset = temp;
 	}
 	
-	
-	public Point getLineLineIntersection(Line2D.Float a, Line2D.Float b) {
+	public static Point getLineLineIntersection(Line2D.Float a, Line2D.Float b) {
 		double x1 = a.x1; double y1 = a.y1; double x2 = a.x2; double y2 = a.y2; double x3 = b. x1; double y3 = b.y1; double x4 = b.x2; double y4 = b.y2;
 	    double det1And2 = det(x1, y1, x2, y2);
 	    double det3And4 = det(x3, y3, x4, y4);
@@ -162,58 +211,32 @@ public class World {
 	    double y = (det(det1And2, y1LessY2, det3And4, y3LessY4) / det1Less2And3Less4);
 	    return new Point((int)x, (int)y);
 	}
-	protected double det(double a, double b, double c, double d) {
+	private  static double det(double a, double b, double c, double d) {
 		return a * d - b * c;
 	}
 
-	public void renderLights(){
-		//I have no idea what I want to do here
-	}
-	
-	public void renderBackground(){
-		int leftBound = (int) Math.floor(-mapXOffset/gridX);
-		int rightBound = (int) Math.floor((-mapXOffset + settings.getScreenX())/gridX);
-		int upBound = (int) Math.floor(-mapYOffset/gridY);
-		int downBound = (int) Math.floor((-mapYOffset + settings.getScreenY())/gridY);
+	public static void renderHulls(){
 		
-		if(leftBound < 0){
-			leftBound = 0;
-		}else if (leftBound >= mapX/gridX){
-			leftBound = (int) (mapX/gridX - 1);
-		}
+		Collections.sort(allHulls);
 		
-		if(rightBound < 0){
-			rightBound = 0;
-		}else if (rightBound >= mapX/gridX){
-			rightBound = (int) (mapX/gridX - 1);
-		}
-		
-		if(upBound < 0){
-			upBound = 0;
-		}else if (upBound >= mapY/gridY){
-			upBound = (int) (mapX/gridX - 1);
-		}
-		
-		if(downBound < 0){
-			downBound = 0;
-		}else if (downBound >= mapY/gridY){
-			downBound = (int) (mapY/gridY - 1);
-		}
-		
-		//Brown background
-		
-		GL11.glColor3d(.34,.23,.04);
-		GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
-		GL11.glVertex3f(leftBound*gridX + mapXOffset,upBound*gridY + mapYOffset,0);
-		GL11.glVertex3f(rightBound*gridX + mapXOffset+ gridX,upBound*gridY + mapYOffset,0);
-		GL11.glVertex3f(leftBound*gridX + mapXOffset,downBound*gridY + mapYOffset+gridY,0);
-		GL11.glVertex3f(rightBound*gridX + mapXOffset+gridX,downBound*gridY + mapYOffset+gridY,0);
-		GL11.glEnd();
-		
-		for(ConvexHull x : hulls){
+		for(ConvexHull x : allHulls){
 			x.render();
 		}
 	}
 	
+	public static void renderShadows(){
+		for(ConvexHull x : allHulls){
+			x.renderShadow();
+		}
+	}
 	
+	public static void renderBackground(){
+		for(WorldTile t : tiles){
+			t.renderBackground();
+		}	
+	}
+	
+	public static void setTileLimit(int limit){
+		tileLimit = limit;
+	}
 }

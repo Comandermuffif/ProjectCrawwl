@@ -1,27 +1,38 @@
 package org.projectcrawwl.weapons;
 
-import java.util.Random;
+import java.io.IOException;
 
+import org.newdawn.slick.openal.AudioLoader;
+import org.newdawn.slick.util.ResourceLoader;
 import org.projectcrawwl.objects.BasePlayer;
-import org.projectcrawwl.projectile.BaseProjectile;
 
 public class Shotgun extends BaseRangedWeapon{
 	public Shotgun(BasePlayer tempO){
 		super(tempO);
-		name = "Shotgun";
+		name = "Combat Shotgun";
 		
-		coolDown = 60000/60;
+		coolDown = (float) (1000/1.5);
+		
+		reloadTime = 3300;
+		
+		damage = 25;
 		currentCoolDown = coolDown;
-	}
-	public void fire(){
-		if(active == false){
-			active = true;
-			currentCoolDown = coolDown;
-			for(int x = 0; x < 10; x++){
-				Random random = new Random();
-				float temp = (float) (random.nextGaussian()*6);
-				data.addProjectile(new BaseProjectile((float) (owner.x + Math.cos(Math.toRadians(owner.facingAngle))*(owner.r+5)),(float) (owner.y + Math.sin(Math.toRadians(owner.facingAngle))*(owner.r+5)),3,(float) owner.facingAngle + temp, 10, owner));
-			}
-		}
+		velocity = 3;
+		pellets = 9;
+		
+		cone = 9;
+		
+		spread = 700;
+		spreadAngle = 8;
+		
+		maxClip = 12;
+		currentClip = maxClip;
+		
+		automatic = false;
+		
+		try {
+			onFire = AudioLoader.getAudio("OGG", ResourceLoader.getResourceAsStream("res/SoundFiles/Wpn_shotguncombat_fire_2d.ogg"));
+		} catch (IOException e) {e.printStackTrace();}
+		
 	}
 }

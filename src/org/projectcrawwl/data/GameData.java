@@ -1,77 +1,134 @@
 package org.projectcrawwl.data;
 
+import java.awt.Font;
+import java.awt.geom.Line2D;
 import java.util.ArrayList;
-import java.util.ListIterator;
+import java.util.Collections;
 
 import org.lwjgl.input.Keyboard;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.UnicodeFont;
+import org.newdawn.slick.font.effects.ColorEffect;
+import org.projectcrawwl.Main;
 import org.projectcrawwl.objects.*;
-import org.projectcrawwl.projectile.BaseProjectile;
+import org.projectcrawwl.projectile.Bullet;
+import org.projectcrawwl.projectile.Particle;
 
 public class GameData 
 {	
-	private ArrayList<BaseProjectile> projectiles = new ArrayList<BaseProjectile>();//Projectiles
-	private ArrayList<BaseProjectile> tempProjectiles = new ArrayList<BaseProjectile>();//Projectiles to be removed
+	
+	private static ArrayList<GameObject> allObjects = new ArrayList<GameObject>();
+	
+	private static ArrayList<Bullet> allProjectiles = new ArrayList<Bullet>();
+	private static ArrayList<Bullet> removeProjectiles = new ArrayList<Bullet>();
+	private static ArrayList<Bullet> addProjectiles = new ArrayList<Bullet>();
 
-	private BasePlayer player;
-
-	private ArrayList<BasePlayer> allPlayers = new ArrayList<BasePlayer>();
+	private static ArrayList<BasePlayer> allPlayers = new ArrayList<BasePlayer>();
+	private static ArrayList<BasePlayer> addPlayers = new ArrayList<BasePlayer>();
+	private static ArrayList<BasePlayer> removePlayers = new ArrayList<BasePlayer>();
+	private static ArrayList<BasePlayer> killPlayers = new ArrayList<BasePlayer>();
 	
-	private ArrayList<BasePlayer> addPlayers = new ArrayList<BasePlayer>();
+	private static ArrayList<GameObject> allParticles = new ArrayList<GameObject>();
+	private static ArrayList<GameObject> addParticles = new ArrayList<GameObject>();
+	private static ArrayList<GameObject> removeParticles = new ArrayList<GameObject>();
 	
-	private ArrayList<BasePlayer> removePlayers = new ArrayList<BasePlayer>();
+	private static ArrayList<GameObject> allBloodStains = new ArrayList<GameObject>();
+	private static ArrayList<GameObject> addBloodStains = new ArrayList<GameObject>();
+	private static ArrayList<GameObject> removeBloodStains = new ArrayList<GameObject>();
 	
-	private static GameData instance = null;
+	private static BasePlayer player = null;
 	
-	private int ups = 0;
+	private static int currentSave;
 	
-	private World world = World.getInstance();
+	public static float zoom = 0;
 	
-	public int getUPS(){
-		return ups;
+	private static UnicodeFont font;
+	
+	public static void setCurrentSave(int s){
+		currentSave = s;
 	}
 	
-	public void setUPS(int temp){
-		ups = temp;
+	public static int getCurrentSave(){
+		return currentSave;
 	}
 	
-	public float getMapXOffset(){
-		return world.getMapXOffset();
-	}
-	public float getMapYOffset(){
-		return world.getMapYOffset();
-	}
-	
-	public float getGridX(){
-		return world.getGridX();
-	}
-	public float getGridY(){
-		return world.getGridY();
-	}
-	
-	public void setMapXOffset(float temp){
-		world.setMapXOffset(temp);
-	}
-	public void setMapYOffset(float temp){
-		world.setMapYOffset(temp);
-	}
-	
-	public float getMapX(){
-		return world.getMapX();
-	}
-	public float getMapY(){
-		return world.getMapY();
+	public static void clearData(){
+		allObjects.clear();
+		allProjectiles.clear();
+		removeProjectiles.clear();
+		addProjectiles.clear();
+		allPlayers.clear();
+		addPlayers.clear();
+		removePlayers.clear();
+		killPlayers.clear();
+		allParticles.clear();
+		addParticles.clear();
+		removeParticles.clear();
+		allBloodStains.clear();
+		addBloodStains.clear();
+		removeBloodStains.clear();
+		
+		zoom = 0;
+		
+		player = null;
 	}
 	
-	public static GameData getInstance()
-	{
-		if(instance == null)
-			instance = new GameData();
-		return instance;
+	@SuppressWarnings("unchecked")
+	public static void renderInit(){
+		
+		System.out.println("Initializing Render Data");
+		
+		Font awFont = new Font("Times New Roman", Font.BOLD, 24);
+		font = new UnicodeFont(awFont, 12, true, false);
+		font.addAsciiGlyphs();
+		font.addGlyphs(400, 600);
+		font.getEffects().add(new ColorEffect(new java.awt.Color(255,255,255)));
+		
+		try {
+			font.loadGlyphs();
+		}catch(SlickException e){e.printStackTrace();}
 	}
-	public BasePlayer getPlayer(){
+	
+	public static void loadPlayer(){
+		if(player != null){
+			System.err.println("Player loaded when player existed");
+		}
+		//player = new Player("res/Saves/save1.Player");
+		
+		player = PlayerXMLHandler.createPlayer("res/Saves/save1.xml");
+		System.out.println(player);
+		addPlayers.add(player);
+	}
+	
+	public static UnicodeFont getFont(){
+		return font;
+	}
+	
+	public static ArrayList<GameObject> getBloodStains(){
+		return allBloodStains;
+	}
+	
+	public static void addBloodStain(BloodStain g){
+		addBloodStains.add(g);
+	}
+	
+	public static float getMapXOffset(){
+		return World.getMapXOffset();
+	}
+	public static float getMapYOffset(){
+		return World.getMapYOffset();
+	}
+	
+	public static void setMapXOffset(float temp){
+		World.setMapXOffset(temp);
+	}
+	public static void setMapYOffset(float temp){
+		World.setMapYOffset(temp);
+	}
+	public static BasePlayer getPlayer(){
 		return player;
 	}
-	public ArrayList<BasePlayer> getAI(){
+	public static ArrayList<BasePlayer> getAI(){
 		ArrayList<BasePlayer> temp = new ArrayList<BasePlayer>();
 		for(BasePlayer a : allPlayers){
 			if(a instanceof org.projectcrawwl.objects.Zombie){
@@ -80,53 +137,194 @@ public class GameData
 		}
 		return temp;
 	}
-	public void setPlayer(Player tempPlayer){
+	public static void setPlayer(Player tempPlayer){
+		if(player != null){
+			System.err.println("Player loaded when player existed");
+		}
 		player = tempPlayer;
 		addPlayers.add(player);
 	}
 	
-	public void addPlayer(){
-		int tempX = (int) (Math.random() * (world.getMapX() / world.getGridX()));
-		int tempY = (int) (Math.random() * (world.getMapY() / world.getGridY()));
+	public static void addPlayer(){
 		
-		player = new Player((int) (tempX * world.getGridX() + world.getGridX()/2), (int) (tempY*world.getGridY() + world.getGridY()/2));
-		addPlayers.add(player);
+		if(player != null){
+			System.err.println("Player loaded when player existed " + player);
+		}
+		
+		WorldTile t = World.getTiles().get((int) Math.floor(Math.random()*World.getTiles().size()));
+		
+		int tempX = (int) ((Math.random() + t.getX()) * t.getWidth());
+		int tempY = (int) ((Math.random() + t.getY()) * t.getHeight());
+		
+		player = new Player(tempX, tempY);
+		
+		boolean flag = true;
+		
+		for(ConvexHull k : World.getHulls()){
+			
+			if(k.getPolygon().contains(player.x, player.y)){
+				flag = false;
+				break;
+			}
+			
+			for(Line2D.Float q : k.getLines()){
+				for(Line2D.Float bound : player.boundingBox()){
+					
+					Line2D.Float temp = new Line2D.Float();
+					
+					temp.x1 = (float) (bound.x1*Math.cos(Math.toRadians(player.facingAngle)) - bound.y1*Math.sin(Math.toRadians(player.facingAngle)) + player.x);
+					temp.y1 = (float) (bound.x1*Math.sin(Math.toRadians(player.facingAngle)) + bound.y1*Math.cos(Math.toRadians(player.facingAngle)) + player.y);
+					temp.x2 = (float) (bound.x2*Math.cos(Math.toRadians(player.facingAngle)) - bound.y2*Math.sin(Math.toRadians(player.facingAngle)) + player.x);
+					temp.y2 = (float) (bound.x2*Math.sin(Math.toRadians(player.facingAngle)) + bound.y2*Math.cos(Math.toRadians(player.facingAngle)) + player.y);
+							
+							
+					//Line2D.Float temp = new Line2D.Float(bound.x1 + tempx, bound.y1 + tempy, bound.x2 + tempx, bound.y2 + tempy);
+					if(temp.intersectsLine(q)){
+						flag = false;
+						break;
+					}
+				}
+				if(!flag){break;}
+			}
+			if(!flag){break;}
+		}
+		if(flag){
+			
+			addPlayers.add(player);
+			
+		}else{
+			player = null;
+			addPlayer();
+		}
 	}
 	
-	public void addZombie(){
-		int tempX = (int) (Math.random() * (world.getMapX() / world.getGridX()));
-		int tempY = (int) (Math.random() * (world.getMapY() / world.getGridY()));
+	public static void addZombie(){
+		WorldTile t = World.getTiles().get((int) Math.floor(Math.random()*World.getTiles().size()));
 		
-		addPlayers.add(new Zombie((int) (tempX * world.getGridX() + world.getGridX()/2), (int) (tempY*world.getGridY() + world.getGridY()/2)));
+		int tempX = (int) ((Math.random() + t.getX()) * t.getWidth());
+		int tempY = (int) ((Math.random() + t.getY()) * t.getHeight());
+		
+		BasePlayer zombie = new Zombie(tempX, tempY);
+		
+		boolean flag = true;
+		
+		for(ConvexHull k : World.getHulls()){
+			
+			if(k.getPolygon().contains(zombie.x, zombie.y)){
+				flag = false;
+				break;
+			}
+			
+			for(Line2D.Float q : k.getLines()){
+				for(Line2D.Float bound : zombie.boundingBox()){
+					
+					Line2D.Float temp = new Line2D.Float();
+					
+					temp.x1 = (float) (bound.x1*Math.cos(Math.toRadians(zombie.facingAngle)) - bound.y1*Math.sin(Math.toRadians(zombie.facingAngle)) + zombie.x);
+					temp.y1 = (float) (bound.x1*Math.sin(Math.toRadians(zombie.facingAngle)) + bound.y1*Math.cos(Math.toRadians(zombie.facingAngle)) + zombie.y);
+					temp.x2 = (float) (bound.x2*Math.cos(Math.toRadians(zombie.facingAngle)) - bound.y2*Math.sin(Math.toRadians(zombie.facingAngle)) + zombie.x);
+					temp.y2 = (float) (bound.x2*Math.sin(Math.toRadians(zombie.facingAngle)) + bound.y2*Math.cos(Math.toRadians(zombie.facingAngle)) + zombie.y);
+							
+							
+					//Line2D.Float temp = new Line2D.Float(bound.x1 + tempx, bound.y1 + tempy, bound.x2 + tempx, bound.y2 + tempy);
+					if(temp.intersectsLine(q)){
+						flag = false;
+						break;
+					}
+				}
+				if(!flag){break;}
+			}
+			if(!flag){break;}
+		}
+		if(flag){
+			
+			addPlayers.add(zombie);
+		}else{
+			addZombie();
+		}
 	}
 	
-	public void addZombie(BasePlayer temp){
+	public static void addZombie(BasePlayer temp){
 		addPlayers.add(temp);
 	}
-	public void removeObject(BasePlayer gameObject) {
+	public static void removePlayer(BasePlayer gameObject) {
 		removePlayers.add(gameObject);
 	}
-	public void addProjectile(BaseProjectile temp){
-		projectiles.add(temp);
+	public static void killPlayer(BasePlayer gameObject) {
+		killPlayers.add(gameObject);
 	}
-	public void removeProjectile(BaseProjectile temp){
-		tempProjectiles.add(temp);
+	public static void addProjectile(Bullet temp){
+		addProjectiles.add(temp);
 	}
-	public ArrayList<BaseProjectile> getProjectiles(){
-		return projectiles;
+	public static void removeProjectile(Bullet temp){
+		removeProjectiles.add(temp);
 	}
-	public ArrayList<BasePlayer> getAllPlayers(){
+	
+	public static void addParticle(Particle p){
+		addParticles.add(p);
+	}
+	
+	public static void removeParticle(Particle p){
+		removeParticles.add(p);
+	}
+	
+	public static ArrayList<Bullet> getProjectiles(){
+		return allProjectiles;
+	}
+	public static ArrayList<BasePlayer> getAllPlayers(){
 		return allPlayers;
 	}
 	
-	public void addFriendly(){
-		int tempX = (int) (Math.random() * (world.getMapX() / world.getGridX()));
-		int tempY = (int) (Math.random() * (world.getMapY() / world.getGridY()));
+	public static void addFriendly(){
+		WorldTile t = World.getTiles().get((int) Math.floor(Math.random()*World.getTiles().size()));
 		
-		addPlayers.add(new Friendly((int) (tempX * world.getGridX() + world.getGridX()/2), (int) (tempY*world.getGridY() + world.getGridY()/2)));
+		int tempX = (int) ((Math.random() + t.getX()) * t.getWidth());
+		int tempY = (int) ((Math.random() + t.getY()) * t.getHeight());
+
+		
+		BasePlayer friendly = new Friendly(tempX, tempY);
+		
+		boolean flag = true;
+		
+		for(ConvexHull k : World.getHulls()){
+			
+			if(k.getPolygon().contains(friendly.x, friendly.y)){
+				flag = false;
+				break;
+			}
+			
+			for(Line2D.Float q : k.getLines()){
+				for(Line2D.Float bound : friendly.boundingBox()){
+					
+					Line2D.Float temp = new Line2D.Float();
+					
+					temp.x1 = (float) (bound.x1*Math.cos(Math.toRadians(friendly.facingAngle)) - bound.y1*Math.sin(Math.toRadians(friendly.facingAngle)) + friendly.x);
+					temp.y1 = (float) (bound.x1*Math.sin(Math.toRadians(friendly.facingAngle)) + bound.y1*Math.cos(Math.toRadians(friendly.facingAngle)) + friendly.y);
+					temp.x2 = (float) (bound.x2*Math.cos(Math.toRadians(friendly.facingAngle)) - bound.y2*Math.sin(Math.toRadians(friendly.facingAngle)) + friendly.x);
+					temp.y2 = (float) (bound.x2*Math.sin(Math.toRadians(friendly.facingAngle)) + bound.y2*Math.cos(Math.toRadians(friendly.facingAngle)) + friendly.y);
+							
+							
+					//Line2D.Float temp = new Line2D.Float(bound.x1 + tempx, bound.y1 + tempy, bound.x2 + tempx, bound.y2 + tempy);
+					if(temp.intersectsLine(q)){
+						flag = false;
+						break;
+					}
+				}
+				if(!flag){break;}
+			}
+			if(!flag){break;}
+		}
+		if(flag){
+			
+			addPlayers.add(friendly);
+			
+		}else{
+			addFriendly();
+		}
+	
 	}
 	
-	public ArrayList<BasePlayer> getFriendlies(){
+	public static ArrayList<BasePlayer> getFriendlies(){
 		ArrayList<BasePlayer> temp = new ArrayList<BasePlayer>();
 		for(BasePlayer a : allPlayers){
 			if(a instanceof org.projectcrawwl.objects.Friendly){
@@ -139,50 +337,231 @@ public class GameData
 		return temp;
 	}
 	
-	public void render(){
-		world.renderBackground();
+	public static void render(){
+
+		World.renderBackground();
 		
-		for(BasePlayer a : allPlayers){
+		//synchronized(bloodStainLock){
+			for(GameObject a : allBloodStains){
+				a.render();
+			}
+		//}
+		
+		for(GameObject a : allObjects){
 			a.render();
 		}
 		
-		ListIterator<BaseProjectile> q = projectiles.listIterator();
-		
-		while(q.hasNext()){
-			BaseProjectile temp = q.next();
-			
-			temp.render();
-		}
-		
-		
-		player.render();
-		
-		player.renderHUD();
+		//synchronized(playerLock){
+			if(player != null && StateController.getGameState() == Main.IN_GAME){
+				player.renderHUD();
+			}
+		//}
 	}
-	public void update(int delta){
+	
+	public static void update(){
+		
+		//synchronized(bloodStainLock){
+			for(GameObject a : addBloodStains){
+				allBloodStains.add(a);
+			}
+			addBloodStains.clear();
+		//}
+		
+		//synchronized(bloodStainLock){
+			for(GameObject a : removeBloodStains){
+				allBloodStains.remove(a);
+			}
+			removeBloodStains.clear();
+		//}
+		
+		//synchronized(bloodStainLock){}
+		
+		//synchronized(projectileLock){
+			//Removes projectiles that are off screen
+			for(Bullet a : removeProjectiles){
+				allProjectiles.remove(a);
+			}
+			removeProjectiles.clear();
+		//}
+		
+		//synchronized(projectileLock){
+			//Removes projectiles that are off screen
+			for(Bullet a : addProjectiles){
+				allProjectiles.add(a);
+			}
+			addProjectiles.clear();
+		//}
+		
+		//synchronized(particleLock){
+			for(GameObject a : removeParticles){
+				allParticles.remove(a);
+			}
+			removeParticles.clear();
+		//}
+		
+		//synchronized(particleLock){
+			for(GameObject a : addParticles){
+				allParticles.add(a);
+			}
+			addParticles.clear();
+		//}
+		
+		//synchronized(playerLock){
+			for(BasePlayer a : removePlayers){
+				if(a instanceof Player){
+					player = null;
+				}
+				allPlayers.remove(a);
+			}
+			removePlayers.clear();
+			
+			for(BasePlayer a : killPlayers){
+				if(a instanceof Player){
+					player = null;
+				}
+				allPlayers.remove(a);
+				
+				if(allBloodStains.size() > 200){
+					removeBloodStains.add(allBloodStains.get(0));
+				}
+				
+				addBloodStains.add(new Corpse(a.x, a.y));
+			}
+			killPlayers.clear();
+			
+		//}
 		
 		
-		if(Keyboard.isKeyDown(Keyboard.KEY_RIGHT)){world.setMapXOffset(world.getMapXOffset() - delta);}
-		if(Keyboard.isKeyDown(Keyboard.KEY_LEFT)){world.setMapXOffset(world.getMapXOffset() + delta);}
-		if(Keyboard.isKeyDown(Keyboard.KEY_UP)){world.setMapYOffset(world.getMapYOffset() + delta);}
-		if(Keyboard.isKeyDown(Keyboard.KEY_DOWN)){world.setMapYOffset(world.getMapYOffset() - delta);}
 		
-		//Removes projectiles that are off screen
-		for(GameObject a : tempProjectiles){
-			projectiles.remove(a);
+		//synchronized(playerLock){
+			for(BasePlayer a : addPlayers){
+				allPlayers.add(a);
+			}
+			addPlayers.clear();
+		//}
+		
+		allObjects.clear();
+		
+		allObjects.addAll(allParticles);
+		allObjects.addAll(allPlayers);
+		allObjects.addAll(allProjectiles);
+		allObjects.addAll(World.getHulls());
+		
+		Collections.sort(allObjects);
+		
+	}
+	
+	public static void update(int delta){
+		
+		if(Keyboard.isKeyDown(Keyboard.KEY_RIGHT)){World.setMapXOffset(World.getMapXOffset() - delta);}
+		if(Keyboard.isKeyDown(Keyboard.KEY_LEFT)){World.setMapXOffset(World.getMapXOffset() + delta);}
+		if(Keyboard.isKeyDown(Keyboard.KEY_UP)){World.setMapYOffset(World.getMapYOffset() - delta);}
+		if(Keyboard.isKeyDown(Keyboard.KEY_DOWN)){World.setMapYOffset(World.getMapYOffset() + delta);}
+		
+		//synchronized(bloodStainLock){
+			for(GameObject a : addBloodStains){
+				allBloodStains.add(a);
+			}
+			addBloodStains.clear();
+		//}
+		
+		//synchronized(bloodStainLock){
+			for(GameObject a : removeBloodStains){
+				allBloodStains.remove(a);
+			}
+			removeBloodStains.clear();
+		//}
+		
+		//synchronized(bloodStainLock){}
+		
+		//synchronized(projectileLock){
+			//Removes projectiles that are off screen
+			for(Bullet a : removeProjectiles){
+				allProjectiles.remove(a);
+			}
+			removeProjectiles.clear();
+		//}
+		
+		//synchronized(projectileLock){
+			//Removes projectiles that are off screen
+			for(Bullet a : addProjectiles){
+				allProjectiles.add(a);
+			}
+			addProjectiles.clear();
+		//}
+		
+		//synchronized(particleLock){
+			for(GameObject a : removeParticles){
+				allParticles.remove(a);
+			}
+			removeParticles.clear();
+		//}
+		
+		//synchronized(particleLock){
+			for(GameObject a : addParticles){
+				allParticles.add(a);
+			}
+			addParticles.clear();
+		//}
+		
+		//synchronized(playerLock){
+			for(BasePlayer a : removePlayers){
+				if(a instanceof Player){
+					player = null;
+				}
+				allPlayers.remove(a);
+			}
+			removePlayers.clear();
+			
+			for(BasePlayer a : killPlayers){
+				if(a instanceof Player){
+					player = null;
+				}
+				allPlayers.remove(a);
+				
+				if(allBloodStains.size() > 200){
+					removeBloodStains.add(allBloodStains.get(0));
+				}
+				
+				addBloodStains.add(new Corpse(a.x, a.y));
+			}
+			killPlayers.clear();
+			
+		//}
+		
+		
+		
+		//synchronized(playerLock){
+			for(BasePlayer a : addPlayers){
+				allPlayers.add(a);
+			}
+			addPlayers.clear();
+		//}
+		
+		for(BasePlayer a : getAllPlayers()){
+			a.update(delta);
 		}
-		tempProjectiles.clear();
-		
-		for(BasePlayer a : removePlayers){
-			allPlayers.remove(a);
+		for(GameObject b : getProjectiles()){
+			b.update(delta);
 		}
-		removePlayers.clear();
 		
-		
-		for(BasePlayer a : addPlayers){
-			allPlayers.add(a);
+		for(GameObject c : getBloodStains()){
+			c.update(delta);
 		}
-		addPlayers.clear();
+		
+		for(GameObject d : allParticles){
+			d.update(delta);
+		}
+		
+		allObjects.clear();
+		
+		allObjects.addAll(allParticles);
+		allObjects.addAll(allPlayers);
+		allObjects.addAll(allProjectiles);
+		allObjects.addAll(World.getHulls());
+		
+		Collections.sort(allObjects);
+		
 	}
 }
 

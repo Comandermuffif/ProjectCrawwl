@@ -1,0 +1,10 @@
+name = "Sniper Rifle"
+velocity = 5
+damage = 110
+coolDown = 200
+reloadTime = 3000
+maxClip = 10
+spread = 750
+spreadAngle = 7.5
+automatic = false
+onFire = "res/SoundFiles/Wpn_riflesniper_fire_2d.ogg"
