@@ -96,9 +96,9 @@ public class Button {
 		GameData.getFont().drawString(x + width/2 - GameData.getFont().getWidth(name)/2, GameSettings.getScreenY() - (y + height/2 + GameData.getFont().getHeight(name)/2), name);
 		
 		if(ID >= 11 && ID <= 14){
-			if(new File("res/Saves/save" + Integer.toString(ID - 10) + ".Player").exists()){
+			if(new File("res/Saves/save" + Integer.toString(ID - 10) + ".xml").exists()){
 				
-				Player p = new Player("res/Saves/save" + Integer.toString(ID - 10) + ".Player");
+				Player p = PlayerXMLHandler.createPlayer("res/Saves/save" + Integer.toString(ID - 10) +".xml");
 				
 				
 				GameData.getFont().drawString(x + width/2 - GameData.getFont().getWidth(name)/2,
@@ -148,7 +148,7 @@ public class Button {
 			StateController.setGameState(Main.MAIN_MENU);
 		}
 		if(ID == 3){
-			World.generateWorld();
+			StateController.setGameState(Main.IN_GAME);
 		}
 		if(ID == 4){
 			StateController.setGameState(Main.LOAD_MENU);
@@ -158,11 +158,9 @@ public class Button {
 		}
 		
 		if(ID >= 11 && ID <= 14){
-			if(new File("res/Saves/save" + Integer.toString(ID - 10) + ".Player").exists()){
+			if(new File("res/Saves/save" + Integer.toString(ID - 10) + ".xml").exists()){
 				
-				//Player p = new Player("res/Saves/save" + Integer.toString(ID - 10) + ".Player");
-				
-				Player p = PlayerXMLHandler.createPlayer("res/Saves/save1.xml");
+				Player p = PlayerXMLHandler.createPlayer("res/Saves/save" + Integer.toString(ID - 10) +".xml");
 				
 				GameData.clearData();
 				World.generateWorld();

@@ -38,8 +38,6 @@ public class GameObject implements Comparable<GameObject>{
 	
 	public boolean passThroughPlayers = false;
 	
-	
-	
 	public boolean isReady = false;
 	
 	

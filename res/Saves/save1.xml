@@ -23,7 +23,7 @@
 				<pY>-25</pY>
 			</point>
 		</boundingBox>
-	</Information>
+		<turnSpeed>.25</turnSpeed></Information>
 	<Inventory>
 		<bullets>101</bullets>
 	</Inventory>

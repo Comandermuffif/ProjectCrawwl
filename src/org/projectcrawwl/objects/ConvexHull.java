@@ -23,7 +23,7 @@ public class ConvexHull extends GameObject{
 	
 	private double farthest = 0;
 	
-	private Color color = new Color((int)(50 + Math.random()*40),(int) (50 + Math.random()*40),(int) (100+Math.random()*80));//new Color(0,0,0);
+	private Color color = new Color((int)(100 + Math.random()*40),(int) (0 + Math.random()*40),(int) (100+Math.random()*80));//new Color(0,0,0);
 	
 	private int x = 0;
 	private int y = 0;

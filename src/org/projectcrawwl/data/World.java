@@ -159,7 +159,7 @@ public class World{
 		allHulls.addAll(tileHulls);
 		allHulls.addAll(hulls);
 		
-		GameData.update(0);
+		GameData.update();
 		
 	}
 

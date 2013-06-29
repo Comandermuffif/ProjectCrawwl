@@ -91,6 +91,8 @@ public class InventoryState implements GameState {
 		for(Integer i : a){
 			if(i == Keyboard.KEY_I){
 				StateController.setGameState(Main.IN_GAME);
+			}else if(i == Keyboard.KEY_ESCAPE){
+				StateController.setGameState(Main.IN_GAME);
 			}
 		}
 	}

@@ -14,13 +14,13 @@ public class MainMenuState implements GameState {
 	@Override
 	public void onEnter() {
 		if(buttons.size() == 0){
-			buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY() - 200,200,100, "New Game", 1));
+			buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY()/2 + 110,200,100, "New Game", 1));
 			
-			buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY() - 310,200,100, "Load Game", 4));
+			buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY()/2,200,100, "Load Game", 4));
 			
-			buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY() - 420,200,100, "Generate World", 3));
+			buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY()/2 - 110,200,100, "Options", 0));
 			
-			buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY() - 530,200,100, "Close Game", -1));
+			buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY()/2 - 220,200,100, "Close Game", -1));
 		}
 		GameData.update(0);
 	}

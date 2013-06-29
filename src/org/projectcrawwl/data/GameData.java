@@ -347,6 +347,100 @@ public class GameData
 			}
 		//}
 	}
+	
+	public static void update(){
+		
+		//synchronized(bloodStainLock){
+			for(GameObject a : addBloodStains){
+				allBloodStains.add(a);
+			}
+			addBloodStains.clear();
+		//}
+		
+		//synchronized(bloodStainLock){
+			for(GameObject a : removeBloodStains){
+				allBloodStains.remove(a);
+			}
+			removeBloodStains.clear();
+		//}
+		
+		//synchronized(bloodStainLock){}
+		
+		//synchronized(projectileLock){
+			//Removes projectiles that are off screen
+			for(Bullet a : removeProjectiles){
+				allProjectiles.remove(a);
+			}
+			removeProjectiles.clear();
+		//}
+		
+		//synchronized(projectileLock){
+			//Removes projectiles that are off screen
+			for(Bullet a : addProjectiles){
+				allProjectiles.add(a);
+			}
+			addProjectiles.clear();
+		//}
+		
+		//synchronized(particleLock){
+			for(GameObject a : removeParticles){
+				allParticles.remove(a);
+			}
+			removeParticles.clear();
+		//}
+		
+		//synchronized(particleLock){
+			for(GameObject a : addParticles){
+				allParticles.add(a);
+			}
+			addParticles.clear();
+		//}
+		
+		//synchronized(playerLock){
+			for(BasePlayer a : removePlayers){
+				if(a instanceof Player){
+					player = null;
+				}
+				allPlayers.remove(a);
+			}
+			removePlayers.clear();
+			
+			for(BasePlayer a : killPlayers){
+				if(a instanceof Player){
+					player = null;
+				}
+				allPlayers.remove(a);
+				
+				if(allBloodStains.size() > 200){
+					removeBloodStains.add(allBloodStains.get(0));
+				}
+				
+				addBloodStains.add(new Corpse(a.x, a.y));
+			}
+			killPlayers.clear();
+			
+		//}
+		
+		
+		
+		//synchronized(playerLock){
+			for(BasePlayer a : addPlayers){
+				allPlayers.add(a);
+			}
+			addPlayers.clear();
+		//}
+		
+		allObjects.clear();
+		
+		allObjects.addAll(allParticles);
+		allObjects.addAll(allPlayers);
+		allObjects.addAll(allProjectiles);
+		allObjects.addAll(World.getHulls());
+		
+		Collections.sort(allObjects);
+		
+	}
+	
 	public static void update(int delta){
 		
 		if(Keyboard.isKeyDown(Keyboard.KEY_RIGHT)){World.setMapXOffset(World.getMapXOffset() - delta);}

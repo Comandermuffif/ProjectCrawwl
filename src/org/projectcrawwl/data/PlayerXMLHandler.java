@@ -47,6 +47,10 @@ public class PlayerXMLHandler extends DefaultHandler{
 			p.addPoint(bound);
 		}else if(qName.equalsIgnoreCase("boundingBox")){
 			p.updateLines();
+		}else if(qName.equalsIgnoreCase("turnSpeed")){
+			p.turnSpeed = Double.parseDouble(temp);
+		}else if(qName.equalsIgnoreCase("speedMult")){
+			p.speedMult = Double.parseDouble(temp);
 		}
 	}
 	
@@ -67,8 +71,6 @@ public class PlayerXMLHandler extends DefaultHandler{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
 		
 		return null;
 	}

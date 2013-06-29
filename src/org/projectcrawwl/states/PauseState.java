@@ -8,9 +8,12 @@ import org.projectcrawwl.Main;
 import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.data.GameSettings;
 import org.projectcrawwl.data.StateController;
+import org.projectcrawwl.menu.Button;
 
 public class PauseState implements GameState {
-
+	
+	private ArrayList<Button> buttons = new ArrayList<Button>();
+	
 	@Override
 	public String getName() {
 		return "Paused";
@@ -18,7 +21,9 @@ public class PauseState implements GameState {
 
 	@Override
 	public void onEnter() {
-		
+		if(buttons.size() == 0){
+			buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY()/2 - 280,200,100, "Back", 3));
+		}
 	}
 
 	@Override
@@ -45,11 +50,18 @@ public class PauseState implements GameState {
 		float ratio = ((float) (GameSettings.getScreenY())/GameSettings.getScreenX());
 		GL11.glLoadIdentity();
 		GL11.glOrtho(-GameData.zoom, GameSettings.getScreenX()  + GameData.zoom, -GameData.zoom*(ratio), GameSettings.getScreenY() + GameData.zoom*(ratio), -1, 1);
+		
+		
+		for(Button b : buttons){
+			b.render();
+		}
 	}
 
 	@Override
 	public void mouseInput(ArrayList<Integer> a) {
-
+		for(Button b : buttons){
+			b.mouseInput(a);
+		}
 	}
 
 	@Override
