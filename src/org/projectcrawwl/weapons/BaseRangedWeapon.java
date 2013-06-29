@@ -228,7 +228,7 @@ public class BaseRangedWeapon extends BaseWeapon{
 			reloading = false;
 			
 			if(owner.getInventory().bullets >= maxClip){
-				owner.getInventory().bullets -= maxClip;
+				owner.getInventory().bullets -= (maxClip - currentClip);
 				
 				currentReload = reloadTime;
 				currentClip = maxClip;
