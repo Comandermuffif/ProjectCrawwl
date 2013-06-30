@@ -358,4 +358,18 @@ public class ConvexHull extends GameObject{
 		return q;
 		
 	}
+	
+	public void setColor(Color color) {
+		this.color = color;
+	}
+	
+	public ArrayList<Point> getPoints(){
+		ArrayList<Point> points = new ArrayList<Point>();
+		
+		for(int i = 0; i < polygon.npoints; i ++){
+			points.add(new Point(polygon.xpoints[i], polygon.ypoints[i]));
+		}
+		
+		return points;
+	}
 }

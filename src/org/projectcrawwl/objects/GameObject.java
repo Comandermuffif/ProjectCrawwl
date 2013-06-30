@@ -83,6 +83,16 @@ public class GameObject implements Comparable<GameObject>{
 		return boundingBox;
 	}
 	
+	public ArrayList<Point> getPoints(){
+		ArrayList<Point> points = new ArrayList<Point>();
+		
+		for(int i = 0; i < boundingBox.npoints; i ++){
+			points.add(new Point(boundingBox.xpoints[i], boundingBox.ypoints[i]));
+		}
+		
+		return points;
+	}
+	
 	public void addPoint(double x, double y){
 		boundingBox.addPoint((int) x,(int) y);
 		updateData();

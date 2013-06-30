@@ -1,5 +1,6 @@
 package org.projectcrawwl.data;
 
+import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -622,4 +623,11 @@ public class WorldTile {
 		return s;
 	}
 
+	public void setWidth(int w) {
+		width = w;
+	}
+
+	public void setHeight(int h) {
+		height = h;
+	}
 }

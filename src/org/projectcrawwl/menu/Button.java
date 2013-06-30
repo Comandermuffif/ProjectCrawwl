@@ -188,11 +188,10 @@ public class Button {
 		if(ID >= 11 && ID <= 14){
 			if(new File("res/Saves/save" + Integer.toString(ID - 10) + "/save.xml").exists()){
 				
-				Player p = PlayerXMLHandler.createPlayer("res/Saves/save" + Integer.toString(ID - 10) +"/save.xml");
+				GameData.setCurrentSave(ID - 10);
 				
-				GameData.clearData();
-				World.generateWorld();
-				GameData.setPlayer(p);
+				XMLHandler.loadData();
+				
 				StateController.setGameState(Main.IN_GAME);
 				
 			}
@@ -200,16 +199,16 @@ public class Button {
 		}
 		
 		if(ID >= 21 && ID <= 24){
-			if(new File("res/Saves/save" + Integer.toString(ID - 10) + "/save.xml").exists()){
-				
-				Player p = PlayerXMLHandler.createPlayer("res/Saves/save" + Integer.toString(ID - 10) +"/save.xml");
-				
-				GameData.clearData();
-				World.generateWorld();
-				GameData.setPlayer(p);
-				StateController.setGameState(Main.IN_GAME);
-				
-			}
+			
+			GameData.setCurrentSave(ID - 20);
+			
+			GameData.clearData();
+			World.generateWorld();
+			GameData.addPlayer();
+			
+			XMLHandler.saveData();
+			
+			StateController.setGameState(Main.IN_GAME);
 			return;
 		}
 		

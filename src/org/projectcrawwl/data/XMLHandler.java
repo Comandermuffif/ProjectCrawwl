@@ -1,5 +1,6 @@
 package org.projectcrawwl.data;
 
+import java.awt.Color;
 import java.awt.Point;
 import java.awt.geom.Line2D;
 import java.io.BufferedWriter;
@@ -24,6 +25,10 @@ public class XMLHandler extends DefaultHandler{
 	
 	private WorldTile tile = new WorldTile();
 	
+	private ConvexHull hull = new ConvexHull();
+	
+	private Point point = new Point();
+	
 	private Boolean player = false;
 	private Boolean world = false;
 	
@@ -45,6 +50,9 @@ public class XMLHandler extends DefaultHandler{
 			world = true;
 			World.clearData();
 		}
+		if(qName.equalsIgnoreCase("save")){
+			GameData.clearData();
+		}
 	}
 	
 	@Override
@@ -52,10 +60,16 @@ public class XMLHandler extends DefaultHandler{
 		
 		if(qName.equalsIgnoreCase("Player")){
 			player = false;
+			GameData.setPlayer(p);
 		}else if(qName.equalsIgnoreCase("World")){
 			world = false;
 		}else if(qName.equalsIgnoreCase("tile")){
 			World.addTile(tile);
+			
+			tile = new WorldTile();
+		}else if(qName.equalsIgnoreCase("hull")){
+			tile.addHull(hull);
+			hull = new ConvexHull();
 		}
 		
 		
@@ -80,11 +94,29 @@ public class XMLHandler extends DefaultHandler{
 				p.turnSpeed = Double.parseDouble(temp);
 			}else if(qName.equalsIgnoreCase("speedMult")){
 				p.speedMult = Double.parseDouble(temp);
+			}else if(qName.equalsIgnoreCase("facingAngle")){
+				p.facingAngle = Float.parseFloat(temp);
 			}
 		}
 		
 		if(world){
-			
+			if(qName.equalsIgnoreCase("width")){
+				tile.setWidth(Integer.parseInt(temp));
+			}else if(qName.equalsIgnoreCase("height")){
+				tile.setHeight(Integer.parseInt(temp));
+			}else if(qName.equalsIgnoreCase("color")){
+				hull.setColor(new Color(Integer.parseInt(temp)));
+			}else if(qName.equalsIgnoreCase("x")){
+				tile.setX(Integer.parseInt(temp));
+			}else if(qName.equalsIgnoreCase("y")){
+				tile.setY(Integer.parseInt(temp));
+			}else if(qName.equalsIgnoreCase("pX")){
+				point.x = Integer.parseInt(temp);
+			}else if(qName.equalsIgnoreCase("pY")){
+				point.y = Integer.parseInt(temp);
+			}else if(qName.equalsIgnoreCase("point")){
+				hull.addPoint(point);
+			}
 		}
 	}
 	
@@ -109,6 +141,12 @@ public class XMLHandler extends DefaultHandler{
 		
 		System.out.println("Begin Saving");
 		
+		
+		if(GameData.getCurrentSave() == 0){
+			System.out.println("No Save");
+			return;
+		}
+		
 		try{
 			File file = new File("res/Saves/save" + GameData.getCurrentSave() + "/save.xml");
 			
@@ -125,7 +163,7 @@ public class XMLHandler extends DefaultHandler{
 			
 			BasePlayer p = GameData.getPlayer();
 			
-			bw.write("<Save>");
+			bw.write("<Save>\n");
 			
 			bw.write("<Player>\n");
 				bw.write("<Information>\n");
@@ -134,11 +172,12 @@ public class XMLHandler extends DefaultHandler{
 					bw.write("<level>" + p.level + "</level>\n");
 					bw.write("<health>" + p.health + "</health>\n");
 					bw.write("<turnSpeed>" + p.turnSpeed + "</turnSpeed>\n");
+					bw.write("<facingAngle>" + p.facingAngle + "</facingAngle>\n");
 					bw.write("<boundingBox>\n");
-						for(Line2D.Float bound : p.boundingLines){
+						for(Point bound : p.getPoints()){
 							bw.write("<point>\n");
-								bw.write("<pX>" + (int) bound.x2 + "</pX>\n");
-								bw.write("<pY>" + (int) bound.y2 + "</pY>\n");
+								bw.write("<pX>" + (int) bound.x + "</pX>\n");
+								bw.write("<pY>" + (int) bound.y + "</pY>\n");
 							bw.write("</point>\n");
 						}
 					bw.write("</boundingBox>\n");
@@ -148,34 +187,34 @@ public class XMLHandler extends DefaultHandler{
 			bw.write("</Player>");
 			
 			
-			bw.write("<World>");
+			bw.write("<World>\n");
 				for(WorldTile t : World.getTiles()){
-					bw.write("<Tile>");
-						bw.write("<width>" + t.getWidth() + "</width>");
-						bw.write("<height>" + t.getHeight() + "</height>");
-						bw.write("<x>" + t.getX() + "</x>");
-						bw.write("<y>" + t.getY() + "</y>");
+					bw.write("<Tile>\n");
+						bw.write("<width>" + t.getWidth() + "</width>\n");
+						bw.write("<height>" + t.getHeight() + "</height>\n");
+						bw.write("<x>" + t.getX() + "</x>\n");
+						bw.write("<y>" + t.getY() + "</y>\n");
 						
 						for(ConvexHull h : t.getHulls()){
-							bw.write("<Hull>");
-								bw.write("<color>" + h.getColor() + "</color>");
+							bw.write("<Hull>\n");
+								bw.write("<color>" + h.getColor().getRGB() + "</color>\n");
 								
-								for(Line2D.Float l : h.getLines()){
+								for(Point l : h.getPoints()){
 									bw.write("<point>\n");
-										bw.write("<pX>" + (int) l.x2 + "</pX>\n");
-										bw.write("<pY>" + (int) l.y2 + "</pY>\n");
+										bw.write("<pX>" + (int) l.x + "</pX>\n");
+										bw.write("<pY>" + (int) l.y + "</pY>\n");
 									bw.write("</point>\n");
 								}
 								
-							bw.write("</Hull>");
+							bw.write("</Hull>\n");
 						}
 						
-					bw.write("</Tile>");
+					bw.write("</Tile>\n");
 				}
 				
-			bw.write("</World>");
+			bw.write("</World>\n");
 			
-			bw.write("</Save>");
+			bw.write("</Save>\n");
 			
 			bw.close();
 			
