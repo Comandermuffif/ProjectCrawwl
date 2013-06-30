@@ -15,17 +15,27 @@ public class World{
 	private static float mapYOffset = 0;
 	
 	private static ArrayList<ConvexHull> hulls = new ArrayList<ConvexHull>();
-	private static ArrayList<ConvexHull> tileHulls = new ArrayList<ConvexHull>();
-	private static ArrayList<ConvexHull> allHulls = new ArrayList<ConvexHull>();
-	
 	
 	private static ArrayList<WorldTile> tiles = new ArrayList<WorldTile>();
 	
-	private static HashSet<WorldTile> tileMap = new HashSet<WorldTile>();
-	
 	private static int tileLimit = 50;
 	
+	private World(){}
+	
+	public static void clearData(){
+		mapXOffset = 0;
+		mapYOffset = 0;
+		
+		hulls.clear();
+		
+		tiles.clear();
+		
+		tileLimit = 0;
+	}
+	
 	public static void generateWorld(){
+		
+		HashSet<WorldTile> tileMap = new HashSet<WorldTile>();
 		
 		GameData.clearData();
 		
@@ -33,8 +43,6 @@ public class World{
 		tileMap.clear();
 		
 		hulls.clear();
-		tileHulls.clear();
-		allHulls.clear();
 		
 		ArrayList<String> up = new ArrayList<String>();
 		ArrayList<String> down = new ArrayList<String>();
@@ -153,11 +161,8 @@ public class World{
 		}
 		
 		for(WorldTile t : tiles){
-			tileHulls.addAll(t.getHulls());
+			hulls.addAll(t.getHulls());
 		}
-		
-		allHulls.addAll(tileHulls);
-		allHulls.addAll(hulls);
 		
 		GameData.update();
 		
@@ -168,12 +173,12 @@ public class World{
 	}
 	
 	public static ArrayList<ConvexHull> getHulls(){
-		return allHulls;
+		return hulls;
 	}
 	
-	public static void addHull(ConvexHull h){
-		hulls.add(h);
-		allHulls.add(h);
+	public static void addTile(WorldTile t){
+		tiles.add(t);
+		hulls.addAll(t.getHulls());
 	}
 	
 	public static void clearHulls(){
@@ -217,15 +222,15 @@ public class World{
 
 	public static void renderHulls(){
 		
-		Collections.sort(allHulls);
+		Collections.sort(hulls);
 		
-		for(ConvexHull x : allHulls){
+		for(ConvexHull x : hulls){
 			x.render();
 		}
 	}
 	
 	public static void renderShadows(){
-		for(ConvexHull x : allHulls){
+		for(ConvexHull x : hulls){
 			x.renderShadow();
 		}
 	}

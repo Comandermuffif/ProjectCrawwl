@@ -26,6 +26,11 @@ public class WorldTile {
 	private int[] sides = new int[4];
 	
 	/**
+	 * Basic constructor, does nothing
+	 */
+	public WorldTile(){}
+	
+	/**
 	 * A World Tile created from a text file
 	 * @param file - The file to read
 	 */

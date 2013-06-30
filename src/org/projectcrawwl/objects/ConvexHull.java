@@ -125,6 +125,10 @@ public class ConvexHull extends GameObject{
 		lines = temp;
 	}
 	
+	public Color getColor(){
+		return color;
+	}
+	
 	public ArrayList<Line2D.Float> getLines(){
 		
 		return lines;
@@ -307,13 +311,13 @@ public class ConvexHull extends GameObject{
 		
 		Point2D.Double pp = new Point2D.Double(GameSettings.getScreenX()/2 - World.getMapXOffset(), GameSettings.getScreenY()/2 - World.getMapYOffset());
 		
-		Point2D.Double q = new Point2D.Double(x,y);
+		Point2D.Double q = new Point2D.Double(center.x,center.y);
 		
 		for(Line2D.Float l : lines){
 			
 			Point2D.Double p = new Point2D.Double(l.getX1(), l.getY1());
 			
-			if(q.x == x || q.y == y){
+			if(q.x == center.x || q.y == center.y){
 				q = (Point2D.Double) p.clone();
 			}else{
 				if(Math.abs(pp.x - p.x)  < Math.abs(pp.x - q.x) || Math.abs(pp.y - p.y)/(ratio)  < Math.abs(pp.y - q.y)/(ratio)){
@@ -333,16 +337,16 @@ public class ConvexHull extends GameObject{
 
 		Point2D.Double pp = new Point2D.Double(GameSettings.getScreenX()/2 - World.getMapXOffset(), GameSettings.getScreenY()/2 - World.getMapYOffset());
 		
-		Point2D.Double q = new Point2D.Double(x,y);
+		Point2D.Double q = new Point2D.Double(center.x,center.y);
 		
 		for(Line2D.Float l : boundingLines){
 			
 			Point2D.Double p = new Point2D.Double();
 			
-			p.x = l.x1*Math.cos(Math.toRadians(facingAngle)) - l.y1*Math.sin(Math.toRadians(facingAngle)) + x;
-			p.y = l.x1*Math.sin(Math.toRadians(facingAngle)) + l.y1*Math.cos(Math.toRadians(facingAngle)) + y;
+			p.x = l.x1;
+			p.y = l.y1;
 			
-			if(q.x == x || q.y == y){
+			if(q.x == center.x || q.y == center.y){
 				q = (Point2D.Double) p.clone();
 			}else{
 				if(pp.distance(p) < pp.distance(q)){

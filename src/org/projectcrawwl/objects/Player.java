@@ -25,8 +25,6 @@ public class Player extends BasePlayer {
 	
 	boolean anti = false;
 	
-	private ConvexHull hull = null;
-	
 	public Player(String filename){
 		
 		super();
@@ -248,25 +246,9 @@ public class Player extends BasePlayer {
 	
 	@Override
 	public void mouseInput(ArrayList<Integer> a){
-		
-		int mouse_x = Mouse.getX();
-		int mouse_y = Mouse.getY();
-		
 		for(Integer i : a){
 			if(i == 0 && !inventory.getWeapon().isAutomatic()){
 				inventory.getWeapon().fire();
-			}
-			if(i == 1){
-				if(hull == null){
-					hull = new ConvexHull();
-					World.addHull(hull);
-				}
-				float ratio = ((float) (GameSettings.getScreenY())/GameSettings.getScreenX());
-				
-				hull.addPoint((((float)(mouse_x)/GameSettings.getScreenX())*(GameSettings.getScreenX() + 2*GameData.zoom) - GameData.zoom) - World.getMapXOffset(),(((float)(mouse_y)/GameSettings.getScreenY())*(GameSettings.getScreenY() + 2*GameData.zoom*ratio) - GameData.zoom*ratio) - World.getMapYOffset());
-			}
-			if(i == 2){
-				hull = null;
 			}
 		}
 	}
@@ -308,11 +290,6 @@ public class Player extends BasePlayer {
 			
 			if(i == Keyboard.KEY_I){
 				StateController.setGameState(Main.INVENTORY);
-			}
-			
-			
-			if(i == Keyboard.KEY_4){
-				hull = null;
 			}
 		}
 	}

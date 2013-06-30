@@ -90,33 +90,35 @@ public class PlayerXMLHandler extends DefaultHandler{
 			
 			if(!file.exists()){
 				file.createNewFile();
+			}else{
+				file.delete();
+				file.createNewFile();
 			}
 			
 			FileWriter fw = new FileWriter(file.getAbsoluteFile());
 			BufferedWriter bw = new BufferedWriter(fw);
 			
 			bw.write("<Player>\n");
-				bw.write("<Information>");
-					bw.write("<x>" + p.x + "</x>");
-					bw.write("<y>" + p.y + "</y>");
-					bw.write("<level>" + p.level + "</level>");
-					bw.write("<health>" + p.health + "</health>");
-					bw.write("<turnSpeed>" + p.turnSpeed + "</turnSpeed>");
-					bw.write("<boundingBox>");
+				bw.write("<Information>\n");
+					bw.write("<x>" + p.x + "</x>\n");
+					bw.write("<y>" + p.y + "</y>\n");
+					bw.write("<level>" + p.level + "</level>\n");
+					bw.write("<health>" + p.health + "</health>\n");
+					bw.write("<turnSpeed>" + p.turnSpeed + "</turnSpeed>\n");
+					bw.write("<boundingBox>\n");
 						for(Line2D.Float bound : p.boundingLines){
-							bw.write("<point>");
-								bw.write("<pX>" + bound.x1 + "<pX>");
-								bw.write("<pY>" + bound.y1 + "<pY>");
-							bw.write("</point>");
+							bw.write("<point>\n");
+								bw.write("<pX>" + (int) bound.x1 + "</pX>\n");
+								bw.write("<pY>" + (int) bound.y1 + "</pY>\n");
+							bw.write("</point>\n");
 						}
-					bw.write("</boundingBox>");
-				bw.write("</Information>");
+					bw.write("</boundingBox>\n");
+				bw.write("</Information>\n");
 				
-				bw.write("<Inventory>");
-				bw.write("</Inventory>");
+				bw.write("<Inventory>\n");
+				bw.write("</Inventory>\n");
 				
 			bw.write("</Player>");
-			
 			
 			bw.close();
 			
@@ -126,5 +128,5 @@ public class PlayerXMLHandler extends DefaultHandler{
 			e.printStackTrace();
 		}
 	}
-	
+
 }

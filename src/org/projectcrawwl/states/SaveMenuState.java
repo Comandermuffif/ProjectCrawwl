@@ -2,36 +2,46 @@ package org.projectcrawwl.states;
 
 import java.util.ArrayList;
 
+import org.lwjgl.input.Keyboard;
 import org.lwjgl.opengl.GL11;
+import org.projectcrawwl.Main;
 import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.data.GameSettings;
+import org.projectcrawwl.data.StateController;
 import org.projectcrawwl.menu.Button;
 
-public class MainMenuState implements GameState {
-	
+public class SaveMenuState implements GameState{
+
 	private ArrayList<Button> buttons = new ArrayList<Button>();
+	
+	@Override
+	public String getName() {
+		return "Save Menu";
+	}
 
 	@Override
 	public void onEnter() {
 		if(buttons.size() == 0){
-			buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY()/2 + 110,200,100, "New Game", 6));
+			buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY()/2 + 160,200,100, "Save 1", 21));
 			
-			buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY()/2,200,100, "Load Game", 4));
+			buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY()/2 + 50,200,100, "Save 2", 22));
 			
-			buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY()/2 - 110,200,100, "Options", 0));
+			buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY()/2 - 60,200,100, "Save 3", 23));
 			
-			buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY()/2 - 220,200,100, "Close Game", -1));
+			buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY()/2 - 170,200,100, "Save 4", 24));
+			
+			buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY()/2 - 280,200,100, "Back", 2));
 		}
-		GameData.update(0);
 	}
 
 	@Override
 	public void onExit() {
+		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void main(int delta) {
+	public void main(int delta){
 		
 		GameData.render();
 		
@@ -55,9 +65,8 @@ public class MainMenuState implements GameState {
 			b.render();
 		}
 		
-		
 	}
-	
+
 	@Override
 	public void mouseInput(ArrayList<Integer> a) {
 		for(Button b : buttons){
@@ -67,12 +76,11 @@ public class MainMenuState implements GameState {
 
 	@Override
 	public void keyboardInput(ArrayList<Integer> a) {
-		
-	}
-
-	@Override
-	public String getName() {
-		return "Main Menu";
+		for(Integer i : a){
+			if(i == Keyboard.KEY_ESCAPE){
+				StateController.setGameState(Main.MAIN_MENU);
+			}
+		}
 	}
 
 }

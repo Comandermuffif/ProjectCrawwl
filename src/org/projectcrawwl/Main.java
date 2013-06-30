@@ -16,16 +16,18 @@ import org.projectcrawwl.states.InventoryState;
 import org.projectcrawwl.states.LoadMenuState;
 import org.projectcrawwl.states.MainMenuState;
 import org.projectcrawwl.states.PauseState;
+import org.projectcrawwl.states.SaveMenuState;
 
 public class Main {
 
 	
 	//Make an enum of all states
-	public static GameState IN_GAME = new InGameState();
-	public static GameState MAIN_MENU = new MainMenuState();
-	public static GameState INVENTORY = new InventoryState();
-	public static GameState LOAD_MENU = new LoadMenuState();
-	public static GameState PAUSE_MENU = new PauseState();
+	public static final GameState IN_GAME = new InGameState();
+	public static final GameState MAIN_MENU = new MainMenuState();
+	public static final GameState INVENTORY = new InventoryState();
+	public static final GameState LOAD_MENU = new LoadMenuState();
+	public static final GameState PAUSE_MENU = new PauseState();
+	public static final GameState SAVE_MENU = new SaveMenuState();
 	
 	
 	static long lastFrame;

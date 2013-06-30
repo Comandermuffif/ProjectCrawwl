@@ -14,6 +14,7 @@ import org.projectcrawwl.data.GameSettings;
 import org.projectcrawwl.data.PlayerXMLHandler;
 import org.projectcrawwl.data.StateController;
 import org.projectcrawwl.data.World;
+import org.projectcrawwl.data.XMLHandler;
 import org.projectcrawwl.objects.Player;
 
 public class Button {
@@ -96,9 +97,23 @@ public class Button {
 		GameData.getFont().drawString(x + width/2 - GameData.getFont().getWidth(name)/2, GameSettings.getScreenY() - (y + height/2 + GameData.getFont().getHeight(name)/2), name);
 		
 		if(ID >= 11 && ID <= 14){
-			if(new File("res/Saves/save" + Integer.toString(ID - 10) + ".xml").exists()){
+			if(new File("res/Saves/save" + Integer.toString(ID - 10) + "/save.xml").exists()){
 				
-				Player p = PlayerXMLHandler.createPlayer("res/Saves/save" + Integer.toString(ID - 10) +".xml");
+				Player p = PlayerXMLHandler.createPlayer("res/Saves/save" + Integer.toString(ID - 10) +"/save.xml");
+				
+				
+				GameData.getFont().drawString(x + width/2 - GameData.getFont().getWidth(name)/2,
+						GameSettings.getScreenY() - (y + height/2 + GameData.getFont().getHeight(name)/2 - 10),
+						"Level: " + p.getLevel());
+			}else{
+				GameData.getFont().drawString(x + width/2 - GameData.getFont().getWidth(name)/2, GameSettings.getScreenY() - (y + height/2 + GameData.getFont().getHeight(name)/2 - 10), "Empty");
+			}
+		}
+		
+		if(ID >= 21 && ID <= 24){
+			if(new File("res/Saves/save" + Integer.toString(ID - 20) + "/save.xml").exists()){
+				
+				Player p = PlayerXMLHandler.createPlayer("res/Saves/save" + Integer.toString(ID - 20) +"/save.xml");
 				
 				
 				GameData.getFont().drawString(x + width/2 - GameData.getFont().getWidth(name)/2,
@@ -129,14 +144,17 @@ public class Button {
 	private void onPress(){
 		
 		if(ID == -1){
-			PlayerXMLHandler.savePlayer(GameData.getPlayer());
+			//PlayerXMLHandler.savePlayer(GameData.getPlayer());
+			XMLHandler.saveData();
 			AL.destroy();
 	    	Display.destroy();
 	        System.exit(0);
+	        return;
 		}
 		
 		if(ID == 0){
 			color = new Color((int)(Math.random()*255),(int) (Math.random()*255),(int) (Math.random()*255));
+			return;
 		}
 		
 		if(ID == 1){
@@ -144,24 +162,33 @@ public class Button {
 			World.generateWorld();
 			GameData.addPlayer();
 			StateController.setGameState(Main.IN_GAME);
+			return;
 		}
 		if(ID == 2){
 			StateController.setGameState(Main.MAIN_MENU);
+			return;
 		}
 		if(ID == 3){
 			StateController.setGameState(Main.IN_GAME);
+			return;
 		}
 		if(ID == 4){
 			StateController.setGameState(Main.LOAD_MENU);
+			return;
 		}
 		if(ID == 5){
 			StateController.setGameState(Main.PAUSE_MENU);
+			return;
+		}
+		if(ID == 6){
+			StateController.setGameState(Main.SAVE_MENU);
+			return;
 		}
 		
 		if(ID >= 11 && ID <= 14){
-			if(new File("res/Saves/save" + Integer.toString(ID - 10) + ".xml").exists()){
+			if(new File("res/Saves/save" + Integer.toString(ID - 10) + "/save.xml").exists()){
 				
-				Player p = PlayerXMLHandler.createPlayer("res/Saves/save" + Integer.toString(ID - 10) +".xml");
+				Player p = PlayerXMLHandler.createPlayer("res/Saves/save" + Integer.toString(ID - 10) +"/save.xml");
 				
 				GameData.clearData();
 				World.generateWorld();
@@ -169,6 +196,23 @@ public class Button {
 				StateController.setGameState(Main.IN_GAME);
 				
 			}
+			return;
 		}
+		
+		if(ID >= 21 && ID <= 24){
+			if(new File("res/Saves/save" + Integer.toString(ID - 10) + "/save.xml").exists()){
+				
+				Player p = PlayerXMLHandler.createPlayer("res/Saves/save" + Integer.toString(ID - 10) +"/save.xml");
+				
+				GameData.clearData();
+				World.generateWorld();
+				GameData.setPlayer(p);
+				StateController.setGameState(Main.IN_GAME);
+				
+			}
+			return;
+		}
+		
+		System.err.println("Button ID " + ID + " is unassined");
 	}
 }
