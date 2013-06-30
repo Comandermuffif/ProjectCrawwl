@@ -8,6 +8,7 @@ import org.lwjgl.opengl.GL11;
 import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.data.GameSettings;
 import org.projectcrawwl.data.World;
+import org.projectcrawwl.weapons.BaseWeapon;
 
 
 public class Zombie extends BasePlayer {
@@ -150,4 +151,61 @@ public class Zombie extends BasePlayer {
 			}
 		}
 	}
+	
+	@Override
+	public String toXML(){
+		String data = "";
+		
+		data += "<Object>\n";
+		{
+			data += "\t<Type>Zombie</Type>\n";
+			data += "\t<Information>\n";
+			{
+				data += "\t\t<x>" + x + "</x>\n";
+				data += "\t\t<y>" + y + "</y>\n";
+				
+				data += "\t\t<facingAngle>" + facingAngle + "</facingAngle>\n";
+				
+				data += "\t\t<moveAngle>" + moveAngle + "</moveAngle>\n";
+				
+				data += "\t\t<speed>" + speed + "</speed>\n";
+				
+				data += "\t\t<turnSpeed>" + turnSpeed + "</turnSpeed>\n";
+				
+				data += "\t\t<health>" + health + "</health>\n";
+				
+				data += "\t\t<level>" + level + "</level>\n";
+				
+				data += "\t\t<kills>" + kills + "</kills>\n";
+				
+				data += "\t\t<boundingBox>\n";
+				{
+					for(Point p : this.getPoints()){
+						data += "\t\t\t<point>\n";
+						{
+							data += "\t\t\t\t<pX>" + p.x + "</pX>\n";
+							data += "\t\t\t\t<pY>" + p.y + "</pY>\n";
+						}
+						data += "\t\t\t</point>\n";
+					}
+				}
+				data += "\t\t</boundingBox>\n";
+				
+			}
+			data += "\t</Information>\n";
+			
+			data += "\t<Inventory>\n";
+			{
+				for(BaseWeapon w : inventory.getWeapons()){
+					data += w.toXML();
+				}
+			}
+			data += "\t</Inventory>\n";
+			
+		}
+		data += "</Object>\n";
+		
+		return data;
+	}
+	
 }

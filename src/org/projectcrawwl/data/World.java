@@ -244,4 +244,43 @@ public class World{
 	public static void setTileLimit(int limit){
 		tileLimit = limit;
 	}
+	
+	public static String toXML(){
+		String data = "";
+		
+		data += "\t<world>\n";
+		{
+			for(WorldTile t : getTiles()){
+				data += "\t\t<Tile>\n";
+				{
+					data += "\t\t\t<width>" + t.getWidth() + "</width>\n";
+					data += "\t\t\t<height>" + t.getHeight() + "</height>\n";
+					
+					data += "\t\t\t<x>" + t.getX() + "</x>\n";
+					data += "\t\t\t<y>" + t.getY() + "</y>\n";
+					
+					data += "\t\t\t<hulls>\n";
+					for(ConvexHull h : t.getHulls()){
+						data += "\t\t\t\t<hull>\n";
+						data += "\t\t\t\t<color>" + h.getColor().getRGB() + "</color>\n";
+						
+						for(Point p : h.getPoints()){
+							data += "\t\t\t\t<point>\n";
+							{
+								data += "\t\t\t\t\t<pX>" + p.getX() + "</pX>\n";
+								data += "\t\t\t\t\t<pY>" + p.getY() + "</pY>\n";
+							}
+							data += "\t\t\t\t</point>\n";
+						}
+						data += "\t\t\t\t</hull>\n";
+					}
+					data += "\t\t\t</hulls>\n";
+				}
+				data += "\t\t</Tile>\n";
+			}
+		}
+		data += "\t</world>\n";
+		
+		return data;
+	}
 }

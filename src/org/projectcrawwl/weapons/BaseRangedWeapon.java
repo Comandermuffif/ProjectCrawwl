@@ -326,4 +326,37 @@ public class BaseRangedWeapon extends BaseWeapon{
 	public String toString(){
 		return "[ " + owner  + ", " + name + ", " + velocity + ", " + maxClip + ", " + reloadTime + ", " + pellets + ", " + spread + ", " + cone + ", " + damage + "]";
 	}
+	
+	public String toXML() {
+		String data = "";
+		
+		data += "\t\t<Weapon>\n";
+		{
+			data += "\t\t\t<type>BaseRangedWeapon</type>\n";
+			data += "\t\t\t<name>" + name + "</name>\n";
+			data += "\t\t\t<damage>" + damage + "</damage>\n";
+			data += "\t\t\t<active>" + active + "</active>\n";
+			data += "\t\t\t<coolDown>" + coolDown + "</coolDown>\n";
+			data += "\t\t\t<currentCoolDown>" + currentCoolDown + "</currentCoolDown>\n";
+			data += "\t\t\t<automatic>" + automatic + "</automatic>\n";
+			
+			data += "\t\t\t<velocity>" + velocity + "</velocity>\n";
+			data += "\t\t\t<currentClip>" + currentClip + "</currentClip>\n";
+			data += "\t\t\t<maxClip>" + maxClip + "</maxClip>\n";
+			data += "\t\t\t<reloadTime>" + reloadTime + "</reloadTime>\n";
+			data += "\t\t\t<currentReload>" + currentReload + "</currentReload>\n";
+			data += "\t\t\t<pellets>" + pellets + "</pellets>\n";
+			data += "\t\t\t<reloading>" + reloading + "</reloading>\n";
+			data += "\t\t\t<onFire>" + onFire.getBufferID() + "</onFire>\n";
+			data += "\t\t\t<spread>" + spread + "</spread>\n";
+			data += "\t\t\t<currentSpread>" + currentSpread + "</currentSpread>\n";
+			data += "\t\t\t<spreadAngle>" + spreadAngle + "</spreadAngle>\n";
+			data += "\t\t\t<cone>" + cone + "</cone>\n";
+			data += "\t\t\t<maxSpread>" + maxSpread + "</maxSpread>\n";
+			data += "\t\t\t<minSpread>" + minSpread + "</minSpread>\n";
+		}
+		data += "\t\t</Weapon>\n";
+		
+		return data;
+	}
 }

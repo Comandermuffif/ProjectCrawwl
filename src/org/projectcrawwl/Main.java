@@ -39,11 +39,11 @@ public class Main {
 
 	public void start() {
 		
-		//GameSettings.setScreenX(1280);
-		//GameSettings.setScreenY(720);
+		GameSettings.setScreenX(1280);
+		GameSettings.setScreenY(720);
 		
-		GameSettings.setScreenX(800);
-		GameSettings.setScreenY(600);
+		//GameSettings.setScreenX(800);
+		//GameSettings.setScreenY(600);
 		
 		
         try {
@@ -87,7 +87,7 @@ public class Main {
     	GameData.clearData();
     	World.generateWorld();
     	GameData.addPlayer();
-		
+    	
 		StateController.setGameState(MAIN_MENU);
 		
         while (!Display.isCloseRequested()) {

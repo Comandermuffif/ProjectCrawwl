@@ -53,28 +53,6 @@ public class Bullet extends GameObject{
 	public void render(){
 		if(!isReady){return;}
 		super.render();
-		
-		//(212, 175, 55)
-		//Old color
-		//GL11.glColor3d(.8313, .6867, .2156);
-		
-		/*
-		GL11.glColor3d(0,0,0);
-		GL11.glLineWidth(1);
-		GL11.glBegin(GL11.GL_LINES);
-		GL11.glVertex2d(renderX, renderY);
-		GL11.glColor4d(0,0,0,0);
-		GL11.glVertex2d(renderX + Math.cos(Math.toRadians(moveAngle))*-20, renderY + Math.sin(Math.toRadians(moveAngle))*-20);
-		GL11.glEnd();
-		
-		GL11.glColor3d(0,0,0);
-		GL11.glLineWidth(1);
-		GL11.glBegin(GL11.GL_LINES);
-		GL11.glVertex2d(renderX, renderY);
-		GL11.glVertex2d(owner.renderX,owner.renderY);
-		GL11.glEnd();*/
-		
-		
 			
 		double angle = 0;
 		double length = 0;
@@ -133,19 +111,6 @@ public class Bullet extends GameObject{
 				GameData.addParticle(new Particle(x, y, a , .05 + r.nextGaussian()*.01, 500));
 			}
 			
-			
-			
-			
-			
-			
-			
-			
-//			Audio onFire = null;
-//			try {
-//				int i = (int) Math.random()*10;
-//				onFire = AudioLoader.getAudio("WAV", ResourceLoader.getResourceAsStream("res/fx_bullet_impact_concrete_1" + (i + 6) + ".wav"));
-//			} catch (IOException e) {e.printStackTrace();}
-//			onFire.playAsSoundEffect(1.0f, 1.0f, false);
 		}
 		
 		for(BasePlayer b : temp){
@@ -206,5 +171,44 @@ public class Bullet extends GameObject{
 		if(damage <= 0){
 			GameData.removeProjectile(this);
 		}
+	}
+	
+	public String toXML(){
+		String data = "";
+		
+		data += "<Object>\n";
+		{
+			data += "\t<Type>Bullet</Type>\n";
+			data += "\t<Information>\n";
+			{
+				data += "\t\t<x>" + x + "</x>\n";
+				data += "\t\t<y>" + y + "</y>\n";
+				data += "\t\t<facingAngle>" + facingAngle + "</facingAngle>\n";
+				data += "\t\t<moveAngle>" + moveAngle + "</moveAngle>\n";
+				data += "\t\t<speed>" + speed + "</speed>\n";
+				data += "\t\t<turnSpeed>" + turnSpeed + "</turnSpeed>\n";
+				data += "\t\t<damage>" + damage + "</damage>\n";
+				
+				
+				
+				data += "\t\t<boundingBox>\n";
+				{
+					for(Point p : this.getPoints()){
+						data += "\t\t\t<point>\n";
+						{
+							data += "\t\t\t\t<pX>" + p.x + "</pX>\n";
+							data += "\t\t\t\t<pY>" + p.y + "</pY>\n";
+						}
+						data += "\t\t\t</point>\n";
+					}
+				}
+				data += "\t\t</boundingBox>\n";
+				
+			}
+			data += "\t</Information>\n";
+		}
+		data += "</Object>\n";
+		
+		return data;
 	}
 }

@@ -45,4 +45,24 @@ public class BaseWeapon {
 	public boolean isAutomatic(){
 		return automatic;
 	}
+
+	public String toXML() {
+		String data = "";
+		
+		data += "\t\t<Weapon>\n";
+		{
+			data += "\t\t\t<type>BaseWeapon</type>\n";
+			data += "\t\t\t<name>" + name + "</name>\n";
+			data += "\t\t\t<damage>" + damage + "</damage>\n";
+			data += "\t\t\t<active>" + active + "</active>\n";
+			
+			data += "\t\t\t<coolDown>" + coolDown + "</coolDown>\n";
+			data += "\t\t\t<currentCoolDown>" + currentCoolDown + "</currentCoolDown>\n";
+			
+			data += "\t\t\t<automatic>" + automatic + "</automatic>\n";
+		}
+		data += "\t\t</Weapon>\n";
+		
+		return data;
+	}
 }
