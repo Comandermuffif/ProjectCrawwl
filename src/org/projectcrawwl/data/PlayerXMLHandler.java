@@ -22,6 +22,8 @@ public class PlayerXMLHandler extends DefaultHandler{
 	private Point bound = new Point();
 	private String temp;
 	
+	private Boolean player = false;
+	
 	@Override
 	public void characters(char[] buffer, int start, int length){
 		temp = new String(buffer, start, length);
@@ -30,33 +32,45 @@ public class PlayerXMLHandler extends DefaultHandler{
 	@Override
 	public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException{
 		temp = "";
-		if(qName.equalsIgnoreCase("Player")){
-			p = new Player();
+		if(qName.equalsIgnoreCase("object")){
+			player = false;
 		}
 	}
 	
 	@Override
 	public void endElement(String uri, String localName, String qName) throws SAXException{
-		if(qName.equalsIgnoreCase("x")){
-			p.x = Float.parseFloat(temp);
-		}else if(qName.equalsIgnoreCase("y")){
-			p.y = Float.parseFloat(temp);
-		}else if(qName.equalsIgnoreCase("health")){
-			p.health = Integer.parseInt(temp);
-		}else if(qName.equalsIgnoreCase("level")){
-			p.level = Integer.parseInt(temp);
-		}else if(qName.equalsIgnoreCase("px")){
-			bound.x = Integer.parseInt(temp);
-		}else if(qName.equalsIgnoreCase("py")){
-			bound.y = Integer.parseInt(temp);
-		}else if(qName.equalsIgnoreCase("point")){
-			p.addPoint(bound);
-		}else if(qName.equalsIgnoreCase("boundingBox")){
-			p.updateLines();
-		}else if(qName.equalsIgnoreCase("turnSpeed")){
-			p.turnSpeed = Double.parseDouble(temp);
-		}else if(qName.equalsIgnoreCase("speedMult")){
-			p.speedMult = Double.parseDouble(temp);
+		
+		
+		
+		if(qName.equalsIgnoreCase("type")){
+			if(temp.equalsIgnoreCase("player")){
+				player = true;
+				p = new Player();
+			}
+		}
+		
+		if(player){
+			if(qName.equalsIgnoreCase("x")){
+				p.x = Float.parseFloat(temp);
+			}else if(qName.equalsIgnoreCase("y")){
+				p.y = Float.parseFloat(temp);
+			}else if(qName.equalsIgnoreCase("health")){
+				p.health = Integer.parseInt(temp);
+			}else if(qName.equalsIgnoreCase("level")){
+				p.level = Integer.parseInt(temp);
+			}else if(qName.equalsIgnoreCase("px")){
+				bound.x = Integer.parseInt(temp);
+			}else if(qName.equalsIgnoreCase("py")){
+				bound.y = Integer.parseInt(temp);
+			}else if(qName.equalsIgnoreCase("point")){
+				p.addPoint(bound);
+			}else if(qName.equalsIgnoreCase("boundingBox")){
+				p.updateLines();
+			}else if(qName.equalsIgnoreCase("turnSpeed")){
+				p.turnSpeed = Double.parseDouble(temp);
+			}else if(qName.equalsIgnoreCase("speedMult")){
+				p.speedMult = Double.parseDouble(temp);
+			}
 		}
 	}
 	

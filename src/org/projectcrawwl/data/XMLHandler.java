@@ -164,6 +164,7 @@ public class XMLHandler extends DefaultHandler{
 			
 			bw.write("<Save>\n");
 			
+			/*
 			bw.write("<Player>\n");
 				bw.write("<Information>\n");
 					bw.write("<x>" + p.x + "</x>\n");
@@ -184,8 +185,13 @@ public class XMLHandler extends DefaultHandler{
 				bw.write("<Inventory>\n");
 				bw.write("</Inventory>\n");
 			bw.write("</Player>");
+			*/
 			
+			bw.write(GameData.getPlayer().toXML());
 			
+			bw.write(World.toXML());
+			
+			/*
 			bw.write("<World>\n");
 				for(WorldTile t : World.getTiles()){
 					bw.write("<Tile>\n");
@@ -212,7 +218,7 @@ public class XMLHandler extends DefaultHandler{
 				}
 				
 			bw.write("</World>\n");
-			
+			*/
 			bw.write("</Save>\n");
 			
 			bw.close();
