@@ -32,7 +32,7 @@ public class PlayerXMLHandler extends DefaultHandler{
 	@Override
 	public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException{
 		temp = "";
-		if(qName.equalsIgnoreCase("object")){
+		if(qName.equalsIgnoreCase("player")){
 			player = false;
 		}
 	}
@@ -42,11 +42,9 @@ public class PlayerXMLHandler extends DefaultHandler{
 		
 		
 		
-		if(qName.equalsIgnoreCase("type")){
-			if(temp.equalsIgnoreCase("player")){
-				player = true;
-				p = new Player();
-			}
+		if(qName.equalsIgnoreCase("player")){
+			player = true;
+			p = new Player();
 		}
 		
 		if(player){

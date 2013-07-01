@@ -44,13 +44,13 @@ public class XMLHandler extends DefaultHandler{
 		if(qName.equalsIgnoreCase("Player")){
 			p = new Player();
 			player = true;
-		}
-		if(qName.equalsIgnoreCase("World")){
+		}else if(qName.equalsIgnoreCase("World")){
 			world = true;
 			World.clearData();
-		}
-		if(qName.equalsIgnoreCase("save")){
+		}else if(qName.equalsIgnoreCase("save")){
 			GameData.clearData();
+		}else if(qName.equalsIgnoreCase("Tile")){
+			tile = new WorldTile();
 		}
 	}
 	
@@ -62,11 +62,11 @@ public class XMLHandler extends DefaultHandler{
 			GameData.setPlayer(p);
 		}else if(qName.equalsIgnoreCase("World")){
 			world = false;
-		}else if(qName.equalsIgnoreCase("tile")){
+		}else if(qName.equalsIgnoreCase("Tile")){
 			World.addTile(tile);
 			
 			tile = new WorldTile();
-		}else if(qName.equalsIgnoreCase("hull")){
+		}else if(qName.equalsIgnoreCase("ConvexHull")){
 			tile.addHull(hull);
 			hull = new ConvexHull();
 		}
@@ -164,61 +164,12 @@ public class XMLHandler extends DefaultHandler{
 			
 			bw.write("<Save>\n");
 			
-			/*
-			bw.write("<Player>\n");
-				bw.write("<Information>\n");
-					bw.write("<x>" + p.x + "</x>\n");
-					bw.write("<y>" + p.y + "</y>\n");
-					bw.write("<level>" + p.level + "</level>\n");
-					bw.write("<health>" + p.health + "</health>\n");
-					bw.write("<turnSpeed>" + p.turnSpeed + "</turnSpeed>\n");
-					bw.write("<facingAngle>" + p.facingAngle + "</facingAngle>\n");
-					bw.write("<boundingBox>\n");
-						for(Point bound : p.getPoints()){
-							bw.write("<point>\n");
-								bw.write("<pX>" + (int) bound.x + "</pX>\n");
-								bw.write("<pY>" + (int) bound.y + "</pY>\n");
-							bw.write("</point>\n");
-						}
-					bw.write("</boundingBox>\n");
-				bw.write("</Information>\n");
-				bw.write("<Inventory>\n");
-				bw.write("</Inventory>\n");
-			bw.write("</Player>");
-			*/
-			
-			bw.write(GameData.getPlayer().toXML());
+			//bw.write(GameData.getPlayer().toXML());
 			
 			bw.write(World.toXML());
 			
-			/*
-			bw.write("<World>\n");
-				for(WorldTile t : World.getTiles()){
-					bw.write("<Tile>\n");
-						bw.write("<width>" + t.getWidth() + "</width>\n");
-						bw.write("<height>" + t.getHeight() + "</height>\n");
-						bw.write("<x>" + t.getX() + "</x>\n");
-						bw.write("<y>" + t.getY() + "</y>\n");
-						
-						for(ConvexHull h : t.getHulls()){
-							bw.write("<Hull>\n");
-								bw.write("<color>" + h.getColor().getRGB() + "</color>\n");
-								
-								for(Point l : h.getPoints()){
-									bw.write("<point>\n");
-										bw.write("<pX>" + (int) l.x + "</pX>\n");
-										bw.write("<pY>" + (int) l.y + "</pY>\n");
-									bw.write("</point>\n");
-								}
-								
-							bw.write("</Hull>\n");
-						}
-						
-					bw.write("</Tile>\n");
-				}
-				
-			bw.write("</World>\n");
-			*/
+			bw.write(GameData.toXML());
+			
 			bw.write("</Save>\n");
 			
 			bw.close();

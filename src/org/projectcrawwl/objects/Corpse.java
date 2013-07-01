@@ -64,65 +64,61 @@ public class Corpse extends BloodStain{
 		renderY = y + GameData.getMapYOffset();
 	}
 	
+	@Override
 	public String toXML(){
 		String data = "";
 		
-		data += "<Object>\n";
+		data += "<Corpse>\n";
 		{
-			data += "\t<Type>Corpse</Type>\n";
-			data += "\t<Information>\n";
-			{
-				data += "\t\t<x>" + x + "</x>\n";
-				data += "\t\t<y>" + y + "</y>\n";
-				data += "\t\t<dots>" + dots + "</dots>\n";
-				data += "\t\t<totalTimer>" + totalTimer + "</totalTimer>\n";
-				data += "\t\t<timer>" + timer + "</timer>\n";
-				data += "\t\t<facingAngle>" + facingAngle + "</facingAngle>\n";
-				data += "\t\t<moveAngle>" + moveAngle + "</moveAngle>\n";
-				data += "\t\t<speed>" + speed + "</speed>\n";
-				data += "\t\t<turnSpeed>" + turnSpeed + "</turnSpeed>\n";
+				data += "\t<x>" + x + "</x>\n";
+				data += "\t<y>" + y + "</y>\n";
+				data += "\t<dots>" + dots + "</dots>\n";
+				data += "\t<totalTimer>" + totalTimer + "</totalTimer>\n";
+				data += "\t<timer>" + timer + "</timer>\n";
+				data += "\t<facingAngle>" + facingAngle + "</facingAngle>\n";
+				data += "\t<moveAngle>" + moveAngle + "</moveAngle>\n";
+				data += "\t<speed>" + speed + "</speed>\n";
+				data += "\t<turnSpeed>" + turnSpeed + "</turnSpeed>\n";
 				
-				data += "\t\t<angles>\n";
+				data += "\t<angles>\n";
 				{
 					for(int i = 0; i < dots; i ++){
-						data += "\t\t\t<angle>" + angles[i] + "</angle>\n";
+						data += "\t\t<angle>" + angles[i] + "</angle>\n";
 					}
 				}
-				data += "\t\t</angles>\n";
+				data += "\t</angles>\n";
 
-				data += "\t\t<dists>\n";
+				data += "\t<dists>\n";
 				{
 					for(int i = 0; i < dots; i ++){
-						data += "\t\t\t<dist>" + dist[i] + "</dist>\n";
+						data += "\t\t<dist>" + dist[i] + "</dist>\n";
 					}
 				}
-				data += "\t\t</dists>\n";
+				data += "\t</dists>\n";
 				
-				data += "\t\t<radii>\n";
+				data += "\t<radii>\n";
 				{
 					for(int i = 0; i < dots; i ++){
-						data += "\t\t\t<radious>" + radious[i] + "</radious>\n";
+						data += "\t\t<radious>" + radious[i] + "</radious>\n";
 					}
 				}
-				data += "\t\t</radii>\n";
+				data += "\t</radii>\n";
 				
-				data += "\t\t<boundingBox>\n";
+				data += "\t<boundingBox>\n";
 				{
 					for(Point p : this.getPoints()){
-						data += "\t\t\t<point>\n";
+						data += "\t\t<point>\n";
 						{
-							data += "\t\t\t\t<pX>" + p.x + "</pX>\n";
-							data += "\t\t\t\t<pY>" + p.y + "</pY>\n";
+							data += "\t\t\t<pX>" + p.x + "</pX>\n";
+							data += "\t\t\t<pY>" + p.y + "</pY>\n";
 						}
-						data += "\t\t\t</point>\n";
+						data += "\t\t</point>\n";
 					}
 				}
-				data += "\t\t</boundingBox>\n";
-				
-			}
-			data += "\t</Information>\n";
+				data += "\t</boundingBox>\n";
+			
 		}
-		data += "</Object>\n";
+		data += "</Corpse>\n";
 		
 		return data;
 	}

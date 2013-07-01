@@ -49,9 +49,8 @@ public class BaseWeapon {
 	public String toXML() {
 		String data = "";
 		
-		data += "\t\t<Weapon>\n";
+		data += "\t\t<BaseWeapon>\n";
 		{
-			data += "\t\t\t<type>BaseWeapon</type>\n";
 			data += "\t\t\t<name>" + name + "</name>\n";
 			data += "\t\t\t<damage>" + damage + "</damage>\n";
 			data += "\t\t\t<active>" + active + "</active>\n";
@@ -61,7 +60,7 @@ public class BaseWeapon {
 			
 			data += "\t\t\t<automatic>" + automatic + "</automatic>\n";
 		}
-		data += "\t\t</Weapon>\n";
+		data += "\t\t</BaseWeapon>\n";
 		
 		return data;
 	}

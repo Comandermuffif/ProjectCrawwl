@@ -173,41 +173,36 @@ public class Bullet extends GameObject{
 		}
 	}
 	
+	@Override
 	public String toXML(){
 		String data = "";
 		
-		data += "<Object>\n";
+		data += "<Bullet>\n";
 		{
-			data += "\t<Type>Bullet</Type>\n";
-			data += "\t<Information>\n";
-			{
-				data += "\t\t<x>" + x + "</x>\n";
-				data += "\t\t<y>" + y + "</y>\n";
-				data += "\t\t<facingAngle>" + facingAngle + "</facingAngle>\n";
-				data += "\t\t<moveAngle>" + moveAngle + "</moveAngle>\n";
-				data += "\t\t<speed>" + speed + "</speed>\n";
-				data += "\t\t<turnSpeed>" + turnSpeed + "</turnSpeed>\n";
-				data += "\t\t<damage>" + damage + "</damage>\n";
+				data += "\t<x>" + x + "</x>\n";
+				data += "\t<y>" + y + "</y>\n";
+				data += "\t<facingAngle>" + facingAngle + "</facingAngle>\n";
+				data += "\t<moveAngle>" + moveAngle + "</moveAngle>\n";
+				data += "\t<speed>" + speed + "</speed>\n";
+				data += "\t<turnSpeed>" + turnSpeed + "</turnSpeed>\n";
+				data += "\t<damage>" + damage + "</damage>\n";
 				
 				
 				
-				data += "\t\t<boundingBox>\n";
+				data += "\t<boundingBox>\n";
 				{
 					for(Point p : this.getPoints()){
-						data += "\t\t\t<point>\n";
+						data += "\t\t<point>\n";
 						{
-							data += "\t\t\t\t<pX>" + p.x + "</pX>\n";
-							data += "\t\t\t\t<pY>" + p.y + "</pY>\n";
+							data += "\t\t\t<pX>" + p.x + "</pX>\n";
+							data += "\t\t\t<pY>" + p.y + "</pY>\n";
 						}
-						data += "\t\t\t</point>\n";
+						data += "\t\t</point>\n";
 					}
 				}
-				data += "\t\t</boundingBox>\n";
-				
-			}
-			data += "\t</Information>\n";
+				data += "\t</boundingBox>\n";
 		}
-		data += "</Object>\n";
+		data += "</Bullet>\n";
 		
 		return data;
 	}

@@ -44,20 +44,6 @@ public class Zombie extends BasePlayer {
 		GL11.glLoadIdentity();
 		GL11.glOrtho(-GameData.zoom, GameSettings.getScreenX()  + GameData.zoom, -GameData.zoom*(ratio), GameSettings.getScreenY() + GameData.zoom*(ratio), -1, 1);
 		
-		/*
-		 * The lines used to get target without walking into walls and getting caught
-		if(target != null){
-			GL11.glBegin(GL11.GL_LINES);
-			GL11.glVertex2d(renderX + Math.cos(Math.atan2(target.getY() - y, target.getX() - x))*0 - Math.sin(Math.atan2(target.getY() - y, target.getX() - x))*farthest + (target.x - x), renderY + Math.sin(Math.atan2(target.getY() - y, target.getX() - x))*0 + Math.cos(Math.atan2(target.getY() - y, target.getX() - x))*farthest + (target.y - y));
-			GL11.glVertex2d(renderX + Math.cos(Math.atan2(target.getY() - y, target.getX() - x))*0 - Math.sin(Math.atan2(target.getY() - y, target.getX() - x))*farthest, renderY + Math.sin(Math.atan2(target.getY() - y, target.getX() - x))*0 + Math.cos(Math.atan2(target.getY() - y, target.getX() - x))*farthest);
-			GL11.glEnd();
-			
-			GL11.glBegin(GL11.GL_LINES);
-			GL11.glVertex2d(renderX + Math.cos(Math.atan2(target.getY() - y, target.getX() - x))*0 - Math.sin(Math.atan2(target.getY() - y, target.getX() - x))*-farthest + (target.x - x), renderY + Math.sin(Math.atan2(target.getY() - y, target.getX() - x))*0 + Math.cos(Math.atan2(target.getY() - y, target.getX() - x))*-farthest + (target.y - y));
-			GL11.glVertex2d(renderX + Math.cos(Math.atan2(target.getY() - y, target.getX() - x))*0 - Math.sin(Math.atan2(target.getY() - y, target.getX() - x))*-farthest, renderY + Math.sin(Math.atan2(target.getY() - y, target.getX() - x))*0 + Math.cos(Math.atan2(target.getY() - y, target.getX() - x))*-farthest);
-			GL11.glEnd();
-		}
-		*/
 	}
 
 	
@@ -156,43 +142,37 @@ public class Zombie extends BasePlayer {
 	public String toXML(){
 		String data = "";
 		
-		data += "<Object>\n";
+		data += "<Zombie>\n";
 		{
-			data += "\t<Type>Zombie</Type>\n";
-			data += "\t<Information>\n";
+			data += "\t<x>" + x + "</x>\n";
+			data += "\t<y>" + y + "</y>\n";
+			
+			data += "\t<facingAngle>" + facingAngle + "</facingAngle>\n";
+			
+			data += "\t<moveAngle>" + moveAngle + "</moveAngle>\n";
+			
+			data += "\t<speed>" + speed + "</speed>\n";
+			
+			data += "\t<turnSpeed>" + turnSpeed + "</turnSpeed>\n";
+			
+			data += "\t<health>" + health + "</health>\n";
+			
+			data += "\t<level>" + level + "</level>\n";
+			
+			data += "\t<kills>" + kills + "</kills>\n";
+			
+			data += "\t<boundingBox>\n";
 			{
-				data += "\t\t<x>" + x + "</x>\n";
-				data += "\t\t<y>" + y + "</y>\n";
-				
-				data += "\t\t<facingAngle>" + facingAngle + "</facingAngle>\n";
-				
-				data += "\t\t<moveAngle>" + moveAngle + "</moveAngle>\n";
-				
-				data += "\t\t<speed>" + speed + "</speed>\n";
-				
-				data += "\t\t<turnSpeed>" + turnSpeed + "</turnSpeed>\n";
-				
-				data += "\t\t<health>" + health + "</health>\n";
-				
-				data += "\t\t<level>" + level + "</level>\n";
-				
-				data += "\t\t<kills>" + kills + "</kills>\n";
-				
-				data += "\t\t<boundingBox>\n";
-				{
-					for(Point p : this.getPoints()){
-						data += "\t\t\t<point>\n";
-						{
-							data += "\t\t\t\t<pX>" + p.x + "</pX>\n";
-							data += "\t\t\t\t<pY>" + p.y + "</pY>\n";
-						}
-						data += "\t\t\t</point>\n";
+				for(Point p : this.getPoints()){
+					data += "\t\t<point>\n";
+					{
+						data += "\t\t\t<pX>" + p.x + "</pX>\n";
+						data += "\t\t\t<pY>" + p.y + "</pY>\n";
 					}
+					data += "\t\t</point>\n";
 				}
-				data += "\t\t</boundingBox>\n";
-				
 			}
-			data += "\t</Information>\n";
+			data += "\t</boundingBox>\n";
 			
 			data += "\t<Inventory>\n";
 			{
@@ -203,7 +183,7 @@ public class Zombie extends BasePlayer {
 			data += "\t</Inventory>\n";
 			
 		}
-		data += "</Object>\n";
+		data += "</Zombie>\n";
 		
 		return data;
 	}

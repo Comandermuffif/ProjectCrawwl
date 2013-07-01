@@ -563,5 +563,27 @@ public class GameData
 		Collections.sort(allObjects);
 		
 	}
+	
+	public static String toXML(){
+		String data = "";
+		
+		data += "\t<GameData>\n";
+		
+		for(GameObject g : allParticles){
+			data += g.toXML();
+		}
+		
+		for(GameObject g : allPlayers){
+			data += g.toXML();
+		}
+		
+		for(GameObject g : allProjectiles){
+			data += g.toXML();
+		}
+		
+		data += "\t</GameData>\n";
+		
+		return data;
+	}
 }
 

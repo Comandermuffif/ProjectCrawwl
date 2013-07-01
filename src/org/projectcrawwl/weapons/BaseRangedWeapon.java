@@ -327,12 +327,12 @@ public class BaseRangedWeapon extends BaseWeapon{
 		return "[ " + owner  + ", " + name + ", " + velocity + ", " + maxClip + ", " + reloadTime + ", " + pellets + ", " + spread + ", " + cone + ", " + damage + "]";
 	}
 	
+	@Override
 	public String toXML() {
 		String data = "";
 		
-		data += "\t\t<Weapon>\n";
+		data += "\t\t<BaseRangedWeapon>\n";
 		{
-			data += "\t\t\t<type>BaseRangedWeapon</type>\n";
 			data += "\t\t\t<name>" + name + "</name>\n";
 			data += "\t\t\t<damage>" + damage + "</damage>\n";
 			data += "\t\t\t<active>" + active + "</active>\n";
@@ -355,7 +355,7 @@ public class BaseRangedWeapon extends BaseWeapon{
 			data += "\t\t\t<maxSpread>" + maxSpread + "</maxSpread>\n";
 			data += "\t\t\t<minSpread>" + minSpread + "</minSpread>\n";
 		}
-		data += "\t\t</Weapon>\n";
+		data += "\t\t</BaseRangedWeapon>\n";
 		
 		return data;
 	}

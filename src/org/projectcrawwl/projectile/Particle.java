@@ -116,5 +116,32 @@ public class Particle extends GameObject{
 			GameData.removeParticle(this);
 		}
 	}
+	
+	@Override
+	public String toXML(){
+		String data = "";
+		
+		data += "<Particle>\n";
+		{
+				data += "\t<x>" + x + "</x>\n";
+				data += "\t<y>" + y + "</y>\n";
+				
+				data += "\t<facingAngle>" + facingAngle + "</facingAngle>\n";
+				
+				data += "\t<moveAngle>" + moveAngle + "</moveAngle>\n";
+				
+				data += "\t<speed>" + speed + "</speed>\n";
+				
+				data += "\t<turnSpeed>" + turnSpeed + "</turnSpeed>\n";
+				
+				data += "\t<color>" + color.getRGB() + "</color>\n";
+				
+				data += "\t<lifetime>" + lifetime + "</lifetime>\n";
+				data += "\t<setLife>" + setLife + "</setLife>\n";
 
+		}
+		data += "</Particle>\n";
+		
+		return data;
+	}
 }

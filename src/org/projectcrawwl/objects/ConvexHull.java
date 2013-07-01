@@ -373,39 +373,34 @@ public class ConvexHull extends GameObject{
 		return points;
 	}
 	
+	@Override
 	public String toXML(){
 		String data = "";
 		
-		data += "<Object>\n";
+		data += "\t\t\t\t<ConvexHull>\n";
 		{
-			data += "\t<Type>ConvexHull</Type>\n";
-			data += "\t<Information>\n";
+			
+			data += "\t\t\t\t\t<x>" + x + "</x>\n";
+			data += "\t\t\t\t\t<y>" + y + "</y>\n";
+			
+			data += "\t\t\t\t\t<color>" + color.getRGB() + "</color>\n";
+			
+			data += "\t\t\t\t\t<points>\n";
 			{
-				data += "\t\t<x>" + x + "</x>\n";
-				data += "\t\t<y>" + y + "</y>\n";
-				data += "\t\t<facingAngle>" + facingAngle + "</facingAngle>\n";
-				data += "\t\t<moveAngle>" + moveAngle + "</moveAngle>\n";
-				data += "\t\t<speed>" + speed + "</speed>\n";
-				data += "\t\t<turnSpeed>" + turnSpeed + "</turnSpeed>\n";
-				data += "\t\t<color>" + color.getRGB() + "</color>\n";
-				
-				data += "\t\t<points>\n";
-				{
-					for(Point p : this.getPoints()){
-						data += "\t\t\t<point>\n";
-						{
-							data += "\t\t\t\t<pX>" + p.x + "</pX>\n";
-							data += "\t\t\t\t<pY>" + p.y + "</pY>\n";
-						}
-						data += "\t\t\t</point>\n";
+				for(Point p : this.getPoints()){
+					data += "\t\t\t\t\t\t<point>\n";
+					{
+						data += "\t\t\t\t\t\t\t<pX>" + p.x + "</pX>\n";
+						data += "\t\t\t\t\t\t\t<pY>" + p.y + "</pY>\n";
 					}
+					data += "\t\t\t\t\t\t</point>\n";
 				}
-				data += "\t\t</points>\n";
-				
 			}
-			data += "\t</Information>\n";
+			data += "\t\t\t\t\t</points>\n";
+				
+			
 		}
-		data += "</Object>\n";
+		data += "\t\t\t\t</ConvexHull>\n";
 		
 		return data;
 	}

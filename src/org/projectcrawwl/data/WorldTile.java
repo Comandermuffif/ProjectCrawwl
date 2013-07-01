@@ -58,16 +58,18 @@ public class WorldTile {
 					height = Integer.parseInt(s[1]);
 				}
 				if(s[0].equalsIgnoreCase("x")){
-					x = Integer.parseInt(s[1]) * width;
+					x = Integer.parseInt(s[1]);
 				}
 				if(s[0].equalsIgnoreCase("y")){
-					y = Integer.parseInt(s[1]) * height;
+					y = Integer.parseInt(s[1]);
 				}
 				
 				if(s[0].equalsIgnoreCase("hull")){
 					
-					hulls.add(h);
-					h = new ConvexHull(x,y);
+					if(h.getPoints().size() >= 3){
+						hulls.add(h);
+					}
+					h = new ConvexHull(x*width,y*height);
 				}
 				
 				if(s[0].equalsIgnoreCase("p")){
@@ -101,7 +103,9 @@ public class WorldTile {
 				
 			}
 			
-			hulls.add(h);
+			if(h.getPoints().size() >= 3){
+				hulls.add(h);
+			}
 			
 			wordStream.close();
 			
@@ -112,7 +116,7 @@ public class WorldTile {
 		for(int i = 0; i < subset; i ++){
 			if(sides[3] == 1)
 			{
-				ConvexHull a = new ConvexHull(x,y);
+				ConvexHull a = new ConvexHull(x * width,y * height);
 				a.addPoint(0,(height/subset)*(i + 1));
 				a.addPoint(5,(height/subset)*(i + 1));
 				a.addPoint(5,(height/subset)*(i));
@@ -122,7 +126,7 @@ public class WorldTile {
 			}
 			if(sides[2] == 1)
 			{
-				ConvexHull a = new ConvexHull(x,y);
+				ConvexHull a = new ConvexHull(x * width,y * height);
 				a.addPoint((width/subset)*(i),0);
 				a.addPoint((width/subset)*(i),5);
 				a.addPoint((width/subset)*(i+1),5);
@@ -132,7 +136,7 @@ public class WorldTile {
 			}
 			if(sides[1] == 1)
 			{
-				ConvexHull a = new ConvexHull(x,y);
+				ConvexHull a = new ConvexHull(x * width,y * height);
 				a.addPoint(width-5,(height/subset)*(i + 1));
 				a.addPoint(width,(height/subset)*(i + 1));
 				a.addPoint(width,(height/subset)*(i));
@@ -142,7 +146,7 @@ public class WorldTile {
 			}
 			if(sides[0] == 1)
 			{
-				ConvexHull a = new ConvexHull(x,y);
+				ConvexHull a = new ConvexHull(x * width,y * height);
 				a.addPoint((width/subset)*(i),height);
 				a.addPoint((width/subset)*(i+1),height);
 				a.addPoint((width/subset)*(i+1),height-5);
@@ -202,8 +206,8 @@ public class WorldTile {
 	
 	public WorldTile(int xx, int yy, String filename, int override){
 		
-		this.x = xx * width;
-		this.y = yy * height;
+		this.x = xx;
+		this.y = yy;
 		
 		try {
 			
@@ -229,8 +233,10 @@ public class WorldTile {
 				
 				if(s[0].equals("hull")){
 					
-					hulls.add(h);
-					h = new ConvexHull(x,y);
+					if(h.getPoints().size() >= 3){
+						hulls.add(h);
+					}
+					h = new ConvexHull(x * width,y * height);
 				}
 				
 				if(s[0].equals("p")){
@@ -266,7 +272,9 @@ public class WorldTile {
 			
 			sides[override] = 0;
 			
-			hulls.add(h);
+			if(h.getPoints().size() >= 3){
+				hulls.add(h);
+			}
 			
 			wordStream.close();
 			
@@ -278,7 +286,7 @@ public class WorldTile {
 		for(int i = 0; i < subset; i ++){
 			if(sides[3] == 1)
 			{
-				ConvexHull a = new ConvexHull(x,y);
+				ConvexHull a = new ConvexHull(x * width,y * height);
 				a.addPoint(0,(height/subset)*(i + 1));
 				a.addPoint(5,(height/subset)*(i + 1));
 				a.addPoint(5,(height/subset)*(i));
@@ -288,7 +296,7 @@ public class WorldTile {
 			}
 			if(sides[2] == 1)
 			{
-				ConvexHull a = new ConvexHull(x,y);
+				ConvexHull a = new ConvexHull(x * width,y * height);
 				a.addPoint((width/subset)*(i),0);
 				a.addPoint((width/subset)*(i),5);
 				a.addPoint((width/subset)*(i+1),5);
@@ -298,7 +306,7 @@ public class WorldTile {
 			}
 			if(sides[1] == 1)
 			{
-				ConvexHull a = new ConvexHull(x,y);
+				ConvexHull a = new ConvexHull(x * width,y * height);
 				a.addPoint(width-5,(height/subset)*(i + 1));
 				a.addPoint(width,(height/subset)*(i + 1));
 				a.addPoint(width,(height/subset)*(i));
@@ -308,7 +316,7 @@ public class WorldTile {
 			}
 			if(sides[0] == 1)
 			{
-				ConvexHull a = new ConvexHull(x,y);
+				ConvexHull a = new ConvexHull(x * width,y * height);
 				a.addPoint((width/subset)*(i),height);
 				a.addPoint((width/subset)*(i+1),height);
 				a.addPoint((width/subset)*(i+1),height-5);
@@ -355,16 +363,20 @@ public class WorldTile {
 					height = Integer.parseInt(s[1]);
 				}
 				if(s[0].equals("x")){
-					x = Integer.parseInt(s[1]) * width;
+					x = Integer.parseInt(s[1]);
 				}
 				if(s[0].equals("y")){
-					y = Integer.parseInt(s[1]) * height;
+					y = Integer.parseInt(s[1]);
 				}
 				
 				if(s[0].equals("hull")){
 					
-					hulls.add(h);
-					h = new ConvexHull(x,y);
+					if(h.getPoints().size() >= 3){
+						hulls.add(h);
+					}
+					
+					
+					h = new ConvexHull(x * width,y * height);
 				}
 				
 				if(s[0].equals("p")){
@@ -387,7 +399,9 @@ public class WorldTile {
 				}
 			}
 			
-			hulls.add(h);
+			if(h.getPoints().size() >= 3){
+				hulls.add(h);
+			}
 			
 			wordStream.close();
 			
@@ -398,7 +412,7 @@ public class WorldTile {
 		for(int i = 0; i < subset; i ++){
 			if(sides[3] == 1)
 			{
-				ConvexHull a = new ConvexHull(x,y);
+				ConvexHull a = new ConvexHull(x * width,y * height);
 				a.addPoint(0,(height/subset)*(i + 1));
 				a.addPoint(5,(height/subset)*(i + 1));
 				a.addPoint(5,(height/subset)*(i));
@@ -408,7 +422,7 @@ public class WorldTile {
 			}
 			if(sides[2] == 1)
 			{
-				ConvexHull a = new ConvexHull(x,y);
+				ConvexHull a = new ConvexHull(x * width,y * height);
 				a.addPoint((width/subset)*(i),0);
 				a.addPoint((width/subset)*(i),5);
 				a.addPoint((width/subset)*(i+1),5);
@@ -418,7 +432,7 @@ public class WorldTile {
 			}
 			if(sides[1] == 1)
 			{
-				ConvexHull a = new ConvexHull(x,y);
+				ConvexHull a = new ConvexHull(x * width,y * height);
 				a.addPoint(width-5,(height/subset)*(i + 1));
 				a.addPoint(width,(height/subset)*(i + 1));
 				a.addPoint(width,(height/subset)*(i));
@@ -428,7 +442,7 @@ public class WorldTile {
 			}
 			if(sides[0] == 1)
 			{
-				ConvexHull a = new ConvexHull(x,y);
+				ConvexHull a = new ConvexHull(x * width,y * height);
 				a.addPoint((width/subset)*(i),height);
 				a.addPoint((width/subset)*(i+1),height);
 				a.addPoint((width/subset)*(i+1),height-5);
@@ -465,8 +479,8 @@ public class WorldTile {
 	}
 	
 	public WorldTile(int ii, int jj){
-		x = ii * width;
-		y = jj * height;
+		x = ii;
+		y = jj;
 	}
 	
 	/**
@@ -474,8 +488,8 @@ public class WorldTile {
 	 */
 	public WorldTile(int ii, int jj, int[] tempSide){
 		
-		x = ii * width;
-		y = jj * height;
+		x = ii;
+		y = jj;
 		
 		for(int i = 0; i < 4; i ++){
 			switch(tempSide[i]){
@@ -496,7 +510,7 @@ public class WorldTile {
 		for(int i = 0; i < subset; i ++){
 			if(sides[3] == 1)
 			{
-				ConvexHull a = new ConvexHull(x,y);
+				ConvexHull a = new ConvexHull(x * width,y * height);
 				a.addPoint(0,(height/subset)*(i + 1));
 				a.addPoint(5,(height/subset)*(i + 1));
 				a.addPoint(5,(height/subset)*(i));
@@ -506,7 +520,7 @@ public class WorldTile {
 			}
 			if(sides[2] == 1)
 			{
-				ConvexHull a = new ConvexHull(x,y);
+				ConvexHull a = new ConvexHull(x * width,y * height);
 				a.addPoint((width/subset)*(i),0);
 				a.addPoint((width/subset)*(i),5);
 				a.addPoint((width/subset)*(i+1),5);
@@ -516,7 +530,7 @@ public class WorldTile {
 			}
 			if(sides[1] == 1)
 			{
-				ConvexHull a = new ConvexHull(x,y);
+				ConvexHull a = new ConvexHull(x * width,y * height);
 				a.addPoint(width-5,(height/subset)*(i + 1));
 				a.addPoint(width,(height/subset)*(i + 1));
 				a.addPoint(width,(height/subset)*(i));
@@ -526,7 +540,7 @@ public class WorldTile {
 			}
 			if(sides[0] == 1)
 			{
-				ConvexHull a = new ConvexHull(x,y);
+				ConvexHull a = new ConvexHull(x * width,y * height);
 				a.addPoint((width/subset)*(i),height);
 				a.addPoint((width/subset)*(i+1),height);
 				a.addPoint((width/subset)*(i+1),height-5);
@@ -562,19 +576,20 @@ public class WorldTile {
 	}
 	
 	public int getX(){
-		return x/width;
+		return x;
 	}
 	
 	public int getY(){
-		return y/height;
+		return y;
 	}
 	
 	public void setX(int a){
-		x = a * width;
+		
+		x = a;
 	}
 	
 	public void setY(int a){
-		y = a * height;
+		y = a;
 	}
 	
 	public void renderHulls(){
@@ -593,18 +608,18 @@ public class WorldTile {
 		
 		GL11.glColor3d(1,1,1);
 		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
-		GL11.glVertex2d(x + World.getMapXOffset(), y + World.getMapYOffset());
-		GL11.glVertex2d(x + width + World.getMapXOffset(), y + World.getMapYOffset());
-		GL11.glVertex2d(x + width + World.getMapXOffset(), y + height + World.getMapYOffset());
-		GL11.glVertex2d(x + World.getMapXOffset(), y + height + World.getMapYOffset());
+		GL11.glVertex2d((x)*width + World.getMapXOffset(), (y)*height + World.getMapYOffset());
+		GL11.glVertex2d((x + 1)*width + World.getMapXOffset(), (y)*height + World.getMapYOffset());
+		GL11.glVertex2d((x + 1)*width + World.getMapXOffset(), (y+1)*height + World.getMapYOffset());
+		GL11.glVertex2d((x)*width + World.getMapXOffset(), (y+1)*height + World.getMapYOffset());
 		GL11.glEnd();
 	}
 	
 	@Override
 	public int hashCode(){
 		int hash = 7;
-		hash = 71 * hash + x/width;
-		hash = 71 * hash + y/height;
+		hash = 71 * hash + x;
+		hash = 71 * hash + y;
 		return hash;
 	}
 	
@@ -628,5 +643,26 @@ public class WorldTile {
 
 	public void setHeight(int h) {
 		height = h;
+	}
+	
+	public String toXML(){
+		String data = "";
+		
+		data += "\t\t<Tile>\n";
+		{
+			data += "\t\t\t<width>" + getWidth() + "</width>\n";
+			data += "\t\t\t<height>" + getHeight() + "</height>\n";
+			data += "\t\t\t<x>" + getX() + "</x>\n";
+			data += "\t\t\t<y>" + getY() + "</y>\n";
+			
+			data += "\t\t\t<hulls>\n";
+			for(ConvexHull h : getHulls()){
+				data += h.toXML();
+			}
+			data += "\t\t\t</hulls>\n";
+		}
+		data += "\t\t</Tile>\n";
+		
+		return data;
 	}
 }
