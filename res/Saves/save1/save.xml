@@ -1,5 +1,5 @@
 <Save>
-	<world>
+	<World>
 		<Tile>
 			<width>500</width>
 			<height>500</height>
@@ -9,7 +9,7 @@
 				<ConvexHull>
 					<x>0</x>
 					<y>0</y>
-					<color>-9493400</color>
+					<color>-9174149</color>
 					<points>
 						<point>
 							<pX>125</pX>
@@ -39,8 +39,8 @@
 			<hulls>
 				<ConvexHull>
 					<x>0</x>
-					<y>500</y>
-					<color>-8186757</color>
+					<y>0</y>
+					<color>-8511103</color>
 					<points>
 						<point>
 							<pX>100</pX>
@@ -62,47 +62,369 @@
 				</ConvexHull>
 				<ConvexHull>
 					<x>0</x>
-					<y>500</y>
-					<color>-8378713</color>
+					<y>0</y>
+					<color>-8716113</color>
 					<points>
 						<point>
-							<pX>350</pX>
-							<pY>650</pY>
-						</point>
-						<point>
-							<pX>400</pX>
-							<pY>650</pY>
+							<pX>100</pX>
+							<pY>850</pY>
 						</point>
 						<point>
 							<pX>400</pX>
 							<pY>850</pY>
 						</point>
 						<point>
-							<pX>350</pX>
-							<pY>850</pY>
+							<pX>400</pX>
+							<pY>900</pY>
+						</point>
+						<point>
+							<pX>100</pX>
+							<pY>900</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
 					<x>0</x>
-					<y>500</y>
-					<color>-9955926</color>
+					<y>0</y>
+					<color>-9625708</color>
+					<points>
+						<point>
+							<pX>0</pX>
+							<pY>600</pY>
+						</point>
+						<point>
+							<pX>5</pX>
+							<pY>600</pY>
+						</point>
+						<point>
+							<pX>5</pX>
+							<pY>500</pY>
+						</point>
+						<point>
+							<pX>0</pX>
+							<pY>500</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-10091157</color>
+					<points>
+						<point>
+							<pX>495</pX>
+							<pY>600</pY>
+						</point>
+						<point>
+							<pX>500</pX>
+							<pY>600</pY>
+						</point>
+						<point>
+							<pX>500</pX>
+							<pY>500</pY>
+						</point>
+						<point>
+							<pX>495</pX>
+							<pY>500</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-7667348</color>
+					<points>
+						<point>
+							<pX>0</pX>
+							<pY>1000</pY>
+						</point>
+						<point>
+							<pX>100</pX>
+							<pY>1000</pY>
+						</point>
+						<point>
+							<pX>100</pX>
+							<pY>995</pY>
+						</point>
+						<point>
+							<pX>0</pX>
+							<pY>995</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-10090652</color>
+					<points>
+						<point>
+							<pX>0</pX>
+							<pY>700</pY>
+						</point>
+						<point>
+							<pX>5</pX>
+							<pY>700</pY>
+						</point>
+						<point>
+							<pX>5</pX>
+							<pY>600</pY>
+						</point>
+						<point>
+							<pX>0</pX>
+							<pY>600</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-10150812</color>
+					<points>
+						<point>
+							<pX>495</pX>
+							<pY>700</pY>
+						</point>
+						<point>
+							<pX>500</pX>
+							<pY>700</pY>
+						</point>
+						<point>
+							<pX>500</pX>
+							<pY>600</pY>
+						</point>
+						<point>
+							<pX>495</pX>
+							<pY>600</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-7728020</color>
 					<points>
 						<point>
 							<pX>100</pX>
-							<pY>850</pY>
+							<pY>1000</pY>
 						</point>
 						<point>
-							<pX>400</pX>
-							<pY>850</pY>
+							<pX>200</pX>
+							<pY>1000</pY>
 						</point>
 						<point>
-							<pX>400</pX>
-							<pY>900</pY>
+							<pX>200</pX>
+							<pY>995</pY>
 						</point>
 						<point>
 							<pX>100</pX>
+							<pY>995</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-8910454</color>
+					<points>
+						<point>
+							<pX>0</pX>
+							<pY>800</pY>
+						</point>
+						<point>
+							<pX>5</pX>
+							<pY>800</pY>
+						</point>
+						<point>
+							<pX>5</pX>
+							<pY>700</pY>
+						</point>
+						<point>
+							<pX>0</pX>
+							<pY>700</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-9757521</color>
+					<points>
+						<point>
+							<pX>495</pX>
+							<pY>800</pY>
+						</point>
+						<point>
+							<pX>500</pX>
+							<pY>800</pY>
+						</point>
+						<point>
+							<pX>500</pX>
+							<pY>700</pY>
+						</point>
+						<point>
+							<pX>495</pX>
+							<pY>700</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-9501579</color>
+					<points>
+						<point>
+							<pX>200</pX>
+							<pY>1000</pY>
+						</point>
+						<point>
+							<pX>300</pX>
+							<pY>1000</pY>
+						</point>
+						<point>
+							<pX>300</pX>
+							<pY>995</pY>
+						</point>
+						<point>
+							<pX>200</pX>
+							<pY>995</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-9362317</color>
+					<points>
+						<point>
+							<pX>0</pX>
 							<pY>900</pY>
+						</point>
+						<point>
+							<pX>5</pX>
+							<pY>900</pY>
+						</point>
+						<point>
+							<pX>5</pX>
+							<pY>800</pY>
+						</point>
+						<point>
+							<pX>0</pX>
+							<pY>800</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-7992962</color>
+					<points>
+						<point>
+							<pX>495</pX>
+							<pY>900</pY>
+						</point>
+						<point>
+							<pX>500</pX>
+							<pY>900</pY>
+						</point>
+						<point>
+							<pX>500</pX>
+							<pY>800</pY>
+						</point>
+						<point>
+							<pX>495</pX>
+							<pY>800</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-8055168</color>
+					<points>
+						<point>
+							<pX>300</pX>
+							<pY>1000</pY>
+						</point>
+						<point>
+							<pX>400</pX>
+							<pY>1000</pY>
+						</point>
+						<point>
+							<pX>400</pX>
+							<pY>995</pY>
+						</point>
+						<point>
+							<pX>300</pX>
+							<pY>995</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-7923054</color>
+					<points>
+						<point>
+							<pX>0</pX>
+							<pY>1000</pY>
+						</point>
+						<point>
+							<pX>5</pX>
+							<pY>1000</pY>
+						</point>
+						<point>
+							<pX>5</pX>
+							<pY>900</pY>
+						</point>
+						<point>
+							<pX>0</pX>
+							<pY>900</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-9170306</color>
+					<points>
+						<point>
+							<pX>495</pX>
+							<pY>1000</pY>
+						</point>
+						<point>
+							<pX>500</pX>
+							<pY>1000</pY>
+						</point>
+						<point>
+							<pX>500</pX>
+							<pY>900</pY>
+						</point>
+						<point>
+							<pX>495</pX>
+							<pY>900</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-7723104</color>
+					<points>
+						<point>
+							<pX>400</pX>
+							<pY>1000</pY>
+						</point>
+						<point>
+							<pX>500</pX>
+							<pY>1000</pY>
+						</point>
+						<point>
+							<pX>500</pX>
+							<pY>995</pY>
+						</point>
+						<point>
+							<pX>400</pX>
+							<pY>995</pY>
 						</point>
 					</points>
 				</ConvexHull>
@@ -115,9 +437,9 @@
 			<y>0</y>
 			<hulls>
 				<ConvexHull>
-					<x>500</x>
+					<x>0</x>
 					<y>0</y>
-					<color>-9631889</color>
+					<color>-7664006</color>
 					<points>
 						<point>
 							<pX>600</pX>
@@ -138,9 +460,9 @@
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>500</x>
+					<x>0</x>
 					<y>0</y>
-					<color>-9497704</color>
+					<color>-9043849</color>
 					<points>
 						<point>
 							<pX>850</pX>
@@ -161,9 +483,9 @@
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>500</x>
+					<x>0</x>
 					<y>0</y>
-					<color>-9299840</color>
+					<color>-7856789</color>
 					<points>
 						<point>
 							<pX>600</pX>
@@ -184,9 +506,9 @@
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>500</x>
+					<x>0</x>
 					<y>0</y>
-					<color>-8581495</color>
+					<color>-7990135</color>
 					<points>
 						<point>
 							<pX>500</pX>
@@ -207,55 +529,9 @@
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>500</x>
+					<x>0</x>
 					<y>0</y>
-					<color>-8904844</color>
-					<points>
-						<point>
-							<pX>995</pX>
-							<pY>100</pY>
-						</point>
-						<point>
-							<pX>1000</pX>
-							<pY>100</pY>
-						</point>
-						<point>
-							<pX>1000</pX>
-							<pY>0</pY>
-						</point>
-						<point>
-							<pX>995</pX>
-							<pY>0</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>500</x>
-					<y>0</y>
-					<color>-9429325</color>
-					<points>
-						<point>
-							<pX>500</pX>
-							<pY>500</pY>
-						</point>
-						<point>
-							<pX>600</pX>
-							<pY>500</pY>
-						</point>
-						<point>
-							<pX>600</pX>
-							<pY>495</pY>
-						</point>
-						<point>
-							<pX>500</pX>
-							<pY>495</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>500</x>
-					<y>0</y>
-					<color>-8056449</color>
+					<color>-8581980</color>
 					<points>
 						<point>
 							<pX>600</pX>
@@ -276,55 +552,9 @@
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>500</x>
+					<x>0</x>
 					<y>0</y>
-					<color>-8642383</color>
-					<points>
-						<point>
-							<pX>995</pX>
-							<pY>200</pY>
-						</point>
-						<point>
-							<pX>1000</pX>
-							<pY>200</pY>
-						</point>
-						<point>
-							<pX>1000</pX>
-							<pY>100</pY>
-						</point>
-						<point>
-							<pX>995</pX>
-							<pY>100</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>500</x>
-					<y>0</y>
-					<color>-10157702</color>
-					<points>
-						<point>
-							<pX>600</pX>
-							<pY>500</pY>
-						</point>
-						<point>
-							<pX>700</pX>
-							<pY>500</pY>
-						</point>
-						<point>
-							<pX>700</pX>
-							<pY>495</pY>
-						</point>
-						<point>
-							<pX>600</pX>
-							<pY>495</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>500</x>
-					<y>0</y>
-					<color>-10085470</color>
+					<color>-8977789</color>
 					<points>
 						<point>
 							<pX>700</pX>
@@ -345,55 +575,9 @@
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>500</x>
+					<x>0</x>
 					<y>0</y>
-					<color>-7927897</color>
-					<points>
-						<point>
-							<pX>995</pX>
-							<pY>300</pY>
-						</point>
-						<point>
-							<pX>1000</pX>
-							<pY>300</pY>
-						</point>
-						<point>
-							<pX>1000</pX>
-							<pY>200</pY>
-						</point>
-						<point>
-							<pX>995</pX>
-							<pY>200</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>500</x>
-					<y>0</y>
-					<color>-9301864</color>
-					<points>
-						<point>
-							<pX>700</pX>
-							<pY>500</pY>
-						</point>
-						<point>
-							<pX>800</pX>
-							<pY>500</pY>
-						</point>
-						<point>
-							<pX>800</pX>
-							<pY>495</pY>
-						</point>
-						<point>
-							<pX>700</pX>
-							<pY>495</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>500</x>
-					<y>0</y>
-					<color>-8843160</color>
+					<color>-7992933</color>
 					<points>
 						<point>
 							<pX>800</pX>
@@ -414,55 +598,9 @@
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>500</x>
+					<x>0</x>
 					<y>0</y>
-					<color>-8511582</color>
-					<points>
-						<point>
-							<pX>995</pX>
-							<pY>400</pY>
-						</point>
-						<point>
-							<pX>1000</pX>
-							<pY>400</pY>
-						</point>
-						<point>
-							<pX>1000</pX>
-							<pY>300</pY>
-						</point>
-						<point>
-							<pX>995</pX>
-							<pY>300</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>500</x>
-					<y>0</y>
-					<color>-8910187</color>
-					<points>
-						<point>
-							<pX>800</pX>
-							<pY>500</pY>
-						</point>
-						<point>
-							<pX>900</pX>
-							<pY>500</pY>
-						</point>
-						<point>
-							<pX>900</pX>
-							<pY>495</pY>
-						</point>
-						<point>
-							<pX>800</pX>
-							<pY>495</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>500</x>
-					<y>0</y>
-					<color>-7854991</color>
+					<color>-9239700</color>
 					<points>
 						<point>
 							<pX>900</pX>
@@ -479,52 +617,6 @@
 						<point>
 							<pX>1000</pX>
 							<pY>0</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>500</x>
-					<y>0</y>
-					<color>-8968297</color>
-					<points>
-						<point>
-							<pX>995</pX>
-							<pY>500</pY>
-						</point>
-						<point>
-							<pX>1000</pX>
-							<pY>500</pY>
-						</point>
-						<point>
-							<pX>1000</pX>
-							<pY>400</pY>
-						</point>
-						<point>
-							<pX>995</pX>
-							<pY>400</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>500</x>
-					<y>0</y>
-					<color>-10089327</color>
-					<points>
-						<point>
-							<pX>900</pX>
-							<pY>500</pY>
-						</point>
-						<point>
-							<pX>1000</pX>
-							<pY>500</pY>
-						</point>
-						<point>
-							<pX>1000</pX>
-							<pY>495</pY>
-						</point>
-						<point>
-							<pX>900</pX>
-							<pY>495</pY>
 						</point>
 					</points>
 				</ConvexHull>
@@ -538,77 +630,31 @@
 			<hulls>
 				<ConvexHull>
 					<x>0</x>
-					<y>-500</y>
-					<color>-8909442</color>
+					<y>0</y>
+					<color>-7860077</color>
 					<points>
 						<point>
-							<pX>100</pX>
+							<pX>0</pX>
 							<pY>-400</pY>
 						</point>
 						<point>
-							<pX>400</pX>
+							<pX>5</pX>
 							<pY>-400</pY>
 						</point>
 						<point>
-							<pX>400</pX>
-							<pY>-350</pY>
+							<pX>5</pX>
+							<pY>-500</pY>
 						</point>
 						<point>
-							<pX>100</pX>
-							<pY>-350</pY>
+							<pX>0</pX>
+							<pY>-500</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
 					<x>0</x>
-					<y>-500</y>
-					<color>-10019483</color>
-					<points>
-						<point>
-							<pX>350</pX>
-							<pY>-350</pY>
-						</point>
-						<point>
-							<pX>400</pX>
-							<pY>-350</pY>
-						</point>
-						<point>
-							<pX>400</pX>
-							<pY>-150</pY>
-						</point>
-						<point>
-							<pX>350</pX>
-							<pY>-150</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>0</x>
-					<y>-500</y>
-					<color>-9886299</color>
-					<points>
-						<point>
-							<pX>100</pX>
-							<pY>-150</pY>
-						</point>
-						<point>
-							<pX>400</pX>
-							<pY>-150</pY>
-						</point>
-						<point>
-							<pX>400</pX>
-							<pY>-100</pY>
-						</point>
-						<point>
-							<pX>100</pX>
-							<pY>-100</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>0</x>
-					<y>-500</y>
-					<color>-9238166</color>
+					<y>0</y>
+					<color>-8912512</color>
 					<points>
 						<point>
 							<pX>495</pX>
@@ -630,8 +676,31 @@
 				</ConvexHull>
 				<ConvexHull>
 					<x>0</x>
-					<y>-500</y>
-					<color>-9560426</color>
+					<y>0</y>
+					<color>-9894743</color>
+					<points>
+						<point>
+							<pX>0</pX>
+							<pY>-300</pY>
+						</point>
+						<point>
+							<pX>5</pX>
+							<pY>-300</pY>
+						</point>
+						<point>
+							<pX>5</pX>
+							<pY>-400</pY>
+						</point>
+						<point>
+							<pX>0</pX>
+							<pY>-400</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-10021514</color>
 					<points>
 						<point>
 							<pX>495</pX>
@@ -653,8 +722,31 @@
 				</ConvexHull>
 				<ConvexHull>
 					<x>0</x>
-					<y>-500</y>
-					<color>-10020709</color>
+					<y>0</y>
+					<color>-7920779</color>
+					<points>
+						<point>
+							<pX>0</pX>
+							<pY>-200</pY>
+						</point>
+						<point>
+							<pX>5</pX>
+							<pY>-200</pY>
+						</point>
+						<point>
+							<pX>5</pX>
+							<pY>-300</pY>
+						</point>
+						<point>
+							<pX>0</pX>
+							<pY>-300</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-8578141</color>
 					<points>
 						<point>
 							<pX>495</pX>
@@ -676,8 +768,31 @@
 				</ConvexHull>
 				<ConvexHull>
 					<x>0</x>
-					<y>-500</y>
-					<color>-9698455</color>
+					<y>0</y>
+					<color>-9367962</color>
+					<points>
+						<point>
+							<pX>0</pX>
+							<pY>-100</pY>
+						</point>
+						<point>
+							<pX>5</pX>
+							<pY>-100</pY>
+						</point>
+						<point>
+							<pX>5</pX>
+							<pY>-200</pY>
+						</point>
+						<point>
+							<pX>0</pX>
+							<pY>-200</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-9632368</color>
 					<points>
 						<point>
 							<pX>495</pX>
@@ -699,8 +814,31 @@
 				</ConvexHull>
 				<ConvexHull>
 					<x>0</x>
-					<y>-500</y>
-					<color>-8054932</color>
+					<y>0</y>
+					<color>-8774807</color>
+					<points>
+						<point>
+							<pX>0</pX>
+							<pY>0</pY>
+						</point>
+						<point>
+							<pX>5</pX>
+							<pY>0</pY>
+						</point>
+						<point>
+							<pX>5</pX>
+							<pY>-100</pY>
+						</point>
+						<point>
+							<pX>0</pX>
+							<pY>-100</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-8711321</color>
 					<points>
 						<point>
 							<pX>495</pX>
@@ -729,9 +867,9 @@
 			<y>0</y>
 			<hulls>
 				<ConvexHull>
-					<x>-500</x>
+					<x>0</x>
 					<y>0</y>
-					<color>-9959068</color>
+					<color>-8190336</color>
 					<points>
 						<point>
 							<pX>-400</pX>
@@ -752,9 +890,9 @@
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-500</x>
+					<x>0</x>
 					<y>0</y>
-					<color>-9436268</color>
+					<color>-8444561</color>
 					<points>
 						<point>
 							<pX>-150</pX>
@@ -775,9 +913,9 @@
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-500</x>
+					<x>0</x>
 					<y>0</y>
-					<color>-9894781</color>
+					<color>-7726443</color>
 					<points>
 						<point>
 							<pX>-400</pX>
@@ -798,9 +936,9 @@
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-500</x>
+					<x>0</x>
 					<y>0</y>
-					<color>-9693279</color>
+					<color>-8054172</color>
 					<points>
 						<point>
 							<pX>-500</pX>
@@ -821,9 +959,9 @@
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-500</x>
+					<x>0</x>
 					<y>0</y>
-					<color>-8575092</color>
+					<color>-9100373</color>
 					<points>
 						<point>
 							<pX>-500</pX>
@@ -844,9 +982,32 @@
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-500</x>
+					<x>0</x>
 					<y>0</y>
-					<color>-8052845</color>
+					<color>-9888865</color>
+					<points>
+						<point>
+							<pX>-500</pX>
+							<pY>500</pY>
+						</point>
+						<point>
+							<pX>-400</pX>
+							<pY>500</pY>
+						</point>
+						<point>
+							<pX>-400</pX>
+							<pY>495</pY>
+						</point>
+						<point>
+							<pX>-500</pX>
+							<pY>495</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-9953631</color>
 					<points>
 						<point>
 							<pX>-500</pX>
@@ -867,9 +1028,9 @@
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-500</x>
+					<x>0</x>
 					<y>0</y>
-					<color>-8181861</color>
+					<color>-9105804</color>
 					<points>
 						<point>
 							<pX>-400</pX>
@@ -890,9 +1051,32 @@
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-500</x>
+					<x>0</x>
 					<y>0</y>
-					<color>-9362297</color>
+					<color>-9885835</color>
+					<points>
+						<point>
+							<pX>-400</pX>
+							<pY>500</pY>
+						</point>
+						<point>
+							<pX>-300</pX>
+							<pY>500</pY>
+						</point>
+						<point>
+							<pX>-300</pX>
+							<pY>495</pY>
+						</point>
+						<point>
+							<pX>-400</pX>
+							<pY>495</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-7666274</color>
 					<points>
 						<point>
 							<pX>-500</pX>
@@ -913,9 +1097,9 @@
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-500</x>
+					<x>0</x>
 					<y>0</y>
-					<color>-9560717</color>
+					<color>-8116872</color>
 					<points>
 						<point>
 							<pX>-300</pX>
@@ -936,9 +1120,32 @@
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-500</x>
+					<x>0</x>
 					<y>0</y>
-					<color>-7728012</color>
+					<color>-8839775</color>
+					<points>
+						<point>
+							<pX>-300</pX>
+							<pY>500</pY>
+						</point>
+						<point>
+							<pX>-200</pX>
+							<pY>500</pY>
+						</point>
+						<point>
+							<pX>-200</pX>
+							<pY>495</pY>
+						</point>
+						<point>
+							<pX>-300</pX>
+							<pY>495</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-10152841</color>
 					<points>
 						<point>
 							<pX>-500</pX>
@@ -959,9 +1166,9 @@
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-500</x>
+					<x>0</x>
 					<y>0</y>
-					<color>-9492882</color>
+					<color>-9562515</color>
 					<points>
 						<point>
 							<pX>-200</pX>
@@ -982,9 +1189,32 @@
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-500</x>
+					<x>0</x>
 					<y>0</y>
-					<color>-9108863</color>
+					<color>-7662709</color>
+					<points>
+						<point>
+							<pX>-200</pX>
+							<pY>500</pY>
+						</point>
+						<point>
+							<pX>-100</pX>
+							<pY>500</pY>
+						</point>
+						<point>
+							<pX>-100</pX>
+							<pY>495</pY>
+						</point>
+						<point>
+							<pX>-200</pX>
+							<pY>495</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-9830248</color>
 					<points>
 						<point>
 							<pX>-500</pX>
@@ -1005,9 +1235,9 @@
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-500</x>
+					<x>0</x>
 					<y>0</y>
-					<color>-8320403</color>
+					<color>-9433211</color>
 					<points>
 						<point>
 							<pX>-100</pX>
@@ -1027,402 +1257,26 @@
 						</point>
 					</points>
 				</ConvexHull>
-			</hulls>
-		</Tile>
-		<Tile>
-			<width>500</width>
-			<height>500</height>
-			<x>0</x>
-			<y>2</y>
-			<hulls>
 				<ConvexHull>
 					<x>0</x>
-					<y>1000</y>
-					<color>-7923811</color>
+					<y>0</y>
+					<color>-8248911</color>
 					<points>
 						<point>
-							<pX>100</pX>
-							<pY>1100</pY>
-						</point>
-						<point>
-							<pX>400</pX>
-							<pY>1100</pY>
-						</point>
-						<point>
-							<pX>400</pX>
-							<pY>1150</pY>
-						</point>
-						<point>
-							<pX>100</pX>
-							<pY>1150</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>0</x>
-					<y>1000</y>
-					<color>-8976753</color>
-					<points>
-						<point>
-							<pX>100</pX>
-							<pY>1350</pY>
-						</point>
-						<point>
-							<pX>400</pX>
-							<pY>1350</pY>
-						</point>
-						<point>
-							<pX>400</pX>
-							<pY>1400</pY>
-						</point>
-						<point>
-							<pX>100</pX>
-							<pY>1400</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>0</x>
-					<y>1000</y>
-					<color>-7732609</color>
-					<points>
-						<point>
-							<pX>0</pX>
-							<pY>1100</pY>
-						</point>
-						<point>
-							<pX>5</pX>
-							<pY>1100</pY>
-						</point>
-						<point>
-							<pX>5</pX>
-							<pY>1000</pY>
+							<pX>-100</pX>
+							<pY>500</pY>
 						</point>
 						<point>
 							<pX>0</pX>
-							<pY>1000</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>0</x>
-					<y>1000</y>
-					<color>-8580969</color>
-					<points>
-						<point>
-							<pX>495</pX>
-							<pY>1100</pY>
-						</point>
-						<point>
-							<pX>500</pX>
-							<pY>1100</pY>
-						</point>
-						<point>
-							<pX>500</pX>
-							<pY>1000</pY>
-						</point>
-						<point>
-							<pX>495</pX>
-							<pY>1000</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>0</x>
-					<y>1000</y>
-					<color>-10088332</color>
-					<points>
-						<point>
-							<pX>0</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>100</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>100</pX>
-							<pY>1495</pY>
+							<pY>500</pY>
 						</point>
 						<point>
 							<pX>0</pX>
-							<pY>1495</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>0</x>
-					<y>1000</y>
-					<color>-9824130</color>
-					<points>
-						<point>
-							<pX>0</pX>
-							<pY>1200</pY>
+							<pY>495</pY>
 						</point>
 						<point>
-							<pX>5</pX>
-							<pY>1200</pY>
-						</point>
-						<point>
-							<pX>5</pX>
-							<pY>1100</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>1100</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>0</x>
-					<y>1000</y>
-					<color>-7664749</color>
-					<points>
-						<point>
-							<pX>495</pX>
-							<pY>1200</pY>
-						</point>
-						<point>
-							<pX>500</pX>
-							<pY>1200</pY>
-						</point>
-						<point>
-							<pX>500</pX>
-							<pY>1100</pY>
-						</point>
-						<point>
-							<pX>495</pX>
-							<pY>1100</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>0</x>
-					<y>1000</y>
-					<color>-7919718</color>
-					<points>
-						<point>
-							<pX>100</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>200</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>200</pX>
-							<pY>1495</pY>
-						</point>
-						<point>
-							<pX>100</pX>
-							<pY>1495</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>0</x>
-					<y>1000</y>
-					<color>-10090111</color>
-					<points>
-						<point>
-							<pX>0</pX>
-							<pY>1300</pY>
-						</point>
-						<point>
-							<pX>5</pX>
-							<pY>1300</pY>
-						</point>
-						<point>
-							<pX>5</pX>
-							<pY>1200</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>1200</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>0</x>
-					<y>1000</y>
-					<color>-8185221</color>
-					<points>
-						<point>
-							<pX>495</pX>
-							<pY>1300</pY>
-						</point>
-						<point>
-							<pX>500</pX>
-							<pY>1300</pY>
-						</point>
-						<point>
-							<pX>500</pX>
-							<pY>1200</pY>
-						</point>
-						<point>
-							<pX>495</pX>
-							<pY>1200</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>0</x>
-					<y>1000</y>
-					<color>-9690483</color>
-					<points>
-						<point>
-							<pX>200</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>300</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>300</pX>
-							<pY>1495</pY>
-						</point>
-						<point>
-							<pX>200</pX>
-							<pY>1495</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>0</x>
-					<y>1000</y>
-					<color>-8579683</color>
-					<points>
-						<point>
-							<pX>0</pX>
-							<pY>1400</pY>
-						</point>
-						<point>
-							<pX>5</pX>
-							<pY>1400</pY>
-						</point>
-						<point>
-							<pX>5</pX>
-							<pY>1300</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>1300</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>0</x>
-					<y>1000</y>
-					<color>-8117588</color>
-					<points>
-						<point>
-							<pX>495</pX>
-							<pY>1400</pY>
-						</point>
-						<point>
-							<pX>500</pX>
-							<pY>1400</pY>
-						</point>
-						<point>
-							<pX>500</pX>
-							<pY>1300</pY>
-						</point>
-						<point>
-							<pX>495</pX>
-							<pY>1300</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>0</x>
-					<y>1000</y>
-					<color>-9366623</color>
-					<points>
-						<point>
-							<pX>300</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>400</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>400</pX>
-							<pY>1495</pY>
-						</point>
-						<point>
-							<pX>300</pX>
-							<pY>1495</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>0</x>
-					<y>1000</y>
-					<color>-9633173</color>
-					<points>
-						<point>
-							<pX>0</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>5</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>5</pX>
-							<pY>1400</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>1400</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>0</x>
-					<y>1000</y>
-					<color>-8846455</color>
-					<points>
-						<point>
-							<pX>495</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>500</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>500</pX>
-							<pY>1400</pY>
-						</point>
-						<point>
-							<pX>495</pX>
-							<pY>1400</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>0</x>
-					<y>1000</y>
-					<color>-8710757</color>
-					<points>
-						<point>
-							<pX>400</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>500</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>500</pX>
-							<pY>1495</pY>
-						</point>
-						<point>
-							<pX>400</pX>
-							<pY>1495</pY>
+							<pX>-100</pX>
+							<pY>495</pY>
 						</point>
 					</points>
 				</ConvexHull>
@@ -1435,9 +1289,9 @@
 			<y>1</y>
 			<hulls>
 				<ConvexHull>
-					<x>500</x>
-					<y>500</y>
-					<color>-8183426</color>
+					<x>0</x>
+					<y>0</y>
+					<color>-9630841</color>
 					<points>
 						<point>
 							<pX>600</pX>
@@ -1458,48 +1312,370 @@
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>500</x>
-					<y>500</y>
-					<color>-7666800</color>
+					<x>0</x>
+					<y>0</y>
+					<color>-9233259</color>
 					<points>
 						<point>
-							<pX>850</pX>
-							<pY>650</pY>
-						</point>
-						<point>
-							<pX>900</pX>
-							<pY>650</pY>
+							<pX>600</pX>
+							<pY>850</pY>
 						</point>
 						<point>
 							<pX>900</pX>
 							<pY>850</pY>
 						</point>
 						<point>
-							<pX>850</pX>
-							<pY>850</pY>
+							<pX>900</pX>
+							<pY>900</pY>
+						</point>
+						<point>
+							<pX>600</pX>
+							<pY>900</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>500</x>
-					<y>500</y>
-					<color>-7987061</color>
+					<x>0</x>
+					<y>0</y>
+					<color>-9691778</color>
+					<points>
+						<point>
+							<pX>500</pX>
+							<pY>600</pY>
+						</point>
+						<point>
+							<pX>505</pX>
+							<pY>600</pY>
+						</point>
+						<point>
+							<pX>505</pX>
+							<pY>500</pY>
+						</point>
+						<point>
+							<pX>500</pX>
+							<pY>500</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-10215038</color>
+					<points>
+						<point>
+							<pX>995</pX>
+							<pY>600</pY>
+						</point>
+						<point>
+							<pX>1000</pX>
+							<pY>600</pY>
+						</point>
+						<point>
+							<pX>1000</pX>
+							<pY>500</pY>
+						</point>
+						<point>
+							<pX>995</pX>
+							<pY>500</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-9038719</color>
+					<points>
+						<point>
+							<pX>500</pX>
+							<pY>1000</pY>
+						</point>
+						<point>
+							<pX>600</pX>
+							<pY>1000</pY>
+						</point>
+						<point>
+							<pX>600</pX>
+							<pY>995</pY>
+						</point>
+						<point>
+							<pX>500</pX>
+							<pY>995</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-8122985</color>
+					<points>
+						<point>
+							<pX>500</pX>
+							<pY>700</pY>
+						</point>
+						<point>
+							<pX>505</pX>
+							<pY>700</pY>
+						</point>
+						<point>
+							<pX>505</pX>
+							<pY>600</pY>
+						</point>
+						<point>
+							<pX>500</pX>
+							<pY>600</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-9231771</color>
+					<points>
+						<point>
+							<pX>995</pX>
+							<pY>700</pY>
+						</point>
+						<point>
+							<pX>1000</pX>
+							<pY>700</pY>
+						</point>
+						<point>
+							<pX>1000</pX>
+							<pY>600</pY>
+						</point>
+						<point>
+							<pX>995</pX>
+							<pY>600</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-8904545</color>
 					<points>
 						<point>
 							<pX>600</pX>
-							<pY>850</pY>
+							<pY>1000</pY>
 						</point>
 						<point>
-							<pX>900</pX>
-							<pY>850</pY>
+							<pX>700</pX>
+							<pY>1000</pY>
 						</point>
 						<point>
-							<pX>900</pX>
-							<pY>900</pY>
+							<pX>700</pX>
+							<pY>995</pY>
 						</point>
 						<point>
 							<pX>600</pX>
+							<pY>995</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-7986047</color>
+					<points>
+						<point>
+							<pX>500</pX>
+							<pY>800</pY>
+						</point>
+						<point>
+							<pX>505</pX>
+							<pY>800</pY>
+						</point>
+						<point>
+							<pX>505</pX>
+							<pY>700</pY>
+						</point>
+						<point>
+							<pX>500</pX>
+							<pY>700</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-8446547</color>
+					<points>
+						<point>
+							<pX>995</pX>
+							<pY>800</pY>
+						</point>
+						<point>
+							<pX>1000</pX>
+							<pY>800</pY>
+						</point>
+						<point>
+							<pX>1000</pX>
+							<pY>700</pY>
+						</point>
+						<point>
+							<pX>995</pX>
+							<pY>700</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-8582520</color>
+					<points>
+						<point>
+							<pX>700</pX>
+							<pY>1000</pY>
+						</point>
+						<point>
+							<pX>800</pX>
+							<pY>1000</pY>
+						</point>
+						<point>
+							<pX>800</pX>
+							<pY>995</pY>
+						</point>
+						<point>
+							<pX>700</pX>
+							<pY>995</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-9108578</color>
+					<points>
+						<point>
+							<pX>500</pX>
 							<pY>900</pY>
+						</point>
+						<point>
+							<pX>505</pX>
+							<pY>900</pY>
+						</point>
+						<point>
+							<pX>505</pX>
+							<pY>800</pY>
+						</point>
+						<point>
+							<pX>500</pX>
+							<pY>800</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-8975734</color>
+					<points>
+						<point>
+							<pX>995</pX>
+							<pY>900</pY>
+						</point>
+						<point>
+							<pX>1000</pX>
+							<pY>900</pY>
+						</point>
+						<point>
+							<pX>1000</pX>
+							<pY>800</pY>
+						</point>
+						<point>
+							<pX>995</pX>
+							<pY>800</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-8182918</color>
+					<points>
+						<point>
+							<pX>800</pX>
+							<pY>1000</pY>
+						</point>
+						<point>
+							<pX>900</pX>
+							<pY>1000</pY>
+						</point>
+						<point>
+							<pX>900</pX>
+							<pY>995</pY>
+						</point>
+						<point>
+							<pX>800</pX>
+							<pY>995</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-9821798</color>
+					<points>
+						<point>
+							<pX>500</pX>
+							<pY>1000</pY>
+						</point>
+						<point>
+							<pX>505</pX>
+							<pY>1000</pY>
+						</point>
+						<point>
+							<pX>505</pX>
+							<pY>900</pY>
+						</point>
+						<point>
+							<pX>500</pX>
+							<pY>900</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-7988891</color>
+					<points>
+						<point>
+							<pX>995</pX>
+							<pY>1000</pY>
+						</point>
+						<point>
+							<pX>1000</pX>
+							<pY>1000</pY>
+						</point>
+						<point>
+							<pX>1000</pX>
+							<pY>900</pY>
+						</point>
+						<point>
+							<pX>995</pX>
+							<pY>900</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-9567889</color>
+					<points>
+						<point>
+							<pX>900</pX>
+							<pY>1000</pY>
+						</point>
+						<point>
+							<pX>1000</pX>
+							<pY>1000</pY>
+						</point>
+						<point>
+							<pX>1000</pX>
+							<pY>995</pY>
+						</point>
+						<point>
+							<pX>900</pX>
+							<pY>995</pY>
 						</point>
 					</points>
 				</ConvexHull>
@@ -1508,190 +1684,305 @@
 		<Tile>
 			<width>500</width>
 			<height>500</height>
-			<x>-1</x>
-			<y>1</y>
+			<x>2</x>
+			<y>0</y>
 			<hulls>
 				<ConvexHull>
-					<x>-500</x>
-					<y>500</y>
-					<color>-9957787</color>
+					<x>0</x>
+					<y>0</y>
+					<color>-8251498</color>
 					<points>
 						<point>
-							<pX>-400</pX>
-							<pY>600</pY>
+							<pX>1100</pX>
+							<pY>100</pY>
 						</point>
 						<point>
-							<pX>-100</pX>
-							<pY>600</pY>
+							<pX>1400</pX>
+							<pY>100</pY>
 						</point>
 						<point>
-							<pX>-100</pX>
-							<pY>650</pY>
+							<pX>1400</pX>
+							<pY>150</pY>
 						</point>
 						<point>
-							<pX>-400</pX>
-							<pY>650</pY>
+							<pX>1100</pX>
+							<pY>150</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-500</x>
-					<y>500</y>
-					<color>-9040022</color>
+					<x>0</x>
+					<y>0</y>
+					<color>-8641622</color>
 					<points>
 						<point>
-							<pX>-150</pX>
-							<pY>650</pY>
+							<pX>1350</pX>
+							<pY>150</pY>
 						</point>
 						<point>
-							<pX>-100</pX>
-							<pY>650</pY>
+							<pX>1400</pX>
+							<pY>150</pY>
 						</point>
 						<point>
-							<pX>-100</pX>
-							<pY>850</pY>
+							<pX>1400</pX>
+							<pY>350</pY>
 						</point>
 						<point>
-							<pX>-150</pX>
-							<pY>850</pY>
+							<pX>1350</pX>
+							<pY>350</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-500</x>
-					<y>500</y>
-					<color>-9825383</color>
+					<x>0</x>
+					<y>0</y>
+					<color>-9763943</color>
 					<points>
 						<point>
-							<pX>-400</pX>
-							<pY>850</pY>
+							<pX>1100</pX>
+							<pY>350</pY>
 						</point>
 						<point>
-							<pX>-100</pX>
-							<pY>850</pY>
+							<pX>1400</pX>
+							<pY>350</pY>
 						</point>
 						<point>
-							<pX>-100</pX>
-							<pY>900</pY>
+							<pX>1400</pX>
+							<pY>400</pY>
 						</point>
 						<point>
-							<pX>-400</pX>
-							<pY>900</pY>
+							<pX>1100</pX>
+							<pY>400</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-500</x>
-					<y>500</y>
-					<color>-9237851</color>
+					<x>0</x>
+					<y>0</y>
+					<color>-9233485</color>
 					<points>
 						<point>
-							<pX>-500</pX>
-							<pY>500</pY>
+							<pX>1000</pX>
+							<pY>0</pY>
 						</point>
 						<point>
-							<pX>-500</pX>
-							<pY>505</pY>
+							<pX>1000</pX>
+							<pY>5</pY>
 						</point>
 						<point>
-							<pX>-400</pX>
-							<pY>505</pY>
+							<pX>1100</pX>
+							<pY>5</pY>
 						</point>
 						<point>
-							<pX>-400</pX>
-							<pY>500</pY>
+							<pX>1100</pX>
+							<pY>0</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-500</x>
-					<y>500</y>
-					<color>-9367630</color>
+					<x>0</x>
+					<y>0</y>
+					<color>-7665017</color>
 					<points>
 						<point>
-							<pX>-400</pX>
-							<pY>500</pY>
+							<pX>1495</pX>
+							<pY>100</pY>
 						</point>
 						<point>
-							<pX>-400</pX>
-							<pY>505</pY>
+							<pX>1500</pX>
+							<pY>100</pY>
 						</point>
 						<point>
-							<pX>-300</pX>
-							<pY>505</pY>
+							<pX>1500</pX>
+							<pY>0</pY>
 						</point>
 						<point>
-							<pX>-300</pX>
-							<pY>500</pY>
+							<pX>1495</pX>
+							<pY>0</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-500</x>
-					<y>500</y>
-					<color>-8575623</color>
+					<x>0</x>
+					<y>0</y>
+					<color>-9886799</color>
 					<points>
 						<point>
-							<pX>-300</pX>
-							<pY>500</pY>
+							<pX>1100</pX>
+							<pY>0</pY>
 						</point>
 						<point>
-							<pX>-300</pX>
-							<pY>505</pY>
+							<pX>1100</pX>
+							<pY>5</pY>
 						</point>
 						<point>
-							<pX>-200</pX>
-							<pY>505</pY>
+							<pX>1200</pX>
+							<pY>5</pY>
 						</point>
 						<point>
-							<pX>-200</pX>
-							<pY>500</pY>
+							<pX>1200</pX>
+							<pY>0</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-500</x>
-					<y>500</y>
-					<color>-8251730</color>
+					<x>0</x>
+					<y>0</y>
+					<color>-10222988</color>
 					<points>
 						<point>
-							<pX>-200</pX>
-							<pY>500</pY>
+							<pX>1495</pX>
+							<pY>200</pY>
 						</point>
 						<point>
-							<pX>-200</pX>
-							<pY>505</pY>
+							<pX>1500</pX>
+							<pY>200</pY>
 						</point>
 						<point>
-							<pX>-100</pX>
-							<pY>505</pY>
+							<pX>1500</pX>
+							<pY>100</pY>
 						</point>
 						<point>
-							<pX>-100</pX>
-							<pY>500</pY>
+							<pX>1495</pX>
+							<pY>100</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-500</x>
-					<y>500</y>
-					<color>-8908385</color>
+					<x>0</x>
+					<y>0</y>
+					<color>-9828179</color>
 					<points>
 						<point>
-							<pX>-100</pX>
+							<pX>1200</pX>
+							<pY>0</pY>
+						</point>
+						<point>
+							<pX>1200</pX>
+							<pY>5</pY>
+						</point>
+						<point>
+							<pX>1300</pX>
+							<pY>5</pY>
+						</point>
+						<point>
+							<pX>1300</pX>
+							<pY>0</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-8056984</color>
+					<points>
+						<point>
+							<pX>1495</pX>
+							<pY>300</pY>
+						</point>
+						<point>
+							<pX>1500</pX>
+							<pY>300</pY>
+						</point>
+						<point>
+							<pX>1500</pX>
+							<pY>200</pY>
+						</point>
+						<point>
+							<pX>1495</pX>
+							<pY>200</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-9299073</color>
+					<points>
+						<point>
+							<pX>1300</pX>
+							<pY>0</pY>
+						</point>
+						<point>
+							<pX>1300</pX>
+							<pY>5</pY>
+						</point>
+						<point>
+							<pX>1400</pX>
+							<pY>5</pY>
+						</point>
+						<point>
+							<pX>1400</pX>
+							<pY>0</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-9436534</color>
+					<points>
+						<point>
+							<pX>1495</pX>
+							<pY>400</pY>
+						</point>
+						<point>
+							<pX>1500</pX>
+							<pY>400</pY>
+						</point>
+						<point>
+							<pX>1500</pX>
+							<pY>300</pY>
+						</point>
+						<point>
+							<pX>1495</pX>
+							<pY>300</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-9563255</color>
+					<points>
+						<point>
+							<pX>1400</pX>
+							<pY>0</pY>
+						</point>
+						<point>
+							<pX>1400</pX>
+							<pY>5</pY>
+						</point>
+						<point>
+							<pX>1500</pX>
+							<pY>5</pY>
+						</point>
+						<point>
+							<pX>1500</pX>
+							<pY>0</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-9500819</color>
+					<points>
+						<point>
+							<pX>1495</pX>
 							<pY>500</pY>
 						</point>
 						<point>
-							<pX>-100</pX>
-							<pY>505</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>505</pY>
-						</point>
-						<point>
-							<pX>0</pX>
+							<pX>1500</pX>
 							<pY>500</pY>
+						</point>
+						<point>
+							<pX>1500</pX>
+							<pY>400</pY>
+						</point>
+						<point>
+							<pX>1495</pX>
+							<pY>400</pY>
 						</point>
 					</points>
 				</ConvexHull>
@@ -1705,100 +1996,31 @@
 			<hulls>
 				<ConvexHull>
 					<x>0</x>
-					<y>-1000</y>
-					<color>-7855516</color>
-					<points>
-						<point>
-							<pX>100</pX>
-							<pY>-900</pY>
-						</point>
-						<point>
-							<pX>400</pX>
-							<pY>-900</pY>
-						</point>
-						<point>
-							<pX>400</pX>
-							<pY>-850</pY>
-						</point>
-						<point>
-							<pX>100</pX>
-							<pY>-850</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>0</x>
-					<y>-1000</y>
-					<color>-9957756</color>
-					<points>
-						<point>
-							<pX>350</pX>
-							<pY>-850</pY>
-						</point>
-						<point>
-							<pX>400</pX>
-							<pY>-850</pY>
-						</point>
-						<point>
-							<pX>400</pX>
-							<pY>-650</pY>
-						</point>
-						<point>
-							<pX>350</pX>
-							<pY>-650</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>0</x>
-					<y>-1000</y>
-					<color>-8577359</color>
-					<points>
-						<point>
-							<pX>100</pX>
-							<pY>-650</pY>
-						</point>
-						<point>
-							<pX>400</pX>
-							<pY>-650</pY>
-						</point>
-						<point>
-							<pX>400</pX>
-							<pY>-600</pY>
-						</point>
-						<point>
-							<pX>100</pX>
-							<pY>-600</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>0</x>
-					<y>-1000</y>
-					<color>-8909683</color>
+					<y>0</y>
+					<color>-8576118</color>
 					<points>
 						<point>
 							<pX>0</pX>
+							<pY>-900</pY>
+						</point>
+						<point>
+							<pX>5</pX>
+							<pY>-900</pY>
+						</point>
+						<point>
+							<pX>5</pX>
 							<pY>-1000</pY>
 						</point>
 						<point>
 							<pX>0</pX>
-							<pY>-995</pY>
-						</point>
-						<point>
-							<pX>100</pX>
-							<pY>-995</pY>
-						</point>
-						<point>
-							<pX>100</pX>
 							<pY>-1000</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
 					<x>0</x>
-					<y>-1000</y>
-					<color>-9109116</color>
+					<y>0</y>
+					<color>-8189042</color>
 					<points>
 						<point>
 							<pX>495</pX>
@@ -1820,31 +2042,31 @@
 				</ConvexHull>
 				<ConvexHull>
 					<x>0</x>
-					<y>-1000</y>
-					<color>-10083186</color>
+					<y>0</y>
+					<color>-8844142</color>
 					<points>
 						<point>
-							<pX>100</pX>
-							<pY>-1000</pY>
+							<pX>0</pX>
+							<pY>-800</pY>
 						</point>
 						<point>
-							<pX>100</pX>
-							<pY>-995</pY>
+							<pX>5</pX>
+							<pY>-800</pY>
 						</point>
 						<point>
-							<pX>200</pX>
-							<pY>-995</pY>
+							<pX>5</pX>
+							<pY>-900</pY>
 						</point>
 						<point>
-							<pX>200</pX>
-							<pY>-1000</pY>
+							<pX>0</pX>
+							<pY>-900</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
 					<x>0</x>
-					<y>-1000</y>
-					<color>-9762905</color>
+					<y>0</y>
+					<color>-8714585</color>
 					<points>
 						<point>
 							<pX>495</pX>
@@ -1866,31 +2088,31 @@
 				</ConvexHull>
 				<ConvexHull>
 					<x>0</x>
-					<y>-1000</y>
-					<color>-9167458</color>
+					<y>0</y>
+					<color>-7920009</color>
 					<points>
 						<point>
-							<pX>200</pX>
-							<pY>-1000</pY>
+							<pX>0</pX>
+							<pY>-700</pY>
 						</point>
 						<point>
-							<pX>200</pX>
-							<pY>-995</pY>
+							<pX>5</pX>
+							<pY>-700</pY>
 						</point>
 						<point>
-							<pX>300</pX>
-							<pY>-995</pY>
+							<pX>5</pX>
+							<pY>-800</pY>
 						</point>
 						<point>
-							<pX>300</pX>
-							<pY>-1000</pY>
+							<pX>0</pX>
+							<pY>-800</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
 					<x>0</x>
-					<y>-1000</y>
-					<color>-8256881</color>
+					<y>0</y>
+					<color>-9624668</color>
 					<points>
 						<point>
 							<pX>495</pX>
@@ -1912,31 +2134,31 @@
 				</ConvexHull>
 				<ConvexHull>
 					<x>0</x>
-					<y>-1000</y>
-					<color>-9951857</color>
+					<y>0</y>
+					<color>-9296217</color>
 					<points>
 						<point>
-							<pX>300</pX>
-							<pY>-1000</pY>
+							<pX>0</pX>
+							<pY>-600</pY>
 						</point>
 						<point>
-							<pX>300</pX>
-							<pY>-995</pY>
+							<pX>5</pX>
+							<pY>-600</pY>
 						</point>
 						<point>
-							<pX>400</pX>
-							<pY>-995</pY>
+							<pX>5</pX>
+							<pY>-700</pY>
 						</point>
 						<point>
-							<pX>400</pX>
-							<pY>-1000</pY>
+							<pX>0</pX>
+							<pY>-700</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
 					<x>0</x>
-					<y>-1000</y>
-					<color>-9829487</color>
+					<y>0</y>
+					<color>-9038973</color>
 					<points>
 						<point>
 							<pX>495</pX>
@@ -1958,31 +2180,31 @@
 				</ConvexHull>
 				<ConvexHull>
 					<x>0</x>
-					<y>-1000</y>
-					<color>-8968795</color>
+					<y>0</y>
+					<color>-10149227</color>
 					<points>
 						<point>
-							<pX>400</pX>
-							<pY>-1000</pY>
+							<pX>0</pX>
+							<pY>-500</pY>
 						</point>
 						<point>
-							<pX>400</pX>
-							<pY>-995</pY>
+							<pX>5</pX>
+							<pY>-500</pY>
 						</point>
 						<point>
-							<pX>500</pX>
-							<pY>-995</pY>
+							<pX>5</pX>
+							<pY>-600</pY>
 						</point>
 						<point>
-							<pX>500</pX>
-							<pY>-1000</pY>
+							<pX>0</pX>
+							<pY>-600</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
 					<x>0</x>
-					<y>-1000</y>
-					<color>-7919727</color>
+					<y>0</y>
+					<color>-9428363</color>
 					<points>
 						<point>
 							<pX>495</pX>
@@ -1999,597 +2221,6 @@
 						<point>
 							<pX>495</pX>
 							<pY>-600</pY>
-						</point>
-					</points>
-				</ConvexHull>
-			</hulls>
-		</Tile>
-		<Tile>
-			<width>500</width>
-			<height>500</height>
-			<x>-1</x>
-			<y>-1</y>
-			<hulls>
-				<ConvexHull>
-					<x>-500</x>
-					<y>-500</y>
-					<color>-9888139</color>
-					<points>
-						<point>
-							<pX>-400</pX>
-							<pY>-400</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>-400</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>-350</pY>
-						</point>
-						<point>
-							<pX>-400</pX>
-							<pY>-350</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>-500</y>
-					<color>-9362004</color>
-					<points>
-						<point>
-							<pX>-150</pX>
-							<pY>-350</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>-350</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>-150</pY>
-						</point>
-						<point>
-							<pX>-150</pX>
-							<pY>-150</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>-500</y>
-					<color>-10217329</color>
-					<points>
-						<point>
-							<pX>-400</pX>
-							<pY>-150</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>-150</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>-100</pY>
-						</point>
-						<point>
-							<pX>-400</pX>
-							<pY>-100</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>-500</y>
-					<color>-8837759</color>
-					<points>
-						<point>
-							<pX>-500</pX>
-							<pY>-500</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>-495</pY>
-						</point>
-						<point>
-							<pX>-400</pX>
-							<pY>-495</pY>
-						</point>
-						<point>
-							<pX>-400</pX>
-							<pY>-500</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>-500</y>
-					<color>-8059783</color>
-					<points>
-						<point>
-							<pX>-400</pX>
-							<pY>-500</pY>
-						</point>
-						<point>
-							<pX>-400</pX>
-							<pY>-495</pY>
-						</point>
-						<point>
-							<pX>-300</pX>
-							<pY>-495</pY>
-						</point>
-						<point>
-							<pX>-300</pX>
-							<pY>-500</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>-500</y>
-					<color>-8511081</color>
-					<points>
-						<point>
-							<pX>-300</pX>
-							<pY>-500</pY>
-						</point>
-						<point>
-							<pX>-300</pX>
-							<pY>-495</pY>
-						</point>
-						<point>
-							<pX>-200</pX>
-							<pY>-495</pY>
-						</point>
-						<point>
-							<pX>-200</pX>
-							<pY>-500</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>-500</y>
-					<color>-8452174</color>
-					<points>
-						<point>
-							<pX>-200</pX>
-							<pY>-500</pY>
-						</point>
-						<point>
-							<pX>-200</pX>
-							<pY>-495</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>-495</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>-500</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>-500</y>
-					<color>-8514641</color>
-					<points>
-						<point>
-							<pX>-100</pX>
-							<pY>-500</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>-495</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>-495</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>-500</pY>
-						</point>
-					</points>
-				</ConvexHull>
-			</hulls>
-		</Tile>
-		<Tile>
-			<width>500</width>
-			<height>500</height>
-			<x>1</x>
-			<y>2</y>
-			<hulls>
-				<ConvexHull>
-					<x>500</x>
-					<y>1000</y>
-					<color>-8510799</color>
-					<points>
-						<point>
-							<pX>600</pX>
-							<pY>1100</pY>
-						</point>
-						<point>
-							<pX>900</pX>
-							<pY>1100</pY>
-						</point>
-						<point>
-							<pX>900</pX>
-							<pY>1150</pY>
-						</point>
-						<point>
-							<pX>600</pX>
-							<pY>1150</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>500</x>
-					<y>1000</y>
-					<color>-8052870</color>
-					<points>
-						<point>
-							<pX>600</pX>
-							<pY>1350</pY>
-						</point>
-						<point>
-							<pX>900</pX>
-							<pY>1350</pY>
-						</point>
-						<point>
-							<pX>900</pX>
-							<pY>1400</pY>
-						</point>
-						<point>
-							<pX>600</pX>
-							<pY>1400</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>500</x>
-					<y>1000</y>
-					<color>-7923062</color>
-					<points>
-						<point>
-							<pX>500</pX>
-							<pY>1100</pY>
-						</point>
-						<point>
-							<pX>505</pX>
-							<pY>1100</pY>
-						</point>
-						<point>
-							<pX>505</pX>
-							<pY>1000</pY>
-						</point>
-						<point>
-							<pX>500</pX>
-							<pY>1000</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>500</x>
-					<y>1000</y>
-					<color>-10082441</color>
-					<points>
-						<point>
-							<pX>995</pX>
-							<pY>1100</pY>
-						</point>
-						<point>
-							<pX>1000</pX>
-							<pY>1100</pY>
-						</point>
-						<point>
-							<pX>1000</pX>
-							<pY>1000</pY>
-						</point>
-						<point>
-							<pX>995</pX>
-							<pY>1000</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>500</x>
-					<y>1000</y>
-					<color>-8976257</color>
-					<points>
-						<point>
-							<pX>500</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>600</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>600</pX>
-							<pY>1495</pY>
-						</point>
-						<point>
-							<pX>500</pX>
-							<pY>1495</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>500</x>
-					<y>1000</y>
-					<color>-8707168</color>
-					<points>
-						<point>
-							<pX>500</pX>
-							<pY>1200</pY>
-						</point>
-						<point>
-							<pX>505</pX>
-							<pY>1200</pY>
-						</point>
-						<point>
-							<pX>505</pX>
-							<pY>1100</pY>
-						</point>
-						<point>
-							<pX>500</pX>
-							<pY>1100</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>500</x>
-					<y>1000</y>
-					<color>-8910187</color>
-					<points>
-						<point>
-							<pX>995</pX>
-							<pY>1200</pY>
-						</point>
-						<point>
-							<pX>1000</pX>
-							<pY>1200</pY>
-						</point>
-						<point>
-							<pX>1000</pX>
-							<pY>1100</pY>
-						</point>
-						<point>
-							<pX>995</pX>
-							<pY>1100</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>500</x>
-					<y>1000</y>
-					<color>-9230455</color>
-					<points>
-						<point>
-							<pX>600</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>700</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>700</pX>
-							<pY>1495</pY>
-						</point>
-						<point>
-							<pX>600</pX>
-							<pY>1495</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>500</x>
-					<y>1000</y>
-					<color>-7658066</color>
-					<points>
-						<point>
-							<pX>500</pX>
-							<pY>1300</pY>
-						</point>
-						<point>
-							<pX>505</pX>
-							<pY>1300</pY>
-						</point>
-						<point>
-							<pX>505</pX>
-							<pY>1200</pY>
-						</point>
-						<point>
-							<pX>500</pX>
-							<pY>1200</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>500</x>
-					<y>1000</y>
-					<color>-9695642</color>
-					<points>
-						<point>
-							<pX>995</pX>
-							<pY>1300</pY>
-						</point>
-						<point>
-							<pX>1000</pX>
-							<pY>1300</pY>
-						</point>
-						<point>
-							<pX>1000</pX>
-							<pY>1200</pY>
-						</point>
-						<point>
-							<pX>995</pX>
-							<pY>1200</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>500</x>
-					<y>1000</y>
-					<color>-9625973</color>
-					<points>
-						<point>
-							<pX>700</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>800</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>800</pX>
-							<pY>1495</pY>
-						</point>
-						<point>
-							<pX>700</pX>
-							<pY>1495</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>500</x>
-					<y>1000</y>
-					<color>-7659928</color>
-					<points>
-						<point>
-							<pX>500</pX>
-							<pY>1400</pY>
-						</point>
-						<point>
-							<pX>505</pX>
-							<pY>1400</pY>
-						</point>
-						<point>
-							<pX>505</pX>
-							<pY>1300</pY>
-						</point>
-						<point>
-							<pX>500</pX>
-							<pY>1300</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>500</x>
-					<y>1000</y>
-					<color>-7862167</color>
-					<points>
-						<point>
-							<pX>995</pX>
-							<pY>1400</pY>
-						</point>
-						<point>
-							<pX>1000</pX>
-							<pY>1400</pY>
-						</point>
-						<point>
-							<pX>1000</pX>
-							<pY>1300</pY>
-						</point>
-						<point>
-							<pX>995</pX>
-							<pY>1300</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>500</x>
-					<y>1000</y>
-					<color>-9697364</color>
-					<points>
-						<point>
-							<pX>800</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>900</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>900</pX>
-							<pY>1495</pY>
-						</point>
-						<point>
-							<pX>800</pX>
-							<pY>1495</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>500</x>
-					<y>1000</y>
-					<color>-8650082</color>
-					<points>
-						<point>
-							<pX>500</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>505</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>505</pX>
-							<pY>1400</pY>
-						</point>
-						<point>
-							<pX>500</pX>
-							<pY>1400</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>500</x>
-					<y>1000</y>
-					<color>-8707696</color>
-					<points>
-						<point>
-							<pX>995</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>1000</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>1000</pX>
-							<pY>1400</pY>
-						</point>
-						<point>
-							<pX>995</pX>
-							<pY>1400</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>500</x>
-					<y>1000</y>
-					<color>-7663252</color>
-					<points>
-						<point>
-							<pX>900</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>1000</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>1000</pX>
-							<pY>1495</pY>
-						</point>
-						<point>
-							<pX>900</pX>
-							<pY>1495</pY>
 						</point>
 					</points>
 				</ConvexHull>
@@ -2602,101 +2233,32 @@
 			<y>1</y>
 			<hulls>
 				<ConvexHull>
-					<x>1000</x>
-					<y>500</y>
-					<color>-9427571</color>
+					<x>0</x>
+					<y>0</y>
+					<color>-8254333</color>
 					<points>
 						<point>
-							<pX>1100</pX>
+							<pX>1000</pX>
 							<pY>600</pY>
 						</point>
 						<point>
-							<pX>1400</pX>
+							<pX>1005</pX>
 							<pY>600</pY>
 						</point>
 						<point>
-							<pX>1400</pX>
-							<pY>650</pY>
+							<pX>1005</pX>
+							<pY>500</pY>
 						</point>
-						<point>
-							<pX>1100</pX>
-							<pY>650</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>1000</x>
-					<y>500</y>
-					<color>-8906349</color>
-					<points>
-						<point>
-							<pX>1350</pX>
-							<pY>650</pY>
-						</point>
-						<point>
-							<pX>1400</pX>
-							<pY>650</pY>
-						</point>
-						<point>
-							<pX>1400</pX>
-							<pY>850</pY>
-						</point>
-						<point>
-							<pX>1350</pX>
-							<pY>850</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>1000</x>
-					<y>500</y>
-					<color>-9763681</color>
-					<points>
-						<point>
-							<pX>1100</pX>
-							<pY>850</pY>
-						</point>
-						<point>
-							<pX>1400</pX>
-							<pY>850</pY>
-						</point>
-						<point>
-							<pX>1400</pX>
-							<pY>900</pY>
-						</point>
-						<point>
-							<pX>1100</pX>
-							<pY>900</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>1000</x>
-					<y>500</y>
-					<color>-8514907</color>
-					<points>
 						<point>
 							<pX>1000</pX>
 							<pY>500</pY>
 						</point>
-						<point>
-							<pX>1000</pX>
-							<pY>505</pY>
-						</point>
-						<point>
-							<pX>1100</pX>
-							<pY>505</pY>
-						</point>
-						<point>
-							<pX>1100</pX>
-							<pY>500</pY>
-						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>1000</x>
-					<y>500</y>
-					<color>-9564773</color>
+					<x>0</x>
+					<y>0</y>
+					<color>-9759849</color>
 					<points>
 						<point>
 							<pX>1495</pX>
@@ -2717,55 +2279,32 @@
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>1000</x>
-					<y>500</y>
-					<color>-10151772</color>
+					<x>0</x>
+					<y>0</y>
+					<color>-8254035</color>
 					<points>
 						<point>
 							<pX>1000</pX>
-							<pY>1000</pY>
+							<pY>700</pY>
 						</point>
 						<point>
-							<pX>1100</pX>
-							<pY>1000</pY>
+							<pX>1005</pX>
+							<pY>700</pY>
 						</point>
 						<point>
-							<pX>1100</pX>
-							<pY>995</pY>
+							<pX>1005</pX>
+							<pY>600</pY>
 						</point>
 						<point>
 							<pX>1000</pX>
-							<pY>995</pY>
+							<pY>600</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>1000</x>
-					<y>500</y>
-					<color>-8450165</color>
-					<points>
-						<point>
-							<pX>1100</pX>
-							<pY>500</pY>
-						</point>
-						<point>
-							<pX>1100</pX>
-							<pY>505</pY>
-						</point>
-						<point>
-							<pX>1200</pX>
-							<pY>505</pY>
-						</point>
-						<point>
-							<pX>1200</pX>
-							<pY>500</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>1000</x>
-					<y>500</y>
-					<color>-8514193</color>
+					<x>0</x>
+					<y>0</y>
+					<color>-8118615</color>
 					<points>
 						<point>
 							<pX>1495</pX>
@@ -2786,55 +2325,32 @@
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>1000</x>
-					<y>500</y>
-					<color>-7792024</color>
+					<x>0</x>
+					<y>0</y>
+					<color>-9233553</color>
 					<points>
 						<point>
-							<pX>1100</pX>
-							<pY>1000</pY>
+							<pX>1000</pX>
+							<pY>800</pY>
 						</point>
 						<point>
-							<pX>1200</pX>
-							<pY>1000</pY>
+							<pX>1005</pX>
+							<pY>800</pY>
 						</point>
 						<point>
-							<pX>1200</pX>
-							<pY>995</pY>
+							<pX>1005</pX>
+							<pY>700</pY>
 						</point>
 						<point>
-							<pX>1100</pX>
-							<pY>995</pY>
+							<pX>1000</pX>
+							<pY>700</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>1000</x>
-					<y>500</y>
-					<color>-9830044</color>
-					<points>
-						<point>
-							<pX>1200</pX>
-							<pY>500</pY>
-						</point>
-						<point>
-							<pX>1200</pX>
-							<pY>505</pY>
-						</point>
-						<point>
-							<pX>1300</pX>
-							<pY>505</pY>
-						</point>
-						<point>
-							<pX>1300</pX>
-							<pY>500</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>1000</x>
-					<y>500</y>
-					<color>-8641629</color>
+					<x>0</x>
+					<y>0</y>
+					<color>-8189324</color>
 					<points>
 						<point>
 							<pX>1495</pX>
@@ -2855,55 +2371,32 @@
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>1000</x>
-					<y>500</y>
-					<color>-9106024</color>
+					<x>0</x>
+					<y>0</y>
+					<color>-9560159</color>
 					<points>
 						<point>
-							<pX>1200</pX>
-							<pY>1000</pY>
+							<pX>1000</pX>
+							<pY>900</pY>
 						</point>
 						<point>
-							<pX>1300</pX>
-							<pY>1000</pY>
+							<pX>1005</pX>
+							<pY>900</pY>
 						</point>
 						<point>
-							<pX>1300</pX>
-							<pY>995</pY>
+							<pX>1005</pX>
+							<pY>800</pY>
 						</point>
 						<point>
-							<pX>1200</pX>
-							<pY>995</pY>
+							<pX>1000</pX>
+							<pY>800</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>1000</x>
-					<y>500</y>
-					<color>-8846196</color>
-					<points>
-						<point>
-							<pX>1300</pX>
-							<pY>500</pY>
-						</point>
-						<point>
-							<pX>1300</pX>
-							<pY>505</pY>
-						</point>
-						<point>
-							<pX>1400</pX>
-							<pY>505</pY>
-						</point>
-						<point>
-							<pX>1400</pX>
-							<pY>500</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>1000</x>
-					<y>500</y>
-					<color>-9170002</color>
+					<x>0</x>
+					<y>0</y>
+					<color>-8315509</color>
 					<points>
 						<point>
 							<pX>1495</pX>
@@ -2924,55 +2417,32 @@
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>1000</x>
-					<y>500</y>
-					<color>-10023816</color>
+					<x>0</x>
+					<y>0</y>
+					<color>-9893486</color>
 					<points>
 						<point>
-							<pX>1300</pX>
+							<pX>1000</pX>
 							<pY>1000</pY>
 						</point>
 						<point>
-							<pX>1400</pX>
+							<pX>1005</pX>
 							<pY>1000</pY>
 						</point>
 						<point>
-							<pX>1400</pX>
-							<pY>995</pY>
+							<pX>1005</pX>
+							<pY>900</pY>
 						</point>
 						<point>
-							<pX>1300</pX>
-							<pY>995</pY>
+							<pX>1000</pX>
+							<pY>900</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>1000</x>
-					<y>500</y>
-					<color>-7723121</color>
-					<points>
-						<point>
-							<pX>1400</pX>
-							<pY>500</pY>
-						</point>
-						<point>
-							<pX>1400</pX>
-							<pY>505</pY>
-						</point>
-						<point>
-							<pX>1500</pX>
-							<pY>505</pY>
-						</point>
-						<point>
-							<pX>1500</pX>
-							<pY>500</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>1000</x>
-					<y>500</y>
-					<color>-8972940</color>
+					<x>0</x>
+					<y>0</y>
+					<color>-8183918</color>
 					<points>
 						<point>
 							<pX>1495</pX>
@@ -2989,2094 +2459,6 @@
 						<point>
 							<pX>1495</pX>
 							<pY>900</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>1000</x>
-					<y>500</y>
-					<color>-9297001</color>
-					<points>
-						<point>
-							<pX>1400</pX>
-							<pY>1000</pY>
-						</point>
-						<point>
-							<pX>1500</pX>
-							<pY>1000</pY>
-						</point>
-						<point>
-							<pX>1500</pX>
-							<pY>995</pY>
-						</point>
-						<point>
-							<pX>1400</pX>
-							<pY>995</pY>
-						</point>
-					</points>
-				</ConvexHull>
-			</hulls>
-		</Tile>
-		<Tile>
-			<width>500</width>
-			<height>500</height>
-			<x>-1</x>
-			<y>2</y>
-			<hulls>
-				<ConvexHull>
-					<x>-500</x>
-					<y>1000</y>
-					<color>-8059529</color>
-					<points>
-						<point>
-							<pX>-400</pX>
-							<pY>1100</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>1100</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>1150</pY>
-						</point>
-						<point>
-							<pX>-400</pX>
-							<pY>1150</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>1000</y>
-					<color>-8712037</color>
-					<points>
-						<point>
-							<pX>-400</pX>
-							<pY>1350</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>1350</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>1400</pY>
-						</point>
-						<point>
-							<pX>-400</pX>
-							<pY>1400</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>1000</y>
-					<color>-8191064</color>
-					<points>
-						<point>
-							<pX>-500</pX>
-							<pY>1100</pY>
-						</point>
-						<point>
-							<pX>-495</pX>
-							<pY>1100</pY>
-						</point>
-						<point>
-							<pX>-495</pX>
-							<pY>1000</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>1000</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>1000</y>
-					<color>-7860579</color>
-					<points>
-						<point>
-							<pX>-5</pX>
-							<pY>1100</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>1100</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>1000</pY>
-						</point>
-						<point>
-							<pX>-5</pX>
-							<pY>1000</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>1000</y>
-					<color>-9502589</color>
-					<points>
-						<point>
-							<pX>-500</pX>
-							<pY>1200</pY>
-						</point>
-						<point>
-							<pX>-495</pX>
-							<pY>1200</pY>
-						</point>
-						<point>
-							<pX>-495</pX>
-							<pY>1100</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>1100</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>1000</y>
-					<color>-9100952</color>
-					<points>
-						<point>
-							<pX>-5</pX>
-							<pY>1200</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>1200</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>1100</pY>
-						</point>
-						<point>
-							<pX>-5</pX>
-							<pY>1100</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>1000</y>
-					<color>-8182679</color>
-					<points>
-						<point>
-							<pX>-500</pX>
-							<pY>1300</pY>
-						</point>
-						<point>
-							<pX>-495</pX>
-							<pY>1300</pY>
-						</point>
-						<point>
-							<pX>-495</pX>
-							<pY>1200</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>1200</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>1000</y>
-					<color>-9756536</color>
-					<points>
-						<point>
-							<pX>-5</pX>
-							<pY>1300</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>1300</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>1200</pY>
-						</point>
-						<point>
-							<pX>-5</pX>
-							<pY>1200</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>1000</y>
-					<color>-9563506</color>
-					<points>
-						<point>
-							<pX>-500</pX>
-							<pY>1400</pY>
-						</point>
-						<point>
-							<pX>-495</pX>
-							<pY>1400</pY>
-						</point>
-						<point>
-							<pX>-495</pX>
-							<pY>1300</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>1300</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>1000</y>
-					<color>-8512368</color>
-					<points>
-						<point>
-							<pX>-5</pX>
-							<pY>1400</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>1400</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>1300</pY>
-						</point>
-						<point>
-							<pX>-5</pX>
-							<pY>1300</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>1000</y>
-					<color>-9762417</color>
-					<points>
-						<point>
-							<pX>-500</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>-495</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>-495</pX>
-							<pY>1400</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>1400</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>1000</y>
-					<color>-8253533</color>
-					<points>
-						<point>
-							<pX>-5</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>1400</pY>
-						</point>
-						<point>
-							<pX>-5</pX>
-							<pY>1400</pY>
-						</point>
-					</points>
-				</ConvexHull>
-			</hulls>
-		</Tile>
-		<Tile>
-			<width>500</width>
-			<height>500</height>
-			<x>-2</x>
-			<y>1</y>
-			<hulls>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>500</y>
-					<color>-10152346</color>
-					<points>
-						<point>
-							<pX>-900</pX>
-							<pY>600</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>600</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>650</pY>
-						</point>
-						<point>
-							<pX>-900</pX>
-							<pY>650</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>500</y>
-					<color>-8578970</color>
-					<points>
-						<point>
-							<pX>-650</pX>
-							<pY>650</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>650</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>850</pY>
-						</point>
-						<point>
-							<pX>-650</pX>
-							<pY>850</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>500</y>
-					<color>-9433217</color>
-					<points>
-						<point>
-							<pX>-900</pX>
-							<pY>850</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>850</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>900</pY>
-						</point>
-						<point>
-							<pX>-900</pX>
-							<pY>900</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>500</y>
-					<color>-9301348</color>
-					<points>
-						<point>
-							<pX>-1000</pX>
-							<pY>600</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
-							<pY>600</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
-							<pY>500</pY>
-						</point>
-						<point>
-							<pX>-1000</pX>
-							<pY>500</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>500</y>
-					<color>-8837987</color>
-					<points>
-						<point>
-							<pX>-1000</pX>
-							<pY>500</pY>
-						</point>
-						<point>
-							<pX>-1000</pX>
-							<pY>505</pY>
-						</point>
-						<point>
-							<pX>-900</pX>
-							<pY>505</pY>
-						</point>
-						<point>
-							<pX>-900</pX>
-							<pY>500</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>500</y>
-					<color>-10222463</color>
-					<points>
-						<point>
-							<pX>-1000</pX>
-							<pY>700</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
-							<pY>700</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
-							<pY>600</pY>
-						</point>
-						<point>
-							<pX>-1000</pX>
-							<pY>600</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>500</y>
-					<color>-8906637</color>
-					<points>
-						<point>
-							<pX>-900</pX>
-							<pY>500</pY>
-						</point>
-						<point>
-							<pX>-900</pX>
-							<pY>505</pY>
-						</point>
-						<point>
-							<pX>-800</pX>
-							<pY>505</pY>
-						</point>
-						<point>
-							<pX>-800</pX>
-							<pY>500</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>500</y>
-					<color>-8840345</color>
-					<points>
-						<point>
-							<pX>-1000</pX>
-							<pY>800</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
-							<pY>800</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
-							<pY>700</pY>
-						</point>
-						<point>
-							<pX>-1000</pX>
-							<pY>700</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>500</y>
-					<color>-9628544</color>
-					<points>
-						<point>
-							<pX>-800</pX>
-							<pY>500</pY>
-						</point>
-						<point>
-							<pX>-800</pX>
-							<pY>505</pY>
-						</point>
-						<point>
-							<pX>-700</pX>
-							<pY>505</pY>
-						</point>
-						<point>
-							<pX>-700</pX>
-							<pY>500</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>500</y>
-					<color>-10020234</color>
-					<points>
-						<point>
-							<pX>-1000</pX>
-							<pY>900</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
-							<pY>900</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
-							<pY>800</pY>
-						</point>
-						<point>
-							<pX>-1000</pX>
-							<pY>800</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>500</y>
-					<color>-8968847</color>
-					<points>
-						<point>
-							<pX>-700</pX>
-							<pY>500</pY>
-						</point>
-						<point>
-							<pX>-700</pX>
-							<pY>505</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>505</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>500</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>500</y>
-					<color>-8452988</color>
-					<points>
-						<point>
-							<pX>-1000</pX>
-							<pY>1000</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
-							<pY>1000</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
-							<pY>900</pY>
-						</point>
-						<point>
-							<pX>-1000</pX>
-							<pY>900</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>500</y>
-					<color>-10154070</color>
-					<points>
-						<point>
-							<pX>-600</pX>
-							<pY>500</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>505</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>505</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>500</pY>
-						</point>
-					</points>
-				</ConvexHull>
-			</hulls>
-		</Tile>
-		<Tile>
-			<width>500</width>
-			<height>500</height>
-			<x>-1</x>
-			<y>-2</y>
-			<hulls>
-				<ConvexHull>
-					<x>-500</x>
-					<y>-1000</y>
-					<color>-9823574</color>
-					<points>
-						<point>
-							<pX>-400</pX>
-							<pY>-900</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>-900</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>-850</pY>
-						</point>
-						<point>
-							<pX>-400</pX>
-							<pY>-850</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>-1000</y>
-					<color>-9304694</color>
-					<points>
-						<point>
-							<pX>-150</pX>
-							<pY>-850</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>-850</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>-650</pY>
-						</point>
-						<point>
-							<pX>-150</pX>
-							<pY>-650</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>-1000</y>
-					<color>-8839580</color>
-					<points>
-						<point>
-							<pX>-400</pX>
-							<pY>-650</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>-650</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>-600</pY>
-						</point>
-						<point>
-							<pX>-400</pX>
-							<pY>-600</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>-1000</y>
-					<color>-8378706</color>
-					<points>
-						<point>
-							<pX>-500</pX>
-							<pY>-900</pY>
-						</point>
-						<point>
-							<pX>-495</pX>
-							<pY>-900</pY>
-						</point>
-						<point>
-							<pX>-495</pX>
-							<pY>-1000</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>-1000</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>-1000</y>
-					<color>-10215561</color>
-					<points>
-						<point>
-							<pX>-500</pX>
-							<pY>-1000</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>-995</pY>
-						</point>
-						<point>
-							<pX>-400</pX>
-							<pY>-995</pY>
-						</point>
-						<point>
-							<pX>-400</pX>
-							<pY>-1000</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>-1000</y>
-					<color>-9826930</color>
-					<points>
-						<point>
-							<pX>-500</pX>
-							<pY>-500</pY>
-						</point>
-						<point>
-							<pX>-400</pX>
-							<pY>-500</pY>
-						</point>
-						<point>
-							<pX>-400</pX>
-							<pY>-505</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>-505</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>-1000</y>
-					<color>-9103203</color>
-					<points>
-						<point>
-							<pX>-500</pX>
-							<pY>-800</pY>
-						</point>
-						<point>
-							<pX>-495</pX>
-							<pY>-800</pY>
-						</point>
-						<point>
-							<pX>-495</pX>
-							<pY>-900</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>-900</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>-1000</y>
-					<color>-8644748</color>
-					<points>
-						<point>
-							<pX>-400</pX>
-							<pY>-1000</pY>
-						</point>
-						<point>
-							<pX>-400</pX>
-							<pY>-995</pY>
-						</point>
-						<point>
-							<pX>-300</pX>
-							<pY>-995</pY>
-						</point>
-						<point>
-							<pX>-300</pX>
-							<pY>-1000</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>-1000</y>
-					<color>-8058718</color>
-					<points>
-						<point>
-							<pX>-400</pX>
-							<pY>-500</pY>
-						</point>
-						<point>
-							<pX>-300</pX>
-							<pY>-500</pY>
-						</point>
-						<point>
-							<pX>-300</pX>
-							<pY>-505</pY>
-						</point>
-						<point>
-							<pX>-400</pX>
-							<pY>-505</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>-1000</y>
-					<color>-9035156</color>
-					<points>
-						<point>
-							<pX>-500</pX>
-							<pY>-700</pY>
-						</point>
-						<point>
-							<pX>-495</pX>
-							<pY>-700</pY>
-						</point>
-						<point>
-							<pX>-495</pX>
-							<pY>-800</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>-800</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>-1000</y>
-					<color>-9631309</color>
-					<points>
-						<point>
-							<pX>-300</pX>
-							<pY>-1000</pY>
-						</point>
-						<point>
-							<pX>-300</pX>
-							<pY>-995</pY>
-						</point>
-						<point>
-							<pX>-200</pX>
-							<pY>-995</pY>
-						</point>
-						<point>
-							<pX>-200</pX>
-							<pY>-1000</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>-1000</y>
-					<color>-8582042</color>
-					<points>
-						<point>
-							<pX>-300</pX>
-							<pY>-500</pY>
-						</point>
-						<point>
-							<pX>-200</pX>
-							<pY>-500</pY>
-						</point>
-						<point>
-							<pX>-200</pX>
-							<pY>-505</pY>
-						</point>
-						<point>
-							<pX>-300</pX>
-							<pY>-505</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>-1000</y>
-					<color>-8649336</color>
-					<points>
-						<point>
-							<pX>-500</pX>
-							<pY>-600</pY>
-						</point>
-						<point>
-							<pX>-495</pX>
-							<pY>-600</pY>
-						</point>
-						<point>
-							<pX>-495</pX>
-							<pY>-700</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>-700</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>-1000</y>
-					<color>-8911191</color>
-					<points>
-						<point>
-							<pX>-200</pX>
-							<pY>-1000</pY>
-						</point>
-						<point>
-							<pX>-200</pX>
-							<pY>-995</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>-995</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>-1000</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>-1000</y>
-					<color>-7732883</color>
-					<points>
-						<point>
-							<pX>-200</pX>
-							<pY>-500</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>-500</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>-505</pY>
-						</point>
-						<point>
-							<pX>-200</pX>
-							<pY>-505</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>-1000</y>
-					<color>-10153312</color>
-					<points>
-						<point>
-							<pX>-500</pX>
-							<pY>-500</pY>
-						</point>
-						<point>
-							<pX>-495</pX>
-							<pY>-500</pY>
-						</point>
-						<point>
-							<pX>-495</pX>
-							<pY>-600</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>-600</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>-1000</y>
-					<color>-10216575</color>
-					<points>
-						<point>
-							<pX>-100</pX>
-							<pY>-1000</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>-995</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>-995</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>-1000</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>-1000</y>
-					<color>-9887098</color>
-					<points>
-						<point>
-							<pX>-100</pX>
-							<pY>-500</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>-500</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>-505</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>-505</pY>
-						</point>
-					</points>
-				</ConvexHull>
-			</hulls>
-		</Tile>
-		<Tile>
-			<width>500</width>
-			<height>500</height>
-			<x>-2</x>
-			<y>-1</y>
-			<hulls>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>-500</y>
-					<color>-9692527</color>
-					<points>
-						<point>
-							<pX>-900</pX>
-							<pY>-400</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>-400</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>-350</pY>
-						</point>
-						<point>
-							<pX>-900</pX>
-							<pY>-350</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>-500</y>
-					<color>-9232745</color>
-					<points>
-						<point>
-							<pX>-650</pX>
-							<pY>-350</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>-350</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>-150</pY>
-						</point>
-						<point>
-							<pX>-650</pX>
-							<pY>-150</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>-500</y>
-					<color>-10087766</color>
-					<points>
-						<point>
-							<pX>-900</pX>
-							<pY>-150</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>-150</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>-100</pY>
-						</point>
-						<point>
-							<pX>-900</pX>
-							<pY>-100</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>-500</y>
-					<color>-8118929</color>
-					<points>
-						<point>
-							<pX>-1000</pX>
-							<pY>-400</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
-							<pY>-400</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
-							<pY>-500</pY>
-						</point>
-						<point>
-							<pX>-1000</pX>
-							<pY>-500</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>-500</y>
-					<color>-9363023</color>
-					<points>
-						<point>
-							<pX>-1000</pX>
-							<pY>-500</pY>
-						</point>
-						<point>
-							<pX>-1000</pX>
-							<pY>-495</pY>
-						</point>
-						<point>
-							<pX>-900</pX>
-							<pY>-495</pY>
-						</point>
-						<point>
-							<pX>-900</pX>
-							<pY>-500</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>-500</y>
-					<color>-9432145</color>
-					<points>
-						<point>
-							<pX>-1000</pX>
-							<pY>-300</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
-							<pY>-300</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
-							<pY>-400</pY>
-						</point>
-						<point>
-							<pX>-1000</pX>
-							<pY>-400</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>-500</y>
-					<color>-9566840</color>
-					<points>
-						<point>
-							<pX>-900</pX>
-							<pY>-500</pY>
-						</point>
-						<point>
-							<pX>-900</pX>
-							<pY>-495</pY>
-						</point>
-						<point>
-							<pX>-800</pX>
-							<pY>-495</pY>
-						</point>
-						<point>
-							<pX>-800</pX>
-							<pY>-500</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>-500</y>
-					<color>-8121951</color>
-					<points>
-						<point>
-							<pX>-1000</pX>
-							<pY>-200</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
-							<pY>-200</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
-							<pY>-300</pY>
-						</point>
-						<point>
-							<pX>-1000</pX>
-							<pY>-300</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>-500</y>
-					<color>-10017903</color>
-					<points>
-						<point>
-							<pX>-800</pX>
-							<pY>-500</pY>
-						</point>
-						<point>
-							<pX>-800</pX>
-							<pY>-495</pY>
-						</point>
-						<point>
-							<pX>-700</pX>
-							<pY>-495</pY>
-						</point>
-						<point>
-							<pX>-700</pX>
-							<pY>-500</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>-500</y>
-					<color>-9034640</color>
-					<points>
-						<point>
-							<pX>-1000</pX>
-							<pY>-100</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
-							<pY>-100</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
-							<pY>-200</pY>
-						</point>
-						<point>
-							<pX>-1000</pX>
-							<pY>-200</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>-500</y>
-					<color>-8575842</color>
-					<points>
-						<point>
-							<pX>-700</pX>
-							<pY>-500</pY>
-						</point>
-						<point>
-							<pX>-700</pX>
-							<pY>-495</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>-495</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>-500</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>-500</y>
-					<color>-8517975</color>
-					<points>
-						<point>
-							<pX>-1000</pX>
-							<pY>0</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
-							<pY>0</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
-							<pY>-100</pY>
-						</point>
-						<point>
-							<pX>-1000</pX>
-							<pY>-100</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>-500</y>
-					<color>-9173581</color>
-					<points>
-						<point>
-							<pX>-600</pX>
-							<pY>-500</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>-495</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>-495</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>-500</pY>
-						</point>
-					</points>
-				</ConvexHull>
-			</hulls>
-		</Tile>
-		<Tile>
-			<width>500</width>
-			<height>500</height>
-			<x>-1</x>
-			<y>3</y>
-			<hulls>
-				<ConvexHull>
-					<x>-500</x>
-					<y>1500</y>
-					<color>-9496950</color>
-					<points>
-						<point>
-							<pX>-400</pX>
-							<pY>1600</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>1600</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>1650</pY>
-						</point>
-						<point>
-							<pX>-400</pX>
-							<pY>1650</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>1500</y>
-					<color>-8320646</color>
-					<points>
-						<point>
-							<pX>-150</pX>
-							<pY>1650</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>1650</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>1850</pY>
-						</point>
-						<point>
-							<pX>-150</pX>
-							<pY>1850</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>1500</y>
-					<color>-8905618</color>
-					<points>
-						<point>
-							<pX>-400</pX>
-							<pY>1850</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>1850</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>1900</pY>
-						</point>
-						<point>
-							<pX>-400</pX>
-							<pY>1900</pY>
-						</point>
-					</points>
-				</ConvexHull>
-			</hulls>
-		</Tile>
-		<Tile>
-			<width>500</width>
-			<height>500</height>
-			<x>-2</x>
-			<y>2</y>
-			<hulls>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>1000</y>
-					<color>-9500770</color>
-					<points>
-						<point>
-							<pX>-900</pX>
-							<pY>1100</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>1100</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>1150</pY>
-						</point>
-						<point>
-							<pX>-900</pX>
-							<pY>1150</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>1000</y>
-					<color>-9103209</color>
-					<points>
-						<point>
-							<pX>-650</pX>
-							<pY>1150</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>1150</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>1350</pY>
-						</point>
-						<point>
-							<pX>-650</pX>
-							<pY>1350</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>1000</y>
-					<color>-8249969</color>
-					<points>
-						<point>
-							<pX>-900</pX>
-							<pY>1350</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>1350</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>1400</pY>
-						</point>
-						<point>
-							<pX>-900</pX>
-							<pY>1400</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>1000</y>
-					<color>-9564267</color>
-					<points>
-						<point>
-							<pX>-1000</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>-900</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>-900</pX>
-							<pY>1495</pY>
-						</point>
-						<point>
-							<pX>-1000</pX>
-							<pY>1495</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>1000</y>
-					<color>-8907672</color>
-					<points>
-						<point>
-							<pX>-900</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>-800</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>-800</pX>
-							<pY>1495</pY>
-						</point>
-						<point>
-							<pX>-900</pX>
-							<pY>1495</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>1000</y>
-					<color>-9826135</color>
-					<points>
-						<point>
-							<pX>-800</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>-700</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>-700</pX>
-							<pY>1495</pY>
-						</point>
-						<point>
-							<pX>-800</pX>
-							<pY>1495</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>1000</y>
-					<color>-10082938</color>
-					<points>
-						<point>
-							<pX>-700</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>1495</pY>
-						</point>
-						<point>
-							<pX>-700</pX>
-							<pY>1495</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>1000</y>
-					<color>-9698941</color>
-					<points>
-						<point>
-							<pX>-600</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>1495</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>1495</pY>
-						</point>
-					</points>
-				</ConvexHull>
-			</hulls>
-		</Tile>
-		<Tile>
-			<width>500</width>
-			<height>500</height>
-			<x>-2</x>
-			<y>0</y>
-			<hulls>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>0</y>
-					<color>-7929716</color>
-					<points>
-						<point>
-							<pX>-900</pX>
-							<pY>100</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>100</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>150</pY>
-						</point>
-						<point>
-							<pX>-900</pX>
-							<pY>150</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>0</y>
-					<color>-7793231</color>
-					<points>
-						<point>
-							<pX>-650</pX>
-							<pY>150</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>150</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>350</pY>
-						</point>
-						<point>
-							<pX>-650</pX>
-							<pY>350</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>0</y>
-					<color>-9502062</color>
-					<points>
-						<point>
-							<pX>-900</pX>
-							<pY>350</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>350</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>400</pY>
-						</point>
-						<point>
-							<pX>-900</pX>
-							<pY>400</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>0</y>
-					<color>-8839773</color>
-					<points>
-						<point>
-							<pX>-1000</pX>
-							<pY>500</pY>
-						</point>
-						<point>
-							<pX>-900</pX>
-							<pY>500</pY>
-						</point>
-						<point>
-							<pX>-900</pX>
-							<pY>495</pY>
-						</point>
-						<point>
-							<pX>-1000</pX>
-							<pY>495</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>0</y>
-					<color>-10149783</color>
-					<points>
-						<point>
-							<pX>-900</pX>
-							<pY>500</pY>
-						</point>
-						<point>
-							<pX>-800</pX>
-							<pY>500</pY>
-						</point>
-						<point>
-							<pX>-800</pX>
-							<pY>495</pY>
-						</point>
-						<point>
-							<pX>-900</pX>
-							<pY>495</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>0</y>
-					<color>-8908939</color>
-					<points>
-						<point>
-							<pX>-800</pX>
-							<pY>500</pY>
-						</point>
-						<point>
-							<pX>-700</pX>
-							<pY>500</pY>
-						</point>
-						<point>
-							<pX>-700</pX>
-							<pY>495</pY>
-						</point>
-						<point>
-							<pX>-800</pX>
-							<pY>495</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>0</y>
-					<color>-8837526</color>
-					<points>
-						<point>
-							<pX>-700</pX>
-							<pY>500</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>500</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>495</pY>
-						</point>
-						<point>
-							<pX>-700</pX>
-							<pY>495</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>0</y>
-					<color>-8249223</color>
-					<points>
-						<point>
-							<pX>-600</pX>
-							<pY>500</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>500</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>495</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>495</pY>
-						</point>
-					</points>
-				</ConvexHull>
-			</hulls>
-		</Tile>
-		<Tile>
-			<width>500</width>
-			<height>500</height>
-			<x>-1</x>
-			<y>4</y>
-			<hulls>
-				<ConvexHull>
-					<x>-500</x>
-					<y>2000</y>
-					<color>-9102215</color>
-					<points>
-						<point>
-							<pX>-400</pX>
-							<pY>2100</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>2100</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>2150</pY>
-						</point>
-						<point>
-							<pX>-400</pX>
-							<pY>2150</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>2000</y>
-					<color>-7986514</color>
-					<points>
-						<point>
-							<pX>-400</pX>
-							<pY>2350</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>2350</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>2400</pY>
-						</point>
-						<point>
-							<pX>-400</pX>
-							<pY>2400</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>2000</y>
-					<color>-7924822</color>
-					<points>
-						<point>
-							<pX>-500</pX>
-							<pY>2100</pY>
-						</point>
-						<point>
-							<pX>-495</pX>
-							<pY>2100</pY>
-						</point>
-						<point>
-							<pX>-495</pX>
-							<pY>2000</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>2000</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>2000</y>
-					<color>-8387441</color>
-					<points>
-						<point>
-							<pX>-5</pX>
-							<pY>2100</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>2100</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>2000</pY>
-						</point>
-						<point>
-							<pX>-5</pX>
-							<pY>2000</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>2000</y>
-					<color>-8186711</color>
-					<points>
-						<point>
-							<pX>-500</pX>
-							<pY>2200</pY>
-						</point>
-						<point>
-							<pX>-495</pX>
-							<pY>2200</pY>
-						</point>
-						<point>
-							<pX>-495</pX>
-							<pY>2100</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>2100</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>2000</y>
-					<color>-9633139</color>
-					<points>
-						<point>
-							<pX>-5</pX>
-							<pY>2200</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>2200</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>2100</pY>
-						</point>
-						<point>
-							<pX>-5</pX>
-							<pY>2100</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>2000</y>
-					<color>-8318607</color>
-					<points>
-						<point>
-							<pX>-500</pX>
-							<pY>2300</pY>
-						</point>
-						<point>
-							<pX>-495</pX>
-							<pY>2300</pY>
-						</point>
-						<point>
-							<pX>-495</pX>
-							<pY>2200</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>2200</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>2000</y>
-					<color>-9230427</color>
-					<points>
-						<point>
-							<pX>-5</pX>
-							<pY>2300</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>2300</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>2200</pY>
-						</point>
-						<point>
-							<pX>-5</pX>
-							<pY>2200</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>2000</y>
-					<color>-9239904</color>
-					<points>
-						<point>
-							<pX>-500</pX>
-							<pY>2400</pY>
-						</point>
-						<point>
-							<pX>-495</pX>
-							<pY>2400</pY>
-						</point>
-						<point>
-							<pX>-495</pX>
-							<pY>2300</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>2300</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>2000</y>
-					<color>-9960288</color>
-					<points>
-						<point>
-							<pX>-5</pX>
-							<pY>2400</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>2400</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>2300</pY>
-						</point>
-						<point>
-							<pX>-5</pX>
-							<pY>2300</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>2000</y>
-					<color>-9755246</color>
-					<points>
-						<point>
-							<pX>-500</pX>
-							<pY>2500</pY>
-						</point>
-						<point>
-							<pX>-495</pX>
-							<pY>2500</pY>
-						</point>
-						<point>
-							<pX>-495</pX>
-							<pY>2400</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>2400</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>2000</y>
-					<color>-7925603</color>
-					<points>
-						<point>
-							<pX>-5</pX>
-							<pY>2500</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>2500</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>2400</pY>
-						</point>
-						<point>
-							<pX>-5</pX>
-							<pY>2400</pY>
 						</point>
 					</points>
 				</ConvexHull>
@@ -5086,304 +2468,419 @@
 			<width>500</width>
 			<height>500</height>
 			<x>0</x>
-			<y>3</y>
+			<y>-3</y>
 			<hulls>
 				<ConvexHull>
 					<x>0</x>
-					<y>1500</y>
-					<color>-8971413</color>
+					<y>0</y>
+					<color>-9954130</color>
 					<points>
 						<point>
 							<pX>100</pX>
-							<pY>1600</pY>
+							<pY>-1400</pY>
 						</point>
 						<point>
 							<pX>400</pX>
-							<pY>1600</pY>
+							<pY>-1400</pY>
 						</point>
 						<point>
 							<pX>400</pX>
-							<pY>1650</pY>
+							<pY>-1350</pY>
 						</point>
 						<point>
 							<pX>100</pX>
-							<pY>1650</pY>
+							<pY>-1350</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
 					<x>0</x>
-					<y>1500</y>
-					<color>-8974473</color>
+					<y>0</y>
+					<color>-9167952</color>
 					<points>
 						<point>
 							<pX>350</pX>
-							<pY>1650</pY>
+							<pY>-1350</pY>
 						</point>
 						<point>
 							<pX>400</pX>
-							<pY>1650</pY>
+							<pY>-1350</pY>
 						</point>
 						<point>
 							<pX>400</pX>
-							<pY>1850</pY>
+							<pY>-1150</pY>
 						</point>
 						<point>
 							<pX>350</pX>
-							<pY>1850</pY>
+							<pY>-1150</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
 					<x>0</x>
-					<y>1500</y>
-					<color>-9299285</color>
+					<y>0</y>
+					<color>-9893258</color>
 					<points>
 						<point>
 							<pX>100</pX>
-							<pY>1850</pY>
+							<pY>-1150</pY>
 						</point>
 						<point>
 							<pX>400</pX>
-							<pY>1850</pY>
+							<pY>-1150</pY>
 						</point>
 						<point>
 							<pX>400</pX>
-							<pY>1900</pY>
+							<pY>-1100</pY>
 						</point>
 						<point>
 							<pX>100</pX>
-							<pY>1900</pY>
+							<pY>-1100</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
 					<x>0</x>
-					<y>1500</y>
-					<color>-9955918</color>
-					<points>
-						<point>
-							<pX>495</pX>
-							<pY>1600</pY>
-						</point>
-						<point>
-							<pX>500</pX>
-							<pY>1600</pY>
-						</point>
-						<point>
-							<pX>500</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>495</pX>
-							<pY>1500</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>0</x>
-					<y>1500</y>
-					<color>-9103976</color>
+					<y>0</y>
+					<color>-9956246</color>
 					<points>
 						<point>
 							<pX>0</pX>
-							<pY>2000</pY>
+							<pY>-1400</pY>
 						</point>
 						<point>
-							<pX>100</pX>
-							<pY>2000</pY>
+							<pX>5</pX>
+							<pY>-1400</pY>
 						</point>
 						<point>
-							<pX>100</pX>
-							<pY>1995</pY>
+							<pX>5</pX>
+							<pY>-1500</pY>
 						</point>
 						<point>
 							<pX>0</pX>
-							<pY>1995</pY>
+							<pY>-1500</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
 					<x>0</x>
-					<y>1500</y>
-					<color>-9758045</color>
+					<y>0</y>
+					<color>-8648068</color>
 					<points>
 						<point>
-							<pX>495</pX>
-							<pY>1700</pY>
+							<pX>0</pX>
+							<pY>-1500</pY>
 						</point>
 						<point>
-							<pX>500</pX>
-							<pY>1700</pY>
-						</point>
-						<point>
-							<pX>500</pX>
-							<pY>1600</pY>
-						</point>
-						<point>
-							<pX>495</pX>
-							<pY>1600</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>0</x>
-					<y>1500</y>
-					<color>-9368947</color>
-					<points>
-						<point>
-							<pX>100</pX>
-							<pY>2000</pY>
-						</point>
-						<point>
-							<pX>200</pX>
-							<pY>2000</pY>
-						</point>
-						<point>
-							<pX>200</pX>
-							<pY>1995</pY>
+							<pX>0</pX>
+							<pY>-1495</pY>
 						</point>
 						<point>
 							<pX>100</pX>
-							<pY>1995</pY>
+							<pY>-1495</pY>
+						</point>
+						<point>
+							<pX>100</pX>
+							<pY>-1500</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
 					<x>0</x>
-					<y>1500</y>
-					<color>-10154631</color>
+					<y>0</y>
+					<color>-8255360</color>
 					<points>
 						<point>
 							<pX>495</pX>
-							<pY>1800</pY>
+							<pY>-1400</pY>
 						</point>
 						<point>
 							<pX>500</pX>
-							<pY>1800</pY>
+							<pY>-1400</pY>
 						</point>
 						<point>
 							<pX>500</pX>
-							<pY>1700</pY>
+							<pY>-1500</pY>
 						</point>
 						<point>
 							<pX>495</pX>
-							<pY>1700</pY>
+							<pY>-1500</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
 					<x>0</x>
-					<y>1500</y>
-					<color>-8322644</color>
+					<y>0</y>
+					<color>-8912539</color>
+					<points>
+						<point>
+							<pX>0</pX>
+							<pY>-1300</pY>
+						</point>
+						<point>
+							<pX>5</pX>
+							<pY>-1300</pY>
+						</point>
+						<point>
+							<pX>5</pX>
+							<pY>-1400</pY>
+						</point>
+						<point>
+							<pX>0</pX>
+							<pY>-1400</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-8052123</color>
+					<points>
+						<point>
+							<pX>100</pX>
+							<pY>-1500</pY>
+						</point>
+						<point>
+							<pX>100</pX>
+							<pY>-1495</pY>
+						</point>
+						<point>
+							<pX>200</pX>
+							<pY>-1495</pY>
+						</point>
+						<point>
+							<pX>200</pX>
+							<pY>-1500</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-7664533</color>
+					<points>
+						<point>
+							<pX>495</pX>
+							<pY>-1300</pY>
+						</point>
+						<point>
+							<pX>500</pX>
+							<pY>-1300</pY>
+						</point>
+						<point>
+							<pX>500</pX>
+							<pY>-1400</pY>
+						</point>
+						<point>
+							<pX>495</pX>
+							<pY>-1400</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-7985561</color>
+					<points>
+						<point>
+							<pX>0</pX>
+							<pY>-1200</pY>
+						</point>
+						<point>
+							<pX>5</pX>
+							<pY>-1200</pY>
+						</point>
+						<point>
+							<pX>5</pX>
+							<pY>-1300</pY>
+						</point>
+						<point>
+							<pX>0</pX>
+							<pY>-1300</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-8253077</color>
 					<points>
 						<point>
 							<pX>200</pX>
-							<pY>2000</pY>
-						</point>
-						<point>
-							<pX>300</pX>
-							<pY>2000</pY>
-						</point>
-						<point>
-							<pX>300</pX>
-							<pY>1995</pY>
+							<pY>-1500</pY>
 						</point>
 						<point>
 							<pX>200</pX>
-							<pY>1995</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>0</x>
-					<y>1500</y>
-					<color>-8125043</color>
-					<points>
-						<point>
-							<pX>495</pX>
-							<pY>1900</pY>
-						</point>
-						<point>
-							<pX>500</pX>
-							<pY>1900</pY>
-						</point>
-						<point>
-							<pX>500</pX>
-							<pY>1800</pY>
-						</point>
-						<point>
-							<pX>495</pX>
-							<pY>1800</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>0</x>
-					<y>1500</y>
-					<color>-7986800</color>
-					<points>
-						<point>
-							<pX>300</pX>
-							<pY>2000</pY>
-						</point>
-						<point>
-							<pX>400</pX>
-							<pY>2000</pY>
-						</point>
-						<point>
-							<pX>400</pX>
-							<pY>1995</pY>
+							<pY>-1495</pY>
 						</point>
 						<point>
 							<pX>300</pX>
-							<pY>1995</pY>
+							<pY>-1495</pY>
+						</point>
+						<point>
+							<pX>300</pX>
+							<pY>-1500</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
 					<x>0</x>
-					<y>1500</y>
-					<color>-10154595</color>
+					<y>0</y>
+					<color>-7789181</color>
 					<points>
 						<point>
 							<pX>495</pX>
-							<pY>2000</pY>
+							<pY>-1200</pY>
 						</point>
 						<point>
 							<pX>500</pX>
-							<pY>2000</pY>
+							<pY>-1200</pY>
 						</point>
 						<point>
 							<pX>500</pX>
-							<pY>1900</pY>
+							<pY>-1300</pY>
 						</point>
 						<point>
 							<pX>495</pX>
-							<pY>1900</pY>
+							<pY>-1300</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
 					<x>0</x>
-					<y>1500</y>
-					<color>-9695852</color>
+					<y>0</y>
+					<color>-7727713</color>
+					<points>
+						<point>
+							<pX>0</pX>
+							<pY>-1100</pY>
+						</point>
+						<point>
+							<pX>5</pX>
+							<pY>-1100</pY>
+						</point>
+						<point>
+							<pX>5</pX>
+							<pY>-1200</pY>
+						</point>
+						<point>
+							<pX>0</pX>
+							<pY>-1200</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-9235089</color>
+					<points>
+						<point>
+							<pX>300</pX>
+							<pY>-1500</pY>
+						</point>
+						<point>
+							<pX>300</pX>
+							<pY>-1495</pY>
+						</point>
+						<point>
+							<pX>400</pX>
+							<pY>-1495</pY>
+						</point>
+						<point>
+							<pX>400</pX>
+							<pY>-1500</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-9233232</color>
+					<points>
+						<point>
+							<pX>495</pX>
+							<pY>-1100</pY>
+						</point>
+						<point>
+							<pX>500</pX>
+							<pY>-1100</pY>
+						</point>
+						<point>
+							<pX>500</pX>
+							<pY>-1200</pY>
+						</point>
+						<point>
+							<pX>495</pX>
+							<pY>-1200</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-8910174</color>
+					<points>
+						<point>
+							<pX>0</pX>
+							<pY>-1000</pY>
+						</point>
+						<point>
+							<pX>5</pX>
+							<pY>-1000</pY>
+						</point>
+						<point>
+							<pX>5</pX>
+							<pY>-1100</pY>
+						</point>
+						<point>
+							<pX>0</pX>
+							<pY>-1100</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-8190563</color>
 					<points>
 						<point>
 							<pX>400</pX>
-							<pY>2000</pY>
-						</point>
-						<point>
-							<pX>500</pX>
-							<pY>2000</pY>
-						</point>
-						<point>
-							<pX>500</pX>
-							<pY>1995</pY>
+							<pY>-1500</pY>
 						</point>
 						<point>
 							<pX>400</pX>
-							<pY>1995</pY>
+							<pY>-1495</pY>
+						</point>
+						<point>
+							<pX>500</pX>
+							<pY>-1495</pY>
+						</point>
+						<point>
+							<pX>500</pX>
+							<pY>-1500</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-8052849</color>
+					<points>
+						<point>
+							<pX>495</pX>
+							<pY>-1000</pY>
+						</point>
+						<point>
+							<pX>500</pX>
+							<pY>-1000</pY>
+						</point>
+						<point>
+							<pX>500</pX>
+							<pY>-1100</pY>
+						</point>
+						<point>
+							<pX>495</pX>
+							<pY>-1100</pY>
 						</point>
 					</points>
 				</ConvexHull>
@@ -5392,382 +2889,236 @@
 		<Tile>
 			<width>500</width>
 			<height>500</height>
-			<x>-2</x>
-			<y>3</y>
-			<hulls>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>1500</y>
-					<color>-8185707</color>
-					<points>
-						<point>
-							<pX>-900</pX>
-							<pY>1600</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>1600</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>1650</pY>
-						</point>
-						<point>
-							<pX>-900</pX>
-							<pY>1650</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>1500</y>
-					<color>-8645755</color>
-					<points>
-						<point>
-							<pX>-650</pX>
-							<pY>1650</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>1650</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>1850</pY>
-						</point>
-						<point>
-							<pX>-650</pX>
-							<pY>1850</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>1500</y>
-					<color>-8050785</color>
-					<points>
-						<point>
-							<pX>-900</pX>
-							<pY>1850</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>1850</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>1900</pY>
-						</point>
-						<point>
-							<pX>-900</pX>
-							<pY>1900</pY>
-						</point>
-					</points>
-				</ConvexHull>
-			</hulls>
-		</Tile>
-		<Tile>
-			<width>500</width>
-			<height>500</height>
-			<x>-3</x>
+			<x>2</x>
 			<y>2</y>
 			<hulls>
 				<ConvexHull>
-					<x>-1500</x>
-					<y>1000</y>
-					<color>-10151054</color>
+					<x>0</x>
+					<y>0</y>
+					<color>-9370980</color>
 					<points>
 						<point>
-							<pX>-1400</pX>
+							<pX>1000</pX>
 							<pY>1100</pY>
 						</point>
 						<point>
-							<pX>-1100</pX>
+							<pX>1005</pX>
 							<pY>1100</pY>
 						</point>
 						<point>
-							<pX>-1100</pX>
-							<pY>1150</pY>
-						</point>
-						<point>
-							<pX>-1400</pX>
-							<pY>1150</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1500</x>
-					<y>1000</y>
-					<color>-9042518</color>
-					<points>
-						<point>
-							<pX>-1150</pX>
-							<pY>1150</pY>
-						</point>
-						<point>
-							<pX>-1100</pX>
-							<pY>1150</pY>
-						</point>
-						<point>
-							<pX>-1100</pX>
-							<pY>1350</pY>
-						</point>
-						<point>
-							<pX>-1150</pX>
-							<pY>1350</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1500</x>
-					<y>1000</y>
-					<color>-9297519</color>
-					<points>
-						<point>
-							<pX>-1400</pX>
-							<pY>1350</pY>
-						</point>
-						<point>
-							<pX>-1100</pX>
-							<pY>1350</pY>
-						</point>
-						<point>
-							<pX>-1100</pX>
-							<pY>1400</pY>
-						</point>
-						<point>
-							<pX>-1400</pX>
-							<pY>1400</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1500</x>
-					<y>1000</y>
-					<color>-8581463</color>
-					<points>
-						<point>
-							<pX>-1500</pX>
-							<pY>1100</pY>
-						</point>
-						<point>
-							<pX>-1495</pX>
-							<pY>1100</pY>
-						</point>
-						<point>
-							<pX>-1495</pX>
+							<pX>1005</pX>
 							<pY>1000</pY>
 						</point>
 						<point>
-							<pX>-1500</pX>
+							<pX>1000</pX>
 							<pY>1000</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-1500</x>
-					<y>1000</y>
-					<color>-9363834</color>
+					<x>0</x>
+					<y>0</y>
+					<color>-9627503</color>
 					<points>
 						<point>
-							<pX>-1500</pX>
+							<pX>1495</pX>
+							<pY>1100</pY>
+						</point>
+						<point>
+							<pX>1500</pX>
+							<pY>1100</pY>
+						</point>
+						<point>
+							<pX>1500</pX>
 							<pY>1000</pY>
 						</point>
 						<point>
-							<pX>-1500</pX>
-							<pY>1005</pY>
-						</point>
-						<point>
-							<pX>-1400</pX>
-							<pY>1005</pY>
-						</point>
-						<point>
-							<pX>-1400</pX>
+							<pX>1495</pX>
 							<pY>1000</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-1500</x>
-					<y>1000</y>
-					<color>-9957243</color>
+					<x>0</x>
+					<y>0</y>
+					<color>-9497936</color>
 					<points>
 						<point>
-							<pX>-1500</pX>
+							<pX>1000</pX>
 							<pY>1200</pY>
 						</point>
 						<point>
-							<pX>-1495</pX>
+							<pX>1005</pX>
 							<pY>1200</pY>
 						</point>
 						<point>
-							<pX>-1495</pX>
+							<pX>1005</pX>
 							<pY>1100</pY>
 						</point>
 						<point>
-							<pX>-1500</pX>
+							<pX>1000</pX>
 							<pY>1100</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-1500</x>
-					<y>1000</y>
-					<color>-9042298</color>
+					<x>0</x>
+					<y>0</y>
+					<color>-8775039</color>
 					<points>
 						<point>
-							<pX>-1400</pX>
-							<pY>1000</pY>
+							<pX>1495</pX>
+							<pY>1200</pY>
 						</point>
 						<point>
-							<pX>-1400</pX>
-							<pY>1005</pY>
+							<pX>1500</pX>
+							<pY>1200</pY>
 						</point>
 						<point>
-							<pX>-1300</pX>
-							<pY>1005</pY>
+							<pX>1500</pX>
+							<pY>1100</pY>
 						</point>
 						<point>
-							<pX>-1300</pX>
-							<pY>1000</pY>
+							<pX>1495</pX>
+							<pY>1100</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-1500</x>
-					<y>1000</y>
-					<color>-8054864</color>
+					<x>0</x>
+					<y>0</y>
+					<color>-8971659</color>
 					<points>
 						<point>
-							<pX>-1500</pX>
+							<pX>1000</pX>
 							<pY>1300</pY>
 						</point>
 						<point>
-							<pX>-1495</pX>
+							<pX>1005</pX>
 							<pY>1300</pY>
 						</point>
 						<point>
-							<pX>-1495</pX>
+							<pX>1005</pX>
 							<pY>1200</pY>
 						</point>
 						<point>
-							<pX>-1500</pX>
+							<pX>1000</pX>
 							<pY>1200</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-1500</x>
-					<y>1000</y>
-					<color>-7727469</color>
+					<x>0</x>
+					<y>0</y>
+					<color>-8708688</color>
 					<points>
 						<point>
-							<pX>-1300</pX>
-							<pY>1000</pY>
-						</point>
-						<point>
-							<pX>-1300</pX>
-							<pY>1005</pY>
-						</point>
-						<point>
-							<pX>-1200</pX>
-							<pY>1005</pY>
-						</point>
-						<point>
-							<pX>-1200</pX>
-							<pY>1000</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1500</x>
-					<y>1000</y>
-					<color>-7791736</color>
-					<points>
-						<point>
-							<pX>-1500</pX>
-							<pY>1400</pY>
-						</point>
-						<point>
-							<pX>-1495</pX>
-							<pY>1400</pY>
-						</point>
-						<point>
-							<pX>-1495</pX>
+							<pX>1495</pX>
 							<pY>1300</pY>
 						</point>
 						<point>
-							<pX>-1500</pX>
+							<pX>1500</pX>
+							<pY>1300</pY>
+						</point>
+						<point>
+							<pX>1500</pX>
+							<pY>1200</pY>
+						</point>
+						<point>
+							<pX>1495</pX>
+							<pY>1200</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-9362550</color>
+					<points>
+						<point>
+							<pX>1000</pX>
+							<pY>1400</pY>
+						</point>
+						<point>
+							<pX>1005</pX>
+							<pY>1400</pY>
+						</point>
+						<point>
+							<pX>1005</pX>
+							<pY>1300</pY>
+						</point>
+						<point>
+							<pX>1000</pX>
 							<pY>1300</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-1500</x>
-					<y>1000</y>
-					<color>-8846979</color>
+					<x>0</x>
+					<y>0</y>
+					<color>-8642653</color>
 					<points>
 						<point>
-							<pX>-1200</pX>
-							<pY>1000</pY>
+							<pX>1495</pX>
+							<pY>1400</pY>
 						</point>
 						<point>
-							<pX>-1200</pX>
-							<pY>1005</pY>
+							<pX>1500</pX>
+							<pY>1400</pY>
 						</point>
 						<point>
-							<pX>-1100</pX>
-							<pY>1005</pY>
+							<pX>1500</pX>
+							<pY>1300</pY>
 						</point>
 						<point>
-							<pX>-1100</pX>
-							<pY>1000</pY>
+							<pX>1495</pX>
+							<pY>1300</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-1500</x>
-					<y>1000</y>
-					<color>-7862671</color>
+					<x>0</x>
+					<y>0</y>
+					<color>-8120915</color>
 					<points>
 						<point>
-							<pX>-1500</pX>
+							<pX>1000</pX>
 							<pY>1500</pY>
 						</point>
 						<point>
-							<pX>-1495</pX>
+							<pX>1005</pX>
 							<pY>1500</pY>
 						</point>
 						<point>
-							<pX>-1495</pX>
+							<pX>1005</pX>
 							<pY>1400</pY>
 						</point>
 						<point>
-							<pX>-1500</pX>
+							<pX>1000</pX>
 							<pY>1400</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-1500</x>
-					<y>1000</y>
-					<color>-9299826</color>
+					<x>0</x>
+					<y>0</y>
+					<color>-9365360</color>
 					<points>
 						<point>
-							<pX>-1100</pX>
-							<pY>1000</pY>
+							<pX>1495</pX>
+							<pY>1500</pY>
 						</point>
 						<point>
-							<pX>-1100</pX>
-							<pY>1005</pY>
+							<pX>1500</pX>
+							<pY>1500</pY>
 						</point>
 						<point>
-							<pX>-1000</pX>
-							<pY>1005</pY>
+							<pX>1500</pX>
+							<pY>1400</pY>
 						</point>
 						<point>
-							<pX>-1000</pX>
-							<pY>1000</pY>
+							<pX>1495</pX>
+							<pY>1400</pY>
 						</point>
 					</points>
 				</ConvexHull>
@@ -5776,420 +3127,282 @@
 		<Tile>
 			<width>500</width>
 			<height>500</height>
-			<x>-3</x>
-			<y>0</y>
+			<x>2</x>
+			<y>3</y>
 			<hulls>
 				<ConvexHull>
-					<x>-1500</x>
+					<x>0</x>
 					<y>0</y>
-					<color>-8712057</color>
+					<color>-9566558</color>
 					<points>
 						<point>
-							<pX>-1400</pX>
-							<pY>100</pY>
+							<pX>1100</pX>
+							<pY>1600</pY>
 						</point>
 						<point>
-							<pX>-1100</pX>
-							<pY>100</pY>
+							<pX>1400</pX>
+							<pY>1600</pY>
 						</point>
 						<point>
-							<pX>-1100</pX>
-							<pY>150</pY>
+							<pX>1400</pX>
+							<pY>1650</pY>
 						</point>
 						<point>
-							<pX>-1400</pX>
-							<pY>150</pY>
+							<pX>1100</pX>
+							<pY>1650</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-1500</x>
+					<x>0</x>
 					<y>0</y>
-					<color>-8249950</color>
+					<color>-8713070</color>
 					<points>
 						<point>
-							<pX>-1150</pX>
-							<pY>150</pY>
+							<pX>1100</pX>
+							<pY>1850</pY>
 						</point>
 						<point>
-							<pX>-1100</pX>
-							<pY>150</pY>
+							<pX>1400</pX>
+							<pY>1850</pY>
 						</point>
 						<point>
-							<pX>-1100</pX>
-							<pY>350</pY>
+							<pX>1400</pX>
+							<pY>1900</pY>
 						</point>
 						<point>
-							<pX>-1150</pX>
-							<pY>350</pY>
+							<pX>1100</pX>
+							<pY>1900</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-1500</x>
+					<x>0</x>
 					<y>0</y>
-					<color>-8781681</color>
+					<color>-8780389</color>
 					<points>
 						<point>
-							<pX>-1400</pX>
-							<pY>350</pY>
+							<pX>1000</pX>
+							<pY>1600</pY>
 						</point>
 						<point>
-							<pX>-1100</pX>
-							<pY>350</pY>
+							<pX>1005</pX>
+							<pY>1600</pY>
 						</point>
 						<point>
-							<pX>-1100</pX>
-							<pY>400</pY>
+							<pX>1005</pX>
+							<pY>1500</pY>
 						</point>
 						<point>
-							<pX>-1400</pX>
-							<pY>400</pY>
+							<pX>1000</pX>
+							<pY>1500</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-1500</x>
+					<x>0</x>
 					<y>0</y>
-					<color>-10218584</color>
+					<color>-7732054</color>
 					<points>
 						<point>
-							<pX>-1500</pX>
-							<pY>100</pY>
+							<pX>1495</pX>
+							<pY>1600</pY>
 						</point>
 						<point>
-							<pX>-1495</pX>
-							<pY>100</pY>
+							<pX>1500</pX>
+							<pY>1600</pY>
 						</point>
 						<point>
-							<pX>-1495</pX>
-							<pY>0</pY>
+							<pX>1500</pX>
+							<pY>1500</pY>
 						</point>
 						<point>
-							<pX>-1500</pX>
-							<pY>0</pY>
+							<pX>1495</pX>
+							<pY>1500</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-1500</x>
+					<x>0</x>
 					<y>0</y>
-					<color>-7658104</color>
+					<color>-9623959</color>
 					<points>
 						<point>
-							<pX>-1500</pX>
-							<pY>0</pY>
+							<pX>1000</pX>
+							<pY>1700</pY>
 						</point>
 						<point>
-							<pX>-1500</pX>
-							<pY>5</pY>
+							<pX>1005</pX>
+							<pY>1700</pY>
 						</point>
 						<point>
-							<pX>-1400</pX>
-							<pY>5</pY>
+							<pX>1005</pX>
+							<pY>1600</pY>
 						</point>
 						<point>
-							<pX>-1400</pX>
-							<pY>0</pY>
+							<pX>1000</pX>
+							<pY>1600</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-1500</x>
+					<x>0</x>
 					<y>0</y>
-					<color>-7794306</color>
+					<color>-9695605</color>
 					<points>
 						<point>
-							<pX>-1500</pX>
-							<pY>500</pY>
+							<pX>1495</pX>
+							<pY>1700</pY>
 						</point>
 						<point>
-							<pX>-1400</pX>
-							<pY>500</pY>
+							<pX>1500</pX>
+							<pY>1700</pY>
 						</point>
 						<point>
-							<pX>-1400</pX>
-							<pY>495</pY>
+							<pX>1500</pX>
+							<pY>1600</pY>
 						</point>
 						<point>
-							<pX>-1500</pX>
-							<pY>495</pY>
+							<pX>1495</pX>
+							<pY>1600</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-1500</x>
+					<x>0</x>
 					<y>0</y>
-					<color>-9035877</color>
+					<color>-9367439</color>
 					<points>
 						<point>
-							<pX>-1500</pX>
-							<pY>200</pY>
+							<pX>1000</pX>
+							<pY>1800</pY>
 						</point>
 						<point>
-							<pX>-1495</pX>
-							<pY>200</pY>
+							<pX>1005</pX>
+							<pY>1800</pY>
 						</point>
 						<point>
-							<pX>-1495</pX>
-							<pY>100</pY>
+							<pX>1005</pX>
+							<pY>1700</pY>
 						</point>
 						<point>
-							<pX>-1500</pX>
-							<pY>100</pY>
+							<pX>1000</pX>
+							<pY>1700</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-1500</x>
+					<x>0</x>
 					<y>0</y>
-					<color>-8189301</color>
+					<color>-9630591</color>
 					<points>
 						<point>
-							<pX>-1400</pX>
-							<pY>0</pY>
+							<pX>1495</pX>
+							<pY>1800</pY>
 						</point>
 						<point>
-							<pX>-1400</pX>
-							<pY>5</pY>
+							<pX>1500</pX>
+							<pY>1800</pY>
 						</point>
 						<point>
-							<pX>-1300</pX>
-							<pY>5</pY>
+							<pX>1500</pX>
+							<pY>1700</pY>
 						</point>
 						<point>
-							<pX>-1300</pX>
-							<pY>0</pY>
+							<pX>1495</pX>
+							<pY>1700</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-1500</x>
+					<x>0</x>
 					<y>0</y>
-					<color>-7723865</color>
+					<color>-8840583</color>
 					<points>
 						<point>
-							<pX>-1400</pX>
-							<pY>500</pY>
+							<pX>1000</pX>
+							<pY>1900</pY>
 						</point>
 						<point>
-							<pX>-1300</pX>
-							<pY>500</pY>
+							<pX>1005</pX>
+							<pY>1900</pY>
 						</point>
 						<point>
-							<pX>-1300</pX>
-							<pY>495</pY>
+							<pX>1005</pX>
+							<pY>1800</pY>
 						</point>
 						<point>
-							<pX>-1400</pX>
-							<pY>495</pY>
+							<pX>1000</pX>
+							<pY>1800</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-1500</x>
+					<x>0</x>
 					<y>0</y>
-					<color>-7660171</color>
+					<color>-8642642</color>
 					<points>
 						<point>
-							<pX>-1500</pX>
-							<pY>300</pY>
+							<pX>1495</pX>
+							<pY>1900</pY>
 						</point>
 						<point>
-							<pX>-1495</pX>
-							<pY>300</pY>
+							<pX>1500</pX>
+							<pY>1900</pY>
 						</point>
 						<point>
-							<pX>-1495</pX>
-							<pY>200</pY>
+							<pX>1500</pX>
+							<pY>1800</pY>
 						</point>
 						<point>
-							<pX>-1500</pX>
-							<pY>200</pY>
+							<pX>1495</pX>
+							<pY>1800</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-1500</x>
+					<x>0</x>
 					<y>0</y>
-					<color>-9366427</color>
+					<color>-7723921</color>
 					<points>
 						<point>
-							<pX>-1300</pX>
-							<pY>0</pY>
+							<pX>1000</pX>
+							<pY>2000</pY>
 						</point>
 						<point>
-							<pX>-1300</pX>
-							<pY>5</pY>
+							<pX>1005</pX>
+							<pY>2000</pY>
 						</point>
 						<point>
-							<pX>-1200</pX>
-							<pY>5</pY>
+							<pX>1005</pX>
+							<pY>1900</pY>
 						</point>
 						<point>
-							<pX>-1200</pX>
-							<pY>0</pY>
+							<pX>1000</pX>
+							<pY>1900</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-1500</x>
+					<x>0</x>
 					<y>0</y>
-					<color>-9697362</color>
+					<color>-8116841</color>
 					<points>
 						<point>
-							<pX>-1300</pX>
-							<pY>500</pY>
+							<pX>1495</pX>
+							<pY>2000</pY>
 						</point>
 						<point>
-							<pX>-1200</pX>
-							<pY>500</pY>
+							<pX>1500</pX>
+							<pY>2000</pY>
 						</point>
 						<point>
-							<pX>-1200</pX>
-							<pY>495</pY>
+							<pX>1500</pX>
+							<pY>1900</pY>
 						</point>
 						<point>
-							<pX>-1300</pX>
-							<pY>495</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1500</x>
-					<y>0</y>
-					<color>-9566872</color>
-					<points>
-						<point>
-							<pX>-1500</pX>
-							<pY>400</pY>
-						</point>
-						<point>
-							<pX>-1495</pX>
-							<pY>400</pY>
-						</point>
-						<point>
-							<pX>-1495</pX>
-							<pY>300</pY>
-						</point>
-						<point>
-							<pX>-1500</pX>
-							<pY>300</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1500</x>
-					<y>0</y>
-					<color>-8448642</color>
-					<points>
-						<point>
-							<pX>-1200</pX>
-							<pY>0</pY>
-						</point>
-						<point>
-							<pX>-1200</pX>
-							<pY>5</pY>
-						</point>
-						<point>
-							<pX>-1100</pX>
-							<pY>5</pY>
-						</point>
-						<point>
-							<pX>-1100</pX>
-							<pY>0</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1500</x>
-					<y>0</y>
-					<color>-9171810</color>
-					<points>
-						<point>
-							<pX>-1200</pX>
-							<pY>500</pY>
-						</point>
-						<point>
-							<pX>-1100</pX>
-							<pY>500</pY>
-						</point>
-						<point>
-							<pX>-1100</pX>
-							<pY>495</pY>
-						</point>
-						<point>
-							<pX>-1200</pX>
-							<pY>495</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1500</x>
-					<y>0</y>
-					<color>-9233812</color>
-					<points>
-						<point>
-							<pX>-1500</pX>
-							<pY>500</pY>
-						</point>
-						<point>
-							<pX>-1495</pX>
-							<pY>500</pY>
-						</point>
-						<point>
-							<pX>-1495</pX>
-							<pY>400</pY>
-						</point>
-						<point>
-							<pX>-1500</pX>
-							<pY>400</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1500</x>
-					<y>0</y>
-					<color>-8050785</color>
-					<points>
-						<point>
-							<pX>-1100</pX>
-							<pY>0</pY>
-						</point>
-						<point>
-							<pX>-1100</pX>
-							<pY>5</pY>
-						</point>
-						<point>
-							<pX>-1000</pX>
-							<pY>5</pY>
-						</point>
-						<point>
-							<pX>-1000</pX>
-							<pY>0</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1500</x>
-					<y>0</y>
-					<color>-8123512</color>
-					<points>
-						<point>
-							<pX>-1100</pX>
-							<pY>500</pY>
-						</point>
-						<point>
-							<pX>-1000</pX>
-							<pY>500</pY>
-						</point>
-						<point>
-							<pX>-1000</pX>
-							<pY>495</pY>
-						</point>
-						<point>
-							<pX>-1100</pX>
-							<pY>495</pY>
+							<pX>1495</pX>
+							<pY>1900</pY>
 						</point>
 					</points>
 				</ConvexHull>
@@ -6198,497 +3411,236 @@
 		<Tile>
 			<width>500</width>
 			<height>500</height>
-			<x>-1</x>
-			<y>5</y>
-			<hulls>
-				<ConvexHull>
-					<x>-500</x>
-					<y>2500</y>
-					<color>-10023017</color>
-					<points>
-						<point>
-							<pX>-400</pX>
-							<pY>2600</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>2600</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>2650</pY>
-						</point>
-						<point>
-							<pX>-400</pX>
-							<pY>2650</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>2500</y>
-					<color>-9690228</color>
-					<points>
-						<point>
-							<pX>-150</pX>
-							<pY>2650</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>2650</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>2850</pY>
-						</point>
-						<point>
-							<pX>-150</pX>
-							<pY>2850</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>2500</y>
-					<color>-9173093</color>
-					<points>
-						<point>
-							<pX>-400</pX>
-							<pY>2850</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>2850</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>2900</pY>
-						</point>
-						<point>
-							<pX>-400</pX>
-							<pY>2900</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>2500</y>
-					<color>-9108367</color>
-					<points>
-						<point>
-							<pX>-5</pX>
-							<pY>2600</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>2600</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>2500</pY>
-						</point>
-						<point>
-							<pX>-5</pX>
-							<pY>2500</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>2500</y>
-					<color>-8844956</color>
-					<points>
-						<point>
-							<pX>-5</pX>
-							<pY>2700</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>2700</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>2600</pY>
-						</point>
-						<point>
-							<pX>-5</pX>
-							<pY>2600</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>2500</y>
-					<color>-9887821</color>
-					<points>
-						<point>
-							<pX>-5</pX>
-							<pY>2800</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>2800</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>2700</pY>
-						</point>
-						<point>
-							<pX>-5</pX>
-							<pY>2700</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>2500</y>
-					<color>-7987061</color>
-					<points>
-						<point>
-							<pX>-5</pX>
-							<pY>2900</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>2900</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>2800</pY>
-						</point>
-						<point>
-							<pX>-5</pX>
-							<pY>2800</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>2500</y>
-					<color>-7792251</color>
-					<points>
-						<point>
-							<pX>-5</pX>
-							<pY>3000</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>3000</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>2900</pY>
-						</point>
-						<point>
-							<pX>-5</pX>
-							<pY>2900</pY>
-						</point>
-					</points>
-				</ConvexHull>
-			</hulls>
-		</Tile>
-		<Tile>
-			<width>500</width>
-			<height>500</height>
-			<x>-2</x>
+			<x>2</x>
 			<y>4</y>
 			<hulls>
 				<ConvexHull>
-					<x>-1000</x>
-					<y>2000</y>
-					<color>-8053349</color>
+					<x>0</x>
+					<y>0</y>
+					<color>-9625712</color>
 					<points>
 						<point>
-							<pX>-900</pX>
+							<pX>1000</pX>
 							<pY>2100</pY>
 						</point>
 						<point>
-							<pX>-600</pX>
+							<pX>1005</pX>
 							<pY>2100</pY>
 						</point>
 						<point>
-							<pX>-600</pX>
-							<pY>2150</pY>
-						</point>
-						<point>
-							<pX>-900</pX>
-							<pY>2150</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>2000</y>
-					<color>-9303132</color>
-					<points>
-						<point>
-							<pX>-650</pX>
-							<pY>2150</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>2150</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>2350</pY>
-						</point>
-						<point>
-							<pX>-650</pX>
-							<pY>2350</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>2000</y>
-					<color>-8252302</color>
-					<points>
-						<point>
-							<pX>-900</pX>
-							<pY>2350</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>2350</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>2400</pY>
-						</point>
-						<point>
-							<pX>-900</pX>
-							<pY>2400</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>2000</y>
-					<color>-8119707</color>
-					<points>
-						<point>
-							<pX>-1000</pX>
-							<pY>2100</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
-							<pY>2100</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
+							<pX>1005</pX>
 							<pY>2000</pY>
 						</point>
 						<point>
-							<pX>-1000</pX>
+							<pX>1000</pX>
 							<pY>2000</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-1000</x>
-					<y>2000</y>
-					<color>-9824095</color>
+					<x>0</x>
+					<y>0</y>
+					<color>-9431651</color>
 					<points>
 						<point>
-							<pX>-1000</pX>
-							<pY>2500</pY>
-						</point>
-						<point>
-							<pX>-900</pX>
-							<pY>2500</pY>
-						</point>
-						<point>
-							<pX>-900</pX>
-							<pY>2495</pY>
-						</point>
-						<point>
-							<pX>-1000</pX>
-							<pY>2495</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>2000</y>
-					<color>-10152813</color>
-					<points>
-						<point>
-							<pX>-1000</pX>
-							<pY>2200</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
-							<pY>2200</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
+							<pX>1495</pX>
 							<pY>2100</pY>
 						</point>
 						<point>
-							<pX>-1000</pX>
+							<pX>1500</pX>
+							<pY>2100</pY>
+						</point>
+						<point>
+							<pX>1500</pX>
+							<pY>2000</pY>
+						</point>
+						<point>
+							<pX>1495</pX>
+							<pY>2000</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-8583250</color>
+					<points>
+						<point>
+							<pX>1000</pX>
+							<pY>2200</pY>
+						</point>
+						<point>
+							<pX>1005</pX>
+							<pY>2200</pY>
+						</point>
+						<point>
+							<pX>1005</pX>
+							<pY>2100</pY>
+						</point>
+						<point>
+							<pX>1000</pX>
 							<pY>2100</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-1000</x>
-					<y>2000</y>
-					<color>-8322666</color>
+					<x>0</x>
+					<y>0</y>
+					<color>-9763174</color>
 					<points>
 						<point>
-							<pX>-900</pX>
-							<pY>2500</pY>
-						</point>
-						<point>
-							<pX>-800</pX>
-							<pY>2500</pY>
-						</point>
-						<point>
-							<pX>-800</pX>
-							<pY>2495</pY>
-						</point>
-						<point>
-							<pX>-900</pX>
-							<pY>2495</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>2000</y>
-					<color>-8778606</color>
-					<points>
-						<point>
-							<pX>-1000</pX>
-							<pY>2300</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
-							<pY>2300</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
+							<pX>1495</pX>
 							<pY>2200</pY>
 						</point>
 						<point>
-							<pX>-1000</pX>
+							<pX>1500</pX>
+							<pY>2200</pY>
+						</point>
+						<point>
+							<pX>1500</pX>
+							<pY>2100</pY>
+						</point>
+						<point>
+							<pX>1495</pX>
+							<pY>2100</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-8054662</color>
+					<points>
+						<point>
+							<pX>1000</pX>
+							<pY>2300</pY>
+						</point>
+						<point>
+							<pX>1005</pX>
+							<pY>2300</pY>
+						</point>
+						<point>
+							<pX>1005</pX>
+							<pY>2200</pY>
+						</point>
+						<point>
+							<pX>1000</pX>
 							<pY>2200</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-1000</x>
-					<y>2000</y>
-					<color>-7659398</color>
+					<x>0</x>
+					<y>0</y>
+					<color>-9762180</color>
 					<points>
 						<point>
-							<pX>-800</pX>
-							<pY>2500</pY>
-						</point>
-						<point>
-							<pX>-700</pX>
-							<pY>2500</pY>
-						</point>
-						<point>
-							<pX>-700</pX>
-							<pY>2495</pY>
-						</point>
-						<point>
-							<pX>-800</pX>
-							<pY>2495</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>2000</y>
-					<color>-9174651</color>
-					<points>
-						<point>
-							<pX>-1000</pX>
-							<pY>2400</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
-							<pY>2400</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
+							<pX>1495</pX>
 							<pY>2300</pY>
 						</point>
 						<point>
-							<pX>-1000</pX>
+							<pX>1500</pX>
+							<pY>2300</pY>
+						</point>
+						<point>
+							<pX>1500</pX>
+							<pY>2200</pY>
+						</point>
+						<point>
+							<pX>1495</pX>
+							<pY>2200</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-9954199</color>
+					<points>
+						<point>
+							<pX>1000</pX>
+							<pY>2400</pY>
+						</point>
+						<point>
+							<pX>1005</pX>
+							<pY>2400</pY>
+						</point>
+						<point>
+							<pX>1005</pX>
+							<pY>2300</pY>
+						</point>
+						<point>
+							<pX>1000</pX>
 							<pY>2300</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-1000</x>
-					<y>2000</y>
-					<color>-8775021</color>
+					<x>0</x>
+					<y>0</y>
+					<color>-7928397</color>
 					<points>
 						<point>
-							<pX>-700</pX>
-							<pY>2500</pY>
+							<pX>1495</pX>
+							<pY>2400</pY>
 						</point>
 						<point>
-							<pX>-600</pX>
-							<pY>2500</pY>
+							<pX>1500</pX>
+							<pY>2400</pY>
 						</point>
 						<point>
-							<pX>-600</pX>
-							<pY>2495</pY>
+							<pX>1500</pX>
+							<pY>2300</pY>
 						</point>
 						<point>
-							<pX>-700</pX>
-							<pY>2495</pY>
+							<pX>1495</pX>
+							<pY>2300</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-1000</x>
-					<y>2000</y>
-					<color>-10091390</color>
+					<x>0</x>
+					<y>0</y>
+					<color>-8712803</color>
 					<points>
 						<point>
-							<pX>-1000</pX>
+							<pX>1000</pX>
 							<pY>2500</pY>
 						</point>
 						<point>
-							<pX>-995</pX>
+							<pX>1005</pX>
 							<pY>2500</pY>
 						</point>
 						<point>
-							<pX>-995</pX>
+							<pX>1005</pX>
 							<pY>2400</pY>
 						</point>
 						<point>
-							<pX>-1000</pX>
+							<pX>1000</pX>
 							<pY>2400</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-1000</x>
-					<y>2000</y>
-					<color>-8904072</color>
+					<x>0</x>
+					<y>0</y>
+					<color>-10221967</color>
 					<points>
 						<point>
-							<pX>-600</pX>
+							<pX>1495</pX>
 							<pY>2500</pY>
 						</point>
 						<point>
-							<pX>-500</pX>
+							<pX>1500</pX>
 							<pY>2500</pY>
 						</point>
 						<point>
-							<pX>-500</pX>
-							<pY>2495</pY>
+							<pX>1500</pX>
+							<pY>2400</pY>
 						</point>
 						<point>
-							<pX>-600</pX>
-							<pY>2495</pY>
+							<pX>1495</pX>
+							<pY>2400</pY>
 						</point>
 					</points>
 				</ConvexHull>
@@ -6697,1682 +3649,362 @@
 		<Tile>
 			<width>500</width>
 			<height>500</height>
-			<x>-3</x>
-			<y>3</y>
-			<hulls>
-				<ConvexHull>
-					<x>-1500</x>
-					<y>1500</y>
-					<color>-7990387</color>
-					<points>
-						<point>
-							<pX>-1400</pX>
-							<pY>1600</pY>
-						</point>
-						<point>
-							<pX>-1100</pX>
-							<pY>1600</pY>
-						</point>
-						<point>
-							<pX>-1100</pX>
-							<pY>1650</pY>
-						</point>
-						<point>
-							<pX>-1400</pX>
-							<pY>1650</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1500</x>
-					<y>1500</y>
-					<color>-9954685</color>
-					<points>
-						<point>
-							<pX>-1150</pX>
-							<pY>1650</pY>
-						</point>
-						<point>
-							<pX>-1100</pX>
-							<pY>1650</pY>
-						</point>
-						<point>
-							<pX>-1100</pX>
-							<pY>1850</pY>
-						</point>
-						<point>
-							<pX>-1150</pX>
-							<pY>1850</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1500</x>
-					<y>1500</y>
-					<color>-7795609</color>
-					<points>
-						<point>
-							<pX>-1400</pX>
-							<pY>1850</pY>
-						</point>
-						<point>
-							<pX>-1100</pX>
-							<pY>1850</pY>
-						</point>
-						<point>
-							<pX>-1100</pX>
-							<pY>1900</pY>
-						</point>
-						<point>
-							<pX>-1400</pX>
-							<pY>1900</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1500</x>
-					<y>1500</y>
-					<color>-10092140</color>
-					<points>
-						<point>
-							<pX>-1500</pX>
-							<pY>2000</pY>
-						</point>
-						<point>
-							<pX>-1400</pX>
-							<pY>2000</pY>
-						</point>
-						<point>
-							<pX>-1400</pX>
-							<pY>1995</pY>
-						</point>
-						<point>
-							<pX>-1500</pX>
-							<pY>1995</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1500</x>
-					<y>1500</y>
-					<color>-9103728</color>
-					<points>
-						<point>
-							<pX>-1400</pX>
-							<pY>2000</pY>
-						</point>
-						<point>
-							<pX>-1300</pX>
-							<pY>2000</pY>
-						</point>
-						<point>
-							<pX>-1300</pX>
-							<pY>1995</pY>
-						</point>
-						<point>
-							<pX>-1400</pX>
-							<pY>1995</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1500</x>
-					<y>1500</y>
-					<color>-8054128</color>
-					<points>
-						<point>
-							<pX>-1300</pX>
-							<pY>2000</pY>
-						</point>
-						<point>
-							<pX>-1200</pX>
-							<pY>2000</pY>
-						</point>
-						<point>
-							<pX>-1200</pX>
-							<pY>1995</pY>
-						</point>
-						<point>
-							<pX>-1300</pX>
-							<pY>1995</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1500</x>
-					<y>1500</y>
-					<color>-8186707</color>
-					<points>
-						<point>
-							<pX>-1200</pX>
-							<pY>2000</pY>
-						</point>
-						<point>
-							<pX>-1100</pX>
-							<pY>2000</pY>
-						</point>
-						<point>
-							<pX>-1100</pX>
-							<pY>1995</pY>
-						</point>
-						<point>
-							<pX>-1200</pX>
-							<pY>1995</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1500</x>
-					<y>1500</y>
-					<color>-9036879</color>
-					<points>
-						<point>
-							<pX>-1100</pX>
-							<pY>2000</pY>
-						</point>
-						<point>
-							<pX>-1000</pX>
-							<pY>2000</pY>
-						</point>
-						<point>
-							<pX>-1000</pX>
-							<pY>1995</pY>
-						</point>
-						<point>
-							<pX>-1100</pX>
-							<pY>1995</pY>
-						</point>
-					</points>
-				</ConvexHull>
-			</hulls>
-		</Tile>
-		<Tile>
-			<width>500</width>
-			<height>500</height>
-			<x>-1</x>
-			<y>6</y>
-			<hulls>
-				<ConvexHull>
-					<x>-500</x>
-					<y>3000</y>
-					<color>-7664739</color>
-					<points>
-						<point>
-							<pX>-500</pX>
-							<pY>3100</pY>
-						</point>
-						<point>
-							<pX>-495</pX>
-							<pY>3100</pY>
-						</point>
-						<point>
-							<pX>-495</pX>
-							<pY>3000</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>3000</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>3000</y>
-					<color>-9625747</color>
-					<points>
-						<point>
-							<pX>-5</pX>
-							<pY>3100</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>3100</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>3000</pY>
-						</point>
-						<point>
-							<pX>-5</pX>
-							<pY>3000</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>3000</y>
-					<color>-7922808</color>
-					<points>
-						<point>
-							<pX>-500</pX>
-							<pY>3500</pY>
-						</point>
-						<point>
-							<pX>-400</pX>
-							<pY>3500</pY>
-						</point>
-						<point>
-							<pX>-400</pX>
-							<pY>3495</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>3495</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>3000</y>
-					<color>-10153564</color>
-					<points>
-						<point>
-							<pX>-500</pX>
-							<pY>3200</pY>
-						</point>
-						<point>
-							<pX>-495</pX>
-							<pY>3200</pY>
-						</point>
-						<point>
-							<pX>-495</pX>
-							<pY>3100</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>3100</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>3000</y>
-					<color>-8453228</color>
-					<points>
-						<point>
-							<pX>-5</pX>
-							<pY>3200</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>3200</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>3100</pY>
-						</point>
-						<point>
-							<pX>-5</pX>
-							<pY>3100</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>3000</y>
-					<color>-10090106</color>
-					<points>
-						<point>
-							<pX>-400</pX>
-							<pY>3500</pY>
-						</point>
-						<point>
-							<pX>-300</pX>
-							<pY>3500</pY>
-						</point>
-						<point>
-							<pX>-300</pX>
-							<pY>3495</pY>
-						</point>
-						<point>
-							<pX>-400</pX>
-							<pY>3495</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>3000</y>
-					<color>-9107078</color>
-					<points>
-						<point>
-							<pX>-500</pX>
-							<pY>3300</pY>
-						</point>
-						<point>
-							<pX>-495</pX>
-							<pY>3300</pY>
-						</point>
-						<point>
-							<pX>-495</pX>
-							<pY>3200</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>3200</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>3000</y>
-					<color>-9368972</color>
-					<points>
-						<point>
-							<pX>-5</pX>
-							<pY>3300</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>3300</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>3200</pY>
-						</point>
-						<point>
-							<pX>-5</pX>
-							<pY>3200</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>3000</y>
-					<color>-8453252</color>
-					<points>
-						<point>
-							<pX>-300</pX>
-							<pY>3500</pY>
-						</point>
-						<point>
-							<pX>-200</pX>
-							<pY>3500</pY>
-						</point>
-						<point>
-							<pX>-200</pX>
-							<pY>3495</pY>
-						</point>
-						<point>
-							<pX>-300</pX>
-							<pY>3495</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>3000</y>
-					<color>-8382324</color>
-					<points>
-						<point>
-							<pX>-500</pX>
-							<pY>3400</pY>
-						</point>
-						<point>
-							<pX>-495</pX>
-							<pY>3400</pY>
-						</point>
-						<point>
-							<pX>-495</pX>
-							<pY>3300</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>3300</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>3000</y>
-					<color>-8575625</color>
-					<points>
-						<point>
-							<pX>-5</pX>
-							<pY>3400</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>3400</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>3300</pY>
-						</point>
-						<point>
-							<pX>-5</pX>
-							<pY>3300</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>3000</y>
-					<color>-7725418</color>
-					<points>
-						<point>
-							<pX>-200</pX>
-							<pY>3500</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>3500</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>3495</pY>
-						</point>
-						<point>
-							<pX>-200</pX>
-							<pY>3495</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>3000</y>
-					<color>-7988302</color>
-					<points>
-						<point>
-							<pX>-500</pX>
-							<pY>3500</pY>
-						</point>
-						<point>
-							<pX>-495</pX>
-							<pY>3500</pY>
-						</point>
-						<point>
-							<pX>-495</pX>
-							<pY>3400</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>3400</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>3000</y>
-					<color>-8582787</color>
-					<points>
-						<point>
-							<pX>-5</pX>
-							<pY>3500</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>3500</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>3400</pY>
-						</point>
-						<point>
-							<pX>-5</pX>
-							<pY>3400</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-500</x>
-					<y>3000</y>
-					<color>-8059502</color>
-					<points>
-						<point>
-							<pX>-100</pX>
-							<pY>3500</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>3500</pY>
-						</point>
-						<point>
-							<pX>0</pX>
-							<pY>3495</pY>
-						</point>
-						<point>
-							<pX>-100</pX>
-							<pY>3495</pY>
-						</point>
-					</points>
-				</ConvexHull>
-			</hulls>
-		</Tile>
-		<Tile>
-			<width>500</width>
-			<height>500</height>
-			<x>-2</x>
+			<x>2</x>
 			<y>5</y>
 			<hulls>
 				<ConvexHull>
-					<x>-1000</x>
-					<y>2500</y>
-					<color>-9174629</color>
+					<x>0</x>
+					<y>0</y>
+					<color>-8251726</color>
 					<points>
 						<point>
-							<pX>-900</pX>
+							<pX>1000</pX>
 							<pY>2600</pY>
 						</point>
 						<point>
-							<pX>-600</pX>
+							<pX>1005</pX>
 							<pY>2600</pY>
 						</point>
 						<point>
-							<pX>-600</pX>
-							<pY>2650</pY>
+							<pX>1005</pX>
+							<pY>2500</pY>
 						</point>
 						<point>
-							<pX>-900</pX>
-							<pY>2650</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>2500</y>
-					<color>-9172617</color>
-					<points>
-						<point>
-							<pX>-650</pX>
-							<pY>2650</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>2650</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>2850</pY>
-						</point>
-						<point>
-							<pX>-650</pX>
-							<pY>2850</pY>
+							<pX>1000</pX>
+							<pY>2500</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-1000</x>
-					<y>2500</y>
-					<color>-9105506</color>
+					<x>0</x>
+					<y>0</y>
+					<color>-8314468</color>
 					<points>
 						<point>
-							<pX>-900</pX>
-							<pY>2850</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>2850</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>2900</pY>
-						</point>
-						<point>
-							<pX>-900</pX>
-							<pY>2900</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>2500</y>
-					<color>-10221154</color>
-					<points>
-						<point>
-							<pX>-1000</pX>
+							<pX>1495</pX>
 							<pY>2600</pY>
 						</point>
 						<point>
-							<pX>-995</pX>
+							<pX>1500</pX>
 							<pY>2600</pY>
 						</point>
 						<point>
-							<pX>-995</pX>
+							<pX>1500</pX>
 							<pY>2500</pY>
 						</point>
 						<point>
-							<pX>-1000</pX>
-							<pY>2500</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>2500</y>
-					<color>-9502334</color>
-					<points>
-						<point>
-							<pX>-1000</pX>
-							<pY>2500</pY>
-						</point>
-						<point>
-							<pX>-1000</pX>
-							<pY>2505</pY>
-						</point>
-						<point>
-							<pX>-900</pX>
-							<pY>2505</pY>
-						</point>
-						<point>
-							<pX>-900</pX>
+							<pX>1495</pX>
 							<pY>2500</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-1000</x>
-					<y>2500</y>
-					<color>-10155930</color>
+					<x>0</x>
+					<y>0</y>
+					<color>-8313429</color>
 					<points>
 						<point>
-							<pX>-1000</pX>
-							<pY>2700</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
-							<pY>2700</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
-							<pY>2600</pY>
-						</point>
-						<point>
-							<pX>-1000</pX>
-							<pY>2600</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>2500</y>
-					<color>-8771927</color>
-					<points>
-						<point>
-							<pX>-900</pX>
-							<pY>2500</pY>
-						</point>
-						<point>
-							<pX>-900</pX>
-							<pY>2505</pY>
-						</point>
-						<point>
-							<pX>-800</pX>
-							<pY>2505</pY>
-						</point>
-						<point>
-							<pX>-800</pX>
-							<pY>2500</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>2500</y>
-					<color>-8840066</color>
-					<points>
-						<point>
-							<pX>-1000</pX>
-							<pY>2800</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
-							<pY>2800</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
-							<pY>2700</pY>
-						</point>
-						<point>
-							<pX>-1000</pX>
-							<pY>2700</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>2500</y>
-					<color>-7922567</color>
-					<points>
-						<point>
-							<pX>-800</pX>
-							<pY>2500</pY>
-						</point>
-						<point>
-							<pX>-800</pX>
-							<pY>2505</pY>
-						</point>
-						<point>
-							<pX>-700</pX>
-							<pY>2505</pY>
-						</point>
-						<point>
-							<pX>-700</pX>
-							<pY>2500</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>2500</y>
-					<color>-7667343</color>
-					<points>
-						<point>
-							<pX>-1000</pX>
-							<pY>2900</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
-							<pY>2900</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
-							<pY>2800</pY>
-						</point>
-						<point>
-							<pX>-1000</pX>
-							<pY>2800</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>2500</y>
-					<color>-8707429</color>
-					<points>
-						<point>
-							<pX>-700</pX>
-							<pY>2500</pY>
-						</point>
-						<point>
-							<pX>-700</pX>
-							<pY>2505</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>2505</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>2500</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>2500</y>
-					<color>-9297779</color>
-					<points>
-						<point>
-							<pX>-1000</pX>
+							<pX>1000</pX>
 							<pY>3000</pY>
 						</point>
 						<point>
-							<pX>-995</pX>
+							<pX>1100</pX>
 							<pY>3000</pY>
 						</point>
 						<point>
-							<pX>-995</pX>
+							<pX>1100</pX>
+							<pY>2995</pY>
+						</point>
+						<point>
+							<pX>1000</pX>
+							<pY>2995</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-9230951</color>
+					<points>
+						<point>
+							<pX>1000</pX>
+							<pY>2700</pY>
+						</point>
+						<point>
+							<pX>1005</pX>
+							<pY>2700</pY>
+						</point>
+						<point>
+							<pX>1005</pX>
+							<pY>2600</pY>
+						</point>
+						<point>
+							<pX>1000</pX>
+							<pY>2600</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-8387734</color>
+					<points>
+						<point>
+							<pX>1495</pX>
+							<pY>2700</pY>
+						</point>
+						<point>
+							<pX>1500</pX>
+							<pY>2700</pY>
+						</point>
+						<point>
+							<pX>1500</pX>
+							<pY>2600</pY>
+						</point>
+						<point>
+							<pX>1495</pX>
+							<pY>2600</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-8845685</color>
+					<points>
+						<point>
+							<pX>1100</pX>
+							<pY>3000</pY>
+						</point>
+						<point>
+							<pX>1200</pX>
+							<pY>3000</pY>
+						</point>
+						<point>
+							<pX>1200</pX>
+							<pY>2995</pY>
+						</point>
+						<point>
+							<pX>1100</pX>
+							<pY>2995</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-9562219</color>
+					<points>
+						<point>
+							<pX>1000</pX>
+							<pY>2800</pY>
+						</point>
+						<point>
+							<pX>1005</pX>
+							<pY>2800</pY>
+						</point>
+						<point>
+							<pX>1005</pX>
+							<pY>2700</pY>
+						</point>
+						<point>
+							<pX>1000</pX>
+							<pY>2700</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-9820802</color>
+					<points>
+						<point>
+							<pX>1495</pX>
+							<pY>2800</pY>
+						</point>
+						<point>
+							<pX>1500</pX>
+							<pY>2800</pY>
+						</point>
+						<point>
+							<pX>1500</pX>
+							<pY>2700</pY>
+						</point>
+						<point>
+							<pX>1495</pX>
+							<pY>2700</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-8445585</color>
+					<points>
+						<point>
+							<pX>1200</pX>
+							<pY>3000</pY>
+						</point>
+						<point>
+							<pX>1300</pX>
+							<pY>3000</pY>
+						</point>
+						<point>
+							<pX>1300</pX>
+							<pY>2995</pY>
+						</point>
+						<point>
+							<pX>1200</pX>
+							<pY>2995</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-9038987</color>
+					<points>
+						<point>
+							<pX>1000</pX>
 							<pY>2900</pY>
 						</point>
 						<point>
-							<pX>-1000</pX>
+							<pX>1005</pX>
+							<pY>2900</pY>
+						</point>
+						<point>
+							<pX>1005</pX>
+							<pY>2800</pY>
+						</point>
+						<point>
+							<pX>1000</pX>
+							<pY>2800</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-8059225</color>
+					<points>
+						<point>
+							<pX>1495</pX>
+							<pY>2900</pY>
+						</point>
+						<point>
+							<pX>1500</pX>
+							<pY>2900</pY>
+						</point>
+						<point>
+							<pX>1500</pX>
+							<pY>2800</pY>
+						</point>
+						<point>
+							<pX>1495</pX>
+							<pY>2800</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-9296795</color>
+					<points>
+						<point>
+							<pX>1300</pX>
+							<pY>3000</pY>
+						</point>
+						<point>
+							<pX>1400</pX>
+							<pY>3000</pY>
+						</point>
+						<point>
+							<pX>1400</pX>
+							<pY>2995</pY>
+						</point>
+						<point>
+							<pX>1300</pX>
+							<pY>2995</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-8052825</color>
+					<points>
+						<point>
+							<pX>1000</pX>
+							<pY>3000</pY>
+						</point>
+						<point>
+							<pX>1005</pX>
+							<pY>3000</pY>
+						</point>
+						<point>
+							<pX>1005</pX>
+							<pY>2900</pY>
+						</point>
+						<point>
+							<pX>1000</pX>
 							<pY>2900</pY>
 						</point>
 					</points>
 				</ConvexHull>
 				<ConvexHull>
-					<x>-1000</x>
-					<y>2500</y>
-					<color>-7994754</color>
+					<x>0</x>
+					<y>0</y>
+					<color>-9168005</color>
 					<points>
 						<point>
-							<pX>-600</pX>
-							<pY>2500</pY>
+							<pX>1495</pX>
+							<pY>3000</pY>
 						</point>
 						<point>
-							<pX>-600</pX>
-							<pY>2505</pY>
+							<pX>1500</pX>
+							<pY>3000</pY>
 						</point>
 						<point>
-							<pX>-500</pX>
-							<pY>2505</pY>
+							<pX>1500</pX>
+							<pY>2900</pY>
 						</point>
 						<point>
-							<pX>-500</pX>
-							<pY>2500</pY>
+							<pX>1495</pX>
+							<pY>2900</pY>
+						</point>
+					</points>
+				</ConvexHull>
+				<ConvexHull>
+					<x>0</x>
+					<y>0</y>
+					<color>-8121181</color>
+					<points>
+						<point>
+							<pX>1400</pX>
+							<pY>3000</pY>
+						</point>
+						<point>
+							<pX>1500</pX>
+							<pY>3000</pY>
+						</point>
+						<point>
+							<pX>1500</pX>
+							<pY>2995</pY>
+						</point>
+						<point>
+							<pX>1400</pX>
+							<pY>2995</pY>
 						</point>
 					</points>
 				</ConvexHull>
 			</hulls>
 		</Tile>
-		<Tile>
-			<width>500</width>
-			<height>500</height>
-			<x>-4</x>
-			<y>3</y>
-			<hulls>
-				<ConvexHull>
-					<x>-2000</x>
-					<y>1500</y>
-					<color>-7860872</color>
-					<points>
-						<point>
-							<pX>-1900</pX>
-							<pY>1600</pY>
-						</point>
-						<point>
-							<pX>-1600</pX>
-							<pY>1600</pY>
-						</point>
-						<point>
-							<pX>-1600</pX>
-							<pY>1650</pY>
-						</point>
-						<point>
-							<pX>-1900</pX>
-							<pY>1650</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-2000</x>
-					<y>1500</y>
-					<color>-7732566</color>
-					<points>
-						<point>
-							<pX>-1650</pX>
-							<pY>1650</pY>
-						</point>
-						<point>
-							<pX>-1600</pX>
-							<pY>1650</pY>
-						</point>
-						<point>
-							<pX>-1600</pX>
-							<pY>1850</pY>
-						</point>
-						<point>
-							<pX>-1650</pX>
-							<pY>1850</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-2000</x>
-					<y>1500</y>
-					<color>-9106067</color>
-					<points>
-						<point>
-							<pX>-1900</pX>
-							<pY>1850</pY>
-						</point>
-						<point>
-							<pX>-1600</pX>
-							<pY>1850</pY>
-						</point>
-						<point>
-							<pX>-1600</pX>
-							<pY>1900</pY>
-						</point>
-						<point>
-							<pX>-1900</pX>
-							<pY>1900</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-2000</x>
-					<y>1500</y>
-					<color>-9630842</color>
-					<points>
-						<point>
-							<pX>-2000</pX>
-							<pY>1600</pY>
-						</point>
-						<point>
-							<pX>-1995</pX>
-							<pY>1600</pY>
-						</point>
-						<point>
-							<pX>-1995</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>-2000</pX>
-							<pY>1500</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-2000</x>
-					<y>1500</y>
-					<color>-8647559</color>
-					<points>
-						<point>
-							<pX>-2000</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>-2000</pX>
-							<pY>1505</pY>
-						</point>
-						<point>
-							<pX>-1900</pX>
-							<pY>1505</pY>
-						</point>
-						<point>
-							<pX>-1900</pX>
-							<pY>1500</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-2000</x>
-					<y>1500</y>
-					<color>-9371030</color>
-					<points>
-						<point>
-							<pX>-2000</pX>
-							<pY>2000</pY>
-						</point>
-						<point>
-							<pX>-1900</pX>
-							<pY>2000</pY>
-						</point>
-						<point>
-							<pX>-1900</pX>
-							<pY>1995</pY>
-						</point>
-						<point>
-							<pX>-2000</pX>
-							<pY>1995</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-2000</x>
-					<y>1500</y>
-					<color>-9758802</color>
-					<points>
-						<point>
-							<pX>-2000</pX>
-							<pY>1700</pY>
-						</point>
-						<point>
-							<pX>-1995</pX>
-							<pY>1700</pY>
-						</point>
-						<point>
-							<pX>-1995</pX>
-							<pY>1600</pY>
-						</point>
-						<point>
-							<pX>-2000</pX>
-							<pY>1600</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-2000</x>
-					<y>1500</y>
-					<color>-10020736</color>
-					<points>
-						<point>
-							<pX>-1900</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>-1900</pX>
-							<pY>1505</pY>
-						</point>
-						<point>
-							<pX>-1800</pX>
-							<pY>1505</pY>
-						</point>
-						<point>
-							<pX>-1800</pX>
-							<pY>1500</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-2000</x>
-					<y>1500</y>
-					<color>-9562240</color>
-					<points>
-						<point>
-							<pX>-1900</pX>
-							<pY>2000</pY>
-						</point>
-						<point>
-							<pX>-1800</pX>
-							<pY>2000</pY>
-						</point>
-						<point>
-							<pX>-1800</pX>
-							<pY>1995</pY>
-						</point>
-						<point>
-							<pX>-1900</pX>
-							<pY>1995</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-2000</x>
-					<y>1500</y>
-					<color>-8054648</color>
-					<points>
-						<point>
-							<pX>-2000</pX>
-							<pY>1800</pY>
-						</point>
-						<point>
-							<pX>-1995</pX>
-							<pY>1800</pY>
-						</point>
-						<point>
-							<pX>-1995</pX>
-							<pY>1700</pY>
-						</point>
-						<point>
-							<pX>-2000</pX>
-							<pY>1700</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-2000</x>
-					<y>1500</y>
-					<color>-9170832</color>
-					<points>
-						<point>
-							<pX>-1800</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>-1800</pX>
-							<pY>1505</pY>
-						</point>
-						<point>
-							<pX>-1700</pX>
-							<pY>1505</pY>
-						</point>
-						<point>
-							<pX>-1700</pX>
-							<pY>1500</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-2000</x>
-					<y>1500</y>
-					<color>-9891661</color>
-					<points>
-						<point>
-							<pX>-1800</pX>
-							<pY>2000</pY>
-						</point>
-						<point>
-							<pX>-1700</pX>
-							<pY>2000</pY>
-						</point>
-						<point>
-							<pX>-1700</pX>
-							<pY>1995</pY>
-						</point>
-						<point>
-							<pX>-1800</pX>
-							<pY>1995</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-2000</x>
-					<y>1500</y>
-					<color>-7986553</color>
-					<points>
-						<point>
-							<pX>-2000</pX>
-							<pY>1900</pY>
-						</point>
-						<point>
-							<pX>-1995</pX>
-							<pY>1900</pY>
-						</point>
-						<point>
-							<pX>-1995</pX>
-							<pY>1800</pY>
-						</point>
-						<point>
-							<pX>-2000</pX>
-							<pY>1800</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-2000</x>
-					<y>1500</y>
-					<color>-8777046</color>
-					<points>
-						<point>
-							<pX>-1700</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>-1700</pX>
-							<pY>1505</pY>
-						</point>
-						<point>
-							<pX>-1600</pX>
-							<pY>1505</pY>
-						</point>
-						<point>
-							<pX>-1600</pX>
-							<pY>1500</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-2000</x>
-					<y>1500</y>
-					<color>-9961335</color>
-					<points>
-						<point>
-							<pX>-1700</pX>
-							<pY>2000</pY>
-						</point>
-						<point>
-							<pX>-1600</pX>
-							<pY>2000</pY>
-						</point>
-						<point>
-							<pX>-1600</pX>
-							<pY>1995</pY>
-						</point>
-						<point>
-							<pX>-1700</pX>
-							<pY>1995</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-2000</x>
-					<y>1500</y>
-					<color>-10024077</color>
-					<points>
-						<point>
-							<pX>-2000</pX>
-							<pY>2000</pY>
-						</point>
-						<point>
-							<pX>-1995</pX>
-							<pY>2000</pY>
-						</point>
-						<point>
-							<pX>-1995</pX>
-							<pY>1900</pY>
-						</point>
-						<point>
-							<pX>-2000</pX>
-							<pY>1900</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-2000</x>
-					<y>1500</y>
-					<color>-7921760</color>
-					<points>
-						<point>
-							<pX>-1600</pX>
-							<pY>1500</pY>
-						</point>
-						<point>
-							<pX>-1600</pX>
-							<pY>1505</pY>
-						</point>
-						<point>
-							<pX>-1500</pX>
-							<pY>1505</pY>
-						</point>
-						<point>
-							<pX>-1500</pX>
-							<pY>1500</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-2000</x>
-					<y>1500</y>
-					<color>-8581482</color>
-					<points>
-						<point>
-							<pX>-1600</pX>
-							<pY>2000</pY>
-						</point>
-						<point>
-							<pX>-1500</pX>
-							<pY>2000</pY>
-						</point>
-						<point>
-							<pX>-1500</pX>
-							<pY>1995</pY>
-						</point>
-						<point>
-							<pX>-1600</pX>
-							<pY>1995</pY>
-						</point>
-					</points>
-				</ConvexHull>
-			</hulls>
-		</Tile>
-		<Tile>
-			<width>500</width>
-			<height>500</height>
-			<x>-2</x>
-			<y>6</y>
-			<hulls>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>3000</y>
-					<color>-8382620</color>
-					<points>
-						<point>
-							<pX>-900</pX>
-							<pY>3100</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>3100</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>3150</pY>
-						</point>
-						<point>
-							<pX>-900</pX>
-							<pY>3150</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>3000</y>
-					<color>-9757569</color>
-					<points>
-						<point>
-							<pX>-900</pX>
-							<pY>3350</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>3350</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>3400</pY>
-						</point>
-						<point>
-							<pX>-900</pX>
-							<pY>3400</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>3000</y>
-					<color>-8968321</color>
-					<points>
-						<point>
-							<pX>-1000</pX>
-							<pY>3100</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
-							<pY>3100</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
-							<pY>3000</pY>
-						</point>
-						<point>
-							<pX>-1000</pX>
-							<pY>3000</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>3000</y>
-					<color>-8058729</color>
-					<points>
-						<point>
-							<pX>-505</pX>
-							<pY>3100</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>3100</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>3000</pY>
-						</point>
-						<point>
-							<pX>-505</pX>
-							<pY>3000</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>3000</y>
-					<color>-9234791</color>
-					<points>
-						<point>
-							<pX>-1000</pX>
-							<pY>3500</pY>
-						</point>
-						<point>
-							<pX>-900</pX>
-							<pY>3500</pY>
-						</point>
-						<point>
-							<pX>-900</pX>
-							<pY>3495</pY>
-						</point>
-						<point>
-							<pX>-1000</pX>
-							<pY>3495</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>3000</y>
-					<color>-9107067</color>
-					<points>
-						<point>
-							<pX>-1000</pX>
-							<pY>3200</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
-							<pY>3200</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
-							<pY>3100</pY>
-						</point>
-						<point>
-							<pX>-1000</pX>
-							<pY>3100</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>3000</y>
-					<color>-9304143</color>
-					<points>
-						<point>
-							<pX>-505</pX>
-							<pY>3200</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>3200</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>3100</pY>
-						</point>
-						<point>
-							<pX>-505</pX>
-							<pY>3100</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>3000</y>
-					<color>-8186445</color>
-					<points>
-						<point>
-							<pX>-900</pX>
-							<pY>3500</pY>
-						</point>
-						<point>
-							<pX>-800</pX>
-							<pY>3500</pY>
-						</point>
-						<point>
-							<pX>-800</pX>
-							<pY>3495</pY>
-						</point>
-						<point>
-							<pX>-900</pX>
-							<pY>3495</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>3000</y>
-					<color>-10222220</color>
-					<points>
-						<point>
-							<pX>-1000</pX>
-							<pY>3300</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
-							<pY>3300</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
-							<pY>3200</pY>
-						</point>
-						<point>
-							<pX>-1000</pX>
-							<pY>3200</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>3000</y>
-					<color>-7924307</color>
-					<points>
-						<point>
-							<pX>-505</pX>
-							<pY>3300</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>3300</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>3200</pY>
-						</point>
-						<point>
-							<pX>-505</pX>
-							<pY>3200</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>3000</y>
-					<color>-8444511</color>
-					<points>
-						<point>
-							<pX>-800</pX>
-							<pY>3500</pY>
-						</point>
-						<point>
-							<pX>-700</pX>
-							<pY>3500</pY>
-						</point>
-						<point>
-							<pX>-700</pX>
-							<pY>3495</pY>
-						</point>
-						<point>
-							<pX>-800</pX>
-							<pY>3495</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>3000</y>
-					<color>-9433229</color>
-					<points>
-						<point>
-							<pX>-1000</pX>
-							<pY>3400</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
-							<pY>3400</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
-							<pY>3300</pY>
-						</point>
-						<point>
-							<pX>-1000</pX>
-							<pY>3300</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>3000</y>
-					<color>-7667559</color>
-					<points>
-						<point>
-							<pX>-505</pX>
-							<pY>3400</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>3400</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>3300</pY>
-						</point>
-						<point>
-							<pX>-505</pX>
-							<pY>3300</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>3000</y>
-					<color>-9362277</color>
-					<points>
-						<point>
-							<pX>-700</pX>
-							<pY>3500</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>3500</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>3495</pY>
-						</point>
-						<point>
-							<pX>-700</pX>
-							<pY>3495</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>3000</y>
-					<color>-9824091</color>
-					<points>
-						<point>
-							<pX>-1000</pX>
-							<pY>3500</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
-							<pY>3500</pY>
-						</point>
-						<point>
-							<pX>-995</pX>
-							<pY>3400</pY>
-						</point>
-						<point>
-							<pX>-1000</pX>
-							<pY>3400</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>3000</y>
-					<color>-9433993</color>
-					<points>
-						<point>
-							<pX>-505</pX>
-							<pY>3500</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>3500</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>3400</pY>
-						</point>
-						<point>
-							<pX>-505</pX>
-							<pY>3400</pY>
-						</point>
-					</points>
-				</ConvexHull>
-				<ConvexHull>
-					<x>-1000</x>
-					<y>3000</y>
-					<color>-8911500</color>
-					<points>
-						<point>
-							<pX>-600</pX>
-							<pY>3500</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>3500</pY>
-						</point>
-						<point>
-							<pX>-500</pX>
-							<pY>3495</pY>
-						</point>
-						<point>
-							<pX>-600</pX>
-							<pY>3495</pY>
-						</point>
-					</points>
-				</ConvexHull>
-			</hulls>
-		</Tile>
-	</world>
+	</World>
 	<GameData>
 <Player>
-	<x>824.7679</x>
-	<y>824.7679</y>
-	<facingAngle>90.5</facingAngle>
+	<x>30.411804</x>
+	<y>969.7714</y>
+	<facingAngle>0.43861297</facingAngle>
 	<moveAngle>0.0</moveAngle>
 	<speed>0.0</speed>
 	<turnSpeed>0.25</turnSpeed>
@@ -8398,102 +4030,6 @@
 		</point>
 	</boundingBox>
 	<Inventory>
-		<BaseMeleeWeapon>
-			<name>Katana</name>
-			<damage>51.0</damage>
-			<active>true</active>
-			<coolDown>250.0</coolDown>
-			<currentCoolDown>250.0</currentCoolDown>
-			<automatic>true</automatic>
-		</BaseMeleeWeapon>
-		<BaseRangedWeapon>
-			<name>Sniper Rifle</name>
-			<damage>110.0</damage>
-			<active>false</active>
-			<coolDown>200.0</coolDown>
-			<currentCoolDown>200.0</currentCoolDown>
-			<automatic>false</automatic>
-			<velocity>5.0</velocity>
-			<currentClip>10</currentClip>
-			<maxClip>10</maxClip>
-			<reloadTime>3000</reloadTime>
-			<currentReload>3000</currentReload>
-			<pellets>1</pellets>
-			<reloading>false</reloading>
-			<onFire>73</onFire>
-			<spread>750.0</spread>
-			<currentSpread>0.0</currentSpread>
-			<spreadAngle>7.5</spreadAngle>
-			<cone>0.0</cone>
-			<maxSpread>45</maxSpread>
-			<minSpread>1</minSpread>
-		</BaseRangedWeapon>
-		<BaseRangedWeapon>
-			<name>SMG</name>
-			<damage>10.0</damage>
-			<active>false</active>
-			<coolDown>90.909</coolDown>
-			<currentCoolDown>90.909</currentCoolDown>
-			<automatic>true</automatic>
-			<velocity>3.0</velocity>
-			<currentClip>25</currentClip>
-			<maxClip>25</maxClip>
-			<reloadTime>2200</reloadTime>
-			<currentReload>2200</currentReload>
-			<pellets>1</pellets>
-			<reloading>false</reloading>
-			<onFire>74</onFire>
-			<spread>150.0</spread>
-			<currentSpread>0.0</currentSpread>
-			<spreadAngle>8.0</spreadAngle>
-			<cone>0.0</cone>
-			<maxSpread>45</maxSpread>
-			<minSpread>1</minSpread>
-		</BaseRangedWeapon>
-		<BaseRangedWeapon>
-			<name>Combat Shotgun</name>
-			<damage>35.0</damage>
-			<active>false</active>
-			<coolDown>666.0</coolDown>
-			<currentCoolDown>666.0</currentCoolDown>
-			<automatic>false</automatic>
-			<velocity>3.0</velocity>
-			<currentClip>12</currentClip>
-			<maxClip>12</maxClip>
-			<reloadTime>3300</reloadTime>
-			<currentReload>3300</currentReload>
-			<pellets>9</pellets>
-			<reloading>false</reloading>
-			<onFire>75</onFire>
-			<spread>700.0</spread>
-			<currentSpread>0.0</currentSpread>
-			<spreadAngle>8.0</spreadAngle>
-			<cone>9.0</cone>
-			<maxSpread>45</maxSpread>
-			<minSpread>1</minSpread>
-		</BaseRangedWeapon>
-		<BaseRangedWeapon>
-			<name>Pistol</name>
-			<damage>75.0</damage>
-			<active>false</active>
-			<coolDown>50.0</coolDown>
-			<currentCoolDown>50.0</currentCoolDown>
-			<automatic>false</automatic>
-			<velocity>3.0</velocity>
-			<currentClip>6</currentClip>
-			<maxClip>6</maxClip>
-			<reloadTime>1000</reloadTime>
-			<currentReload>1000</currentReload>
-			<pellets>1</pellets>
-			<reloading>false</reloading>
-			<onFire>76</onFire>
-			<spread>300.0</spread>
-			<currentSpread>0.0</currentSpread>
-			<spreadAngle>6.0</spreadAngle>
-			<cone>0.0</cone>
-			<maxSpread>45</maxSpread>
-			<minSpread>1</minSpread>
-		</BaseRangedWeapon>
 	</Inventory>
 </Player>
 	</GameData>

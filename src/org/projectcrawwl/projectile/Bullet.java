@@ -50,6 +50,10 @@ public class Bullet extends GameObject{
 		
 	}
 	
+	public Bullet() {
+		super();
+	}
+
 	public void render(){
 		if(!isReady){return;}
 		super.render();
@@ -187,20 +191,6 @@ public class Bullet extends GameObject{
 				data += "\t<turnSpeed>" + turnSpeed + "</turnSpeed>\n";
 				data += "\t<damage>" + damage + "</damage>\n";
 				
-				
-				
-				data += "\t<boundingBox>\n";
-				{
-					for(Point p : this.getPoints()){
-						data += "\t\t<point>\n";
-						{
-							data += "\t\t\t<pX>" + p.x + "</pX>\n";
-							data += "\t\t\t<pY>" + p.y + "</pY>\n";
-						}
-						data += "\t\t</point>\n";
-					}
-				}
-				data += "\t</boundingBox>\n";
 		}
 		data += "</Bullet>\n";
 		

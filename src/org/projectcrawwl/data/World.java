@@ -248,13 +248,13 @@ public class World{
 	public static String toXML(){
 		String data = "";
 		
-		data += "\t<world>\n";
+		data += "\t<World>\n";
 		{
 			for(WorldTile t : getTiles()){
 				data += t.toXML();
 			}
 		}
-		data += "\t</world>\n";
+		data += "\t</World>\n";
 		
 		return data;
 	}
