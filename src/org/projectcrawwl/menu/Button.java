@@ -97,10 +97,10 @@ public class Button {
 		GameData.getFont().drawString(x + width/2 - GameData.getFont().getWidth(name)/2, GameSettings.getScreenY() - (y + height/2 + GameData.getFont().getHeight(name)/2), name);
 		
 		if(ID >= 11 && ID <= 14){
-			if(new File("res/Saves/save" + Integer.toString(ID - 10) + "/save.xml").exists()){
-				
-				Player p = PlayerXMLHandler.createPlayer("res/Saves/save" + Integer.toString(ID - 10) +"/save.xml");
-				
+			
+			Player p = PlayerXMLHandler.createPlayer("res/Saves/save" + Integer.toString(ID - 10) +"/save.xml");
+			
+			if(p != null){
 				
 				GameData.getFont().drawString(x + width/2 - GameData.getFont().getWidth(name)/2,
 						GameSettings.getScreenY() - (y + height/2 + GameData.getFont().getHeight(name)/2 - 10),
@@ -111,10 +111,10 @@ public class Button {
 		}
 		
 		if(ID >= 21 && ID <= 24){
-			if(new File("res/Saves/save" + Integer.toString(ID - 20) + "/save.xml").exists()){
-				
-				Player p = PlayerXMLHandler.createPlayer("res/Saves/save" + Integer.toString(ID - 20) +"/save.xml");
-				
+			
+			Player p = PlayerXMLHandler.createPlayer("res/Saves/save" + Integer.toString(ID - 20) +"/save.xml");
+			
+			if(p != null){
 				
 				GameData.getFont().drawString(x + width/2 - GameData.getFont().getWidth(name)/2,
 						GameSettings.getScreenY() - (y + height/2 + GameData.getFont().getHeight(name)/2 - 10),

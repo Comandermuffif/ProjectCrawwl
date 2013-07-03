@@ -8,10 +8,7 @@ import org.projectcrawwl.weapons.Fists;
 
 public class Inventory {
 	
-	public static int FIFTYCAL = 100;
-	public static int TWELVEGAUGE = 35;
-	public static int NINEMM = 50;
-	public static int FIVEFIVESIX = 20;
+	public static final ArrayList<String> ammo = new ArrayList<String>();
 	
 	public int bullets = 99;
 	
@@ -19,27 +16,17 @@ public class Inventory {
 	private ArrayList<BaseWeapon> weapons = new ArrayList<BaseWeapon>();
 	private int counter = 0;
 	
-	BaseWeapon fists;
-	
 	public Inventory(BasePlayer tempO){
 		owner = tempO;
-		fists = new Fists(owner);
+		weapons.add(new Fists(owner));
 	}
 	
 	public void render(){
-		if(weapons.size() == 0){
-			fists.render();
-		}else{
-			weapons.get(counter).render();
-		}
-		
+		weapons.get(counter).render();
 	}
 	public void update(int delta){
-		if(weapons.size() != 0){
-			weapons.get(counter).update(delta);
-		}else{
-			fists.update(delta);
-		}
+		
+		weapons.get(counter).update(delta);
 	}
 	
 	public void setWeapon(int n){
@@ -53,9 +40,6 @@ public class Inventory {
 	}
 	
 	public BaseWeapon getWeapon(){
-		if(weapons.size() == 0){
-			return fists;
-		}
 		return weapons.get(counter);
 	}
 	

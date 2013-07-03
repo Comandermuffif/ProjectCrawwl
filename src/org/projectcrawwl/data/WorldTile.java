@@ -18,6 +18,12 @@ public class WorldTile {
 	private int x;
 	private int y;
 	
+	private Boolean isGoal = false;
+	
+	public void setGoal(){
+		isGoal = true;
+	}
+	
 	/**
 	 * Clockwise, from top
 	 * 0 = no wall;
@@ -606,7 +612,14 @@ public class WorldTile {
 	
 	public void renderBackground(){
 		
-		GL11.glColor3d(1,1,1);
+		
+		if(isGoal){
+			GL11.glColor3d(0, (double)(171)/255, (double)(102)/255);
+		}else{
+			GL11.glColor3d(1,1,1);
+		}
+		
+		
 		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
 		GL11.glVertex2d((x)*width + World.getMapXOffset(), (y)*height + World.getMapYOffset());
 		GL11.glVertex2d((x + 1)*width + World.getMapXOffset(), (y)*height + World.getMapYOffset());

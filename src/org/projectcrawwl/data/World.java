@@ -92,6 +92,8 @@ public class World{
 		
 		int i = 0;
 		
+		WorldTile t = new WorldTile();
+		
 		while(!queue.isEmpty()){
 			
 			i ++;
@@ -99,29 +101,30 @@ public class World{
 			WorldTile current = queue.get(0);
 			queue.remove(0);
 			
+			
 			if(i + queue.size() >= tileLimit){
 				if(current.getSides()[0] == 0 && !tileMap.contains(new WorldTile(current.getX(), current.getY() + 1))){
-					WorldTile t = new WorldTile(current.getX(), current.getY() + 1, new int[]{1,1,0,1});
+					t = new WorldTile(current.getX(), current.getY() + 1, new int[]{1,1,0,1});
 					tiles.add(t);
 					tileMap.add(t);
 					queue.add(t);
 				}
 				
 				if(current.getSides()[1] == 0 && !tileMap.contains(new WorldTile(current.getX() + 1, current.getY()))){
-					WorldTile t = new WorldTile(current.getX() + 1, current.getY(), new int[]{1,1,1,0});
+					t = new WorldTile(current.getX() + 1, current.getY(), new int[]{1,1,1,0});
 					tiles.add(t);
 					tileMap.add(t);
 					queue.add(t);
 				}
 				
 				if(current.getSides()[2] == 0 && !tileMap.contains(new WorldTile(current.getX(), current.getY() - 1))){
-					WorldTile t = new WorldTile(current.getX(), current.getY() - 1, new int[]{0,1,1,1});
+					t = new WorldTile(current.getX(), current.getY() - 1, new int[]{0,1,1,1});
 					tiles.add(t);
 					tileMap.add(t);
 					queue.add(t);
 				}
 				if(current.getSides()[3] == 0 && !tileMap.contains(new WorldTile(current.getX() - 1, current.getY()))){
-					WorldTile t = new WorldTile(current.getX() - 1, current.getY(), new int[]{1,0,1,1});
+					t = new WorldTile(current.getX() - 1, current.getY(), new int[]{1,0,1,1});
 					tiles.add(t);
 					tileMap.add(t);
 					queue.add(t);
@@ -129,40 +132,43 @@ public class World{
 			}else{
 				//top
 				if(current.getSides()[0] == 0 && !tileMap.contains(new WorldTile(current.getX(), current.getY() + 1))){
-					WorldTile t = new WorldTile(current.getX(), current.getY() + 1, down.get((int) (Math.random()*down.size())) , 2);
+					t = new WorldTile(current.getX(), current.getY() + 1, down.get((int) (Math.random()*down.size())) , 2);
 					tiles.add(t);
 					tileMap.add(t);
 					queue.add(t);
 				}
 				//Right
 				if(current.getSides()[1] == 0 && !tileMap.contains(new WorldTile(current.getX() + 1, current.getY()))){
-					WorldTile t = new WorldTile(current.getX() + 1, current.getY(), left.get((int) (Math.random()*left.size())) , 3);
+					t = new WorldTile(current.getX() + 1, current.getY(), left.get((int) (Math.random()*left.size())) , 3);
 					tiles.add(t);
 					tileMap.add(t);
 					queue.add(t);
 				}
 				//bottom
 				if(current.getSides()[2] == 0 && !tileMap.contains(new WorldTile(current.getX(), current.getY() - 1))){
-					
-					WorldTile t = new WorldTile(current.getX(), current.getY() - 1, up.get((int) (Math.random()*up.size())) , 0);
-					
+					t = new WorldTile(current.getX(), current.getY() - 1, up.get((int) (Math.random()*up.size())) , 0);
 					tiles.add(t);
 					tileMap.add(t);
 					queue.add(t);
 				}
 				//right
 				if(current.getSides()[3] == 0 && !tileMap.contains(new WorldTile(current.getX() - 1, current.getY()))){
-					WorldTile t = new WorldTile(current.getX() - 1, current.getY(), right.get((int) (Math.random()*right.size())) , 1);
+					t = new WorldTile(current.getX() - 1, current.getY(), right.get((int) (Math.random()*right.size())) , 1);
 					tiles.add(t);
 					tileMap.add(t);
 					queue.add(t);
 				}
 			}
+			
 		}
 		
-		for(WorldTile t : tiles){
-			hulls.addAll(t.getHulls());
+		t.setGoal();
+		
+		for(WorldTile w : tiles){
+			hulls.addAll(w.getHulls());
 		}
+		
+		GameData.addChest();
 		
 		GameData.update();
 		

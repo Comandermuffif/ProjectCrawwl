@@ -275,6 +275,54 @@ public class GameData
 		return allPlayers;
 	}
 	
+	public static void addChest(){
+		WorldTile t = World.getTiles().get((int) Math.floor(Math.random()*World.getTiles().size()));
+		
+		int tempX = (int) ((Math.random() + t.getX()) * t.getWidth());
+		int tempY = (int) ((Math.random() + t.getY()) * t.getHeight());
+
+		
+		Chest chest = new Chest(tempX, tempY);
+		
+		boolean flag = true;
+		
+		for(ConvexHull k : World.getHulls()){
+			
+			if(k.getPolygon().contains(chest.x, chest.y)){
+				flag = false;
+				break;
+			}
+			
+			for(Line2D.Float q : k.getLines()){
+				for(Line2D.Float bound : chest.boundingBox()){
+					
+					Line2D.Float temp = new Line2D.Float();
+					
+					temp.x1 = (float) (bound.x1*Math.cos(Math.toRadians(chest.facingAngle)) - bound.y1*Math.sin(Math.toRadians(chest.facingAngle)) + chest.x);
+					temp.y1 = (float) (bound.x1*Math.sin(Math.toRadians(chest.facingAngle)) + bound.y1*Math.cos(Math.toRadians(chest.facingAngle)) + chest.y);
+					temp.x2 = (float) (bound.x2*Math.cos(Math.toRadians(chest.facingAngle)) - bound.y2*Math.sin(Math.toRadians(chest.facingAngle)) + chest.x);
+					temp.y2 = (float) (bound.x2*Math.sin(Math.toRadians(chest.facingAngle)) + bound.y2*Math.cos(Math.toRadians(chest.facingAngle)) + chest.y);
+							
+							
+					//Line2D.Float temp = new Line2D.Float(bound.x1 + tempx, bound.y1 + tempy, bound.x2 + tempx, bound.y2 + tempy);
+					if(temp.intersectsLine(q)){
+						flag = false;
+						break;
+					}
+				}
+				if(!flag){break;}
+			}
+			if(!flag){break;}
+		}
+		if(flag){
+			
+			addParticles.add(chest);
+			
+		}else{
+			addChest();
+		}
+	}
+	
 	public static void addFriendly(){
 		WorldTile t = World.getTiles().get((int) Math.floor(Math.random()*World.getTiles().size()));
 		
