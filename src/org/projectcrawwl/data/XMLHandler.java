@@ -13,6 +13,7 @@ import javax.xml.parsers.SAXParserFactory;
 import org.projectcrawwl.objects.BasePlayer;
 import org.projectcrawwl.objects.ConvexHull;
 import org.projectcrawwl.objects.Player;
+import org.projectcrawwl.projectile.Bullet;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -22,6 +23,8 @@ public class XMLHandler extends DefaultHandler{
 	private Player p;
 	private Point bound = new Point();
 	
+	private Bullet b;
+	
 	private WorldTile tile = new WorldTile();
 	
 	private ConvexHull hull = new ConvexHull();
@@ -30,6 +33,10 @@ public class XMLHandler extends DefaultHandler{
 	
 	private Boolean player = false;
 	private Boolean world = false;
+	
+	private Boolean hulls = false;
+	
+	private Boolean bullet = false;
 	
 	private String temp;
 	
@@ -51,6 +58,11 @@ public class XMLHandler extends DefaultHandler{
 			GameData.clearData();
 		}else if(qName.equalsIgnoreCase("Tile")){
 			tile = new WorldTile();
+		}else if(qName.equalsIgnoreCase("hulls")){
+			hulls = true;
+		}else if(qName.equalsIgnoreCase("bullet")){
+			bullet = true;
+			b = new Bullet();
 		}
 	}
 	
@@ -69,6 +81,12 @@ public class XMLHandler extends DefaultHandler{
 		}else if(qName.equalsIgnoreCase("ConvexHull")){
 			tile.addHull(hull);
 			hull = new ConvexHull();
+		}else if(qName.equalsIgnoreCase("hulls")){
+			hulls = false;
+		}else if(qName.equalsIgnoreCase("bullet")){
+			bullet = false;
+			GameData.addProjectile(b);
+			System.out.println("Bullet added");
 		}
 		
 		
@@ -95,26 +113,53 @@ public class XMLHandler extends DefaultHandler{
 				p.speedMult = Double.parseDouble(temp);
 			}else if(qName.equalsIgnoreCase("facingAngle")){
 				p.facingAngle = Float.parseFloat(temp);
+			}else if(qName.equalsIgnoreCase("moveAngle")){
+				p.moveAngle = Float.parseFloat(temp);
+			}else if(qName.equalsIgnoreCase("speed")){
+				p.speed = Float.parseFloat(temp);
+			}
+		}
+		
+		if(bullet){
+			if(qName.equalsIgnoreCase("x")){
+				b.x = Float.parseFloat(temp);
+			}else if(qName.equalsIgnoreCase("y")){
+				b.y = Float.parseFloat(temp);
+			}else if(qName.equalsIgnoreCase("facingAngle")){
+				b.facingAngle = Float.parseFloat(temp);
+			}else if(qName.equalsIgnoreCase("moveAngle")){
+				b.moveAngle = Float.parseFloat(temp);
+			}else if(qName.equalsIgnoreCase("speed")){
+				b.speed = Float.parseFloat(temp);
+			}else if(qName.equalsIgnoreCase("turnSpeed")){
+				b.turnSpeed = Double.parseDouble(temp);
+			}else if(qName.equalsIgnoreCase("damage")){
+				b.damage = Double.parseDouble(temp);
 			}
 		}
 		
 		if(world){
-			if(qName.equalsIgnoreCase("width")){
-				tile.setWidth(Integer.parseInt(temp));
-			}else if(qName.equalsIgnoreCase("height")){
-				tile.setHeight(Integer.parseInt(temp));
-			}else if(qName.equalsIgnoreCase("color")){
-				hull.setColor(new Color(Integer.parseInt(temp)));
-			}else if(qName.equalsIgnoreCase("x")){
-				tile.setX(Integer.parseInt(temp));
-			}else if(qName.equalsIgnoreCase("y")){
-				tile.setY(Integer.parseInt(temp));
-			}else if(qName.equalsIgnoreCase("pX")){
-				point.x = Integer.parseInt(temp);
-			}else if(qName.equalsIgnoreCase("pY")){
-				point.y = Integer.parseInt(temp);
-			}else if(qName.equalsIgnoreCase("point")){
-				hull.addPoint(point);
+			
+			if(hulls){
+				if(qName.equalsIgnoreCase("color")){
+					hull.setColor(new Color(Integer.parseInt(temp)));
+				}else if(qName.equalsIgnoreCase("pX")){
+					point.x = Integer.parseInt(temp);
+				}else if(qName.equalsIgnoreCase("pY")){
+					point.y = Integer.parseInt(temp);
+				}else if(qName.equalsIgnoreCase("point")){
+					hull.addPoint(point);
+				}
+			}else{
+				if(qName.equalsIgnoreCase("width")){
+					tile.setWidth(Integer.parseInt(temp));
+				}else if(qName.equalsIgnoreCase("height")){
+					tile.setHeight(Integer.parseInt(temp));
+				}else if(qName.equalsIgnoreCase("x")){
+					tile.setX(Integer.parseInt(temp));
+				}else if(qName.equalsIgnoreCase("y")){
+					tile.setY(Integer.parseInt(temp));
+				}
 			}
 		}
 	}

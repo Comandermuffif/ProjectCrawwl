@@ -184,6 +184,11 @@ public class Button {
 			StateController.setGameState(Main.SAVE_MENU);
 			return;
 		}
+		if(ID == 7){
+			XMLHandler.saveData();
+			return;
+		}
+		
 		
 		if(ID >= 11 && ID <= 14){
 			if(new File("res/Saves/save" + Integer.toString(ID - 10) + "/save.xml").exists()){
