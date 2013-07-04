@@ -304,6 +304,7 @@ public class Player extends BasePlayer {
 			
 				data += "\t<x>" + x + "</x>\n";
 				data += "\t<y>" + y + "</y>\n";
+				data += "\t<id>" + ID + "</id>\n";
 				
 				data += "\t<facingAngle>" + facingAngle + "</facingAngle>\n";
 				
@@ -324,7 +325,7 @@ public class Player extends BasePlayer {
 					for(Point p : this.getPoints()){
 						data += "\t\t<point>\n";
 						{
-							data += "\t\t\t\t<pX>" + p.x + "</pX>\n";
+							data += "\t\t\t<pX>" + p.x + "</pX>\n";
 							data += "\t\t\t<pY>" + p.y + "</pY>\n";
 						}
 						data += "\t\t</point>\n";

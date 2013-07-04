@@ -41,6 +41,7 @@ public class GameObject implements Comparable<GameObject>{
 	public boolean isReady = false;
 	
 	
+	
 	/**
 	 * A generic Game Object
 	 * 
@@ -54,6 +55,8 @@ public class GameObject implements Comparable<GameObject>{
 		y = tempY;
 		facingAngle = tempA;
 		tempFacing = facingAngle;
+		
+		
 	}
 	
 	

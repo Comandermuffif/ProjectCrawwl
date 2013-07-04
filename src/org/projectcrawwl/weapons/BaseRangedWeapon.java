@@ -20,74 +20,79 @@ public class BaseRangedWeapon extends BaseWeapon{
 	/**
 	 * Bullet velocity, will figure out what the value equivocates to later
 	 */
-	float velocity;
+	public float velocity;
 	
 	/**
 	 * Current clip and max clip
 	 */
-	int currentClip;
-	int maxClip;
+	public int currentClip;
+	public int maxClip;
 	
 	/**
 	 * Time to reload
 	 */
-	int reloadTime;
+	public int reloadTime;
 	
 	/**
 	 * The current reload time
 	 */
-	int currentReload;
+	public int currentReload;
 	
 	/**
 	 * Number of bullets in each shot
 	 */
-	int pellets = 1;
+	public int pellets = 1;
 	
 	/**
 	 * Boolean whether the weapon is reloading
 	 */
-	boolean reloading = false;
+	public boolean reloading = false;
 	
 	/**
 	 * The sound to play when the weapon fires
 	 */
-	Audio onFire = null;
+	public Audio onFire = null;
+	
+	/**
+	 * The string to the audio file
+	 */
+	public String fire = "";
 	
 	/**
 	 * The rate at which spread increases, in milliseconds
 	 */
-	double spread;
+	public double spread;
 	
 	/**
 	 * The current spread of the weapon, in milliseconds
 	 */
-	double currentSpread = 0;
+	public double currentSpread = 0;
 	
 	/**
 	 * The spread increase as degrees per second
 	 */
-	double spreadAngle = 1.5;
+	public double spreadAngle = 1.5;
 	
 	/**
 	 * The angle of the cone for multiple pellets
 	 */
-	double cone = 0;
+	public double cone = 0;
 	
 	/**
 	 * The max spread in degrees, half of the spread cone
 	 */
-	int maxSpread = 45;
+	public int maxSpread = 45;
 	
 	/**
 	 * The min spread in degrees, half of the cone
 	 */
-	int minSpread = 1;
+	public int minSpread = 1;
 	
 	/**
 	 * Creates a weapon with default parameters
 	 * @param tempO - The owner of the weapon
 	 */
-	protected BaseRangedWeapon(BasePlayer tempO){
+	public BaseRangedWeapon(BasePlayer tempO){
 		super("BaseRangedWeapon",0);
 		owner = tempO;
 		damage = 0;
@@ -182,6 +187,8 @@ public class BaseRangedWeapon extends BaseWeapon{
 					maxSpread = Integer.parseInt(s[1]);
 				}
 				if(s[0].equalsIgnoreCase("onfire")){
+					
+					fire = s[1].replaceAll("^\"|\"$", "");
 					
 					try {
 						onFire = AudioLoader.getAudio("OGG", ResourceLoader.getResourceAsStream(s[1].replaceAll("^\"|\"$", "")));
@@ -339,7 +346,6 @@ public class BaseRangedWeapon extends BaseWeapon{
 			data += "\t\t\t<coolDown>" + coolDown + "</coolDown>\n";
 			data += "\t\t\t<currentCoolDown>" + currentCoolDown + "</currentCoolDown>\n";
 			data += "\t\t\t<automatic>" + automatic + "</automatic>\n";
-			
 			data += "\t\t\t<velocity>" + velocity + "</velocity>\n";
 			data += "\t\t\t<currentClip>" + currentClip + "</currentClip>\n";
 			data += "\t\t\t<maxClip>" + maxClip + "</maxClip>\n";
@@ -347,7 +353,7 @@ public class BaseRangedWeapon extends BaseWeapon{
 			data += "\t\t\t<currentReload>" + currentReload + "</currentReload>\n";
 			data += "\t\t\t<pellets>" + pellets + "</pellets>\n";
 			data += "\t\t\t<reloading>" + reloading + "</reloading>\n";
-			data += "\t\t\t<onFire>" + onFire.getBufferID() + "</onFire>\n";
+			data += "\t\t\t<onFire>" + fire + "</onFire>\n";
 			data += "\t\t\t<spread>" + spread + "</spread>\n";
 			data += "\t\t\t<currentSpread>" + currentSpread + "</currentSpread>\n";
 			data += "\t\t\t<spreadAngle>" + spreadAngle + "</spreadAngle>\n";

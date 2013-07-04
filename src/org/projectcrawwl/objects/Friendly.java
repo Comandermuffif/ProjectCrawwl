@@ -116,6 +116,7 @@ public class Friendly extends BasePlayer {
 		{
 			data += "\t<x>" + x + "</x>\n";
 			data += "\t<y>" + y + "</y>\n";
+			data += "\t<id>" + ID + "</id>\n";
 			
 			data += "\t<facingAngle>" + facingAngle + "</facingAngle>\n";
 			

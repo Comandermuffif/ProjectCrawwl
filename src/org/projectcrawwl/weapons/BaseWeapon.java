@@ -13,7 +13,7 @@ public class BaseWeapon {
 	public float coolDown;
 	public float currentCoolDown;
 	
-	protected boolean automatic = true;
+	public boolean automatic = true;
 	
 	public BaseWeapon(String tempName, double tempD){
 		name = tempName;

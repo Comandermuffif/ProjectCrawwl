@@ -26,6 +26,13 @@ public class Zombie extends BasePlayer {
 		
 	}
 	
+	/**
+	 * Empty constructor
+	 */
+	public Zombie() {
+		super();
+	}
+
 	//Draw everything here
 	public void render(){
 		if(!isReady){return;}
@@ -146,10 +153,12 @@ public class Zombie extends BasePlayer {
 		{
 			data += "\t<x>" + x + "</x>\n";
 			data += "\t<y>" + y + "</y>\n";
+			data += "\t<id>" + ID + "</id>\n";
 			
 			data += "\t<facingAngle>" + facingAngle + "</facingAngle>\n";
 			
 			data += "\t<moveAngle>" + moveAngle + "</moveAngle>\n";
+			
 			
 			data += "\t<speed>" + speed + "</speed>\n";
 			

@@ -8,11 +8,11 @@ public class StateController {
 	
 	public static void setGameState(GameState a){
 		if(currentState != null){
-			System.out.println("Leaving " + currentState.getName());
+			//System.out.println("Leaving " + currentState.getName());
 			currentState.onExit();
 		}
 		currentState = a;
-		System.out.println("Entering " + a.getName());
+		//System.out.println("Entering " + a.getName());
 		currentState.onEnter();
 	}
 	

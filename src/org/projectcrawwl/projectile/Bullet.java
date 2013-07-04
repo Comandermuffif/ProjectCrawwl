@@ -24,6 +24,8 @@ public class Bullet extends GameObject{
 	
 	BasePlayer lastHit = null;
 	
+	public int ownerID = -1;
+	
 	/**
 	 * 
 	 * @param tempX - X location
@@ -48,6 +50,7 @@ public class Bullet extends GameObject{
 		
 		farthest = 50;
 		
+		ownerID = owner.ID;
 	}
 	
 	public Bullet() {
@@ -90,6 +93,9 @@ public class Bullet extends GameObject{
 	//Do all calculations here
 	public void update(int delta){
 		
+		if(owner == null){
+			
+		}
 		
 		lastPos.setLocation(x, y);
 		

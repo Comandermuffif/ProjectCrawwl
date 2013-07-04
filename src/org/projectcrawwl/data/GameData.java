@@ -4,6 +4,8 @@ import java.awt.Font;
 import java.awt.geom.Line2D;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.lwjgl.input.Keyboard;
 import org.newdawn.slick.SlickException;
@@ -16,6 +18,10 @@ import org.projectcrawwl.projectile.Particle;
 
 public class GameData 
 {	
+	
+	private static ConcurrentHashMap<Integer, GameObject> all = new ConcurrentHashMap<Integer, GameObject>();
+	private static HashMap<Integer, GameObject> players = new HashMap<Integer, GameObject>();
+	
 	
 	private static ArrayList<GameObject> allObjects = new ArrayList<GameObject>();
 	
@@ -40,9 +46,21 @@ public class GameData
 	
 	private static int currentSave = 0;
 	
+	private static int id = 0;
+	
 	public static float zoom = 0;
 	
 	private static UnicodeFont font;
+	
+	public static int getNewID(){
+		int temp = id;
+		id ++;
+		return temp;
+	}
+	
+	public static void setID(int i){
+		id = i;
+	}
 	
 	public static void setCurrentSave(int s){
 		currentSave = s;
@@ -616,6 +634,8 @@ public class GameData
 		String data = "";
 		
 		data += "\t<GameData>\n";
+		
+		data += "\t\t<DataID>" + id + "</DataID>\n";
 		
 		for(GameObject g : allParticles){
 			data += g.toXML();

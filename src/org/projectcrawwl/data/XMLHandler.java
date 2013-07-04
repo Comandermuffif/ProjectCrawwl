@@ -10,10 +10,15 @@ import java.io.IOException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
+import org.newdawn.slick.openal.AudioLoader;
+import org.newdawn.slick.util.ResourceLoader;
 import org.projectcrawwl.objects.BasePlayer;
 import org.projectcrawwl.objects.ConvexHull;
 import org.projectcrawwl.objects.Player;
+import org.projectcrawwl.objects.Zombie;
 import org.projectcrawwl.projectile.Bullet;
+import org.projectcrawwl.weapons.BaseMeleeWeapon;
+import org.projectcrawwl.weapons.BaseRangedWeapon;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
@@ -22,20 +27,20 @@ public class XMLHandler extends DefaultHandler{
 	
 	private Player p;
 	private Point bound = new Point();
-	
 	private Bullet b;
-	
 	private WorldTile tile = new WorldTile();
-	
 	private ConvexHull hull = new ConvexHull();
-	
 	private Point point = new Point();
+	private BaseRangedWeapon rangedWeapon;
+	private BaseMeleeWeapon meleeWeapon;
+	private Zombie z;
 	
+	private Boolean zombie = false;
+	private Boolean ranged = false;
+	private Boolean melee = false;
 	private Boolean player = false;
 	private Boolean world = false;
-	
 	private Boolean hulls = false;
-	
 	private Boolean bullet = false;
 	
 	private String temp;
@@ -63,6 +68,24 @@ public class XMLHandler extends DefaultHandler{
 		}else if(qName.equalsIgnoreCase("bullet")){
 			bullet = true;
 			b = new Bullet();
+		}else if(qName.equalsIgnoreCase("BaseRangedWeapon")){
+			ranged = true;
+			if(player){
+				rangedWeapon = new BaseRangedWeapon(p);
+				p.getInventory().addWeapon(rangedWeapon);
+			}else if(!player){
+				
+			}
+		}else if(qName.equalsIgnoreCase("BaseMeleeWeapon")){
+			melee = true;
+			if(player){
+				meleeWeapon = new BaseMeleeWeapon(p);
+			}else if(!player){
+				
+			}
+		}else if(qName.equalsIgnoreCase("zombie")){
+			zombie = true;
+			z = new Zombie();
 		}
 	}
 	
@@ -86,9 +109,110 @@ public class XMLHandler extends DefaultHandler{
 		}else if(qName.equalsIgnoreCase("bullet")){
 			bullet = false;
 			GameData.addProjectile(b);
-			System.out.println("Bullet added");
+		}else if(qName.equalsIgnoreCase("zombie")){
+			zombie = false;
+			GameData.addZombie(z);
+		}else if(qName.equalsIgnoreCase("DataID")){
+			GameData.setID(Integer.parseInt(temp));
 		}
 		
+		if(ranged){
+			if(qName.equalsIgnoreCase("name")){
+				rangedWeapon.name = temp;
+			}else if(qName.equalsIgnoreCase("damage")){
+				rangedWeapon.damage = Double.parseDouble(temp);
+			}else if(qName.equalsIgnoreCase("active")){
+				rangedWeapon.active = Boolean.parseBoolean(temp);
+			}else if(qName.equalsIgnoreCase("coolDown")){
+				rangedWeapon.coolDown = Float.parseFloat(temp);
+			}else if(qName.equalsIgnoreCase("currentCoolDown")){
+				rangedWeapon.currentCoolDown = Float.parseFloat(temp);
+			}else if(qName.equalsIgnoreCase("automatic")){
+				rangedWeapon.automatic = Boolean.parseBoolean(temp);
+			}else if(qName.equalsIgnoreCase("velocity")){
+				rangedWeapon.velocity = Float.parseFloat(temp);
+			}else if(qName.equalsIgnoreCase("currentClip")){
+				rangedWeapon.currentClip = Integer.parseInt(temp);
+			}else if(qName.equalsIgnoreCase("maxClip")){
+				rangedWeapon.maxClip = Integer.parseInt(temp);
+			}else if(qName.equalsIgnoreCase("reloadTime")){
+				rangedWeapon.reloadTime = Integer.parseInt(temp);
+			}else if(qName.equalsIgnoreCase("currentReload")){
+				rangedWeapon.currentReload = Integer.parseInt(temp);
+			}else if(qName.equalsIgnoreCase("pellets")){
+				rangedWeapon.pellets = Integer.parseInt(temp);
+			}else if(qName.equalsIgnoreCase("reloading")){
+				rangedWeapon.reloading = Boolean.parseBoolean(temp);
+			}else if(qName.equalsIgnoreCase("onFire")){
+				
+				rangedWeapon.fire = temp;
+				
+				try {
+					rangedWeapon.onFire = AudioLoader.getAudio("OGG", ResourceLoader.getResourceAsStream(temp));
+				} catch (IOException e) {e.printStackTrace();}
+				
+			}else if(qName.equalsIgnoreCase("spread")){
+				rangedWeapon.spread = Double.parseDouble(temp);
+			}else if(qName.equalsIgnoreCase("currentSpread")){
+				rangedWeapon.currentSpread = Double.parseDouble(temp);
+			}else if(qName.equalsIgnoreCase("spreadAngle")){
+				rangedWeapon.spreadAngle = Double.parseDouble(temp);
+			}else if(qName.equalsIgnoreCase("cone")){
+				rangedWeapon.cone = Double.parseDouble(temp);
+			}else if(qName.equalsIgnoreCase("maxSpread")){
+				rangedWeapon.maxSpread = Integer.parseInt(temp);
+			}else if(qName.equalsIgnoreCase("minSpread")){
+				rangedWeapon.minSpread = Integer.parseInt(temp);
+			}
+		}
+		
+		if(melee){
+			if(qName.equalsIgnoreCase("name")){
+				meleeWeapon.name = temp;
+			}else if(qName.equalsIgnoreCase("damage")){
+				meleeWeapon.damage = Double.parseDouble(temp);
+			}else if(qName.equalsIgnoreCase("active")){
+				meleeWeapon.active = Boolean.parseBoolean(temp);
+			}else if(qName.equalsIgnoreCase("coolDown")){
+				meleeWeapon.coolDown = Float.parseFloat(temp);
+			}else if(qName.equalsIgnoreCase("currentCoolDown")){
+				meleeWeapon.currentCoolDown = Float.parseFloat(temp);
+			}else if(qName.equalsIgnoreCase("automatic")){
+				meleeWeapon.automatic = Boolean.parseBoolean(temp);
+			}
+		}
+		
+		if(zombie){
+			if(qName.equalsIgnoreCase("x")){
+				z.x = Float.parseFloat(temp);
+			}else if(qName.equalsIgnoreCase("y")){
+				z.y = Float.parseFloat(temp);
+			}else if(qName.equalsIgnoreCase("health")){
+				z.health = Integer.parseInt(temp);
+			}else if(qName.equalsIgnoreCase("level")){
+				z.level = Integer.parseInt(temp);
+			}else if(qName.equalsIgnoreCase("px")){
+				bound.x = Integer.parseInt(temp);
+			}else if(qName.equalsIgnoreCase("py")){
+				bound.y = Integer.parseInt(temp);
+			}else if(qName.equalsIgnoreCase("point")){
+				z.addPoint(bound);
+			}else if(qName.equalsIgnoreCase("boundingBox")){
+				z.updateLines();
+			}else if(qName.equalsIgnoreCase("turnSpeed")){
+				z.turnSpeed = Double.parseDouble(temp);
+			}else if(qName.equalsIgnoreCase("speedMult")){
+				z.speedMult = Double.parseDouble(temp);
+			}else if(qName.equalsIgnoreCase("facingAngle")){
+				z.facingAngle = Float.parseFloat(temp);
+			}else if(qName.equalsIgnoreCase("moveAngle")){
+				z.moveAngle = Float.parseFloat(temp);
+			}else if(qName.equalsIgnoreCase("speed")){
+				z.speed = Float.parseFloat(temp);
+			}else if(qName.equalsIgnoreCase("id")){
+				z.ID = Integer.parseInt(temp);
+			}
+		}
 		
 		if(player){
 			if(qName.equalsIgnoreCase("x")){
@@ -117,6 +241,8 @@ public class XMLHandler extends DefaultHandler{
 				p.moveAngle = Float.parseFloat(temp);
 			}else if(qName.equalsIgnoreCase("speed")){
 				p.speed = Float.parseFloat(temp);
+			}else if(qName.equalsIgnoreCase("id")){
+				p.ID = Integer.parseInt(temp);
 			}
 		}
 		
@@ -204,8 +330,6 @@ public class XMLHandler extends DefaultHandler{
 			
 			FileWriter fw = new FileWriter(file.getAbsoluteFile());
 			BufferedWriter bw = new BufferedWriter(fw);
-			
-			BasePlayer p = GameData.getPlayer();
 			
 			bw.write("<Save>\n");
 			

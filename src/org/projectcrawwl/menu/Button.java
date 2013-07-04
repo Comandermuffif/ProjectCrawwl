@@ -98,7 +98,10 @@ public class Button {
 		
 		if(ID >= 11 && ID <= 14){
 			
-			Player p = PlayerXMLHandler.createPlayer("res/Saves/save" + Integer.toString(ID - 10) +"/save.xml");
+			Player p = null;
+			if(new File("res/Saves/save" + Integer.toString(ID - 20) +"/save.xml").exists()){
+				p = PlayerXMLHandler.createPlayer("res/Saves/save" + Integer.toString(ID - 20) +"/save.xml");
+			}
 			
 			if(p != null){
 				
@@ -112,7 +115,10 @@ public class Button {
 		
 		if(ID >= 21 && ID <= 24){
 			
-			Player p = PlayerXMLHandler.createPlayer("res/Saves/save" + Integer.toString(ID - 20) +"/save.xml");
+			Player p = null;
+			if(new File("res/Saves/save" + Integer.toString(ID - 20) +"/save.xml").exists()){
+				p = PlayerXMLHandler.createPlayer("res/Saves/save" + Integer.toString(ID - 20) +"/save.xml");
+			}
 			
 			if(p != null){
 				

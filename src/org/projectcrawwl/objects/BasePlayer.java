@@ -18,12 +18,16 @@ public abstract class BasePlayer extends GameObject{
 	
 	public int level = 0;
 	
+	public int ID;
+	
 	public BasePlayer(float tempX, float tempY, float tempA, int tempH){
 		super();
 		x = tempX;
 		y = tempY;
 		facingAngle = tempA;
 		health = tempH;
+		
+		ID = GameData.getNewID();
 	}
 	public BasePlayer(float tempX, float tempY){
 		super(tempX, tempY);
@@ -31,6 +35,8 @@ public abstract class BasePlayer extends GameObject{
 		y = tempY;
 		facingAngle = 0;
 		health = 100;
+		
+		ID = GameData.getNewID();
 	}
 	public BasePlayer(){
 		super();
@@ -38,6 +44,8 @@ public abstract class BasePlayer extends GameObject{
 		y = 0;
 		facingAngle = 0;
 		health = 100;
+		
+		ID = GameData.getNewID();
 	}
 	
 	public void createBoundingBox(){
@@ -123,6 +131,7 @@ public abstract class BasePlayer extends GameObject{
 		{
 				data += "\t<x>" + x + "</x>\n";
 				data += "\t<y>" + y + "</y>\n";
+				data += "\t<id>" + ID + "</id>\n";
 				
 				data += "\t<facingAngle>" + facingAngle + "</facingAngle>\n";
 				

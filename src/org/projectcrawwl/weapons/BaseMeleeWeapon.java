@@ -17,11 +17,6 @@ public class BaseMeleeWeapon extends BaseWeapon{
 	private Polygon area = new Polygon();
 	private ArrayList<Line2D.Float> lines = new ArrayList<Line2D.Float>();
 	
-	/*
-	 * TODO create a collision cone for weapon using polygon
-	 * Similar to bounding box
-	 */
-	
 	/**
 	 * A generic Melee Weapon
 	 * 
@@ -29,7 +24,7 @@ public class BaseMeleeWeapon extends BaseWeapon{
 	 * @param tempA angle
 	 * @param tempD damage
 	 */
-	protected BaseMeleeWeapon(BasePlayer tempO){
+	public BaseMeleeWeapon(BasePlayer tempO){
 		super("BaseMeleeWeapon", 0);
 		range = 25;
 		angle = 90;
