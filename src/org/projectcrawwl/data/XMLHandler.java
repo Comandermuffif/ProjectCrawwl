@@ -12,7 +12,6 @@ import javax.xml.parsers.SAXParserFactory;
 
 import org.newdawn.slick.openal.AudioLoader;
 import org.newdawn.slick.util.ResourceLoader;
-import org.projectcrawwl.objects.BasePlayer;
 import org.projectcrawwl.objects.ConvexHull;
 import org.projectcrawwl.objects.Player;
 import org.projectcrawwl.objects.Zombie;
@@ -99,7 +98,9 @@ public class XMLHandler extends DefaultHandler{
 			world = false;
 		}else if(qName.equalsIgnoreCase("Tile")){
 			World.addTile(tile);
-			
+			for(ConvexHull hull : tile.getHulls()){
+				GameData.addObject(hull);
+			}
 			tile = new WorldTile();
 		}else if(qName.equalsIgnoreCase("ConvexHull")){
 			tile.addHull(hull);
@@ -108,10 +109,10 @@ public class XMLHandler extends DefaultHandler{
 			hulls = false;
 		}else if(qName.equalsIgnoreCase("bullet")){
 			bullet = false;
-			GameData.addProjectile(b);
+			GameData.addObject(b);
 		}else if(qName.equalsIgnoreCase("zombie")){
 			zombie = false;
-			GameData.addZombie(z);
+			GameData.addObject(z);
 		}else if(qName.equalsIgnoreCase("DataID")){
 			GameData.setID(Integer.parseInt(temp));
 		}
@@ -210,7 +211,9 @@ public class XMLHandler extends DefaultHandler{
 			}else if(qName.equalsIgnoreCase("speed")){
 				z.speed = Float.parseFloat(temp);
 			}else if(qName.equalsIgnoreCase("id")){
-				z.ID = Integer.parseInt(temp);
+				z.id = Integer.parseInt(temp);
+			}else if(qName.equalsIgnoreCase("xp")){
+				p.xp = Integer.parseInt(temp);
 			}
 		}
 		
@@ -242,7 +245,9 @@ public class XMLHandler extends DefaultHandler{
 			}else if(qName.equalsIgnoreCase("speed")){
 				p.speed = Float.parseFloat(temp);
 			}else if(qName.equalsIgnoreCase("id")){
-				p.ID = Integer.parseInt(temp);
+				p.id = Integer.parseInt(temp);
+			}else if(qName.equalsIgnoreCase("xp")){
+				p.xp = Integer.parseInt(temp);
 			}
 		}
 		
@@ -261,6 +266,8 @@ public class XMLHandler extends DefaultHandler{
 				b.turnSpeed = Double.parseDouble(temp);
 			}else if(qName.equalsIgnoreCase("damage")){
 				b.damage = Double.parseDouble(temp);
+			}else if(qName.equalsIgnoreCase("ownerID")){
+				b.ownerID = Integer.parseInt(temp);
 			}
 		}
 		
@@ -319,6 +326,8 @@ public class XMLHandler extends DefaultHandler{
 		
 		try{
 			File file = new File("res/Saves/save" + GameData.getCurrentSave() + "/save.xml");
+			
+			file.getParentFile().mkdirs();
 			
 			if(!file.exists()){
 				System.out.println(file.getAbsolutePath());

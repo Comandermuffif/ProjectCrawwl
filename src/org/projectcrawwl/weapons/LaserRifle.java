@@ -75,7 +75,7 @@ public class LaserRifle extends BaseRangedWeapon{
 			
 			line.setLine(tempL);
 			
-			for(BasePlayer p : GameData.getAllPlayers()){
+			for(BasePlayer p : GameData.getPlayers()){
 				boolean flag = false;
 				for(Line2D.Float bound : p.boundingLines){
 						

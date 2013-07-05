@@ -3,8 +3,10 @@ package org.projectcrawwl.data;
 import java.awt.Font;
 import java.awt.geom.Line2D;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.lwjgl.input.Keyboard;
@@ -13,34 +15,14 @@ import org.newdawn.slick.UnicodeFont;
 import org.newdawn.slick.font.effects.ColorEffect;
 import org.projectcrawwl.Main;
 import org.projectcrawwl.objects.*;
-import org.projectcrawwl.projectile.Bullet;
-import org.projectcrawwl.projectile.Particle;
 
 public class GameData 
 {	
 	
 	private static ConcurrentHashMap<Integer, GameObject> all = new ConcurrentHashMap<Integer, GameObject>();
-	private static HashMap<Integer, GameObject> players = new HashMap<Integer, GameObject>();
-	
-	
-	private static ArrayList<GameObject> allObjects = new ArrayList<GameObject>();
-	
-	private static ArrayList<Bullet> allProjectiles = new ArrayList<Bullet>();
-	private static ArrayList<Bullet> removeProjectiles = new ArrayList<Bullet>();
-	private static ArrayList<Bullet> addProjectiles = new ArrayList<Bullet>();
-
-	private static ArrayList<BasePlayer> allPlayers = new ArrayList<BasePlayer>();
-	private static ArrayList<BasePlayer> addPlayers = new ArrayList<BasePlayer>();
-	private static ArrayList<BasePlayer> removePlayers = new ArrayList<BasePlayer>();
-	private static ArrayList<BasePlayer> killPlayers = new ArrayList<BasePlayer>();
-	
-	private static ArrayList<GameObject> allParticles = new ArrayList<GameObject>();
-	private static ArrayList<GameObject> addParticles = new ArrayList<GameObject>();
-	private static ArrayList<GameObject> removeParticles = new ArrayList<GameObject>();
-	
-	private static ArrayList<GameObject> allBloodStains = new ArrayList<GameObject>();
-	private static ArrayList<GameObject> addBloodStains = new ArrayList<GameObject>();
-	private static ArrayList<GameObject> removeBloodStains = new ArrayList<GameObject>();
+	private static HashMap<Integer, BasePlayer> players = new HashMap<Integer, BasePlayer>();
+	private static HashMap<Integer, BasePlayer> humans = new HashMap<Integer, BasePlayer>();
+	private static HashMap<Integer, BasePlayer> zombies = new HashMap<Integer, BasePlayer>();
 	
 	private static BasePlayer player = null;
 	
@@ -71,22 +53,12 @@ public class GameData
 	}
 	
 	public static void clearData(){
-		allObjects.clear();
-		allProjectiles.clear();
-		removeProjectiles.clear();
-		addProjectiles.clear();
-		allPlayers.clear();
-		addPlayers.clear();
-		removePlayers.clear();
-		killPlayers.clear();
-		allParticles.clear();
-		addParticles.clear();
-		removeParticles.clear();
-		allBloodStains.clear();
-		addBloodStains.clear();
-		removeBloodStains.clear();
+		all.clear();
+		players.clear();
 		
 		zoom = 0;
+		
+		id = 0;
 		
 		player = null;
 	}
@@ -111,23 +83,14 @@ public class GameData
 		if(player != null){
 			System.err.println("Player loaded when player existed");
 		}
-		//player = new Player("res/Saves/save1.Player");
 		
 		player = PlayerXMLHandler.createPlayer("res/Saves/save1.xml");
 		System.out.println(player);
-		addPlayers.add(player);
+		addObject(player);
 	}
 	
 	public static UnicodeFont getFont(){
 		return font;
-	}
-	
-	public static ArrayList<GameObject> getBloodStains(){
-		return allBloodStains;
-	}
-	
-	public static void addBloodStain(BloodStain g){
-		addBloodStains.add(g);
 	}
 	
 	public static float getMapXOffset(){
@@ -146,21 +109,12 @@ public class GameData
 	public static BasePlayer getPlayer(){
 		return player;
 	}
-	public static ArrayList<BasePlayer> getAI(){
-		ArrayList<BasePlayer> temp = new ArrayList<BasePlayer>();
-		for(BasePlayer a : allPlayers){
-			if(a instanceof org.projectcrawwl.objects.Zombie){
-				temp.add(a);
-			}
-		}
-		return temp;
-	}
 	public static void setPlayer(Player tempPlayer){
 		if(player != null){
 			System.err.println("Player loaded when player existed");
 		}
 		player = tempPlayer;
-		addPlayers.add(player);
+		addObject(player);
 	}
 	
 	public static void addPlayer(){
@@ -208,7 +162,7 @@ public class GameData
 		}
 		if(flag){
 			
-			addPlayers.add(player);
+			addObject(player);
 			
 		}else{
 			player = null;
@@ -256,41 +210,92 @@ public class GameData
 		}
 		if(flag){
 			
-			addPlayers.add(zombie);
+			addObject(zombie);
 		}else{
 			addZombie();
 		}
 	}
 	
-	public static void addZombie(BasePlayer temp){
-		addPlayers.add(temp);
-	}
-	public static void removePlayer(BasePlayer gameObject) {
-		removePlayers.add(gameObject);
-	}
-	public static void killPlayer(BasePlayer gameObject) {
-		killPlayers.add(gameObject);
-	}
-	public static void addProjectile(Bullet temp){
-		addProjectiles.add(temp);
-	}
-	public static void removeProjectile(Bullet temp){
-		removeProjectiles.add(temp);
+	public static void addObject(GameObject o){
+		all.put(o.id, o);
+		if(o instanceof BasePlayer){
+			players.put(o.id, (BasePlayer) o);
+			if(o instanceof Zombie){
+				zombies.put(o.id, (BasePlayer) o);
+			}else{
+				humans.put(o.id, (BasePlayer) o);
+			}
+		}
+		
 	}
 	
-	public static void addParticle(Particle p){
-		addParticles.add(p);
+	public static void addAllObjects(Collection<GameObject> c){
+		for(GameObject o : c){
+			all.put(o.id, o);
+			if(o instanceof BasePlayer){
+				players.put(o.id, (BasePlayer) o);
+				if(o instanceof Zombie){
+					zombies.put(o.id, (BasePlayer) o);
+				}else{
+					humans.put(o.id, (BasePlayer) o);
+				}
+			}
+		}
 	}
 	
-	public static void removeParticle(Particle p){
-		removeParticles.add(p);
+	public static void removeObject(GameObject o){
+		all.remove(o.id);
+		if(o instanceof BasePlayer){
+			players.remove(o.id);
+			if(o instanceof Zombie){
+				zombies.remove(o.id);
+			}else{
+				humans.remove(o.id);
+			}
+			
+			if(o instanceof Player){
+				player = null;
+			}
+		}
 	}
 	
-	public static ArrayList<Bullet> getProjectiles(){
-		return allProjectiles;
+	public static void killObject(GameObject o){
+		all.remove(o.id);
+		if(o instanceof BasePlayer){
+			players.remove(o.id);
+			if(o instanceof Zombie){
+				zombies.remove(o.id);
+			}else{
+				humans.remove(o.id);
+			}
+			
+			if(o instanceof Player){
+				StateController.setGameState(Main.DEATH_STATE);
+			}
+			
+		}
+		Corpse c = new Corpse(o.getX(), o.getY());
+		all.put(c.id, c);
 	}
-	public static ArrayList<BasePlayer> getAllPlayers(){
-		return allPlayers;
+	
+	public static GameObject getObject(int i){
+		return all.get(i);
+	}
+	
+	public static Collection<BasePlayer> getZombies() {
+		return zombies.values();
+	}
+	
+	public static Collection<BasePlayer> getHumans() {
+		return humans.values();
+	}
+	
+	public static Collection<BasePlayer> getPlayers(){
+		return players.values();
+	}
+	
+	public static void clearPlayer(){
+		player = null;
 	}
 	
 	public static void addChest(){
@@ -334,7 +339,7 @@ public class GameData
 		}
 		if(flag){
 			
-			addParticles.add(chest);
+			addObject(chest);
 			
 		}else{
 			addChest();
@@ -382,7 +387,7 @@ public class GameData
 		}
 		if(flag){
 			
-			addPlayers.add(friendly);
+			addObject(friendly);
 			
 		}else{
 			addFriendly();
@@ -390,33 +395,17 @@ public class GameData
 	
 	}
 	
-	public static ArrayList<BasePlayer> getFriendlies(){
-		ArrayList<BasePlayer> temp = new ArrayList<BasePlayer>();
-		for(BasePlayer a : allPlayers){
-			if(a instanceof org.projectcrawwl.objects.Friendly){
-				temp.add(a);
-			}
-			if(a instanceof org.projectcrawwl.objects.Player){
-				temp.add(a);
-			}
-		}
-		return temp;
-	}
-	
 	public static void render(){
 
 		World.renderBackground();
 		
-		//synchronized(bloodStainLock){
-			for(GameObject a : allBloodStains){
-				a.render();
-			}
-		//}
+		List<GameObject> l = new ArrayList<GameObject>(all.values());
 		
-		for(GameObject a : allObjects){
-			a.render();
+		Collections.sort(l);
+		
+		for(GameObject o : l){
+			o.render();
 		}
-		
 		//synchronized(playerLock){
 			if(player != null && StateController.getGameState() == Main.IN_GAME){
 				player.renderHUD();
@@ -426,94 +415,9 @@ public class GameData
 	
 	public static void update(){
 		
-		//synchronized(bloodStainLock){
-			for(GameObject a : addBloodStains){
-				allBloodStains.add(a);
-			}
-			addBloodStains.clear();
-		//}
-		
-		//synchronized(bloodStainLock){
-			for(GameObject a : removeBloodStains){
-				allBloodStains.remove(a);
-			}
-			removeBloodStains.clear();
-		//}
-		
-		//synchronized(bloodStainLock){}
-		
-		//synchronized(projectileLock){
-			//Removes projectiles that are off screen
-			for(Bullet a : removeProjectiles){
-				allProjectiles.remove(a);
-			}
-			removeProjectiles.clear();
-		//}
-		
-		//synchronized(projectileLock){
-			//Removes projectiles that are off screen
-			for(Bullet a : addProjectiles){
-				allProjectiles.add(a);
-			}
-			addProjectiles.clear();
-		//}
-		
-		//synchronized(particleLock){
-			for(GameObject a : removeParticles){
-				allParticles.remove(a);
-			}
-			removeParticles.clear();
-		//}
-		
-		//synchronized(particleLock){
-			for(GameObject a : addParticles){
-				allParticles.add(a);
-			}
-			addParticles.clear();
-		//}
-		
-		//synchronized(playerLock){
-			for(BasePlayer a : removePlayers){
-				if(a instanceof Player){
-					player = null;
-				}
-				allPlayers.remove(a);
-			}
-			removePlayers.clear();
-			
-			for(BasePlayer a : killPlayers){
-				if(a instanceof Player){
-					player = null;
-				}
-				allPlayers.remove(a);
-				
-				if(allBloodStains.size() > 200){
-					removeBloodStains.add(allBloodStains.get(0));
-				}
-				
-				addBloodStains.add(new Corpse(a.x, a.y));
-			}
-			killPlayers.clear();
-			
-		//}
-		
-		
-		
-		//synchronized(playerLock){
-			for(BasePlayer a : addPlayers){
-				allPlayers.add(a);
-			}
-			addPlayers.clear();
-		//}
-		
-		allObjects.clear();
-		
-		allObjects.addAll(allParticles);
-		allObjects.addAll(allPlayers);
-		allObjects.addAll(allProjectiles);
-		allObjects.addAll(World.getHulls());
-		
-		Collections.sort(allObjects);
+		for(GameObject o : all.values()){
+			o.update(0);
+		}
 		
 	}
 	
@@ -524,109 +428,9 @@ public class GameData
 		if(Keyboard.isKeyDown(Keyboard.KEY_UP)){World.setMapYOffset(World.getMapYOffset() - delta);}
 		if(Keyboard.isKeyDown(Keyboard.KEY_DOWN)){World.setMapYOffset(World.getMapYOffset() + delta);}
 		
-		//synchronized(bloodStainLock){
-			for(GameObject a : addBloodStains){
-				allBloodStains.add(a);
-			}
-			addBloodStains.clear();
-		//}
-		
-		//synchronized(bloodStainLock){
-			for(GameObject a : removeBloodStains){
-				allBloodStains.remove(a);
-			}
-			removeBloodStains.clear();
-		//}
-		
-		//synchronized(bloodStainLock){}
-		
-		//synchronized(projectileLock){
-			//Removes projectiles that are off screen
-			for(Bullet a : removeProjectiles){
-				allProjectiles.remove(a);
-			}
-			removeProjectiles.clear();
-		//}
-		
-		//synchronized(projectileLock){
-			//Removes projectiles that are off screen
-			for(Bullet a : addProjectiles){
-				allProjectiles.add(a);
-			}
-			addProjectiles.clear();
-		//}
-		
-		//synchronized(particleLock){
-			for(GameObject a : removeParticles){
-				allParticles.remove(a);
-			}
-			removeParticles.clear();
-		//}
-		
-		//synchronized(particleLock){
-			for(GameObject a : addParticles){
-				allParticles.add(a);
-			}
-			addParticles.clear();
-		//}
-		
-		//synchronized(playerLock){
-			for(BasePlayer a : removePlayers){
-				if(a instanceof Player){
-					player = null;
-				}
-				allPlayers.remove(a);
-			}
-			removePlayers.clear();
-			
-			for(BasePlayer a : killPlayers){
-				if(a instanceof Player){
-					player = null;
-				}
-				allPlayers.remove(a);
-				
-				if(allBloodStains.size() > 200){
-					removeBloodStains.add(allBloodStains.get(0));
-				}
-				
-				addBloodStains.add(new Corpse(a.x, a.y));
-			}
-			killPlayers.clear();
-			
-		//}
-		
-		
-		
-		//synchronized(playerLock){
-			for(BasePlayer a : addPlayers){
-				allPlayers.add(a);
-			}
-			addPlayers.clear();
-		//}
-		
-		for(BasePlayer a : getAllPlayers()){
-			a.update(delta);
+		for(GameObject o : all.values()){
+			o.update(delta);
 		}
-		for(GameObject b : getProjectiles()){
-			b.update(delta);
-		}
-		
-		for(GameObject c : getBloodStains()){
-			c.update(delta);
-		}
-		
-		for(GameObject d : allParticles){
-			d.update(delta);
-		}
-		
-		allObjects.clear();
-		
-		allObjects.addAll(allParticles);
-		allObjects.addAll(allPlayers);
-		allObjects.addAll(allProjectiles);
-		allObjects.addAll(World.getHulls());
-		
-		Collections.sort(allObjects);
 		
 	}
 	
@@ -637,16 +441,8 @@ public class GameData
 		
 		data += "\t\t<DataID>" + id + "</DataID>\n";
 		
-		for(GameObject g : allParticles){
-			data += g.toXML();
-		}
-		
-		for(GameObject g : allPlayers){
-			data += g.toXML();
-		}
-		
-		for(GameObject g : allProjectiles){
-			data += g.toXML();
+		for(GameObject o : all.values()){
+			data += o.toXML();
 		}
 		
 		data += "\t</GameData>\n";

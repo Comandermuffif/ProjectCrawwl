@@ -39,7 +39,7 @@ public class Button {
 		this.width = w;
 		this.height = h;
 		
-		this.name = s;
+		this.name = s;	
 	}
 	
 	public Button(int x, int y, int w, int h, String s, int id){
@@ -52,6 +52,36 @@ public class Button {
 		this.name = s;
 		
 		this.ID = id;
+		
+		if(ID >= 11 && ID <= 14){
+			
+			Player p = null;
+			if(new File("res/Saves/save" + Integer.toString(ID - 10) +"/save.xml").exists()){
+				p = PlayerXMLHandler.createPlayer("res/Saves/save" + Integer.toString(ID - 10) +"/save.xml");
+			}
+			
+			if(p != null){
+				
+				this.name = this.name + "\nLevel: " + p.getLevel() + " XP: " + p.xp;
+			}else{
+				this.name += "\nEmpty";
+			}
+		}
+		
+		if(ID >= 21 && ID <= 24){
+			
+			Player p = null;
+			if(new File("res/Saves/save" + Integer.toString(ID - 20) +"/save.xml").exists()){
+				p = PlayerXMLHandler.createPlayer("res/Saves/save" + Integer.toString(ID - 20) +"/save.xml");
+			}
+			
+			if(p != null){
+				this.name = this.name + "\nLevel: " + p.getLevel() + " XP: " + p.xp;
+			}else{
+				this.name += "\nEmpty";
+			}
+		}
+		
 	}
 	
 	public void mouseInput(ArrayList<Integer> a){
@@ -95,40 +125,6 @@ public class Button {
 		GL11.glLoadIdentity();
 		GL11.glOrtho(0, GameSettings.getScreenX(), GameSettings.getScreenY(), 0, -1, 1);
 		GameData.getFont().drawString(x + width/2 - GameData.getFont().getWidth(name)/2, GameSettings.getScreenY() - (y + height/2 + GameData.getFont().getHeight(name)/2), name);
-		
-		if(ID >= 11 && ID <= 14){
-			
-			Player p = null;
-			if(new File("res/Saves/save" + Integer.toString(ID - 20) +"/save.xml").exists()){
-				p = PlayerXMLHandler.createPlayer("res/Saves/save" + Integer.toString(ID - 20) +"/save.xml");
-			}
-			
-			if(p != null){
-				
-				GameData.getFont().drawString(x + width/2 - GameData.getFont().getWidth(name)/2,
-						GameSettings.getScreenY() - (y + height/2 + GameData.getFont().getHeight(name)/2 - 10),
-						"Level: " + p.getLevel());
-			}else{
-				GameData.getFont().drawString(x + width/2 - GameData.getFont().getWidth(name)/2, GameSettings.getScreenY() - (y + height/2 + GameData.getFont().getHeight(name)/2 - 10), "Empty");
-			}
-		}
-		
-		if(ID >= 21 && ID <= 24){
-			
-			Player p = null;
-			if(new File("res/Saves/save" + Integer.toString(ID - 20) +"/save.xml").exists()){
-				p = PlayerXMLHandler.createPlayer("res/Saves/save" + Integer.toString(ID - 20) +"/save.xml");
-			}
-			
-			if(p != null){
-				
-				GameData.getFont().drawString(x + width/2 - GameData.getFont().getWidth(name)/2,
-						GameSettings.getScreenY() - (y + height/2 + GameData.getFont().getHeight(name)/2 - 10),
-						"Level: " + p.getLevel());
-			}else{
-				GameData.getFont().drawString(x + width/2 - GameData.getFont().getWidth(name)/2, GameSettings.getScreenY() - (y + height/2 + GameData.getFont().getHeight(name)/2 - 10), "Empty");
-			}
-		}
 		
 		GL11.glDisable(GL11.GL_TEXTURE_2D);
 		

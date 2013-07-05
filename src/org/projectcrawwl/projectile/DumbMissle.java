@@ -34,7 +34,7 @@ public class DumbMissle extends Bullet{
 		
 		if(target == null){
 			double dist = 0;
-			for(BasePlayer player : GameData.getAI()){
+			for(BasePlayer player : GameData.getPlayers()){
 				if(dist == 0){
 					dist = Math.pow(Math.pow(player.x - x, 2) + Math.pow(player.y - y, 2), .5);
 					target = player;

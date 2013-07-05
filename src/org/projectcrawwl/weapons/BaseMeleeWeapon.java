@@ -118,9 +118,7 @@ public class BaseMeleeWeapon extends BaseWeapon{
 			active = true;
 			currentCoolDown = coolDown;
 			
-			ArrayList<BasePlayer> temp = GameData.getAllPlayers();
-			
-			for(BasePlayer b : temp){
+			for(BasePlayer b : GameData.getPlayers()){
 				
 				
 				if( b.getCenter().distance(owner.getCenter()) - (b.getFarthest() + owner.getFarthest() + range) > 0){

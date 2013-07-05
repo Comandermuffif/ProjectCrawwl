@@ -157,7 +157,7 @@ public class Player extends BasePlayer {
 		GL11.glLoadIdentity();
 		GL11.glOrtho(0, GameSettings.getScreenX(), GameSettings.getScreenY(), 0, -1, 1);
 		
-		GameData.getFont().drawString(20, GameSettings.getScreenY() - 100, "Level: " + getLevel());
+		GameData.getFont().drawString(20, GameSettings.getScreenY() - 100, "Level: " + getLevel() + " XP: " + xp);
 		GameData.getFont().drawString(20, GameSettings.getScreenY() - 80, "Weapon: " + inventory.getWeapon().getName());
 		if(!(inventory.getWeapon() instanceof BaseMeleeWeapon)){
 			if(inventory.getWeapon().isReloading()){
@@ -304,7 +304,7 @@ public class Player extends BasePlayer {
 			
 				data += "\t<x>" + x + "</x>\n";
 				data += "\t<y>" + y + "</y>\n";
-				data += "\t<id>" + ID + "</id>\n";
+				data += "\t<id>" + id + "</id>\n";
 				
 				data += "\t<facingAngle>" + facingAngle + "</facingAngle>\n";
 				
@@ -319,6 +319,8 @@ public class Player extends BasePlayer {
 				data += "\t<level>" + level + "</level>\n";
 				
 				data += "\t<kills>" + kills + "</kills>\n";
+				
+				data += "\t<xp>" + xp + "</xp>\n";
 				
 				data += "\t<boundingBox>\n";
 				{

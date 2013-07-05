@@ -313,9 +313,9 @@ public class BaseRangedWeapon extends BaseWeapon{
 				if(coneSpread > 1){coneSpread = 1;}
 				
 				if(currentSpread == 0){
-					GameData.addProjectile(new Bullet((float) (owner.x + Math.cos(Math.toRadians(owner.facingAngle))*(owner.getFarthest())),(float) (owner.y + Math.sin(Math.toRadians(owner.facingAngle))*(owner.getFarthest())),(float) (velocity + random.nextGaussian()*.02),(float) ((float) owner.facingAngle + (coneSpread)*cone), damage, owner));
+					GameData.addObject(new Bullet((float) (owner.x + Math.cos(Math.toRadians(owner.facingAngle))*(owner.getFarthest())),(float) (owner.y + Math.sin(Math.toRadians(owner.facingAngle))*(owner.getFarthest())),(float) (velocity + random.nextGaussian()*.02),(float) ((float) owner.facingAngle + (coneSpread)*cone), damage, owner));
 				}else{
-					GameData.addProjectile(new Bullet((float) (owner.x + Math.cos(Math.toRadians(owner.facingAngle))*(owner.getFarthest())),(float) (owner.y + Math.sin(Math.toRadians(owner.facingAngle))*(owner.getFarthest())),(float) (velocity + random.nextGaussian()*.02),(float) ((float) owner.facingAngle + tempG*((currentSpread/1000)*spreadAngle + minSpread) + (coneSpread)*cone), damage, owner));
+					GameData.addObject(new Bullet((float) (owner.x + Math.cos(Math.toRadians(owner.facingAngle))*(owner.getFarthest())),(float) (owner.y + Math.sin(Math.toRadians(owner.facingAngle))*(owner.getFarthest())),(float) (velocity + random.nextGaussian()*.02),(float) ((float) owner.facingAngle + tempG*((currentSpread/1000)*spreadAngle + minSpread) + (coneSpread)*cone), damage, owner));
 				}
 				
 			}

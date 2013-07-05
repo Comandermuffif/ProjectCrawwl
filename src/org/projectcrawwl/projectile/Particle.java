@@ -110,10 +110,10 @@ public class Particle extends GameObject{
 		lifetime -= delta;
 		
 		if(lifetime <= 0){
-			GameData.removeParticle(this);
+			GameData.removeObject(this);
 		}
 		if(speed == 0){
-			GameData.removeParticle(this);
+			GameData.removeObject(this);
 		}
 	}
 	

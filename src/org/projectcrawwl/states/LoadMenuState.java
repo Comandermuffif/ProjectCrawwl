@@ -21,17 +21,18 @@ public class LoadMenuState implements GameState{
 
 	@Override
 	public void onEnter() {
-		if(buttons.size() == 0){
-			buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY()/2 + 160,200,100, "Load Save 1", 11));
-			
-			buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY()/2 + 50,200,100, "Load Save 2", 12));
-			
-			buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY()/2 - 60,200,100, "Load Save 3", 13));
-			
-			buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY()/2 - 170,200,100, "Load Save 4", 14));
-			
-			buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY()/2 - 280,200,100, "Back", 2));
-		}
+		
+		buttons.clear();
+		
+		buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY()/2 + 160,200,100, "Load Save 1", 11));
+		
+		buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY()/2 + 50,200,100, "Load Save 2", 12));
+		
+		buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY()/2 - 60,200,100, "Load Save 3", 13));
+		
+		buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY()/2 - 170,200,100, "Load Save 4", 14));
+		
+		buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY()/2 - 280,200,100, "Back", 2));
 	}
 
 	@Override

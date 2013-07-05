@@ -18,7 +18,7 @@ public abstract class BasePlayer extends GameObject{
 	
 	public int level = 0;
 	
-	public int ID;
+	public int xp = 0;
 	
 	public BasePlayer(float tempX, float tempY, float tempA, int tempH){
 		super();
@@ -26,8 +26,6 @@ public abstract class BasePlayer extends GameObject{
 		y = tempY;
 		facingAngle = tempA;
 		health = tempH;
-		
-		ID = GameData.getNewID();
 	}
 	public BasePlayer(float tempX, float tempY){
 		super(tempX, tempY);
@@ -35,8 +33,6 @@ public abstract class BasePlayer extends GameObject{
 		y = tempY;
 		facingAngle = 0;
 		health = 100;
-		
-		ID = GameData.getNewID();
 	}
 	public BasePlayer(){
 		super();
@@ -44,8 +40,6 @@ public abstract class BasePlayer extends GameObject{
 		y = 0;
 		facingAngle = 0;
 		health = 100;
-		
-		ID = GameData.getNewID();
 	}
 	
 	public void createBoundingBox(){
@@ -106,13 +100,19 @@ public abstract class BasePlayer extends GameObject{
 			if(this instanceof org.projectcrawwl.objects.Zombie){
 				GameData.addZombie();
 			}
-			GameData.killPlayer(this);
+			GameData.killObject(this);
 		}
 	}
 	
 	
 	public void newKill(){
 		kills += 1;
+		xp += 10;
+		
+		while(xp >= 100){
+			level ++;
+			xp -= 100;
+		}
 	}
 	
 	public Inventory getInventory(){
@@ -131,7 +131,7 @@ public abstract class BasePlayer extends GameObject{
 		{
 				data += "\t<x>" + x + "</x>\n";
 				data += "\t<y>" + y + "</y>\n";
-				data += "\t<id>" + ID + "</id>\n";
+				data += "\t<id>" + id + "</id>\n";
 				
 				data += "\t<facingAngle>" + facingAngle + "</facingAngle>\n";
 				
@@ -146,6 +146,8 @@ public abstract class BasePlayer extends GameObject{
 				data += "\t<level>" + level + "</level>\n";
 				
 				data += "\t<kills>" + kills + "</kills>\n";
+				
+				data += "\t<xp>" + xp + "</xp>\n";
 				
 				data += "\t<boundingBox>\n";
 				{

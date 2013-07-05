@@ -1,28 +1,31 @@
 package org.projectcrawwl.data;
 
 import java.awt.Point;
-import java.awt.geom.Line2D;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
-import org.projectcrawwl.objects.BasePlayer;
+import org.newdawn.slick.openal.AudioLoader;
+import org.newdawn.slick.util.ResourceLoader;
 import org.projectcrawwl.objects.Player;
+import org.projectcrawwl.weapons.BaseMeleeWeapon;
+import org.projectcrawwl.weapons.BaseRangedWeapon;
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
 import org.xml.sax.helpers.DefaultHandler;
 
 public class PlayerXMLHandler extends DefaultHandler{
-	
-	public Player p;
+	private Player p;
 	private Point bound = new Point();
-	private String temp;
+	private BaseRangedWeapon rangedWeapon;
+	private BaseMeleeWeapon meleeWeapon;
 	
+	private Boolean ranged = false;
+	private Boolean melee = false;
 	private Boolean player = false;
+	
+	private String temp;
 	
 	@Override
 	public void characters(char[] buffer, int start, int length){
@@ -32,19 +35,98 @@ public class PlayerXMLHandler extends DefaultHandler{
 	@Override
 	public void startElement(String uri, String localName, String qName, Attributes attributes) throws SAXException{
 		temp = "";
-		if(qName.equalsIgnoreCase("player")){
-			player = false;
+		if(qName.equalsIgnoreCase("Player")){
+			p = new Player();
+			player = true;
+		}else if(qName.equalsIgnoreCase("BaseRangedWeapon")){
+			ranged = true;
+			if(player){
+				rangedWeapon = new BaseRangedWeapon(p);
+				p.getInventory().addWeapon(rangedWeapon);
+			}else if(!player){
+				
+			}
+		}else if(qName.equalsIgnoreCase("BaseMeleeWeapon")){
+			melee = true;
+			if(player){
+				meleeWeapon = new BaseMeleeWeapon(p);
+			}else if(!player){
+				
+			}
 		}
 	}
 	
 	@Override
 	public void endElement(String uri, String localName, String qName) throws SAXException{
 		
+		if(qName.equalsIgnoreCase("Player")){
+			player = false;
+		}
 		
+		if(ranged){
+			if(qName.equalsIgnoreCase("name")){
+				rangedWeapon.name = temp;
+			}else if(qName.equalsIgnoreCase("damage")){
+				rangedWeapon.damage = Double.parseDouble(temp);
+			}else if(qName.equalsIgnoreCase("active")){
+				rangedWeapon.active = Boolean.parseBoolean(temp);
+			}else if(qName.equalsIgnoreCase("coolDown")){
+				rangedWeapon.coolDown = Float.parseFloat(temp);
+			}else if(qName.equalsIgnoreCase("currentCoolDown")){
+				rangedWeapon.currentCoolDown = Float.parseFloat(temp);
+			}else if(qName.equalsIgnoreCase("automatic")){
+				rangedWeapon.automatic = Boolean.parseBoolean(temp);
+			}else if(qName.equalsIgnoreCase("velocity")){
+				rangedWeapon.velocity = Float.parseFloat(temp);
+			}else if(qName.equalsIgnoreCase("currentClip")){
+				rangedWeapon.currentClip = Integer.parseInt(temp);
+			}else if(qName.equalsIgnoreCase("maxClip")){
+				rangedWeapon.maxClip = Integer.parseInt(temp);
+			}else if(qName.equalsIgnoreCase("reloadTime")){
+				rangedWeapon.reloadTime = Integer.parseInt(temp);
+			}else if(qName.equalsIgnoreCase("currentReload")){
+				rangedWeapon.currentReload = Integer.parseInt(temp);
+			}else if(qName.equalsIgnoreCase("pellets")){
+				rangedWeapon.pellets = Integer.parseInt(temp);
+			}else if(qName.equalsIgnoreCase("reloading")){
+				rangedWeapon.reloading = Boolean.parseBoolean(temp);
+			}else if(qName.equalsIgnoreCase("onFire")){
+				
+				rangedWeapon.fire = temp;
+				
+				try {
+					rangedWeapon.onFire = AudioLoader.getAudio("OGG", ResourceLoader.getResourceAsStream(temp));
+				} catch (IOException e) {e.printStackTrace();}
+				
+			}else if(qName.equalsIgnoreCase("spread")){
+				rangedWeapon.spread = Double.parseDouble(temp);
+			}else if(qName.equalsIgnoreCase("currentSpread")){
+				rangedWeapon.currentSpread = Double.parseDouble(temp);
+			}else if(qName.equalsIgnoreCase("spreadAngle")){
+				rangedWeapon.spreadAngle = Double.parseDouble(temp);
+			}else if(qName.equalsIgnoreCase("cone")){
+				rangedWeapon.cone = Double.parseDouble(temp);
+			}else if(qName.equalsIgnoreCase("maxSpread")){
+				rangedWeapon.maxSpread = Integer.parseInt(temp);
+			}else if(qName.equalsIgnoreCase("minSpread")){
+				rangedWeapon.minSpread = Integer.parseInt(temp);
+			}
+		}
 		
-		if(qName.equalsIgnoreCase("player")){
-			player = true;
-			p = new Player();
+		if(melee){
+			if(qName.equalsIgnoreCase("name")){
+				meleeWeapon.name = temp;
+			}else if(qName.equalsIgnoreCase("damage")){
+				meleeWeapon.damage = Double.parseDouble(temp);
+			}else if(qName.equalsIgnoreCase("active")){
+				meleeWeapon.active = Boolean.parseBoolean(temp);
+			}else if(qName.equalsIgnoreCase("coolDown")){
+				meleeWeapon.coolDown = Float.parseFloat(temp);
+			}else if(qName.equalsIgnoreCase("currentCoolDown")){
+				meleeWeapon.currentCoolDown = Float.parseFloat(temp);
+			}else if(qName.equalsIgnoreCase("automatic")){
+				meleeWeapon.automatic = Boolean.parseBoolean(temp);
+			}
 		}
 		
 		if(player){
@@ -68,6 +150,16 @@ public class PlayerXMLHandler extends DefaultHandler{
 				p.turnSpeed = Double.parseDouble(temp);
 			}else if(qName.equalsIgnoreCase("speedMult")){
 				p.speedMult = Double.parseDouble(temp);
+			}else if(qName.equalsIgnoreCase("facingAngle")){
+				p.facingAngle = Float.parseFloat(temp);
+			}else if(qName.equalsIgnoreCase("moveAngle")){
+				p.moveAngle = Float.parseFloat(temp);
+			}else if(qName.equalsIgnoreCase("speed")){
+				p.speed = Float.parseFloat(temp);
+			}else if(qName.equalsIgnoreCase("id")){
+				p.id = Integer.parseInt(temp);
+			}else if(qName.equalsIgnoreCase("xp")){
+				p.xp = Integer.parseInt(temp);
 			}
 		}
 	}
@@ -92,53 +184,4 @@ public class PlayerXMLHandler extends DefaultHandler{
 		
 		return null;
 	}
-	
-	public static void savePlayer(BasePlayer p){
-		
-		System.out.println("Begin Saving");
-		
-		try{
-			File file = new File("res/Saves/save" + GameData.getCurrentSave() + ".xml");
-			
-			if(!file.exists()){
-				file.createNewFile();
-			}else{
-				file.delete();
-				file.createNewFile();
-			}
-			
-			FileWriter fw = new FileWriter(file.getAbsoluteFile());
-			BufferedWriter bw = new BufferedWriter(fw);
-			
-			bw.write("<Player>\n");
-				bw.write("<Information>\n");
-					bw.write("<x>" + p.x + "</x>\n");
-					bw.write("<y>" + p.y + "</y>\n");
-					bw.write("<level>" + p.level + "</level>\n");
-					bw.write("<health>" + p.health + "</health>\n");
-					bw.write("<turnSpeed>" + p.turnSpeed + "</turnSpeed>\n");
-					bw.write("<boundingBox>\n");
-						for(Line2D.Float bound : p.boundingLines){
-							bw.write("<point>\n");
-								bw.write("<pX>" + (int) bound.x1 + "</pX>\n");
-								bw.write("<pY>" + (int) bound.y1 + "</pY>\n");
-							bw.write("</point>\n");
-						}
-					bw.write("</boundingBox>\n");
-				bw.write("</Information>\n");
-				
-				bw.write("<Inventory>\n");
-				bw.write("</Inventory>\n");
-				
-			bw.write("</Player>");
-			
-			bw.close();
-			
-			System.out.println("Done Saving");
-			
-		}catch(IOException e){
-			e.printStackTrace();
-		}
-	}
-
 }

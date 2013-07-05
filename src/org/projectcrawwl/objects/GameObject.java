@@ -40,6 +40,8 @@ public class GameObject implements Comparable<GameObject>{
 	
 	public boolean isReady = false;
 	
+	public int id;
+	
 	
 	
 	/**
@@ -56,7 +58,7 @@ public class GameObject implements Comparable<GameObject>{
 		facingAngle = tempA;
 		tempFacing = facingAngle;
 		
-		
+		id = GameData.getNewID();
 	}
 	
 	
@@ -65,12 +67,16 @@ public class GameObject implements Comparable<GameObject>{
 		y = tempY;
 		facingAngle = 0;
 		tempFacing = facingAngle;
+		
+		id = GameData.getNewID();
 	}
 	public GameObject(){
 		x = 0;
 		y = 0;
 		facingAngle = 0;
 		tempFacing = facingAngle;
+		
+		id = GameData.getNewID();
 	}
 	
 	public void addPoint(Point k){
@@ -489,43 +495,44 @@ public class GameObject implements Comparable<GameObject>{
 		
 	}
 	
-	public int compareToOLD(GameObject h) {
+	public double getCompareTo(){
+		double d = -1;
 		
-		Point2D.Double pp = new Point2D.Double(GameSettings.getScreenX()/2 - World.getMapXOffset(), GameSettings.getScreenY()/2 - World.getMapYOffset());
+		Point2D.Double p = new Point2D.Double(GameSettings.getScreenX()/2 - World.getMapXOffset(), GameSettings.getScreenY()/2 - World.getMapYOffset());
 		
-		if(Math.abs(pp.x - this.getNearest().x)  < Math.abs(pp.x - h.getNearest().x) && Math.abs(pp.y - this.getNearest().y) < Math.abs(pp.y - h.getNearest().y)){
-			return 1;
+		ArrayList<Line2D.Float> lines = new ArrayList<Line2D.Float>();
+		
+		for(Line2D.Float temp : boundingLines){
+			lines.add(new Line2D.Float((float) (temp.x1*Math.cos(Math.toRadians(facingAngle)) - temp.y1*Math.sin(Math.toRadians(facingAngle)) + x),(float) (temp.x1*Math.sin(Math.toRadians(facingAngle)) + temp.y1*Math.cos(Math.toRadians(facingAngle)) + y),(float) (temp.x2*Math.cos(Math.toRadians(facingAngle)) - temp.y2*Math.sin(Math.toRadians(facingAngle)) + x),(float) (temp.x2*Math.sin(Math.toRadians(facingAngle)) + temp.y2*Math.cos(Math.toRadians(facingAngle)) + y)));
 		}
 		
-		if(Math.abs(pp.x - this.getNearest().x)  > Math.abs(pp.x - h.getNearest().x) && Math.abs(pp.y - this.getNearest().y) > Math.abs(pp.y - h.getNearest().y)){
-			return -1;
+		for(Line2D.Float temp : lines){
+			double dd = temp.ptSegDist(p);
+			
+			if(d == -1){
+				d = dd;
+			}else if(dd < d){
+				d = dd;
+			}
 		}
 		
-		
-		
-		
-		if(Math.abs(pp.x - this.getNearest().x)  < Math.abs(pp.x - h.getNearest().x) && Math.abs(pp.x - this.getNearest().x) < Math.abs(pp.y - h.getNearest().y)){
-			return 1;
-		}
-		
-		if(Math.abs(pp.y - this.getNearest().y)  < Math.abs(pp.x - h.getNearest().x) && Math.abs(pp.y - this.getNearest().y) < Math.abs(pp.y - h.getNearest().y)){
-			return 1;
-		}
-		
-		
-		
-		if(Math.abs(pp.x - h.getNearest().x)  < Math.abs(pp.x - this.getNearest().x) && Math.abs(pp.x - h.getNearest().x) < Math.abs(pp.y - this.getNearest().y)){
-			return -1;
-		}
-		
-		if(Math.abs(pp.y - h.getNearest().y)  < Math.abs(pp.x - this.getNearest().x) && Math.abs(pp.y - h.getNearest().y) < Math.abs(pp.y - this.getNearest().y)){
-			return -1;
-		}
-		
-		return 0;
+		return d;
 	}
 	
 	public int compareTo(GameObject h) {
+		
+		if(h.getCompareTo() > this.getCompareTo()){
+			return 1;
+		}
+		
+		if(h.getCompareTo() < this.getCompareTo()){
+			return -1;
+		}
+			
+		return 0;
+	}
+	
+	public int compareToOLD(GameObject h) {
 		
 		Point2D.Double p = new Point2D.Double(GameSettings.getScreenX()/2 - World.getMapXOffset(), GameSettings.getScreenY()/2 - World.getMapYOffset());
 		

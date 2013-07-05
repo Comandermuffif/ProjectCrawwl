@@ -198,7 +198,7 @@ public class ConvexHull extends GameObject{
 			return;
 		}
 		
-		//renderShadow();
+		renderShadow();
 		
 		//The hull
 		
@@ -371,6 +371,25 @@ public class ConvexHull extends GameObject{
 		}
 		
 		return points;
+	}
+	
+	@Override
+	public double getCompareTo(){
+		double d = -1;
+		
+		Point2D.Double p = new Point2D.Double(GameSettings.getScreenX()/2 - World.getMapXOffset(), GameSettings.getScreenY()/2 - World.getMapYOffset());
+		
+		for(Line2D.Float temp : lines){
+			double dd = temp.ptSegDist(p);
+			
+			if(d == -1){
+				d = dd;
+			}else if(dd < d){
+				d = dd;
+			}
+		}
+		
+		return d;
 	}
 	
 	@Override

@@ -78,7 +78,7 @@ public class Zombie extends BasePlayer {
 		
 		if(target == null){
 			double dist = -1;
-			for(BasePlayer friendly : GameData.getFriendlies()){
+			for(BasePlayer friendly : GameData.getHumans()){
 				Line2D.Float sight = new Line2D.Float(x, y, friendly.x, friendly.y);
 				//Time to get crazy
 				
@@ -153,7 +153,7 @@ public class Zombie extends BasePlayer {
 		{
 			data += "\t<x>" + x + "</x>\n";
 			data += "\t<y>" + y + "</y>\n";
-			data += "\t<id>" + ID + "</id>\n";
+			data += "\t<id>" + id + "</id>\n";
 			
 			data += "\t<facingAngle>" + facingAngle + "</facingAngle>\n";
 			
@@ -169,6 +169,8 @@ public class Zombie extends BasePlayer {
 			data += "\t<level>" + level + "</level>\n";
 			
 			data += "\t<kills>" + kills + "</kills>\n";
+			
+			data += "\t<xp>" + xp + "</xp>\n";
 			
 			data += "\t<boundingBox>\n";
 			{

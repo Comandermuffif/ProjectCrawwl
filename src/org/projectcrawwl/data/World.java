@@ -166,6 +166,9 @@ public class World{
 		
 		for(WorldTile w : tiles){
 			hulls.addAll(w.getHulls());
+			for(ConvexHull h: w.getHulls()){
+				GameData.addObject(h);
+			}
 		}
 		
 		GameData.addChest();

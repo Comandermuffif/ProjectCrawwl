@@ -21,17 +21,18 @@ public class SaveMenuState implements GameState{
 
 	@Override
 	public void onEnter() {
-		if(buttons.size() == 0){
-			buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY()/2 + 160,200,100, "Save 1", 21));
-			
-			buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY()/2 + 50,200,100, "Save 2", 22));
-			
-			buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY()/2 - 60,200,100, "Save 3", 23));
-			
-			buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY()/2 - 170,200,100, "Save 4", 24));
-			
-			buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY()/2 - 280,200,100, "Back", 2));
-		}
+		buttons.clear();
+		
+		buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY()/2 + 160,200,100, "Save 1", 21));
+		
+		buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY()/2 + 50,200,100, "Save 2", 22));
+		
+		buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY()/2 - 60,200,100, "Save 3", 23));
+		
+		buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY()/2 - 170,200,100, "Save 4", 24));
+		
+		buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY()/2 - 280,200,100, "Back", 2));
+	
 	}
 
 	@Override

@@ -50,7 +50,7 @@ public class Bullet extends GameObject{
 		
 		farthest = 50;
 		
-		ownerID = owner.ID;
+		ownerID = owner.id;
 	}
 	
 	public Bullet() {
@@ -94,7 +94,7 @@ public class Bullet extends GameObject{
 	public void update(int delta){
 		
 		if(owner == null){
-			
+			owner = (BasePlayer) GameData.getObject(ownerID);
 		}
 		
 		lastPos.setLocation(x, y);
@@ -103,13 +103,12 @@ public class Bullet extends GameObject{
 		
 		Line2D.Float line = new Line2D.Float(x,y,lastPos.x,lastPos.y);
 		
-		ArrayList<BasePlayer> temp = GameData.getAllPlayers();
 		//System.out.println(x + " : " + y+ " : " +lastPos.x+ " : " +lastPos.y );
 		boolean flag = false;
 		
 		if(speed == 0){
 			//System.out.println("Stopped");
-			GameData.removeProjectile(this);
+			GameData.removeObject(this);
 			
 			
 			for(int i = 0; i < 4; i ++){
@@ -118,12 +117,12 @@ public class Bullet extends GameObject{
 				
 				float a = (float) (r.nextGaussian()*60 + (moveAngle - 180));
 				
-				GameData.addParticle(new Particle(x, y, a , .05 + r.nextGaussian()*.01, 500));
+				GameData.addObject(new Particle(x, y, a , .05 + r.nextGaussian()*.01, 500));
 			}
 			
 		}
 		
-		for(BasePlayer b : temp){
+		for(BasePlayer b : GameData.getPlayers()){
 			Polygon shift = new Polygon(b.boundingBox.xpoints,b.boundingBox.ypoints,b.boundingBox.npoints);
 			shift.translate((int) b.getX(),(int) b.getY());
 			if(shift.contains(x, y)){
@@ -134,16 +133,16 @@ public class Bullet extends GameObject{
 					damage -= 10;
 					lastHit = b;
 					
-					GameData.addBloodStain(new BloodStain(x,y));
+					GameData.addObject(new BloodStain(x,y));
 					
 					for(int i = 0; i < 4; i ++){
 						Random r = new Random();
 						float a = (float) (r.nextGaussian()*60 + (moveAngle - 180));
-						GameData.addParticle(new Particle(x, y, a , .05 + r.nextGaussian()*.01, 250, new Color(255,0,0)));
+						GameData.addObject(new Particle(x, y, a , .05 + r.nextGaussian()*.01, 250, new Color(255,0,0)));
 					}
 					
 					if(this instanceof DumbMissle){
-						GameData.removeProjectile(this);
+						GameData.removeObject(this);
 					}
 					break;
 				}
@@ -167,11 +166,11 @@ public class Bullet extends GameObject{
 					for(int i = 0; i < 4; i ++){
 						Random r = new Random();
 						float a = (float) (r.nextGaussian()*60 + (moveAngle - 180));
-						GameData.addParticle(new Particle(x, y, a , .05 + r.nextGaussian()*.01, 250, new Color(255,0,0)));
+						GameData.addObject(new Particle(x, y, a , .05 + r.nextGaussian()*.01, 250, new Color(255,0,0)));
 					}
 					
 					if(this instanceof DumbMissle){
-						GameData.removeProjectile(this);
+						GameData.removeObject(this);
 					}
 					break;
 				}
@@ -179,7 +178,7 @@ public class Bullet extends GameObject{
 			if(flag){break;}
 		}
 		if(damage <= 0){
-			GameData.removeProjectile(this);
+			GameData.removeObject(this);
 		}
 	}
 	
@@ -196,6 +195,7 @@ public class Bullet extends GameObject{
 				data += "\t<speed>" + speed + "</speed>\n";
 				data += "\t<turnSpeed>" + turnSpeed + "</turnSpeed>\n";
 				data += "\t<damage>" + damage + "</damage>\n";
+				data += "\t<ownerID>" + ownerID + "</ownerID>\n";
 				
 		}
 		data += "</Bullet>\n";
