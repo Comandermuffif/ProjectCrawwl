@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.lwjgl.opengl.GL11;
 import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.data.GameSettings;
+import org.projectcrawwl.data.World;
 import org.projectcrawwl.menu.Button;
 
 public class MainMenuState implements GameState {
@@ -22,7 +23,15 @@ public class MainMenuState implements GameState {
 			
 			buttons.add(new Button(GameSettings.getScreenX()/2 - 100, GameSettings.getScreenY()/2 - 220,200,100, "Close Game", -1));
 		}
-		GameData.update(0);
+		
+		
+		
+		GameData.clearData();
+    	World.generateWorld();
+    	GameData.addPlayer();
+		
+		
+		GameData.update();
 	}
 
 	@Override
@@ -68,11 +77,6 @@ public class MainMenuState implements GameState {
 	@Override
 	public void keyboardInput(ArrayList<Integer> a) {
 		
-	}
-
-	@Override
-	public String getName() {
-		return "Main Menu";
 	}
 
 }

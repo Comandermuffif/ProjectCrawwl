@@ -3,7 +3,6 @@ package org.projectcrawwl.states;
 import java.util.ArrayList;
 
 public interface GameState {
-	public String getName();
 	public void onEnter();
 	public void onExit();
 	public void main(int delta);

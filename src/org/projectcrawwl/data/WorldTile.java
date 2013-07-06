@@ -19,6 +19,11 @@ public class WorldTile {
 	private int y;
 	
 	private Boolean isGoal = false;
+	private Boolean isStart = false;
+	
+	public void setStart(){
+		isStart = true;
+	}
 	
 	public void setGoal(){
 		isGoal = true;
@@ -615,16 +620,24 @@ public class WorldTile {
 		
 		if(isGoal){
 			GL11.glColor3d(0, (double)(171)/255, (double)(102)/255);
+		}else if(isStart){
+			GL11.glColor3d(1, 0, 0);
 		}else{
 			GL11.glColor3d(1,1,1);
 		}
 		
 		
 		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
+		
+		GL11.glVertex2d((x + .5)*width + World.getMapXOffset(), (y + .5)*height + World.getMapYOffset());
+		
+		GL11.glColor3d(1,1,1);
 		GL11.glVertex2d((x)*width + World.getMapXOffset(), (y)*height + World.getMapYOffset());
 		GL11.glVertex2d((x + 1)*width + World.getMapXOffset(), (y)*height + World.getMapYOffset());
 		GL11.glVertex2d((x + 1)*width + World.getMapXOffset(), (y+1)*height + World.getMapYOffset());
 		GL11.glVertex2d((x)*width + World.getMapXOffset(), (y+1)*height + World.getMapYOffset());
+		
+		GL11.glVertex2d((x)*width + World.getMapXOffset(), (y)*height + World.getMapYOffset());
 		GL11.glEnd();
 	}
 	
@@ -667,6 +680,8 @@ public class WorldTile {
 			data += "\t\t\t<height>" + getHeight() + "</height>\n";
 			data += "\t\t\t<x>" + getX() + "</x>\n";
 			data += "\t\t\t<y>" + getY() + "</y>\n";
+			
+			data += "\t\t\t<isGoal>" + isGoal + "</isGoal>\n";
 			
 			data += "\t\t\t<hulls>\n";
 			for(ConvexHull h : getHulls()){

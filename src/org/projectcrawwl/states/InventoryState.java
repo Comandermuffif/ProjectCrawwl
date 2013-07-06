@@ -96,9 +96,4 @@ public class InventoryState implements GameState {
 			}
 		}
 	}
-
-	@Override
-	public String getName() {
-		return "Inventory";
-	}
 }

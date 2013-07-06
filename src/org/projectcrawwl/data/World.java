@@ -20,6 +20,8 @@ public class World{
 	
 	private static int tileLimit = 50;
 	
+	private static WorldTile goal;
+	
 	private World(){}
 	
 	public static void clearData(){
@@ -75,14 +77,9 @@ public class World{
 		
 		{
 			WorldTile t = new WorldTile(0,0, new int[]{0,0,0,0});
-			ConvexHull h = new ConvexHull();
-			h.addPoint(125,125);
-			h.addPoint(375,125);
-			h.addPoint(375,375);
-			h.addPoint(125,375);
-			t.addHull(h);
 			tiles.add(t);
 			tileMap.add(t);
+			t.setStart();
 		}
 		
 		
@@ -164,6 +161,8 @@ public class World{
 		
 		t.setGoal();
 		
+		goal = t;
+		
 		for(WorldTile w : tiles){
 			hulls.addAll(w.getHulls());
 			for(ConvexHull h: w.getHulls()){
@@ -176,7 +175,11 @@ public class World{
 		GameData.update();
 		
 	}
-
+	
+	public static WorldTile getGoal(){
+		return goal;
+	}
+	
 	public static ArrayList<WorldTile> getTiles(){
 		return tiles;
 	}

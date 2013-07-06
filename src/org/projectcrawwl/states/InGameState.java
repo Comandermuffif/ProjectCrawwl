@@ -47,9 +47,4 @@ public class InGameState implements GameState{
 			GameData.getPlayer().keyboardInput(a);
 		}
 	}
-
-	@Override
-	public String getName() {
-		return "In-Game";
-	}
 }

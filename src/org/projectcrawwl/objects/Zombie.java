@@ -165,6 +165,8 @@ public class Zombie extends BasePlayer {
 			data += "\t<turnSpeed>" + turnSpeed + "</turnSpeed>\n";
 			
 			data += "\t<health>" + health + "</health>\n";
+
+			data += "\t<maxHealth>" + maxHealth + "</maxHealth>\n";
 			
 			data += "\t<level>" + level + "</level>\n";
 			

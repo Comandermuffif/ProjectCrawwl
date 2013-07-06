@@ -12,11 +12,6 @@ import org.projectcrawwl.objects.BasePlayer;
 public class DeathState implements GameState {
 	
 	private BasePlayer p;
-	
-	@Override
-	public String getName() {
-		return "Death Screen";
-	}
 
 	@Override
 	public void onEnter() {

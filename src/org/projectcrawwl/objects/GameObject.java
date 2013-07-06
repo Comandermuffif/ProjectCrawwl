@@ -540,7 +540,7 @@ public class GameObject implements Comparable<GameObject>{
 			return 1;
 		}
 		
-		if(h.getCenter().distance(p)< this.getCenter().distance(p)){
+		if(h.getCenter().distance(p) < this.getCenter().distance(p)){
 			return -1;
 		}
 			

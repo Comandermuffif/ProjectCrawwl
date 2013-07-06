@@ -55,6 +55,8 @@ public class GameData
 	public static void clearData(){
 		all.clear();
 		players.clear();
+		humans.clear();
+		zombies.clear();
 		
 		zoom = 0;
 		
@@ -84,8 +86,8 @@ public class GameData
 			System.err.println("Player loaded when player existed");
 		}
 		
-		player = PlayerXMLHandler.createPlayer("res/Saves/save1.xml");
-		System.out.println(player);
+		player = PlayerXMLHandler.createPlayer("res/Saves/save" + currentSave +"/save.xml");
+		
 		addObject(player);
 	}
 	
@@ -427,6 +429,13 @@ public class GameData
 		if(Keyboard.isKeyDown(Keyboard.KEY_LEFT)){World.setMapXOffset(World.getMapXOffset() + delta);}
 		if(Keyboard.isKeyDown(Keyboard.KEY_UP)){World.setMapYOffset(World.getMapYOffset() - delta);}
 		if(Keyboard.isKeyDown(Keyboard.KEY_DOWN)){World.setMapYOffset(World.getMapYOffset() + delta);}
+		
+		if(player != null){
+			if((int) Math.floor(player.getX()/World.getGoal().getWidth()) == World.getGoal().getX() && (int)Math.floor(player.getY()/World.getGoal().getHeight()) == World.getGoal().getY()){
+				StateController.setGameState(Main.END_LEVEL);
+				return;
+			}
+		}
 		
 		for(GameObject o : all.values()){
 			o.update(delta);

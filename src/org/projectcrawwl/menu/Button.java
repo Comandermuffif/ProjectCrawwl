@@ -191,7 +191,7 @@ public class Button {
 			return;
 		}
 		
-		
+		//Load game
 		if(ID >= 11 && ID <= 14){
 			if(new File("res/Saves/save" + Integer.toString(ID - 10) + "/save.xml").exists()){
 				
@@ -205,6 +205,7 @@ public class Button {
 			return;
 		}
 		
+		//New Game
 		if(ID >= 21 && ID <= 24){
 			
 			GameData.setCurrentSave(ID - 20);
@@ -212,6 +213,9 @@ public class Button {
 			GameData.clearData();
 			World.generateWorld();
 			GameData.addPlayer();
+			
+			GameData.getPlayer().setX(World.getGoal().getWidth()/2);
+			GameData.getPlayer().setY(World.getGoal().getHeight()/2);
 			
 			XMLHandler.saveData();
 			

@@ -43,15 +43,11 @@ public class PlayerXMLHandler extends DefaultHandler{
 			if(player){
 				rangedWeapon = new BaseRangedWeapon(p);
 				p.getInventory().addWeapon(rangedWeapon);
-			}else if(!player){
-				
 			}
 		}else if(qName.equalsIgnoreCase("BaseMeleeWeapon")){
 			melee = true;
 			if(player){
 				meleeWeapon = new BaseMeleeWeapon(p);
-			}else if(!player){
-				
 			}
 		}
 	}
@@ -61,7 +57,13 @@ public class PlayerXMLHandler extends DefaultHandler{
 		
 		if(qName.equalsIgnoreCase("Player")){
 			player = false;
+		}else if(qName.equalsIgnoreCase("BaseMeleeWeapon")){
+			meleeWeapon.createArea();
+			melee = false;
+		}else if(qName.equalsIgnoreCase("BaseRangedWeapon")){
+			ranged = false;
 		}
+		
 		
 		if(ranged){
 			if(qName.equalsIgnoreCase("name")){
@@ -160,6 +162,8 @@ public class PlayerXMLHandler extends DefaultHandler{
 				p.id = Integer.parseInt(temp);
 			}else if(qName.equalsIgnoreCase("xp")){
 				p.xp = Integer.parseInt(temp);
+			}else if(qName.equalsIgnoreCase("maxHealth")){
+				p.maxHealth = Integer.parseInt(temp);
 			}
 		}
 	}

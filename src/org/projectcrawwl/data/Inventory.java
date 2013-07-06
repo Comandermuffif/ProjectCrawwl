@@ -18,19 +18,25 @@ public class Inventory {
 	
 	public Inventory(BasePlayer tempO){
 		owner = tempO;
-		weapons.add(new Fists(owner));
 	}
 	
 	public void render(){
+		if(weapons.isEmpty()){
+			weapons.add(new Fists(owner));
+		}
 		weapons.get(counter).render();
 	}
 	public void update(int delta){
-		
+		if(weapons.isEmpty()){
+			weapons.add(new Fists(owner));
+		}
 		weapons.get(counter).update(delta);
 	}
 	
 	public void setWeapon(int n){
-		
+		if(weapons.isEmpty()){
+			weapons.add(new Fists(owner));
+		}
 		counter = n % (weapons.size()-1);
 		
 	}
@@ -40,6 +46,11 @@ public class Inventory {
 	}
 	
 	public BaseWeapon getWeapon(){
+		
+		if(weapons.isEmpty()){
+			weapons.add(new Fists(owner));
+		}
+		
 		return weapons.get(counter);
 	}
 	

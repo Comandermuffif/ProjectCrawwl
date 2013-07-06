@@ -39,7 +39,7 @@ public class BaseMeleeWeapon extends BaseWeapon{
 		
 	}
 	
-	protected void createArea(){
+	public void createArea(){
 		
 		area.reset();
 		lines.clear();
@@ -171,6 +171,7 @@ public class BaseMeleeWeapon extends BaseWeapon{
 			}
 		}
 	}
+	
 	@Override
 	public String toXML() {
 		String data = "";
@@ -185,6 +186,7 @@ public class BaseMeleeWeapon extends BaseWeapon{
 			data += "\t\t\t<currentCoolDown>" + currentCoolDown + "</currentCoolDown>\n";
 			
 			data += "\t\t\t<automatic>" + automatic + "</automatic>\n";
+			
 		}
 		data += "\t\t</BaseMeleeWeapon>\n";
 		

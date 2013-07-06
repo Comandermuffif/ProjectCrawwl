@@ -9,11 +9,11 @@ import org.lwjgl.opengl.GL11;
 import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.data.GameSettings;
 import org.projectcrawwl.data.StateController;
-import org.projectcrawwl.data.World;
 import org.projectcrawwl.states.DeathState;
 import org.projectcrawwl.states.GameState;
 import org.projectcrawwl.states.InGameState;
 import org.projectcrawwl.states.InventoryState;
+import org.projectcrawwl.states.LevelEndState;
 import org.projectcrawwl.states.LoadMenuState;
 import org.projectcrawwl.states.MainMenuState;
 import org.projectcrawwl.states.PauseState;
@@ -30,6 +30,7 @@ public class Main {
 	public static final GameState PAUSE_MENU = new PauseState();
 	public static final GameState SAVE_MENU = new SaveMenuState();
 	public static final GameState DEATH_STATE = new DeathState();
+	public static final GameState END_LEVEL = new LevelEndState();
 	
 	static long lastFrame;
 	/** frames per second */
@@ -85,9 +86,6 @@ public class Main {
     	getDelta();
     	
     	GameData.renderInit();
-    	GameData.clearData();
-    	World.generateWorld();
-    	GameData.addPlayer();
     	
 		StateController.setGameState(MAIN_MENU);
 		

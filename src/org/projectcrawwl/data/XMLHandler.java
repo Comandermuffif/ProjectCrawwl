@@ -72,15 +72,18 @@ public class XMLHandler extends DefaultHandler{
 			if(player){
 				rangedWeapon = new BaseRangedWeapon(p);
 				p.getInventory().addWeapon(rangedWeapon);
-			}else if(!player){
-				
+			}else if(zombie){
+				rangedWeapon = new BaseRangedWeapon(z);
+				z.getInventory().addWeapon(rangedWeapon);
 			}
 		}else if(qName.equalsIgnoreCase("BaseMeleeWeapon")){
 			melee = true;
 			if(player){
 				meleeWeapon = new BaseMeleeWeapon(p);
-			}else if(!player){
-				
+				p.getInventory().addWeapon(meleeWeapon);
+			}else if(zombie){
+				meleeWeapon = new BaseMeleeWeapon(z);
+				z.getInventory().addWeapon(meleeWeapon);
 			}
 		}else if(qName.equalsIgnoreCase("zombie")){
 			zombie = true;
@@ -115,6 +118,11 @@ public class XMLHandler extends DefaultHandler{
 			GameData.addObject(z);
 		}else if(qName.equalsIgnoreCase("DataID")){
 			GameData.setID(Integer.parseInt(temp));
+		}else if(qName.equalsIgnoreCase("BaseMeleeWeapon")){
+			meleeWeapon.createArea();
+			melee = false;
+		}else if(qName.equalsIgnoreCase("BaseRangedWeapon")){
+			ranged = false;
 		}
 		
 		if(ranged){
@@ -214,6 +222,8 @@ public class XMLHandler extends DefaultHandler{
 				z.id = Integer.parseInt(temp);
 			}else if(qName.equalsIgnoreCase("xp")){
 				p.xp = Integer.parseInt(temp);
+			}else if(qName.equalsIgnoreCase("maxHealth")){
+				z.maxHealth = Integer.parseInt(temp);
 			}
 		}
 		
@@ -248,6 +258,8 @@ public class XMLHandler extends DefaultHandler{
 				p.id = Integer.parseInt(temp);
 			}else if(qName.equalsIgnoreCase("xp")){
 				p.xp = Integer.parseInt(temp);
+			}else if(qName.equalsIgnoreCase("maxHealth")){
+				p.maxHealth = Integer.parseInt(temp);
 			}
 		}
 		
@@ -292,6 +304,10 @@ public class XMLHandler extends DefaultHandler{
 					tile.setX(Integer.parseInt(temp));
 				}else if(qName.equalsIgnoreCase("y")){
 					tile.setY(Integer.parseInt(temp));
+				}else if(qName.equalsIgnoreCase("isGoal")){
+					if(Boolean.parseBoolean(temp)){
+						tile.setGoal();
+					}
 				}
 			}
 		}

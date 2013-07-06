@@ -15,11 +15,6 @@ public class LoadMenuState implements GameState{
 	private ArrayList<Button> buttons = new ArrayList<Button>();
 	
 	@Override
-	public String getName() {
-		return "Load Menu";
-	}
-
-	@Override
 	public void onEnter() {
 		
 		buttons.clear();

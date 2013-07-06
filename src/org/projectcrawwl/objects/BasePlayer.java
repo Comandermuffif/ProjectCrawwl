@@ -11,6 +11,7 @@ import org.projectcrawwl.weapons.BaseWeapon;
 public abstract class BasePlayer extends GameObject{
 	
 	public int health;
+	public int maxHealth;
 	Inventory inventory = new Inventory(this);
 	//public double speed = 0; //0 units per millisecond or 0 units per second
 	public int kills = 0;
@@ -26,6 +27,7 @@ public abstract class BasePlayer extends GameObject{
 		y = tempY;
 		facingAngle = tempA;
 		health = tempH;
+		maxHealth = health;
 	}
 	public BasePlayer(float tempX, float tempY){
 		super(tempX, tempY);
@@ -33,6 +35,7 @@ public abstract class BasePlayer extends GameObject{
 		y = tempY;
 		facingAngle = 0;
 		health = 100;
+		maxHealth = health;
 	}
 	public BasePlayer(){
 		super();
@@ -40,6 +43,7 @@ public abstract class BasePlayer extends GameObject{
 		y = 0;
 		facingAngle = 0;
 		health = 100;
+		maxHealth = health;
 	}
 	
 	public void createBoundingBox(){
@@ -79,6 +83,25 @@ public abstract class BasePlayer extends GameObject{
 		GL11.glVertex3d(renderX, renderY, .5);
 		GL11.glVertex3d(renderX + 75 * Math.cos(Math.toRadians(facingAngle)), renderY + 75 * Math.sin(Math.toRadians(facingAngle)), .5);
 		GL11.glEnd();
+		
+		if(health < maxHealth){
+			GL11.glColor3d(1, 0, 0);
+			
+			GL11.glBegin(GL11.GL_TRIANGLE_FAN);
+			GL11.glVertex3d(renderX - 25, renderY + farthest + 2, .5);
+			GL11.glVertex3d(renderX + 25, renderY + farthest + 2, .5);
+			GL11.glVertex3d(renderX + 25, renderY + farthest + 7, .5);
+			GL11.glVertex3d(renderX - 25, renderY + farthest + 7, .5);
+			GL11.glEnd();
+			
+			GL11.glColor3d(0, 1, 0);
+			GL11.glBegin(GL11.GL_TRIANGLE_FAN);
+			GL11.glVertex3d(renderX - 25, renderY + farthest + 2, .5);
+			GL11.glVertex3d(renderX - 25 + (50)*((double)(health)/maxHealth), renderY + farthest + 2, .5);
+			GL11.glVertex3d(renderX - 25 + (50)*((double)(health)/maxHealth), renderY + farthest + 7, .5);
+			GL11.glVertex3d(renderX - 25, renderY + farthest + 7, .5);
+			GL11.glEnd();
+		}
 		
 		GL11.glDisable(GL11.GL_DEPTH_TEST);
 		
@@ -142,6 +165,8 @@ public abstract class BasePlayer extends GameObject{
 				data += "\t<turnSpeed>" + turnSpeed + "</turnSpeed>\n";
 				
 				data += "\t<health>" + health + "</health>\n";
+				
+				data += "\t<maxHealth>" + maxHealth + "</maxHealth>\n";
 				
 				data += "\t<level>" + level + "</level>\n";
 				

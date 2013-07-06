@@ -13,11 +13,6 @@ import org.projectcrawwl.menu.Button;
 public class PauseState implements GameState {
 	
 	private ArrayList<Button> buttons = new ArrayList<Button>();
-	
-	@Override
-	public String getName() {
-		return "Paused";
-	}
 
 	@Override
 	public void onEnter() {
