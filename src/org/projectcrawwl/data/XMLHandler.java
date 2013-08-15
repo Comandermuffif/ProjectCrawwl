@@ -284,7 +284,6 @@ public class XMLHandler extends DefaultHandler{
 		}
 		
 		if(world){
-			
 			if(hulls){
 				if(qName.equalsIgnoreCase("color")){
 					hull.setColor(new Color(Integer.parseInt(temp)));
@@ -332,9 +331,6 @@ public class XMLHandler extends DefaultHandler{
 	
 	public static void saveData(){
 		
-		System.out.println("Begin Saving");
-		
-		
 		if(GameData.getCurrentSave() == 0){
 			System.out.println("No Save");
 			return;
@@ -358,8 +354,6 @@ public class XMLHandler extends DefaultHandler{
 			
 			bw.write("<Save>\n");
 			
-			//bw.write(GameData.getPlayer().toXML());
-			
 			bw.write(World.toXML());
 			
 			bw.write(GameData.toXML());
@@ -367,8 +361,6 @@ public class XMLHandler extends DefaultHandler{
 			bw.write("</Save>\n");
 			
 			bw.close();
-			
-			System.out.println("Done Saving");
 			
 		}catch(IOException e){
 			e.printStackTrace();

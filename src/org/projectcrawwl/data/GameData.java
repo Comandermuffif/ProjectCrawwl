@@ -20,6 +20,7 @@ public class GameData
 {	
 	
 	private static ConcurrentHashMap<Integer, GameObject> all = new ConcurrentHashMap<Integer, GameObject>();
+	private static ConcurrentHashMap<Integer, GameObject> twod = new ConcurrentHashMap<Integer, GameObject>();
 	private static HashMap<Integer, BasePlayer> players = new HashMap<Integer, BasePlayer>();
 	private static HashMap<Integer, BasePlayer> humans = new HashMap<Integer, BasePlayer>();
 	private static HashMap<Integer, BasePlayer> zombies = new HashMap<Integer, BasePlayer>();
@@ -219,6 +220,12 @@ public class GameData
 	}
 	
 	public static void addObject(GameObject o){
+		
+		if(o instanceof BloodStain){
+			twod.put(o.id, o);
+			return;
+		}
+		
 		all.put(o.id, o);
 		if(o instanceof BasePlayer){
 			players.put(o.id, (BasePlayer) o);
@@ -233,6 +240,12 @@ public class GameData
 	
 	public static void addAllObjects(Collection<GameObject> c){
 		for(GameObject o : c){
+			
+			if(o instanceof BloodStain){
+				twod.put(o.id, o);
+				continue;
+			}
+			
 			all.put(o.id, o);
 			if(o instanceof BasePlayer){
 				players.put(o.id, (BasePlayer) o);
@@ -246,6 +259,12 @@ public class GameData
 	}
 	
 	public static void removeObject(GameObject o){
+		
+		if(o instanceof BloodStain){
+			twod.remove(o.id);
+			return;
+		}
+		
 		all.remove(o.id);
 		if(o instanceof BasePlayer){
 			players.remove(o.id);
@@ -262,6 +281,12 @@ public class GameData
 	}
 	
 	public static void killObject(GameObject o){
+		
+		if(o instanceof BloodStain){
+			twod.remove(o.id);
+			return;
+		}
+		
 		all.remove(o.id);
 		if(o instanceof BasePlayer){
 			players.remove(o.id);
@@ -277,10 +302,14 @@ public class GameData
 			
 		}
 		Corpse c = new Corpse(o.getX(), o.getY());
-		all.put(c.id, c);
+		
+		GameData.addObject(c);
 	}
 	
 	public static GameObject getObject(int i){
+		if(twod.get(i) != null){
+			return twod.get(i);
+		}
 		return all.get(i);
 	}
 	
@@ -405,9 +434,17 @@ public class GameData
 		
 		Collections.sort(l);
 		
-		for(GameObject o : l){
+		for(GameObject o : twod.values()){
 			o.render();
 		}
+		
+		for(GameObject o : l){
+			if(o instanceof ConvexHull){
+				((ConvexHull) o).renderShadow();
+			}
+			o.render();
+		}
+		
 		//synchronized(playerLock){
 			if(player != null && StateController.getGameState() == Main.IN_GAME){
 				player.renderHUD();
@@ -418,6 +455,10 @@ public class GameData
 	public static void update(){
 		
 		for(GameObject o : all.values()){
+			o.update(0);
+		}
+		
+		for(GameObject o : twod.values()){
 			o.update(0);
 		}
 		
@@ -438,6 +479,10 @@ public class GameData
 		}
 		
 		for(GameObject o : all.values()){
+			o.update(delta);
+		}
+		
+		for(GameObject o : twod.values()){
 			o.update(delta);
 		}
 		

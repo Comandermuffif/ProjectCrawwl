@@ -235,7 +235,7 @@ public class Player extends BasePlayer {
 		}
 		
 		if(GameData.zoom > 360){
-			//data.zoom = 360;
+			//GameData.zoom = 360;
 		}
 		
 		if(Mouse.isButtonDown(0) && inventory.getWeapon().isAutomatic()){

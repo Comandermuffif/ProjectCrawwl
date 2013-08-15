@@ -20,6 +20,7 @@ public class Chest extends GameObject {
 	/**
 	 * Empty constructor
 	 */
+	@SuppressWarnings("unchecked")
 	public Chest(int x, int y){
 		super(x,y);
 		chests.add(this);
