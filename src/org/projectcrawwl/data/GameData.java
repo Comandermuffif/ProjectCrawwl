@@ -439,10 +439,10 @@ public class GameData
 		}
 		
 		for(GameObject o : l){
+			o.render();
 			if(o instanceof ConvexHull){
 				((ConvexHull) o).renderShadow();
 			}
-			o.render();
 		}
 		
 		//synchronized(playerLock){

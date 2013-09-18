@@ -209,113 +209,18 @@ public class ConvexHull extends GameObject{
 			return;
 		}
 		
-		//The hull
-		
-		//GL11.glEnable(GL11.GL_DEPTH_TEST);
-		//GL11.glDepthFunc(GL11.GL_NOTEQUAL);
-		
-		
-		//GL11.glBegin(GL11.GL_LINE_LOOP);
-		for(Line2D.Float line : lines){
-			boolean flag = true;
-			
-			Line2D.Float mid = new Line2D.Float(GameSettings.getScreenX()/2 - World.getMapXOffset(), GameSettings.getScreenY()/2 - World.getMapYOffset(), (line.x1 + line.x2)/2, (line.y1 + line.y2)/2);
-			
-			
-			for(Line2D.Float l : lines){
-				if(line.equals(l)){
-					continue;
-				}
-				if(l.intersectsLine(mid)){
-					flag = false;
-				}
-			}
-			if(flag){
-				double angle = 0;
-				
-				double length = 0;
-				
-				GL11.glColor3d((double)(color.getRed())/255, (double)(color.getBlue())/255, (double)(color.getGreen())/255);
-				GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
-				//GL11.glBegin(GL11.GL_LINES);
-				
-				GL11.glVertex3d(line.getX1() + World.getMapXOffset(), line.getY1() + World.getMapYOffset(), .5);
-				GL11.glVertex3d(line.getX2() + World.getMapXOffset(), line.getY2() + World.getMapYOffset(), .5);
-				
-				angle = Math.atan2(line.y1 - mid.y1, line.x1 - mid.x1);
-				length = Math.pow(Math.pow(line.getX1() - mid.x1, 2) + Math.pow(line.getY1() - mid.y1, 2), .5) * ((double)1000/900 - 1);
-				
-				GL11.glVertex3d(line.getX1() + World.getMapXOffset() + Math.cos(angle)*length, line.getY1() + World.getMapYOffset() + Math.sin(angle)*length, .5);
-				
-				angle = Math.atan2(line.y2 - mid.y1, line.x2 - mid.x1);
-				length = Math.pow(Math.pow(line.getX2() - mid.x1, 2) + Math.pow(line.getY2() - mid.y1, 2), .5) * ((double)1000/900 - 1);
-				
-				GL11.glVertex3d(line.getX2() + World.getMapXOffset() + Math.cos(angle)*length, line.getY2() + World.getMapYOffset() + Math.sin(angle)*length, .5);
-				GL11.glEnd();
-				
-				GL11.glColor4d(0,0,0,1);
-				GL11.glBegin(GL11.GL_LINES);
-				
-				GL11.glVertex3d(line.getX1() + World.getMapXOffset(), line.getY1() + World.getMapYOffset(), .5);
-				
-				angle = Math.atan2(line.y1 - mid.y1, line.x1 - mid.x1);
-				length = Math.pow(Math.pow(line.getX1() - mid.x1, 2) + Math.pow(line.getY1() - mid.y1, 2), .5) * ((double)1000/900 - 1);
-				
-				GL11.glVertex3d(line.getX1() + World.getMapXOffset() + Math.cos(angle)*length, line.getY1() + World.getMapYOffset() + Math.sin(angle)*length, .5);
-				
-				GL11.glEnd();
-				
-				
-				
-				GL11.glColor4d(0,0,0,1);
-				GL11.glBegin(GL11.GL_LINES);
-				
-				GL11.glVertex3d(line.getX2() + World.getMapXOffset(), line.getY2() + World.getMapYOffset(), .5);
-				
-				angle = Math.atan2(line.y2 - mid.y1, line.x2 - mid.x1);
-				length = Math.pow(Math.pow(line.getX2() - mid.x1, 2) + Math.pow(line.getY2() - mid.y1, 2), .5) * ((double)1000/900 - 1);
-				
-				GL11.glVertex3d(line.getX2() + World.getMapXOffset() + Math.cos(angle)*length, line.getY2() + World.getMapYOffset() + Math.sin(angle)*length, .5);
-				GL11.glEnd();
-				
-				GL11.glBegin(GL11.GL_LINES);
-				
-				GL11.glVertex3d(line.getX1() + World.getMapXOffset(),line.getY1() + World.getMapYOffset(), .5);
-				
-				GL11.glVertex3d(line.getX2() + World.getMapXOffset(), line.getY2() + World.getMapYOffset(), .5);
-				
-				GL11.glEnd();
-				
-			}
-		}
-		
-		//Black cap
-		
+		GL11.glColor3d((double)(color.getRed())/255, (double)(color.getBlue())/255, (double)(color.getGreen())/255);
 		GL11.glColor4d(0,0,0,1);
 		GL11.glBegin(GL11.GL_TRIANGLE_FAN);
 		for(Line2D.Float line : lines){
+
+			GL11.glVertex3d(line.getX1() + World.getMapXOffset(), line.getY1() + World.getMapYOffset(), .5);
+
+			GL11.glVertex3d(line.getX2() + World.getMapXOffset(), line.getY2() + World.getMapYOffset(), .5);
 			
-			Line2D.Float mid = new Line2D.Float(GameSettings.getScreenX()/2 - World.getMapXOffset(), GameSettings.getScreenY()/2 - World.getMapYOffset(), (line.x1 + line.x2)/2, (line.y1 + line.y2)/2);
-			
-			double angle = 0;
-			
-			double length = 0;
-			
-			angle = Math.atan2(line.y1 - mid.y1, line.x1 - mid.x1);
-			length = Math.pow(Math.pow(line.getX1() - mid.x1, 2) + Math.pow(line.getY1() - mid.y1, 2), .5) * ((double)1000/900 - 1);
-			
-			GL11.glVertex3d(line.getX1() + World.getMapXOffset() + Math.cos(angle)*length, line.getY1() + World.getMapYOffset() + Math.sin(angle)*length, .5);
-			
-			angle = Math.atan2(line.y2 - mid.y1, line.x2 - mid.x1);
-			length = Math.pow(Math.pow(line.getX2() - mid.x1, 2) + Math.pow(line.getY2() - mid.y1, 2), .5) * ((double)1000/900 - 1);
-			
-			GL11.glVertex3d(line.getX2() + World.getMapXOffset() + Math.cos(angle)*length, line.getY2() + World.getMapYOffset() + Math.sin(angle)*length, .5);				
 		}
 		GL11.glEnd();
-	
-		//GL11.glDisable(GL11.GL_DEPTH_TEST);
 		
-		//renderShadow();
 	}
 	
 	//@Override
