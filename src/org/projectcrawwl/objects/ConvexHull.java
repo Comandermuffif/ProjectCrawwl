@@ -30,6 +30,7 @@ public class ConvexHull extends GameObject{
 	
 	public ConvexHull(){	
 	}
+	
 	public ConvexHull(Color c){
 		color = c;
 	}
@@ -192,11 +193,13 @@ public class ConvexHull extends GameObject{
 			GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
 			GL11.glVertex3d(line.getX1() + World.getMapXOffset(),line.getY1() + World.getMapYOffset(), .5);
 			GL11.glVertex3d(line.getX2() + World.getMapXOffset(), line.getY2() + World.getMapYOffset(), .5);
-			angle = Math.atan2(line.getY1() - GameData.getPlayer().getY(), line.getX1() - GameData.getPlayer().getX());
 			
+			angle = Math.atan2(line.getY1() - GameData.getPlayer().getY(), line.getX1() - GameData.getPlayer().getX());
 			GL11.glVertex3d(line.getX1() + World.getMapXOffset() + Math.cos(angle)*length,line.getY1() + World.getMapYOffset() + Math.sin(angle)*length, .5);
+			
 			angle = Math.atan2(line.getY2() - GameData.getPlayer().getY(), line.getX2() - GameData.getPlayer().getX());
 			GL11.glVertex3d(line.getX2() + World.getMapXOffset() + Math.cos(angle)*length, line.getY2() + World.getMapYOffset() + Math.sin(angle)*length, .5);
+			
 			GL11.glEnd();
 			
 			//GL11.glDisable(GL11.GL_DEPTH_TEST);

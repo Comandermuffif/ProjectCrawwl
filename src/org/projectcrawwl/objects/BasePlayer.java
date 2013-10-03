@@ -84,9 +84,11 @@ public abstract class BasePlayer extends GameObject{
 		GL11.glVertex3d(renderX + 75 * Math.cos(Math.toRadians(facingAngle)), renderY + 75 * Math.sin(Math.toRadians(facingAngle)), .5);
 		GL11.glEnd();
 		
+		GL11.glDisable(GL11.GL_DEPTH_TEST);
+		
 		if(health < maxHealth){
-			GL11.glColor3d(1, 0, 0);
 			
+			GL11.glColor3d(1, 0, 0);
 			GL11.glBegin(GL11.GL_TRIANGLE_FAN);
 			GL11.glVertex3d(renderX - 25, renderY + farthest + 2, .5);
 			GL11.glVertex3d(renderX + 25, renderY + farthest + 2, .5);
@@ -103,7 +105,7 @@ public abstract class BasePlayer extends GameObject{
 			GL11.glEnd();
 		}
 		
-		GL11.glDisable(GL11.GL_DEPTH_TEST);
+		
 		
 	}
 	

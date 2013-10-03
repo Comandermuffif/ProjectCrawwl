@@ -117,7 +117,7 @@ public class XMLHandler extends DefaultHandler{
 			zombie = false;
 			GameData.addObject(z);
 		}else if(qName.equalsIgnoreCase("DataID")){
-			GameData.setID(Integer.parseInt(temp));
+			//GameData.setID(Integer.parseInt(temp));
 		}else if(qName.equalsIgnoreCase("BaseMeleeWeapon")){
 			meleeWeapon.createArea();
 			melee = false;
