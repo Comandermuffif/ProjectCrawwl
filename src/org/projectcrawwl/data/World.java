@@ -57,6 +57,7 @@ public class World{
 				String extension = file.getName().split("\\.")[file.getName().split("\\.").length - 1].toLowerCase();
 				
 				if(extension.equals("worldtile")){
+					System.out.println(file.getName());
 					int[] data = WorldTile.possibleTiles(file.getPath());
 					
 					if(data[0] == 0){

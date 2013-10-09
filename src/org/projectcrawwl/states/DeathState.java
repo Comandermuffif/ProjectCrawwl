@@ -21,7 +21,8 @@ public class DeathState implements GameState {
 
 	@Override
 	public void onExit() {
-		
+		//TODO fix new world not loading after death
+		GameData.clearData();
 	}
 
 	@Override

@@ -20,7 +20,11 @@ import org.projectcrawwl.states.PauseState;
 import org.projectcrawwl.states.SaveMenuState;
 
 public class Main {
-
+	
+	
+	//BUG Zombies visible over shadows
+	//BUG Invisible convex hull
+	//BUG Random disappearing
 	
 	//Make an enum of all states
 	public static final GameState IN_GAME = new InGameState();

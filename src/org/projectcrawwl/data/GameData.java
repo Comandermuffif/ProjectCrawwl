@@ -25,6 +25,8 @@ public class GameData
 	private static HashMap<Integer, BasePlayer> humans = new HashMap<Integer, BasePlayer>();
 	private static HashMap<Integer, BasePlayer> zombies = new HashMap<Integer, BasePlayer>();
 	
+	private static ArrayList<GameObject> walls = new ArrayList<GameObject>();
+	
 	private static BasePlayer player = null;
 	
 	private static int currentSave = 0;
@@ -55,9 +57,12 @@ public class GameData
 	
 	public static void clearData(){
 		all.clear();
+		twod.clear();
 		players.clear();
 		humans.clear();
 		zombies.clear();
+		
+		walls.clear();
 		
 		zoom = 0;
 		
@@ -226,6 +231,11 @@ public class GameData
 			return;
 		}
 		
+		if(o instanceof ConvexHull){
+			walls.add(o);
+			return;
+		}
+		
 		all.put(o.id, o);
 		if(o instanceof BasePlayer){
 			players.put(o.id, (BasePlayer) o);
@@ -286,6 +296,13 @@ public class GameData
 			twod.remove(o.id);
 			return;
 		}
+		
+		if(o.getClass() != all.get(o.id).getClass()){
+			System.err.print(o.id + " " + o.getClass());
+			System.err.print(all.get(o.id).id + " " + all.get(o.id).getClass());
+			System.err.println("Improper ID assigned");
+		}
+		
 		
 		all.remove(o.id);
 		if(o instanceof BasePlayer){
@@ -438,11 +455,19 @@ public class GameData
 			o.render();
 		}
 		
+		for(GameObject o : walls){
+			((ConvexHull) o).renderShadow();
+		}
+		
 		for(GameObject o : l){
 			o.render();
 			if(o instanceof ConvexHull){
 				((ConvexHull) o).renderShadow();
 			}
+		}
+		
+		for(GameObject o : walls){
+			o.render();
 		}
 		
 		//synchronized(playerLock){

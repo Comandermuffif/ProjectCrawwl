@@ -206,6 +206,8 @@ public class Button {
 		}
 		
 		//New Game
+		//TODO not working to clear all the data
+		//Check 2D clearing
 		if(ID >= 21 && ID <= 24){
 			
 			GameData.setCurrentSave(ID - 20);
