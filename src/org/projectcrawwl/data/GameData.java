@@ -455,16 +455,15 @@ public class GameData
 			o.render();
 		}
 		
+		for(GameObject o : l){
+			o.render();
+			
+		}
+		
 		for(GameObject o : walls){
 			((ConvexHull) o).renderShadow();
 		}
 		
-		for(GameObject o : l){
-			o.render();
-			if(o instanceof ConvexHull){
-				((ConvexHull) o).renderShadow();
-			}
-		}
 		
 		for(GameObject o : walls){
 			o.render();
