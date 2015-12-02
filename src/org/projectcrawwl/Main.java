@@ -19,6 +19,11 @@ import org.projectcrawwl.states.MainMenuState;
 import org.projectcrawwl.states.PauseState;
 import org.projectcrawwl.states.SaveMenuState;
 
+/**
+ * Main entry point into program
+ * @author Comander
+ *
+ */
 public class Main {
 	
 	

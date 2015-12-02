@@ -461,13 +461,15 @@ public class GameData
 		}
 		
 		for(GameObject o : walls){
+			o.render();
+		}
+		
+		for(GameObject o : walls){
 			((ConvexHull) o).renderShadow();
 		}
 		
 		
-		for(GameObject o : walls){
-			o.render();
-		}
+		
 		
 		//synchronized(playerLock){
 			if(player != null && StateController.getGameState() == Main.IN_GAME){
