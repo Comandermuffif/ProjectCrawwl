@@ -3,26 +3,42 @@ package org.projectcrawwl.data;
 import java.util.ArrayList;
 
 import org.projectcrawwl.objects.BasePlayer;
-import org.projectcrawwl.weapons.BaseMeleeWeapon;
 import org.projectcrawwl.weapons.BaseWeapon;
+import org.projectcrawwl.weapons.Fists;
 
 public class Inventory {
+	
+	public static final ArrayList<String> ammo = new ArrayList<String>();
+	
+	public int bullets = 99;
+	
 	private BasePlayer owner;
 	private ArrayList<BaseWeapon> weapons = new ArrayList<BaseWeapon>();
 	private int counter = 0;
 	
 	public Inventory(BasePlayer tempO){
 		owner = tempO;
-		weapons.add(new BaseMeleeWeapon(owner, 25, 90, 25));
 	}
 	
 	public void render(){
+		if(weapons.isEmpty()){
+			weapons.add(new Fists(owner));
+		}
 		weapons.get(counter).render();
 	}
 	public void update(int delta){
-		for(BaseWeapon a : weapons){
-			a.update(delta);
+		if(weapons.isEmpty()){
+			weapons.add(new Fists(owner));
 		}
+		weapons.get(counter).update(delta);
+	}
+	
+	public void setWeapon(int n){
+		if(weapons.isEmpty()){
+			weapons.add(new Fists(owner));
+		}
+		counter = n % (weapons.size()-1);
+		
 	}
 	
 	public void addWeapon(BaseWeapon tempW){
@@ -30,6 +46,11 @@ public class Inventory {
 	}
 	
 	public BaseWeapon getWeapon(){
+		
+		if(weapons.isEmpty()){
+			weapons.add(new Fists(owner));
+		}
+		
 		return weapons.get(counter);
 	}
 	
@@ -46,8 +67,8 @@ public class Inventory {
 			counter = weapons.size()-1;
 		}
 	}
-	public void mouseWheelMoved(int change) 
-	{				
-		System.out.print(change);
+
+	public ArrayList<BaseWeapon> getWeapons() {
+		return weapons;
 	}
 }

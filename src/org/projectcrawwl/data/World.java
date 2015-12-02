@@ -2,143 +2,217 @@ package org.projectcrawwl.data;
 
 import java.awt.Point;
 import java.awt.geom.Line2D;
+import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 
-import org.lwjgl.opengl.GL11;
+import org.projectcrawwl.objects.ConvexHull;
 
-public class World {
+public class World{
 	
-	private float mapX = 2000;
-	private float mapY = 1000;
+	private static float mapXOffset = 0;
+	private static float mapYOffset = 0;
 	
-	private float gridX = 10;//10
-	private float gridY = 10;//10
+	private static ArrayList<ConvexHull> hulls = new ArrayList<ConvexHull>();
 	
-	private float mapXOffset;// = (1280-600)/2;
-	private float mapYOffset;// = (720-600)/2;
+	private static ArrayList<WorldTile> tiles = new ArrayList<WorldTile>();
 	
-	static GameSettings settings = GameSettings.getInstance();
+	private static int tileLimit = 50;
 	
-	private ArrayList<Point> rooms = new ArrayList<Point>();
+	private static WorldTile goal;
 	
-	/**
-	 * ArrayList of all collidable walls stored in absolute game position
-	 */
-	private ArrayList<ArrayList<ArrayList<Line2D.Float>>> lineWalls = new ArrayList<ArrayList<ArrayList<Line2D.Float>>>();
+	private World(){}
 	
-	public World(){
+	public static void clearData(){
+		mapXOffset = 0;
+		mapYOffset = 0;
 		
-		for (int i = 0; i <= (mapX/gridX)/10; i++){
-			ArrayList<ArrayList<Line2D.Float>> row = new ArrayList<ArrayList<Line2D.Float>>();
-			for (int j = 0; j <= (mapY/gridY)/10; j++){
-				ArrayList<Line2D.Float> row2 = new ArrayList<Line2D.Float>();
-				row.add(row2);
-			}
-			lineWalls.add(row);
-		}
+		hulls.clear();
 		
-		for (int i = 0; i < mapX/gridX; i++){
-	         for (int j = 0; j < mapY/gridY; j++){
-	        	 
-	        	 if(i == 0 || j == 0 || i + 1 == mapX/gridX || j + 1 == mapY/gridY || i == 1 || j == 1 || i+2 == mapX/gridX || j+2 == mapY/gridY){
-	        		 
-	        		 addLineWall(new Line2D.Float(gridX*(i), gridY*(j), gridX*(i), gridY*(j+1)));
-	        		 addLineWall(new Line2D.Float(gridX*(i), gridY*(j), gridX*(i+1), gridY*(j)));
-	        		 addLineWall(new Line2D.Float(gridX*(i), gridY*(j+1), gridX*(i+1), gridY*(j+1)));
-	        		 addLineWall(new Line2D.Float(gridX*(i+1), gridY*(j), gridX*(i+1), gridY*(j+1)));
-	        		 
-	        	 }
-	         }
-	    }
+		tiles.clear();
 		
-		addLineWall(new Line2D.Float(0,0,0,mapY));
-		addLineWall(new Line2D.Float(0,0,mapX,0));
-		addLineWall(new Line2D.Float(0,mapY,mapX,mapY));
-		addLineWall(new Line2D.Float(mapX,0,mapX,mapY));
+		tileLimit = 0;
+	}
+	
+	public static void generateWorld(){
 		
-		for(int a = 0; a < Math.random()*5 + 5; a ++){
-			generateRoom();
-		}
-		//connectRooms();
-	}
-	
-	private static World instance = null;
-
-	public static World getInstance()
-	{
-		if(instance == null)
-			instance = new World();
-
-		return instance;
-	}
-	
-	public ArrayList<Line2D.Float> getLineWalls(int x, int y){
+		HashSet<WorldTile> tileMap = new HashSet<WorldTile>();
 		
-		return lineWalls.get((int)(x/gridX/10)).get((int)(y/gridY/10));
-	}
-	
-	public void addLineWall(Line2D.Float line){
-		for(int i = (int) Math.floor((line.x1/gridX)/10); i <= (int) Math.floor((line.x2/gridX)/10); i += 1){
-			for(int j = (int) Math.floor((line.y1/gridY)/10); j <= (int) Math.floor((line.y2/gridY)/10); j += 1){
-				lineWalls.get(i).get(j).add(line);
-			}
-		}
-	}
-	
-	public float getMapX(){
-		return mapX;
-	}
-	public float getMapY(){
-		return mapY;
-	}
-	
-	public float getGridX(){
-		return gridX;
-	}
-	public float getGridY(){
-		return gridY;
-	}
-	
-	
-	public float getMapXOffset(){
-		return mapXOffset;
-	}
-	public float getMapYOffset(){
-		return mapYOffset;
-	}
-	
-	public void setMapXOffset(float temp){
-		mapXOffset = temp;
-	}
-	public void setMapYOffset(float temp){
-		mapYOffset = temp;
-	}
-	
-	public void generateRoom(){
-		int w = (int) (5 + Math.random()*4);
-		int h = (int) (4 + Math.random()*5);
+		GameData.clearData();
 		
-		int x = (int) (Math.random() * (mapX/gridX - w - 2));
-		int y = (int) (Math.random() * (mapY/gridY - h - 2));
+		tiles.clear();
+		tileMap.clear();
 		
-		rooms.add(new Point(x + w/2,y + h/2));
+		hulls.clear();
 		
-		for(int a = x; a <= x + w; a ++){
-			for(int b = y; b <= y + h; b ++){
+		ArrayList<String> up = new ArrayList<String>();
+		ArrayList<String> down = new ArrayList<String>();
+		ArrayList<String> left = new ArrayList<String>();
+		ArrayList<String> right = new ArrayList<String>();
+		
+		
+		for(final File file : new File("res/WorldTiles").listFiles()){
+			if(file.isFile()){
+				String extension = file.getName().split("\\.")[file.getName().split("\\.").length - 1].toLowerCase();
 				
-				if(a == x || a == x+w || b == y){
+				if(extension.equals("worldtile")){
+					System.out.println(file.getName());
+					int[] data = WorldTile.possibleTiles(file.getPath());
 					
-					addLineWall(new Line2D.Float(gridX*(a), gridY*(b), gridX*(a), gridY*(b+1)));
-					addLineWall(new Line2D.Float(gridX*(a), gridY*(b), gridX*(a+1), gridY*(b)));
-					addLineWall(new Line2D.Float(gridX*(a), gridY*(b+1), gridX*(a+1), gridY*(b+1)));
-					addLineWall(new Line2D.Float(gridX*(a+1), gridY*(b), gridX*(a+1), gridY*(b+1)));
-					
+					if(data[0] == 0){
+						up.add(file.getPath());
+					}
+					if(data[1] == 0){
+						right.add(file.getPath());
+					}
+					if(data[2] == 0){
+						down.add(file.getPath());
+					}
+					if(data[3] == 0){
+						left.add(file.getPath());
+					}
 				}
 			}
 		}
+		
+		{
+			WorldTile t = new WorldTile(0,0, new int[]{0,0,0,0});
+			tiles.add(t);
+			tileMap.add(t);
+			t.setStart();
+		}
+		
+		
+		ArrayList<WorldTile> queue = new ArrayList<WorldTile>();
+		
+		queue.addAll(tiles);
+		
+		int i = 0;
+		
+		WorldTile t = new WorldTile();
+		
+		while(!queue.isEmpty()){
+			
+			i ++;
+			
+			WorldTile current = queue.get(0);
+			queue.remove(0);
+			
+			
+			if(i + queue.size() >= tileLimit){
+				if(current.getSides()[0] == 0 && !tileMap.contains(new WorldTile(current.getX(), current.getY() + 1))){
+					t = new WorldTile(current.getX(), current.getY() + 1, new int[]{1,1,0,1});
+					tiles.add(t);
+					tileMap.add(t);
+					queue.add(t);
+				}
+				
+				if(current.getSides()[1] == 0 && !tileMap.contains(new WorldTile(current.getX() + 1, current.getY()))){
+					t = new WorldTile(current.getX() + 1, current.getY(), new int[]{1,1,1,0});
+					tiles.add(t);
+					tileMap.add(t);
+					queue.add(t);
+				}
+				
+				if(current.getSides()[2] == 0 && !tileMap.contains(new WorldTile(current.getX(), current.getY() - 1))){
+					t = new WorldTile(current.getX(), current.getY() - 1, new int[]{0,1,1,1});
+					tiles.add(t);
+					tileMap.add(t);
+					queue.add(t);
+				}
+				if(current.getSides()[3] == 0 && !tileMap.contains(new WorldTile(current.getX() - 1, current.getY()))){
+					t = new WorldTile(current.getX() - 1, current.getY(), new int[]{1,0,1,1});
+					tiles.add(t);
+					tileMap.add(t);
+					queue.add(t);
+				}
+			}else{
+				//top
+				if(current.getSides()[0] == 0 && !tileMap.contains(new WorldTile(current.getX(), current.getY() + 1))){
+					t = new WorldTile(current.getX(), current.getY() + 1, down.get((int) (Math.random()*down.size())) , 2);
+					tiles.add(t);
+					tileMap.add(t);
+					queue.add(t);
+				}
+				//Right
+				if(current.getSides()[1] == 0 && !tileMap.contains(new WorldTile(current.getX() + 1, current.getY()))){
+					t = new WorldTile(current.getX() + 1, current.getY(), left.get((int) (Math.random()*left.size())) , 3);
+					tiles.add(t);
+					tileMap.add(t);
+					queue.add(t);
+				}
+				//bottom
+				if(current.getSides()[2] == 0 && !tileMap.contains(new WorldTile(current.getX(), current.getY() - 1))){
+					t = new WorldTile(current.getX(), current.getY() - 1, up.get((int) (Math.random()*up.size())) , 0);
+					tiles.add(t);
+					tileMap.add(t);
+					queue.add(t);
+				}
+				//right
+				if(current.getSides()[3] == 0 && !tileMap.contains(new WorldTile(current.getX() - 1, current.getY()))){
+					t = new WorldTile(current.getX() - 1, current.getY(), right.get((int) (Math.random()*right.size())) , 1);
+					tiles.add(t);
+					tileMap.add(t);
+					queue.add(t);
+				}
+			}
+			
+		}
+		
+		t.setGoal();
+		
+		goal = t;
+		
+		for(WorldTile w : tiles){
+			hulls.addAll(w.getHulls());
+			for(ConvexHull h: w.getHulls()){
+				GameData.addObject(h);
+			}
+		}
+		
+		GameData.addChest();
+		
+		GameData.update();
+		
 	}
 	
-	public Point getLineLineIntersection(Line2D.Float a, Line2D.Float b) {
+	public static WorldTile getGoal(){
+		return goal;
+	}
+	
+	public static ArrayList<WorldTile> getTiles(){
+		return tiles;
+	}
+	
+	public static ArrayList<ConvexHull> getHulls(){
+		return hulls;
+	}
+	
+	public static void addTile(WorldTile t){
+		tiles.add(t);
+		hulls.addAll(t.getHulls());
+	}
+	
+	public static void clearHulls(){
+		hulls.clear();
+	}
+	
+	public static float getMapXOffset(){
+		return mapXOffset;
+	}
+	public static float getMapYOffset(){
+		return mapYOffset;
+	}
+	
+	public static void setMapXOffset(float temp){
+		mapXOffset = temp;
+	}
+	public static void setMapYOffset(float temp){
+		mapYOffset = temp;
+	}
+	
+	public static Point getLineLineIntersection(Line2D.Float a, Line2D.Float b) {
 		double x1 = a.x1; double y1 = a.y1; double x2 = a.x2; double y2 = a.y2; double x3 = b. x1; double y3 = b.y1; double x4 = b.x2; double y4 = b.y2;
 	    double det1And2 = det(x1, y1, x2, y2);
 	    double det3And4 = det(x3, y3, x4, y4);
@@ -155,83 +229,46 @@ public class World {
 	    double y = (det(det1And2, y1LessY2, det3And4, y3LessY4) / det1Less2And3Less4);
 	    return new Point((int)x, (int)y);
 	}
-	protected double det(double a, double b, double c, double d) {
+	private  static double det(double a, double b, double c, double d) {
 		return a * d - b * c;
 	}
 
-	public void renderLights(){
-		//I have no idea what I want to do here
+	public static void renderHulls(){
+		
+		Collections.sort(hulls);
+		
+		for(ConvexHull x : hulls){
+			x.render();
+		}
 	}
 	
-	public void renderBackground(){
-		int leftBound = (int) Math.floor(-mapXOffset/gridX);
-		int rightBound = (int) Math.floor((-mapXOffset + settings.getScreenX())/gridX);
-		int upBound = (int) Math.floor(-mapYOffset/gridY);
-		int downBound = (int) Math.floor((-mapYOffset + settings.getScreenY())/gridY);
-		
-		if(leftBound < 0){
-			leftBound = 0;
-		}else if (leftBound >= mapX/gridX){
-			leftBound = (int) (mapX/gridX - 1);
+	public static void renderShadows(){
+		for(ConvexHull x : hulls){
+			x.renderShadow();
 		}
+	}
+	
+	public static void renderBackground(){
+		for(WorldTile t : tiles){
+			t.renderBackground();
+		}	
+	}
+	
+	public static void setTileLimit(int limit){
+		tileLimit = limit;
+	}
+	
+	public static String toXML(){
+		String data = "";
 		
-		if(rightBound < 0){
-			rightBound = 0;
-		}else if (rightBound >= mapX/gridX){
-			rightBound = (int) (mapX/gridX - 1);
-		}
-		
-		if(upBound < 0){
-			upBound = 0;
-		}else if (upBound >= mapY/gridY){
-			upBound = (int) (mapX/gridX - 1);
-		}
-		
-		if(downBound < 0){
-			downBound = 0;
-		}else if (downBound >= mapY/gridY){
-			downBound = (int) (mapY/gridY - 1);
-		}
-		
-		GL11.glColor3d(.34,.23,.04);
-		GL11.glBegin(GL11.GL_TRIANGLE_STRIP);
-		GL11.glVertex3f(leftBound*gridX + mapXOffset,upBound*gridY + mapYOffset,0);
-		GL11.glVertex3f(rightBound*gridX + mapXOffset+ gridX,upBound*gridY + mapYOffset,0);
-		GL11.glVertex3f(leftBound*gridX + mapXOffset,downBound*gridY + mapYOffset+gridY,0);
-		GL11.glVertex3f(rightBound*gridX + mapXOffset+gridX,downBound*gridY + mapYOffset+gridY,0);
-		GL11.glEnd();
-		
-		
-		for(int i = (int) Math.floor(leftBound/10); i <= Math.floor(rightBound/10); i++){
-			for(int j = (int) Math.floor(upBound/10); j <= Math.floor(downBound/10); j++){
-				for(Line2D.Float x : lineWalls.get(i).get(j)){
-					GL11.glColor3d(1.0, 0, 0);
-					GL11.glLineWidth(1);
-					GL11.glBegin(GL11.GL_LINES);
-					
-					GL11.glVertex3d(x.getX1() + mapXOffset, x.getY1() + mapYOffset, 1);
-					GL11.glVertex3d(x.getX2() + mapXOffset, x.getY2() + mapYOffset, 1);
-					
-				
-					GL11.glEnd();	
-				}
+		data += "\t<World>\n";
+		{
+			for(WorldTile t : getTiles()){
+				data += t.toXML();
 			}
 		}
+		data += "\t</World>\n";
 		
-		/*
-		for(Line2D.Float x : lineWalls){
-			//TODO prevent rendering of off screen walls
-			GL11.glColor3d(1.0, 0, 0);
-			GL11.glLineWidth(1);
-			GL11.glBegin(GL11.GL_LINES);
-			
-			GL11.glVertex3d(x.getX1() + mapXOffset, x.getY1() + mapYOffset, 1);
-			GL11.glVertex3d(x.getX2() + mapXOffset, x.getY2() + mapYOffset, 1);
-			
-		
-			GL11.glEnd();	
-		}*/
+		return data;
 	}
-	
-	
 }

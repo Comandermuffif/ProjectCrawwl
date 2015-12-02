@@ -1,9 +1,10 @@
 package org.projectcrawwl.weapons;
 
-import java.util.Random;
+import java.io.IOException;
 
+import org.newdawn.slick.openal.AudioLoader;
+import org.newdawn.slick.util.ResourceLoader;
 import org.projectcrawwl.objects.BasePlayer;
-import org.projectcrawwl.projectile.BaseProjectile;
 public class SMG extends BaseRangedWeapon{
 
 	
@@ -11,16 +12,23 @@ public class SMG extends BaseRangedWeapon{
 		super(tempO);
 		name = "SMG";
 		
+		velocity = 3;
 		
-		coolDown = 60000/900;
+		spread = 150;
+		spreadAngle = 8;
+		
+		damage = 10;
+		
+		coolDown = 1000/11;
 		currentCoolDown = coolDown;
-	}
-	public void fire(){
-		Random random = new Random();
-		if(active == false){
-			active = true;
-			currentCoolDown = coolDown;
-			data.addProjectile(new BaseProjectile((float) (owner.x + Math.cos(Math.toRadians(90 - owner.facingAngle))*(owner.r+5)),(float) (owner.y + Math.sin(Math.toRadians(90 - owner.facingAngle))*(owner.r+5)),3,(float) ((float) owner.facingAngle + random.nextGaussian()*1.5), 10, owner));
-		}
+		
+		reloadTime = 2200;
+		
+		maxClip = 25;
+		currentClip = 25;
+		
+		try {
+			onFire = AudioLoader.getAudio("OGG", ResourceLoader.getResourceAsStream("res/SoundFiles/Wpn_45_smg_2d_01.ogg"));
+		} catch (IOException e) {e.printStackTrace();}
 	}
 }

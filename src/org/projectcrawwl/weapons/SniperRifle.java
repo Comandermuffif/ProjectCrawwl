@@ -1,23 +1,33 @@
 package org.projectcrawwl.weapons;
 
-import org.projectcrawwl.data.GameData;
+import java.io.IOException;
+
+import org.newdawn.slick.openal.AudioLoader;
+import org.newdawn.slick.util.ResourceLoader;
 import org.projectcrawwl.objects.BasePlayer;
-import org.projectcrawwl.projectile.BaseProjectile;
 
 public class SniperRifle extends BaseRangedWeapon{
+	
 	public SniperRifle(BasePlayer tempO){
 		super(tempO);
 		name = "Sniper Rifle";
+		velocity = 5;
+		damage = 110;
+		coolDown = (float) (1000/5);
 		
-		coolDown = 250;
+		reloadTime = 3000;
+		
 		currentCoolDown = coolDown;
-	}
-	public void fire(){
-		if(active == false){
-			active = true;
-			currentCoolDown = coolDown;
-			GameData data = GameData.getInstance();
-			data.addProjectile(new BaseProjectile((float) (owner.x + Math.cos(Math.toRadians(90 - owner.facingAngle))*(owner.r+5)),(float) (owner.y + Math.sin(Math.toRadians(90 - owner.facingAngle))*(owner.r+5)),5,(float) owner.facingAngle, 50, owner));
-		}
-	}
+		maxClip = 10;
+		currentClip = maxClip;
+		
+		spread = 750;
+		spreadAngle = 7.5;
+		
+		automatic = false;
+		
+		try {
+			onFire = AudioLoader.getAudio("OGG", ResourceLoader.getResourceAsStream("res/SoundFiles/Wpn_riflesniper_fire_2d.ogg"));
+		} catch (IOException e) {e.printStackTrace();}
+	}	
 }

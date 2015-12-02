@@ -1,20 +1,21 @@
 package org.projectcrawwl.weapons;
 
-import org.projectcrawwl.data.GameData;
+import java.awt.Point;
+
 import org.projectcrawwl.objects.BasePlayer;
 
 public class BaseWeapon {
 	public String name;
-	public float damage;
+	public double damage;
 	public BasePlayer owner;
-	
-	GameData data = GameData.getInstance();
 	
 	public Boolean active = false;
 	public float coolDown;
 	public float currentCoolDown;
 	
-	public BaseWeapon(String tempName, float tempD){
+	public boolean automatic = true;
+	
+	public BaseWeapon(String tempName, double tempD){
 		name = tempName;
 		damage = tempD;
 	}
@@ -30,5 +31,37 @@ public class BaseWeapon {
 	}
 	public String getName(){
 		return name;
+	}
+	public Point getClip(){
+		return new Point(0,0);
+	}
+	public boolean isReloading(){
+		return false;
+	}
+	public void reload(){
+		
+	}
+	
+	public boolean isAutomatic(){
+		return automatic;
+	}
+
+	public String toXML() {
+		String data = "";
+		
+		data += "\t\t<BaseWeapon>\n";
+		{
+			data += "\t\t\t<name>" + name + "</name>\n";
+			data += "\t\t\t<damage>" + damage + "</damage>\n";
+			data += "\t\t\t<active>" + active + "</active>\n";
+			
+			data += "\t\t\t<coolDown>" + coolDown + "</coolDown>\n";
+			data += "\t\t\t<currentCoolDown>" + currentCoolDown + "</currentCoolDown>\n";
+			
+			data += "\t\t\t<automatic>" + automatic + "</automatic>\n";
+		}
+		data += "\t\t</BaseWeapon>\n";
+		
+		return data;
 	}
 }

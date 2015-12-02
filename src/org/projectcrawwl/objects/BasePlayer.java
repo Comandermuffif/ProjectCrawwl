@@ -1,40 +1,33 @@
 package org.projectcrawwl.objects;
 
 import java.awt.Point;
-import java.awt.Polygon;
-import java.awt.geom.Line2D;
-import java.awt.geom.PathIterator;
 import java.util.ArrayList;
-import java.util.Dictionary;
-import java.util.Hashtable;
 
 import org.lwjgl.opengl.GL11;
 import org.projectcrawwl.data.GameData;
 import org.projectcrawwl.data.Inventory;
-import org.projectcrawwl.data.World;
+import org.projectcrawwl.weapons.BaseWeapon;
 
-public class BasePlayer extends GameObject{
+public abstract class BasePlayer extends GameObject{
 	
-	public float health;
+	public int health;
+	public int maxHealth;
 	Inventory inventory = new Inventory(this);
 	//public double speed = 0; //0 units per millisecond or 0 units per second
 	public int kills = 0;
 	BasePlayer lastHit = this;
-	float sightRange =  500;//data.getGridX()  * 10;
-	float sightAngle = 90; //Total view cone
-	ArrayList<Point> view = new ArrayList<Point>();
-	Dictionary<Point, Boolean> view2 = new Hashtable<Point, Boolean>();
-	Boolean state = false;
 	
-	Polygon viewCone = new Polygon();
+	public int level = 0;
 	
-	public BasePlayer(float tempX, float tempY, float tempA, float tempH, float tempR){
+	public int xp = 0;
+	
+	public BasePlayer(float tempX, float tempY, float tempA, int tempH){
 		super();
 		x = tempX;
 		y = tempY;
 		facingAngle = tempA;
 		health = tempH;
-		r = tempR;
+		maxHealth = health;
 	}
 	public BasePlayer(float tempX, float tempY){
 		super(tempX, tempY);
@@ -42,7 +35,7 @@ public class BasePlayer extends GameObject{
 		y = tempY;
 		facingAngle = 0;
 		health = 100;
-		r = 10;
+		maxHealth = health;
 	}
 	public BasePlayer(){
 		super();
@@ -50,35 +43,70 @@ public class BasePlayer extends GameObject{
 		y = 0;
 		facingAngle = 0;
 		health = 100;
-		r = 10;
+		maxHealth = health;
 	}
-	public void damage(float damage, BasePlayer shooter){
+	
+	public void createBoundingBox(){
+		
+		boundingBox.reset();
+		
+        for (float angle=0; angle<=Math.PI*2; angle+=((Math.PI*2)/16) )
+        {
+        	addPoint((int)((25)*(float)Math.cos(angle)), (int)((25)*(float)Math.sin(angle)));
+        }
+        updateLines();
+	}
+	
+	public void damage(double damage, BasePlayer shooter){
 		health -= damage;
 		lastHit = shooter;
 	}
 	public float getHealth(){
 		return health;
 	}
-
-
+	
+	public int getLevel(){
+		return level;
+	}
+	
 	public void render(){
+		if(!isReady){return;}
 		super.render();
 		inventory.render();
 		
-		//GL11.glColor4d(0, 1, 0, .039);
-
-		GL11.glColor4d(0, 1, 0, 1);
-		//GL11.glBegin(GL11.GL_TRIANGLE_FAN);
-		GL11.glBegin(GL11.GL_POLYGON);
-		for(PathIterator pi = viewCone.getPathIterator(null); !pi.isDone(); pi.next()){
-			float[] coord = new float[6];
-			pi.currentSegment(coord);
-			if(pi.currentSegment(coord) != pi.SEG_CLOSE){
-				GL11.glVertex2d(coord[0] + data.getMapXOffset(), coord[1] + data.getMapYOffset());
-			}
-			pi.next();
-		}
+		GL11.glEnable(GL11.GL_DEPTH_TEST);
+		GL11.glDepthFunc(GL11.GL_LESS);
+		
+		GL11.glColor4d(1.0, 0.0, 0,.5);
+		GL11.glLineWidth(1);
+		GL11.glBegin(GL11.GL_LINES);
+		GL11.glVertex3d(renderX, renderY, .5);
+		GL11.glVertex3d(renderX + 75 * Math.cos(Math.toRadians(facingAngle)), renderY + 75 * Math.sin(Math.toRadians(facingAngle)), .5);
 		GL11.glEnd();
+		
+		GL11.glDisable(GL11.GL_DEPTH_TEST);
+		
+		if(health < maxHealth){
+			
+			GL11.glColor3d(1, 0, 0);
+			GL11.glBegin(GL11.GL_TRIANGLE_FAN);
+			GL11.glVertex3d(renderX - 25, renderY + farthest + 2, .5);
+			GL11.glVertex3d(renderX + 25, renderY + farthest + 2, .5);
+			GL11.glVertex3d(renderX + 25, renderY + farthest + 7, .5);
+			GL11.glVertex3d(renderX - 25, renderY + farthest + 7, .5);
+			GL11.glEnd();
+			
+			GL11.glColor3d(0, 1, 0);
+			GL11.glBegin(GL11.GL_TRIANGLE_FAN);
+			GL11.glVertex3d(renderX - 25, renderY + farthest + 2, .5);
+			GL11.glVertex3d(renderX - 25 + (50)*((double)(health)/maxHealth), renderY + farthest + 2, .5);
+			GL11.glVertex3d(renderX - 25 + (50)*((double)(health)/maxHealth), renderY + farthest + 7, .5);
+			GL11.glVertex3d(renderX - 25, renderY + farthest + 7, .5);
+			GL11.glEnd();
+		}
+		
+		
+		
 	}
 	
 	public void renderHUD(){
@@ -89,68 +117,89 @@ public class BasePlayer extends GameObject{
 	public void update(int delta){
 		super.update(delta);
 		
-
-		Polygon tempView = new Polygon();
-		
-		tempView.addPoint((int)x, (int)y);
-		World world = World.getInstance();
-		
-		
-		
-		for(float a = facingAngle - sightAngle/2; a < facingAngle + sightAngle/2; a += .25){
-			boolean flag = false;
-			Point nearest = new Point((int) (x + Math.sin(Math.toRadians(a))*sightRange),(int) (y + Math.cos(Math.toRadians(a))*sightRange));
-			double dist = sightRange;
-			for(int b = 0; b < sightRange; b += 2){
-				Line2D.Float temp = new Line2D.Float(x, y, (float)(x + Math.sin(Math.toRadians(a))*b), (float) (y + Math.cos(Math.toRadians(a))*b));
-				for(Line2D.Float x : world.getLineWalls((int)temp.x2, (int)temp.y2)){
-					if(x.intersectsLine(temp)){
-						Point q = world.getLineLineIntersection(x, temp);
-						if(q!= null && nearest.distance(q) < dist){
-							nearest = new Point(q.x,q.y);
-							dist = q.distance(new Point((int)this.x,(int)this.y));
-						}
-						
-						
-						if(q == null){
-							//tempView.addPoint((int) temp.x2,(int) temp.y2);
-						}else{
-							//tempView.addPoint(q.x, q.y);
-						}
-						flag = true;
-						//break;
-					}
-				}
-				if(flag){
-					break;
-				}
-			}
-			
-			tempView.addPoint(nearest.x, nearest.y);
-			
-			if(!flag){
-				//tempView.addPoint((int) (x + Math.sin(Math.toRadians(a))*sightRange),(int) (y + Math.cos(Math.toRadians(a))*sightRange));
-			}			
-		}
-		
-		//viewCone.reset();
-		viewCone = tempView;
-		
 		inventory.update(delta);
 		//BOOP!
 		
 		if(health <= 0){
 			lastHit.newKill();
-			GameData data = GameData.getInstance();
 			if(this instanceof org.projectcrawwl.objects.Zombie){
-				data.addZombie();
+				GameData.addZombie();
 			}
-			data.removeObject(this);
+			GameData.killObject(this);
 		}
 	}
 	
 	
 	public void newKill(){
 		kills += 1;
+		xp += 10;
+		
+		while(xp >= 100){
+			level ++;
+			xp -= 100;
+		}
+	}
+	
+	public Inventory getInventory(){
+		return inventory;
+	}
+	
+	public void mouseInput(ArrayList<Integer> a){}
+	
+	public void keyboardInput(ArrayList<Integer> a){}
+	
+	@Override
+	public String toXML(){
+		String data = "";
+		
+		data += "<BasePlayer>\n";
+		{
+				data += "\t<x>" + x + "</x>\n";
+				data += "\t<y>" + y + "</y>\n";
+				data += "\t<id>" + id + "</id>\n";
+				
+				data += "\t<facingAngle>" + facingAngle + "</facingAngle>\n";
+				
+				data += "\t<moveAngle>" + moveAngle + "</moveAngle>\n";
+				
+				data += "\t<speed>" + speed + "</speed>\n";
+				
+				data += "\t<turnSpeed>" + turnSpeed + "</turnSpeed>\n";
+				
+				data += "\t<health>" + health + "</health>\n";
+				
+				data += "\t<maxHealth>" + maxHealth + "</maxHealth>\n";
+				
+				data += "\t<level>" + level + "</level>\n";
+				
+				data += "\t<kills>" + kills + "</kills>\n";
+				
+				data += "\t<xp>" + xp + "</xp>\n";
+				
+				data += "\t<boundingBox>\n";
+				{
+					for(Point p : this.getPoints()){
+						data += "\t\t<point>\n";
+						{
+							data += "\t\t\t<pX>" + p.x + "</pX>\n";
+							data += "\t\t\t<pY>" + p.y + "</pY>\n";
+						}
+						data += "\t\t</point>\n";
+					}
+				}
+				data += "\t</boundingBox>\n";
+			
+			data += "\t<Inventory>\n";
+			{
+				for(BaseWeapon w : inventory.getWeapons()){
+					data += w.toXML();
+				}
+			}
+			data += "\t</Inventory>\n";
+			
+		}
+		data += "</BasePlayer>\n";
+		
+		return data;
 	}
 }
